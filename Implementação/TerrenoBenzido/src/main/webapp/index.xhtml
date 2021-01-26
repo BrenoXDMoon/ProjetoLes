@@ -34,12 +34,13 @@ set=ISO-8859-1" />
 			class="py-2 d-none d-md-inline-block"
 			href="#{request.contextPath}/admin/cartas/lista.xhtml">Lista</a> 
 			</c:if>
-			<h:commandButton
-			value="logout" action="#{clienteBean.logout}" /> <c:if
+			<c:if
 			test="#{clienteBean.request.getSession(false).getAttribute('u_email') != null}">
+			<h:commandButton
+			value="logout" action="#{clienteBean.logout}" /> 
 		</c:if> #{request.getSession(false).getAttribute("u_email")} </nav> </header>
 	</h:form>
-	o session email é diferente de null #{request.getSession(false).getAttribute("u_email") != null} 
+	o session email e diferente de null #{request.getSession(false).getAttribute("u_email") != null} 
 	<p></p>
 	#{request.getSession(false).getAttribute("u_nome")}
 	#{request.getSession(false)}

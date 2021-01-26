@@ -63,6 +63,11 @@ body{
   background-color: #e5e5e5;
 }
 
+.erro{
+	color:red;
+	display:block;
+	font-size: 18px;
+}
 
 /*
  * Extra utilities
