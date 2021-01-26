@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+
+<header class="site-header sticky-top py-1"> <nav
+	class="container d-flex flex-column flex-md-row justify-content-between">
+<a class="navbar-brand mb-0 h1"
+	href="#{request.contextPath}/index.xhtml">Terreno Benzido</a> <a
+	class="py-2 d-none d-md-inline-block"
+	href="#{request.contextPath}/login.xhtml">Login</a> <a
+	class="py-2 d-none d-md-inline-block"
+	href="#{request.contextPath}/carrinho/carrinho.xhtml">Carrinho</a> </nav> </header>
+<h:body styleClass="center" class="bg-dark">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-10">
+				<h2>Cadastro de Cliente</h2>
+				<h:form enctype="multipart/form-data">
+					<h4 class="py-4">Dados de Cliente</h4>
+					<div class="border">
+						<div class="row justify-content-center">
+							<div class="col-10">
+								<div class="form-group">
+									<h:outputLabel value="Nome Completo" />
+									<h:inputText value='#{clienteBean.cliente.nomeCompleto}'
+										required="true" id="nomeCompleto" styleClass="form-control" />
+									<h:message for='nomeCompleto' />
+								</div>
+								<div class="form-group">
+									<h:outputLabel value="CPF" />
+									<h:inputText value='#{clienteBean.cliente.cpf}' required="true"
+										id="cpf" styleClass="form-control" />
+									<h:message for='cpf' />
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel value="Data de Nascimento" />
+									<h:inputText value="#{clienteBean.cliente.dataNascimento}"
+										id="dataNascimento" styleClass="form-control" />
+									<h:message for="dataNascimento" />
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel value="E-mail" />
+									<h:inputText value="#{clienteBean.cliente.email}" id="email"
+										styleClass="form-control" />
+									<h:message for="email" />
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel value="Senha" />
+									<h:inputText value="#{clienteBean.cliente.senha}" id="senha"
+										styleClass="form-control" />
+									<h:message for="senha" />
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<h4 class="py-4">Dados de Endereço do Cliente</h4>
+					<div class="border">
+						<div class="row justify-content-center">
+							<div class="col-10">
+								<div class="form-group">
+									<h:outputLabel value="Logradouro" />
+									<h:inputText value="#{clienteBean.endereco.logradouro}"
+										id="logradouro" styleClass="form-control" />
+									<h:message for="logradouro" />
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel value="Numero" />
+									<h:inputText value="#{clienteBean.endereco.numero}" id="numero"
+										styleClass="form-control" />
+									<h:message for="numero" />
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel value="Bairro" />
+									<h:inputText value="#{clienteBean.endereco.bairro}" id="bairro"
+										styleClass="form-control" />
+									<h:message for="bairro" />
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel value="Complemento" />
+									<h:inputText value="#{clienteBean.endereco.complemento}"
+										id="complemento" styleClass="form-control" />
+									<h:message for="complemento" />
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel value="CEP" />
+									<h:inputText value="#{clienteBean.endereco.cep}" id="cep"
+										styleClass="form-control" />
+									<h:message for="cep" />
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel value="Cidade" />
+									<h:inputText value="#{clienteBean.endereco.cidade}" id="cidade"
+										styleClass="form-control" />
+									<h:message for="cidade" />
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel value="Estado" />
+									<h:inputText value="#{clienteBean.endereco.estado}" id="estado"
+										styleClass="form-control" />
+									<h:message for="estado" />
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel value="Tipo de Endereço" />
+									<h:selectOneListbox value="#{clienteBean.endereco.tipo}"
+										id="tipoEndereco" styleClass="form-control">
+										<f:selectItem itemValue="Cobrança" itemLabel="Cobrança">
+										</f:selectItem>
+										<f:selectItem itemValue="Entrega" itemLabel="Entrega">
+										</f:selectItem>
+									</h:selectOneListbox>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+					<h4 class="py-4">Dados de Cartão do Cliente</h4>
+					<div class="border">
+						<div class="row justify-content-center">
+							<div class="col-10">
+
+								<div class="form-group">
+									<h:outputLabel value="Numero do Cartao" />
+									<h:inputText value="#{clienteBean.cartao.numeroCartao}"
+										id="numeroCartao" styleClass="form-control" />
+									<h:message for="numeroCartao" />
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel value="Nome Impresso" />
+									<h:inputText value="#{clienteBean.cartao.nomeImpresso}"
+										id="nomeImpresso" styleClass="form-control" />
+									<h:message for="nomeImpresso" />
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel value="Validade" />
+									<h:inputText value="#{clienteBean.cartao.validade}"
+										id="validade" styleClass="form-control" />
+									<h:message for="validade" />
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel value="Codigo de segurança" />
+									<h:inputText value="#{clienteBean.cartao.codigoSeguranca}"
+										id="codigoSeguranca" styleClass="form-control" />
+									<h:message for="codigoSeguranca" />
+								</div>
+
+								<div class="form-group">
+									<h:outputLabel value="Bandeira do Cartao" />
+									<h:inputText value="#{clienteBean.cartao.bandeira}"
+										id="bandeira" styleClass="form-control" />
+									<h:message for="bandeira" />
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<h:commandButton value='Cadastrar' action='#{clienteBean.salvar}'
+						styleClass="btn btn-primary my-3" />
+				</h:form>
+			</div>
+		</div>
+	</div>
+</h:body>
+
+</html>

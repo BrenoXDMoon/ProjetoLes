@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="/templates/_admin_template.xhtml">
+
+	<ui:param name="lista" value="active" />
+
+	<ui:define name="body">
+
+		<h2>Lista de Cartas</h2>
+
+		<h:messages />
+
+		<h:button value="Cadastrar Cartas" outcome="form" />
+
+		<h:dataTable var="carta" value="#{adminListaCartaBean.cartas}"
+			class="table table-bordered table-striped table-hover">
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+        	 #{carta.nome}
+        </h:column>
+			<h:column>
+				<f:facet name="header">Descrição</f:facet>
+        	 #{carta.descricao}
+        </h:column>
+			<h:column>
+				<f:facet name="header">Raridade</f:facet>
+         	#{carta.raridade}
+        </h:column>
+			<h:column>
+				<f:facet name="header">Preço</f:facet>
+         	#{carta.preco}
+        </h:column>
+			<h:column>
+				<f:facet name="header">Quantidade</f:facet>
+         	#{carta.estoque.quantidade}
+        </h:column>
+			<h:column>
+				<f:facet name="header">Delete</f:facet>
+				<h:form>
+					<h:commandButton value='deletar'
+						action='#{adminListaCartaBean.delete(carta)}' />
+				</h:form>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Alterar</f:facet>
+				<li><a
+					href="#{request.contextPath}/admin/cartas/alterar.xhtml?id=#{carta.id}"><button>Alterar</button></a>
+				</li>
+			</h:column>
+			<h:column>
+				<img src="#{request.contextPath}/file/#{carta.imagemPath}"
+					height="30%" width="30%" alt="#{carta.nome}" />
+			</h:column>
+		</h:dataTable>
+	</ui:define>
+</ui:composition>
+</html>

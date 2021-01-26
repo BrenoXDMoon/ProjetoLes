@@ -1,0 +1,26 @@
+Editar:
+	cliente - condução
+	manga - funciona (manga genérico com id 0 não funciona pq id é 0)
+	endereço - condução
+	cartão - condução
+	pedido - Não sei como chegar sem o visualizar, mas acho q está feito a condução
+
+Salvar:
+	pedido - condução (dá erro se logado com admin)
+	cliente - condução (volta pra tela de login, pq o perfil de cliente não funciona)
+	manga - funciona
+	endereço - funciona
+	cartão - condução
+	
+Visulizar:
+	pedido - Não existe
+	manga - Ambos funcionam
+	cliente - funciona
+
+	endereço e cartão - não precisam existir
+
+Consultar:
+	todos - funciona
+
+excluir:
+	todos - não testado

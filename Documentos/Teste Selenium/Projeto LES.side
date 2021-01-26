@@ -1,0 +1,2507 @@
+{
+  "id": "b79ce9f8-385a-4221-95ef-9db40ab34acf",
+  "version": "2.0",
+  "name": "Projeto LES",
+  "url": "http://localhost:8080/LojaMangaV2/",
+  "tests": [{
+    "id": "c6d1a2e3-53dc-4107-a081-dde8d2b3026e",
+    "name": "Login as Admin",
+    "commands": [{
+      "id": "12d6d857-46e0-43e9-bb25-e88edbcd0af6",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/LojaMangaV2/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d04e7527-d893-48e8-b066-ed5cf192e4db",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1293x926",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "eb88cb46-2e93-4b8b-a03c-b66b1e3b4bce",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flaticon-user",
+      "targets": [
+        ["css=.flaticon-user", "css:finder"],
+        ["xpath=//span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fe8e4c15-61a1-43cc-9ea9-aa1439c333a6",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtEmail",
+      "targets": [
+        ["id=txtEmail", "id"],
+        ["name=txtEmail", "name"],
+        ["css=#txtEmail", "css:finder"],
+        ["xpath=//input[@id='txtEmail']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5aaea44b-6604-4d48-9601-93dac96cf9d6",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtEmail",
+      "targets": [
+        ["id=txtEmail", "id"],
+        ["name=txtEmail", "name"],
+        ["css=#txtEmail", "css:finder"],
+        ["xpath=//input[@id='txtEmail']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "admin@admin.com"
+    }, {
+      "id": "b99162d0-65f7-411b-9d55-d9f0882022ea",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtSenha",
+      "targets": [
+        ["id=txtSenha", "id"],
+        ["name=txtSenha", "name"],
+        ["css=#txtSenha", "css:finder"],
+        ["xpath=//input[@id='txtSenha']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7d81d8ee-2ee4-41f6-9eb6-f8c565fe136e",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtSenha",
+      "targets": [
+        ["id=txtSenha", "id"],
+        ["name=txtSenha", "name"],
+        ["css=#txtSenha", "css:finder"],
+        ["xpath=//input[@id='txtSenha']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "qwer1234"
+    }, {
+      "id": "6b202659-3b7c-47b0-b96a-c8825a2d3216",
+      "comment": "",
+      "command": "click",
+      "target": "id=OPERACAO",
+      "targets": [
+        ["id=OPERACAO", "id"],
+        ["name=OPERACAO", "name"],
+        ["css=#OPERACAO", "css:finder"],
+        ["xpath=//button[@id='OPERACAO']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f5ac7589-0e04-48d2-83f0-c3a2f0916778",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "0e949391-0f9b-4c94-a4e2-7834eaa16f1e",
+    "name": "Login as Cliente",
+    "commands": [{
+      "id": "2d1802af-5b00-4e7e-b0b5-d458502dc348",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/LojaMangaV2/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "46eb3de2-3466-4eaa-8ac8-b6aec493fbfe",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1293x926",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1385a2f8-0110-427a-880f-bdd0164c5e28",
+      "comment": "",
+      "command": "mouseDown",
+      "target": "css=.preloader",
+      "targets": [
+        ["css=.preloader", "css:finder"],
+        ["xpath=//div[@id='preloader-active']/div", "xpath:idRelative"],
+        ["xpath=//div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "87bbb295-5fa6-43fd-8f21-713cf44a7ce0",
+      "comment": "",
+      "command": "mouseUp",
+      "target": "css=.popular-items",
+      "targets": [
+        ["css=.popular-items", "css:finder"],
+        ["xpath=//main/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "19b158e3-1763-4034-9dc6-9ee45feb2ffc",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flaticon-user",
+      "targets": [
+        ["css=.flaticon-user", "css:finder"],
+        ["xpath=//span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d37e2d11-22aa-44c4-aee5-6cd6cc07ae0b",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtEmail",
+      "targets": [
+        ["id=txtEmail", "id"],
+        ["name=txtEmail", "name"],
+        ["css=#txtEmail", "css:finder"],
+        ["xpath=//input[@id='txtEmail']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d18a582f-96f1-4362-b54c-bda1aa8f59d4",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtEmail",
+      "targets": [
+        ["id=txtEmail", "id"],
+        ["name=txtEmail", "name"],
+        ["css=#txtEmail", "css:finder"],
+        ["xpath=//input[@id='txtEmail']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "pedrinho@pedrao.com"
+    }, {
+      "id": "ce1e9395-22d6-4197-b137-62a265eaceb9",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtSenha",
+      "targets": [
+        ["id=txtSenha", "id"],
+        ["name=txtSenha", "name"],
+        ["css=#txtSenha", "css:finder"],
+        ["xpath=//input[@id='txtSenha']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7530cc5a-23b8-42d7-aea1-5b227593b4b9",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtSenha",
+      "targets": [
+        ["id=txtSenha", "id"],
+        ["name=txtSenha", "name"],
+        ["css=#txtSenha", "css:finder"],
+        ["xpath=//input[@id='txtSenha']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "qwer1234"
+    }, {
+      "id": "e3c69267-5c36-43dd-8c5d-aea8f006153d",
+      "comment": "",
+      "command": "click",
+      "target": "id=OPERACAO",
+      "targets": [
+        ["id=OPERACAO", "id"],
+        ["name=OPERACAO", "name"],
+        ["css=#OPERACAO", "css:finder"],
+        ["xpath=//button[@id='OPERACAO']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "de66dc20-d6b6-494a-a433-72021be61a3a",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "8c7a8459-1e04-4f0d-940b-9d86d89c79f7",
+    "name": "Create Cliente",
+    "commands": [{
+      "id": "69e538d5-6d37-4564-9ba8-74fd6969c646",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/LojaMangaV2/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "38c03bc6-eba1-4738-a7e3-8d142e343da2",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1293x926",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "84127735-5375-44c1-b8ec-6526fe310f56",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flaticon-user",
+      "targets": [
+        ["css=.flaticon-user", "css:finder"],
+        ["xpath=//span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "05b4decb-5a12-440c-9a42-6bec68a7aec0",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn_3:nth-child(3)",
+      "targets": [
+        ["css=.btn_3:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(text(),'Criar uma conta')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'customer-insert.jsp')]", "xpath:href"],
+        ["xpath=//section/div/div/div/div/div/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ffe39413-0d06-4d13-b580-bf19585d3790",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtNomeCompleto",
+      "targets": [
+        ["id=txtNomeCompleto", "id"],
+        ["name=txtNomeCompleto", "name"],
+        ["css=#txtNomeCompleto", "css:finder"],
+        ["xpath=//input[@id='txtNomeCompleto']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4e5b61fb-fa47-4c0d-a013-dcf2dc75fcb1",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtNomeCompleto",
+      "targets": [
+        ["id=txtNomeCompleto", "id"],
+        ["name=txtNomeCompleto", "name"],
+        ["css=#txtNomeCompleto", "css:finder"],
+        ["xpath=//input[@id='txtNomeCompleto']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Breno Gabriel Rodrigues da Silva"
+    }, {
+      "id": "19488d67-a9b5-4caf-a4a0-94e6896261ad",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtEmail",
+      "targets": [
+        ["id=txtEmail", "id"],
+        ["name=txtEmail", "name"],
+        ["css=#txtEmail", "css:finder"],
+        ["xpath=//input[@id='txtEmail']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9ba54f38-fc2f-4eba-96e9-729c00625910",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtEmail",
+      "targets": [
+        ["id=txtEmail", "id"],
+        ["name=txtEmail", "name"],
+        ["css=#txtEmail", "css:finder"],
+        ["xpath=//input[@id='txtEmail']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "brenogabriel19@gmail.com"
+    }, {
+      "id": "adb68022-9c1b-481c-96e2-3c22eb83deb8",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtSenha",
+      "targets": [
+        ["id=txtSenha", "id"],
+        ["name=txtSenha", "name"],
+        ["css=#txtSenha", "css:finder"],
+        ["xpath=//input[@id='txtSenha']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9b8002ac-57fd-43ae-b7f6-0b2b664bd2d3",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtSenha",
+      "targets": [
+        ["id=txtSenha", "id"],
+        ["name=txtSenha", "name"],
+        ["css=#txtSenha", "css:finder"],
+        ["xpath=//input[@id='txtSenha']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "breno1234"
+    }, {
+      "id": "8c78835c-1398-4795-a279-058853148823",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtConfirmaSenha",
+      "targets": [
+        ["id=txtConfirmaSenha", "id"],
+        ["name=txtConfirmaSenha", "name"],
+        ["css=#txtConfirmaSenha", "css:finder"],
+        ["xpath=//input[@id='txtConfirmaSenha']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "08167308-f264-436f-a4d8-39511a311977",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtConfirmaSenha",
+      "targets": [
+        ["id=txtConfirmaSenha", "id"],
+        ["name=txtConfirmaSenha", "name"],
+        ["css=#txtConfirmaSenha", "css:finder"],
+        ["xpath=//input[@id='txtConfirmaSenha']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": "breno1234"
+    }, {
+      "id": "aa2bfa12-921e-4c28-babb-baafc4b998c4",
+      "comment": "",
+      "command": "click",
+      "target": "id=dateDataNascimento",
+      "targets": [
+        ["id=dateDataNascimento", "id"],
+        ["name=dateDataNascimento", "name"],
+        ["css=#dateDataNascimento", "css:finder"],
+        ["xpath=//input[@id='dateDataNascimento']", "xpath:attributes"],
+        ["xpath=//form/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a99cb891-a485-4564-8f9b-4ce92f40f39b",
+      "comment": "",
+      "command": "type",
+      "target": "id=dateDataNascimento",
+      "targets": [
+        ["id=dateDataNascimento", "id"],
+        ["name=dateDataNascimento", "name"],
+        ["css=#dateDataNascimento", "css:finder"],
+        ["xpath=//input[@id='dateDataNascimento']", "xpath:attributes"],
+        ["xpath=//form/div/div/div/input", "xpath:position"]
+      ],
+      "value": "0001-05-19"
+    }, {
+      "id": "49e90d2d-90d3-4e52-8a08-cbaa961995b1",
+      "comment": "",
+      "command": "type",
+      "target": "id=dateDataNascimento",
+      "targets": [
+        ["id=dateDataNascimento", "id"],
+        ["name=dateDataNascimento", "name"],
+        ["css=#dateDataNascimento", "css:finder"],
+        ["xpath=//input[@id='dateDataNascimento']", "xpath:attributes"],
+        ["xpath=//form/div/div/div/input", "xpath:position"]
+      ],
+      "value": "0019-05-19"
+    }, {
+      "id": "7393c7c4-e0e0-4089-9d76-9d4e2eba48e6",
+      "comment": "",
+      "command": "type",
+      "target": "id=dateDataNascimento",
+      "targets": [
+        ["id=dateDataNascimento", "id"],
+        ["name=dateDataNascimento", "name"],
+        ["css=#dateDataNascimento", "css:finder"],
+        ["xpath=//input[@id='dateDataNascimento']", "xpath:attributes"],
+        ["xpath=//form/div/div/div/input", "xpath:position"]
+      ],
+      "value": "0199-05-19"
+    }, {
+      "id": "7ac41ebb-c690-4777-ae80-84d5685fc558",
+      "comment": "",
+      "command": "type",
+      "target": "id=dateDataNascimento",
+      "targets": [
+        ["id=dateDataNascimento", "id"],
+        ["name=dateDataNascimento", "name"],
+        ["css=#dateDataNascimento", "css:finder"],
+        ["xpath=//input[@id='dateDataNascimento']", "xpath:attributes"],
+        ["xpath=//form/div/div/div/input", "xpath:position"]
+      ],
+      "value": "1999-05-19"
+    }, {
+      "id": "2d2396bc-f283-4aaf-be6d-02364f25bce8",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtCpf",
+      "targets": [
+        ["id=txtCpf", "id"],
+        ["name=txtCpf", "name"],
+        ["css=#txtCpf", "css:finder"],
+        ["xpath=//input[@id='txtCpf']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1aff3e8e-e16c-4cfa-8331-9dc7aa867d6f",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtCpf",
+      "targets": [
+        ["id=txtCpf", "id"],
+        ["name=txtCpf", "name"],
+        ["css=#txtCpf", "css:finder"],
+        ["xpath=//input[@id='txtCpf']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "47519735842"
+    }, {
+      "id": "67243cee-d3a8-48c8-91c6-de038b31e23f",
+      "comment": "",
+      "command": "click",
+      "target": "id=OPERACAO",
+      "targets": [
+        ["id=OPERACAO", "id"],
+        ["name=OPERACAO", "name"],
+        ["css=#OPERACAO", "css:finder"],
+        ["xpath=//button[@id='OPERACAO']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "155154c3-b70f-4e4b-aef0-8251767e8666",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "de887219-7ca5-4acb-80be-63beec9516f5",
+    "name": "Add Address to Cliente",
+    "commands": [{
+      "id": "6260e821-0ec5-4863-8878-99726a1562e2",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/LojaMangaV2/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "106d148d-1123-403e-8a32-df81c1bb6312",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1293x926",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2841f3c0-e9e3-4d1e-866a-e54fc7c96031",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flaticon-user",
+      "targets": [
+        ["css=.flaticon-user", "css:finder"],
+        ["xpath=//span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "741c4560-0cc2-4815-a9b0-6bb239c89f69",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtEmail",
+      "targets": [
+        ["id=txtEmail", "id"],
+        ["name=txtEmail", "name"],
+        ["css=#txtEmail", "css:finder"],
+        ["xpath=//input[@id='txtEmail']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "81bc5cb0-586c-496a-8c92-17b93de32361",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtEmail",
+      "targets": [
+        ["id=txtEmail", "id"],
+        ["name=txtEmail", "name"],
+        ["css=#txtEmail", "css:finder"],
+        ["xpath=//input[@id='txtEmail']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "brenogabriel18@gmail.com"
+    }, {
+      "id": "e8a5c0bf-fd30-4ee1-a209-41bc89d83ea0",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtSenha",
+      "targets": [
+        ["id=txtSenha", "id"],
+        ["name=txtSenha", "name"],
+        ["css=#txtSenha", "css:finder"],
+        ["xpath=//input[@id='txtSenha']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "breno1234"
+    }, {
+      "id": "41b54e40-9c51-4153-9e80-37cfed560562",
+      "comment": "",
+      "command": "click",
+      "target": "id=OPERACAO",
+      "targets": [
+        ["id=OPERACAO", "id"],
+        ["name=OPERACAO", "name"],
+        ["css=#OPERACAO", "css:finder"],
+        ["xpath=//button[@id='OPERACAO']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "67c42397-79a0-4fa4-a1ad-25280f3e2941",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Adicionar Endereço",
+      "targets": [
+        ["linkText=Adicionar Endereço", "linkText"],
+        ["css=.row > .genric-btn:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'Adicionar Endereço')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'autenticado/address-insert.jsp')]", "xpath:href"],
+        ["xpath=//section/div/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Adicionar Endereço')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "38df477e-e3d1-4bc0-ac65-096e513a912e",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtLogradouro",
+      "targets": [
+        ["id=txtLogradouro", "id"],
+        ["name=txtLogradouro", "name"],
+        ["css=#txtLogradouro", "css:finder"],
+        ["xpath=//input[@id='txtLogradouro']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6cfc1157-e498-4539-b30d-fbac277588fe",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtLogradouro",
+      "targets": [
+        ["id=txtLogradouro", "id"],
+        ["name=txtLogradouro", "name"],
+        ["css=#txtLogradouro", "css:finder"],
+        ["xpath=//input[@id='txtLogradouro']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "Rua General Osório"
+    }, {
+      "id": "e8bb19ce-dd1e-4657-af44-b73621d10819",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtComplemento",
+      "targets": [
+        ["id=txtComplemento", "id"],
+        ["name=txtComplemento", "name"],
+        ["css=#txtComplemento", "css:finder"],
+        ["xpath=//input[@id='txtComplemento']", "xpath:attributes"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "Rua General Osório"
+    }, {
+      "id": "b6ce7769-978a-4acd-b15a-cc22f12ebfb1",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtCidade",
+      "targets": [
+        ["id=txtCidade", "id"],
+        ["name=txtCidade", "name"],
+        ["css=#txtCidade", "css:finder"],
+        ["xpath=//input[@id='txtCidade']", "xpath:attributes"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": "Mogi das Cruzes"
+    }, {
+      "id": "47511b3a-517e-46ce-9a0c-03947c15084f",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtCep",
+      "targets": [
+        ["id=txtCep", "id"],
+        ["name=txtCep", "name"],
+        ["css=#txtCep", "css:finder"],
+        ["xpath=//input[@id='txtCep']", "xpath:attributes"],
+        ["xpath=//input[5]", "xpath:position"]
+      ],
+      "value": "08830-600"
+    }, {
+      "id": "41c7810b-8166-4bff-a116-37cc12c96018",
+      "comment": "",
+      "command": "select",
+      "target": "id=selectEstado",
+      "targets": [],
+      "value": "label=SP"
+    }, {
+      "id": "ce30b0bd-6494-40bd-9e29-469ddcb3c691",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtNumero",
+      "targets": [
+        ["id=txtNumero", "id"],
+        ["name=txtNumero", "name"],
+        ["css=#txtNumero", "css:finder"],
+        ["xpath=//input[@id='txtNumero']", "xpath:attributes"],
+        ["xpath=//input[6]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8393176e-eac2-43a0-9234-834c667e7a47",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtNumero",
+      "targets": [
+        ["id=txtNumero", "id"],
+        ["name=txtNumero", "name"],
+        ["css=#txtNumero", "css:finder"],
+        ["xpath=//input[@id='txtNumero']", "xpath:attributes"],
+        ["xpath=//input[6]", "xpath:position"]
+      ],
+      "value": "355"
+    }, {
+      "id": "a336d8ac-3012-44a5-9409-dcbf30ab2f78",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtBairro",
+      "targets": [
+        ["id=txtBairro", "id"],
+        ["name=txtBairro", "name"],
+        ["css=#txtBairro", "css:finder"],
+        ["xpath=//input[@id='txtBairro']", "xpath:attributes"],
+        ["xpath=//input[7]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b8e13a0c-dd4b-4e28-84c4-20961892211c",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtBairro",
+      "targets": [
+        ["id=txtBairro", "id"],
+        ["name=txtBairro", "name"],
+        ["css=#txtBairro", "css:finder"],
+        ["xpath=//input[@id='txtBairro']", "xpath:attributes"],
+        ["xpath=//input[7]", "xpath:position"]
+      ],
+      "value": "Vila Aparecida"
+    }, {
+      "id": "4a869885-284d-49c3-a92a-783523736ee6",
+      "comment": "",
+      "command": "click",
+      "target": "id=selectTipoEnd",
+      "targets": [
+        ["id=selectTipoEnd", "id"],
+        ["name=selectTipoEnd", "name"],
+        ["css=#selectTipoEnd", "css:finder"],
+        ["xpath=//select[@id='selectTipoEnd']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4649df11-5478-4ca5-8fa2-af75cf6fbee8",
+      "comment": "",
+      "command": "select",
+      "target": "id=selectTipoEnd",
+      "targets": [],
+      "value": "label=Entrega"
+    }, {
+      "id": "7644c1cf-d5b9-428b-961e-147548a15b94",
+      "comment": "",
+      "command": "click",
+      "target": "id=selectTipoEnd",
+      "targets": [
+        ["id=selectTipoEnd", "id"],
+        ["name=selectTipoEnd", "name"],
+        ["css=#selectTipoEnd", "css:finder"],
+        ["xpath=//select[@id='selectTipoEnd']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f915febd-f252-48b8-b421-70a1a23124a9",
+      "comment": "",
+      "command": "click",
+      "target": "id=OPERACAO",
+      "targets": [
+        ["id=OPERACAO", "id"],
+        ["name=OPERACAO", "name"],
+        ["css=#OPERACAO", "css:finder"],
+        ["xpath=//button[@id='OPERACAO']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "451c7a02-1e35-4876-97fa-ee7c25648084",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "7b5cc872-be5d-484a-a193-621211670013",
+    "name": "Add Credit Card to Cliente",
+    "commands": [{
+      "id": "f48c8e3d-cf7a-4a66-bfec-c3459f443537",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flaticon-user",
+      "targets": [
+        ["css=.flaticon-user", "css:finder"],
+        ["xpath=//span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4774cbe8-eddc-4158-a87b-e6c2a5b0ddb2",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtEmail",
+      "targets": [
+        ["id=txtEmail", "id"],
+        ["name=txtEmail", "name"],
+        ["css=#txtEmail", "css:finder"],
+        ["xpath=//input[@id='txtEmail']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ef1246ed-0029-4a6e-987d-bb9fc59bfb49",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtEmail",
+      "targets": [
+        ["id=txtEmail", "id"],
+        ["name=txtEmail", "name"],
+        ["css=#txtEmail", "css:finder"],
+        ["xpath=//input[@id='txtEmail']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "brenogabriel18@gmail.com"
+    }, {
+      "id": "7742f575-2ab6-4ca7-863f-a7fe7c0877c7",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtSenha",
+      "targets": [
+        ["id=txtSenha", "id"],
+        ["name=txtSenha", "name"],
+        ["css=#txtSenha", "css:finder"],
+        ["xpath=//input[@id='txtSenha']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "de5b3deb-e6a4-4727-b129-a2095b3d56e3",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtSenha",
+      "targets": [
+        ["id=txtSenha", "id"],
+        ["name=txtSenha", "name"],
+        ["css=#txtSenha", "css:finder"],
+        ["xpath=//input[@id='txtSenha']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "breno1234"
+    }, {
+      "id": "e57f3b8d-9f4b-4d38-b83e-890e69d00b40",
+      "comment": "",
+      "command": "click",
+      "target": "id=OPERACAO",
+      "targets": [
+        ["id=OPERACAO", "id"],
+        ["name=OPERACAO", "name"],
+        ["css=#OPERACAO", "css:finder"],
+        ["xpath=//button[@id='OPERACAO']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2f559c74-8e99-4a0c-924b-ece301d039fa",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Adicionar Cartão",
+      "targets": [
+        ["linkText=Adicionar Cartão", "linkText"],
+        ["css=.genric-btn:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(text(),'Adicionar Cartão')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'autenticado/credit-card-insert.jsp')]", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'Adicionar Cartão')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "68a89a6f-0a6f-4441-a10d-5b1e20a42ce9",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtNomeImpresso",
+      "targets": [
+        ["id=txtNomeImpresso", "id"],
+        ["name=txtNomeImpresso", "name"],
+        ["css=#txtNomeImpresso", "css:finder"],
+        ["xpath=//input[@id='txtNomeImpresso']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "95ad9385-85b5-4c34-8bae-640a4677ca66",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtNomeImpresso",
+      "targets": [
+        ["id=txtNomeImpresso", "id"],
+        ["name=txtNomeImpresso", "name"],
+        ["css=#txtNomeImpresso", "css:finder"],
+        ["xpath=//input[@id='txtNomeImpresso']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "BRENO G R SILVA"
+    }, {
+      "id": "08a5a583-7cc8-40ea-a51c-78dc841636a8",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtBandeira",
+      "targets": [
+        ["id=txtBandeira", "id"],
+        ["name=txtBandeira", "name"],
+        ["css=#txtBandeira", "css:finder"],
+        ["xpath=//input[@id='txtBandeira']", "xpath:attributes"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8a28e765-7a59-451e-8ee5-20b0f903903e",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtBandeira",
+      "targets": [
+        ["id=txtBandeira", "id"],
+        ["name=txtBandeira", "name"],
+        ["css=#txtBandeira", "css:finder"],
+        ["xpath=//input[@id='txtBandeira']", "xpath:attributes"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "Mastercard"
+    }, {
+      "id": "a96df99e-df6c-4409-bd52-28b159c3c411",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtNumeroCartao",
+      "targets": [
+        ["id=txtNumeroCartao", "id"],
+        ["name=txtNumeroCartao", "name"],
+        ["css=#txtNumeroCartao", "css:finder"],
+        ["xpath=//input[@id='txtNumeroCartao']", "xpath:attributes"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "341fc562-38bf-4878-a63b-df94761d3e2a",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtNumeroCartao",
+      "targets": [
+        ["id=txtNumeroCartao", "id"],
+        ["name=txtNumeroCartao", "name"],
+        ["css=#txtNumeroCartao", "css:finder"],
+        ["xpath=//input[@id='txtNumeroCartao']", "xpath:attributes"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": "555555555555555555"
+    }, {
+      "id": "e404c2d2-efdd-4a69-9f8e-f60639f1aafc",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtValidade",
+      "targets": [
+        ["id=txtValidade", "id"],
+        ["name=txtValidade", "name"],
+        ["css=#txtValidade", "css:finder"],
+        ["xpath=//input[@id='txtValidade']", "xpath:attributes"],
+        ["xpath=//input[5]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fb3fc645-c6d8-4915-a732-0799cbb3a8af",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtNumeroCartao",
+      "targets": [
+        ["id=txtNumeroCartao", "id"],
+        ["name=txtNumeroCartao", "name"],
+        ["css=#txtNumeroCartao", "css:finder"],
+        ["xpath=//input[@id='txtNumeroCartao']", "xpath:attributes"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0a492d51-3705-4771-aed5-372e132019e2",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtNumeroCartao",
+      "targets": [
+        ["id=txtNumeroCartao", "id"],
+        ["name=txtNumeroCartao", "name"],
+        ["css=#txtNumeroCartao", "css:finder"],
+        ["xpath=//input[@id='txtNumeroCartao']", "xpath:attributes"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "950e0cac-89cd-4076-b6fd-efde2143a7c0",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtValidade",
+      "targets": [
+        ["id=txtValidade", "id"],
+        ["name=txtValidade", "name"],
+        ["css=#txtValidade", "css:finder"],
+        ["xpath=//input[@id='txtValidade']", "xpath:attributes"],
+        ["xpath=//input[5]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "eea0bf1b-97ea-466a-b6cf-b9671f158af5",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtValidade",
+      "targets": [
+        ["id=txtValidade", "id"],
+        ["name=txtValidade", "name"],
+        ["css=#txtValidade", "css:finder"],
+        ["xpath=//input[@id='txtValidade']", "xpath:attributes"],
+        ["xpath=//input[5]", "xpath:position"]
+      ],
+      "value": "1235"
+    }, {
+      "id": "2207a45f-a9a9-486a-8990-1a21f44b591d",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtCodigoSeguranca",
+      "targets": [
+        ["id=txtCodigoSeguranca", "id"],
+        ["name=txtCodigoSeguranca", "name"],
+        ["css=#txtCodigoSeguranca", "css:finder"],
+        ["xpath=//input[@id='txtCodigoSeguranca']", "xpath:attributes"],
+        ["xpath=//input[6]", "xpath:position"]
+      ],
+      "value": "444"
+    }, {
+      "id": "70a6ce9e-5948-4e9f-88e1-d5cc5bff3f7a",
+      "comment": "",
+      "command": "click",
+      "target": "id=OPERACAO",
+      "targets": [
+        ["id=OPERACAO", "id"],
+        ["name=OPERACAO", "name"],
+        ["css=#OPERACAO", "css:finder"],
+        ["xpath=//button[@id='OPERACAO']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8a05bf9f-a277-4caf-80d1-e43b7c2761bf",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "c5a29ee9-3def-4b03-b349-09cfd529c1e7",
+    "name": "Remove Cliente(Admin)",
+    "commands": [{
+      "id": "bbf5c23a-10e1-4a56-a975-6b78b9a3910a",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/LojaMangaV2/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ab2664e8-4d11-4e18-9022-e48a7c4f753f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1293x926",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f9b907b4-b4d2-4570-a384-6f5b75f5e5ed",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flaticon-user",
+      "targets": [
+        ["css=.flaticon-user", "css:finder"],
+        ["xpath=//span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6688abef-a37f-4aed-a616-aaef5ec283ca",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtEmail",
+      "targets": [
+        ["id=txtEmail", "id"],
+        ["name=txtEmail", "name"],
+        ["css=#txtEmail", "css:finder"],
+        ["xpath=//input[@id='txtEmail']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fae27efb-726f-457f-b211-b390bfc6ea13",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtEmail",
+      "targets": [
+        ["id=txtEmail", "id"],
+        ["name=txtEmail", "name"],
+        ["css=#txtEmail", "css:finder"],
+        ["xpath=//input[@id='txtEmail']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "admin@admin.com"
+    }, {
+      "id": "a0cb1371-275f-4bab-8c6a-bac946b34934",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtSenha",
+      "targets": [
+        ["id=txtSenha", "id"],
+        ["name=txtSenha", "name"],
+        ["css=#txtSenha", "css:finder"],
+        ["xpath=//input[@id='txtSenha']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "73eb1b70-84ca-41d2-9017-5efe14064bf3",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtSenha",
+      "targets": [
+        ["id=txtSenha", "id"],
+        ["name=txtSenha", "name"],
+        ["css=#txtSenha", "css:finder"],
+        ["xpath=//input[@id='txtSenha']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "qwer1234"
+    }, {
+      "id": "96e7c84f-0cf4-4b8f-b812-e765807e4200",
+      "comment": "",
+      "command": "click",
+      "target": "id=OPERACAO",
+      "targets": [
+        ["id=OPERACAO", "id"],
+        ["name=OPERACAO", "name"],
+        ["css=#OPERACAO", "css:finder"],
+        ["xpath=//button[@id='OPERACAO']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d6b528af-162c-41ee-b187-924d41873fe3",
+      "comment": "",
+      "command": "click",
+      "target": "id=OPERACAO",
+      "targets": [
+        ["id=OPERACAO", "id"],
+        ["name=OPERACAO", "name"],
+        ["css=form:nth-child(2) > #OPERACAO", "css:finder"],
+        ["xpath=//button[@id='OPERACAO']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Lista de Clientes')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "608c7b2d-9c73-493d-9abe-56e05d59f782",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(7) #OPERACAO",
+      "targets": [
+        ["css=tr:nth-child(7) #OPERACAO", "css:finder"],
+        ["xpath=(//a[contains(text(),'Visualizar')])[7]", "xpath:link"],
+        ["xpath=(//a[@id='OPERACAO'])[7]", "xpath:attributes"],
+        ["xpath=//a[contains(@href, 'VisualizarCliente?idCli=14&OPERACAO=VISUALIZAR')]", "xpath:href"],
+        ["xpath=//tr[7]/td[5]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "57981297-49c4-48ce-95aa-6fa883b66fa2",
+      "comment": "",
+      "command": "click",
+      "target": "id=OPERACAO",
+      "targets": [
+        ["id=OPERACAO", "id"],
+        ["name=OPERACAO", "name"],
+        ["css=#OPERACAO", "css:finder"],
+        ["xpath=//button[@id='OPERACAO']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6d7567f2-6e1d-40f3-84f6-3d3f0e0d5699",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "79f5e019-2331-49e6-9473-425e42019c79",
+    "name": "Edit Cliente",
+    "commands": [{
+      "id": "31a7b6ca-a61b-4731-b169-13da26d3e37b",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/LojaMangaV2/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "92f30456-eb73-458f-a77e-2d33247d4b6c",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1293x926",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "dab6c18f-d22e-4066-b374-4c59ee87bfc1",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flaticon-user",
+      "targets": [
+        ["css=.flaticon-user", "css:finder"],
+        ["xpath=//span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3e059061-0f8c-4db9-9f38-70f8efb6ef22",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtEmail",
+      "targets": [
+        ["id=txtEmail", "id"],
+        ["name=txtEmail", "name"],
+        ["css=#txtEmail", "css:finder"],
+        ["xpath=//input[@id='txtEmail']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "098a73b6-9001-404d-8026-a612fac00824",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtEmail",
+      "targets": [
+        ["id=txtEmail", "id"],
+        ["name=txtEmail", "name"],
+        ["css=#txtEmail", "css:finder"],
+        ["xpath=//input[@id='txtEmail']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "brenogabriel18@gmail.com"
+    }, {
+      "id": "e8deff61-b353-44d7-98ce-c716fb519566",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtSenha",
+      "targets": [
+        ["id=txtSenha", "id"],
+        ["name=txtSenha", "name"],
+        ["css=#txtSenha", "css:finder"],
+        ["xpath=//input[@id='txtSenha']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "24dc509a-ceaf-4f84-b1e3-157cfb3e4d97",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtSenha",
+      "targets": [
+        ["id=txtSenha", "id"],
+        ["name=txtSenha", "name"],
+        ["css=#txtSenha", "css:finder"],
+        ["xpath=//input[@id='txtSenha']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "breno1234"
+    }, {
+      "id": "ef203ada-d79c-4d5d-b770-cb6620044e9a",
+      "comment": "",
+      "command": "click",
+      "target": "id=OPERACAO",
+      "targets": [
+        ["id=OPERACAO", "id"],
+        ["name=OPERACAO", "name"],
+        ["css=#OPERACAO", "css:finder"],
+        ["xpath=//button[@id='OPERACAO']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "52adf17f-eb8c-4fbf-b951-33074f51391c",
+      "comment": "",
+      "command": "click",
+      "target": "id=OPERACAO",
+      "targets": [
+        ["id=OPERACAO", "id"],
+        ["name=OPERACAO", "name"],
+        ["css=form:nth-child(3) > #OPERACAO", "css:finder"],
+        ["xpath=//button[@id='OPERACAO']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Visualizar dados')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "abaad2c2-d6f7-4ad0-932f-0f87943cdd36",
+      "comment": "",
+      "command": "click",
+      "target": "css=.genric-btn:nth-child(1)",
+      "targets": [
+        ["css=.genric-btn:nth-child(1)", "css:finder"],
+        ["xpath=//a[contains(text(),'Editar\n\t\t\t\t\t\tPerfil de Cliente')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'admin/edit-customer.jsp')]", "xpath:href"],
+        ["xpath=//section/div/div/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2d6b0731-dbd4-46d3-934c-a66bb70924ad",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtSenha",
+      "targets": [
+        ["id=txtSenha", "id"],
+        ["name=txtSenha", "name"],
+        ["css=#txtSenha", "css:finder"],
+        ["xpath=//input[@id='txtSenha']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "d00a817c-8981-486b-91c8-6e9ac5e436e9",
+    "name": "Caso de Uso de Condução(Efetuar compra)",
+    "commands": [{
+      "id": "5bfd8c22-132a-40b5-8f04-cd92543070d9",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/LojaMangaV2/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "87fc8529-4312-4791-b53e-c37c8d34e765",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1293x926",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "beb3dd61-b80e-461e-9d86-7a151697c7f4",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flaticon-user",
+      "targets": [
+        ["css=.flaticon-user", "css:finder"],
+        ["xpath=//span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1a8a8040-5dff-4c07-baad-d0778ccc8681",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtEmail",
+      "targets": [
+        ["id=txtEmail", "id"],
+        ["name=txtEmail", "name"],
+        ["css=#txtEmail", "css:finder"],
+        ["xpath=//input[@id='txtEmail']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "684e2eae-5adb-4299-b54d-5e0177feafeb",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtEmail",
+      "targets": [
+        ["id=txtEmail", "id"],
+        ["name=txtEmail", "name"],
+        ["css=#txtEmail", "css:finder"],
+        ["xpath=//input[@id='txtEmail']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "pedrinho@pedrao.com"
+    }, {
+      "id": "8dda0c31-725c-4619-8f4d-c3ca8eaee8ab",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtSenha",
+      "targets": [
+        ["id=txtSenha", "id"],
+        ["name=txtSenha", "name"],
+        ["css=#txtSenha", "css:finder"],
+        ["xpath=//input[@id='txtSenha']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ba8c4604-f898-4d1d-a8b3-1378b533474c",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtSenha",
+      "targets": [
+        ["id=txtSenha", "id"],
+        ["name=txtSenha", "name"],
+        ["css=#txtSenha", "css:finder"],
+        ["xpath=//input[@id='txtSenha']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "qwer1234"
+    }, {
+      "id": "bb74e132-ae61-4afb-b2ce-1eb8a2283bf2",
+      "comment": "",
+      "command": "click",
+      "target": "id=OPERACAO",
+      "targets": [
+        ["id=OPERACAO", "id"],
+        ["name=OPERACAO", "name"],
+        ["css=#OPERACAO", "css:finder"],
+        ["xpath=//button[@id='OPERACAO']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "64be6a7a-34b0-4cd7-9e3f-57833fc12a58",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Início",
+      "targets": [
+        ["linkText=Início", "linkText"],
+        ["css=#navigation > li:nth-child(1) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Início')]", "xpath:link"],
+        ["xpath=//ul[@id='navigation']/li/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, 'index.jsp')])[2]", "xpath:href"],
+        ["xpath=//li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Início')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2ea54efc-d064-46f6-90fb-d478072840fb",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-xl-4:nth-child(2) img",
+      "targets": [
+        ["css=.col-xl-4:nth-child(2) img", "css:finder"],
+        ["xpath=//div[2]/a/div/div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "07e64c1f-9bd3-4ee6-be51-f715ca1bf66c",
+      "comment": "",
+      "command": "click",
+      "target": "id=OPERACAO",
+      "targets": [
+        ["id=OPERACAO", "id"],
+        ["name=OPERACAO", "name"],
+        ["css=#OPERACAO", "css:finder"],
+        ["xpath=//button[@id='OPERACAO']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "05f8166a-b591-44b9-8906-55d91455b573",
+      "comment": "",
+      "command": "click",
+      "target": "css=.checkout_btn_1",
+      "targets": [
+        ["css=.checkout_btn_1", "css:finder"],
+        ["xpath=//a[contains(text(),'Seguir\n\t\t\t\t\t\t\t\tpara checkout')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'autenticado/checkout.jsp')]", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1c3910c8-990d-4599-9de4-e3fde7cd6175",
+      "comment": "",
+      "command": "click",
+      "target": "id=OPERACAO",
+      "targets": [
+        ["id=OPERACAO", "id"],
+        ["linkText=Confirmar Pagamento", "linkText"],
+        ["name=OPERACAO", "name"],
+        ["css=#OPERACAO", "css:finder"],
+        ["xpath=//a[contains(text(),'Confirmar Pagamento')]", "xpath:link"],
+        ["xpath=//a[@id='OPERACAO']", "xpath:attributes"],
+        ["xpath=//a[contains(@href, 'confirmation.jsp')]", "xpath:href"],
+        ["xpath=//div[2]/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Confirmar Pagamento')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "c53d7c5b-54bb-4a90-958a-44949b5a8383",
+    "name": "Create Manga",
+    "commands": [{
+      "id": "1ae8ca1e-3ab6-4550-bf71-071cf0debb5a",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/LojaMangaV2/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a6adea2a-8f11-410e-9d68-c4531c93abce",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1293x926",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "811b7a63-58d5-4819-a4d9-e9c9f8d502f6",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flaticon-user",
+      "targets": [
+        ["css=.flaticon-user", "css:finder"],
+        ["xpath=//span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "35cc9473-ef9c-4789-b5bc-d4ef873d6df1",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtEmail",
+      "targets": [
+        ["id=txtEmail", "id"],
+        ["name=txtEmail", "name"],
+        ["css=#txtEmail", "css:finder"],
+        ["xpath=//input[@id='txtEmail']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4beadcb5-4d12-4fdb-99e1-e82c05137221",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtEmail",
+      "targets": [
+        ["id=txtEmail", "id"],
+        ["name=txtEmail", "name"],
+        ["css=#txtEmail", "css:finder"],
+        ["xpath=//input[@id='txtEmail']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "admin@admin.com"
+    }, {
+      "id": "a4fcd447-2130-4806-9508-18c508f08ca9",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtSenha",
+      "targets": [
+        ["id=txtSenha", "id"],
+        ["name=txtSenha", "name"],
+        ["css=#txtSenha", "css:finder"],
+        ["xpath=//input[@id='txtSenha']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "39b5ef96-90d9-4531-8ba7-7a9bb1284e6a",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtSenha",
+      "targets": [
+        ["id=txtSenha", "id"],
+        ["name=txtSenha", "name"],
+        ["css=#txtSenha", "css:finder"],
+        ["xpath=//input[@id='txtSenha']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "qwer1234"
+    }, {
+      "id": "23e692a0-ff82-49c0-bcf6-0ed2ec9bcc9b",
+      "comment": "",
+      "command": "click",
+      "target": "id=OPERACAO",
+      "targets": [
+        ["id=OPERACAO", "id"],
+        ["name=OPERACAO", "name"],
+        ["css=#OPERACAO", "css:finder"],
+        ["xpath=//button[@id='OPERACAO']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "956d2b9a-2584-4f97-ad54-5d58a89535db",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Cadastrar Produto",
+      "targets": [
+        ["linkText=Cadastrar Produto", "linkText"],
+        ["css=.row > .genric-btn:nth-child(1)", "css:finder"],
+        ["xpath=//a[contains(text(),'Cadastrar Produto')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'autenticado/admin/manga-insert.jsp')]", "xpath:href"],
+        ["xpath=//section/div/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Cadastrar Produto')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9337add6-f501-4b2a-90f8-201094147951",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtTitulo",
+      "targets": [
+        ["id=txtTitulo", "id"],
+        ["name=txtTitulo", "name"],
+        ["css=#txtTitulo", "css:finder"],
+        ["xpath=//input[@id='txtTitulo']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8b478c7f-16bb-4437-a208-b6b76b84c9a5",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtTitulo",
+      "targets": [
+        ["id=txtTitulo", "id"],
+        ["name=txtTitulo", "name"],
+        ["css=#txtTitulo", "css:finder"],
+        ["xpath=//input[@id='txtTitulo']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "O Vitorioso"
+    }, {
+      "id": "eb1e59b1-fd2b-47ee-833a-3666f28b47cd",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtAutor",
+      "targets": [
+        ["id=txtAutor", "id"],
+        ["name=txtAutor", "name"],
+        ["css=#txtAutor", "css:finder"],
+        ["xpath=//input[@id='txtAutor']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2da3563d-ed99-4aa8-84a4-6a073c7abef5",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtAutor",
+      "targets": [
+        ["id=txtAutor", "id"],
+        ["name=txtAutor", "name"],
+        ["css=#txtAutor", "css:finder"],
+        ["xpath=//input[@id='txtAutor']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Marcos"
+    }, {
+      "id": "a0862a27-663b-4d31-9405-715bc0460615",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtAno",
+      "targets": [
+        ["id=txtAno", "id"],
+        ["name=txtAno", "name"],
+        ["css=#txtAno", "css:finder"],
+        ["xpath=//input[@id='txtAno']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2fe87d1f-c280-49df-a247-c3c244db0bfb",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtAno",
+      "targets": [
+        ["id=txtAno", "id"],
+        ["name=txtAno", "name"],
+        ["css=#txtAno", "css:finder"],
+        ["xpath=//input[@id='txtAno']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "2020"
+    }, {
+      "id": "6134a9aa-189d-4e8d-a613-97a8034800b3",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtEditora",
+      "targets": [
+        ["id=txtEditora", "id"],
+        ["name=txtEditora", "name"],
+        ["css=#txtEditora", "css:finder"],
+        ["xpath=//input[@id='txtEditora']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "44b19b03-7bee-45cb-81ba-272042a5f3aa",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtEditora",
+      "targets": [
+        ["id=txtEditora", "id"],
+        ["name=txtEditora", "name"],
+        ["css=#txtEditora", "css:finder"],
+        ["xpath=//input[@id='txtEditora']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": "Marquin"
+    }, {
+      "id": "a395c902-57e5-47e4-80cb-c8b9210e69f2",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtEdicao",
+      "targets": [
+        ["id=txtEdicao", "id"],
+        ["name=txtEdicao", "name"],
+        ["css=#txtEdicao", "css:finder"],
+        ["xpath=//input[@id='txtEdicao']", "xpath:attributes"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "19fbe6a6-1762-46b2-91df-4a6cc14721b9",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtEdicao",
+      "targets": [
+        ["id=txtEdicao", "id"],
+        ["name=txtEdicao", "name"],
+        ["css=#txtEdicao", "css:finder"],
+        ["xpath=//input[@id='txtEdicao']", "xpath:attributes"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": "01"
+    }, {
+      "id": "388249c7-4bd7-4646-af06-bd62b9bb8065",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtIsbn",
+      "targets": [
+        ["id=txtIsbn", "id"],
+        ["name=txtIsbn", "name"],
+        ["css=#txtIsbn", "css:finder"],
+        ["xpath=//input[@id='txtIsbn']", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "68eda1e7-32f1-4fe0-93c8-0e0a8ff96fe6",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtIsbn",
+      "targets": [
+        ["id=txtIsbn", "id"],
+        ["name=txtIsbn", "name"],
+        ["css=#txtIsbn", "css:finder"],
+        ["xpath=//input[@id='txtIsbn']", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": "352132543254"
+    }, {
+      "id": "21efd807-ccab-44e6-9da8-0aa4b92b4ec3",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtCodigoBarras",
+      "targets": [
+        ["id=txtCodigoBarras", "id"],
+        ["name=txtCodigoBarras", "name"],
+        ["css=#txtCodigoBarras", "css:finder"],
+        ["xpath=//input[@id='txtCodigoBarras']", "xpath:attributes"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "712467a5-78e6-4799-9977-4a498153804d",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtCodigoBarras",
+      "targets": [
+        ["id=txtCodigoBarras", "id"],
+        ["name=txtCodigoBarras", "name"],
+        ["css=#txtCodigoBarras", "css:finder"],
+        ["xpath=//input[@id='txtCodigoBarras']", "xpath:attributes"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": "846794864651"
+    }, {
+      "id": "112b445f-1390-43e5-81f3-914764ecab7b",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtPaginas",
+      "targets": [
+        ["id=txtPaginas", "id"],
+        ["name=txtPaginas", "name"],
+        ["css=#txtPaginas", "css:finder"],
+        ["xpath=//input[@id='txtPaginas']", "xpath:attributes"],
+        ["xpath=//div[8]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "45e5e5a3-7b98-4a27-b0de-00ac7c633d3f",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtPaginas",
+      "targets": [
+        ["id=txtPaginas", "id"],
+        ["name=txtPaginas", "name"],
+        ["css=#txtPaginas", "css:finder"],
+        ["xpath=//input[@id='txtPaginas']", "xpath:attributes"],
+        ["xpath=//div[8]/input", "xpath:position"]
+      ],
+      "value": "150"
+    }, {
+      "id": "814f7a45-dcff-4bb1-815f-2e39277161d1",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtSinopse",
+      "targets": [
+        ["id=txtSinopse", "id"],
+        ["name=txtSinopse", "name"],
+        ["css=#txtSinopse", "css:finder"],
+        ["xpath=//textarea[@id='txtSinopse']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "82e60a39-3db6-4823-bb69-654a149ea6e9",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtSinopse",
+      "targets": [
+        ["id=txtSinopse", "id"],
+        ["name=txtSinopse", "name"],
+        ["css=#txtSinopse", "css:finder"],
+        ["xpath=//textarea[@id='txtSinopse']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "O cara que ganha tudo"
+    }, {
+      "id": "e87bac6e-ae33-487c-b7c7-cbd0945e90c2",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtPrecificacao",
+      "targets": [
+        ["id=txtPrecificacao", "id"],
+        ["name=txtPrecificacao", "name"],
+        ["css=#txtPrecificacao", "css:finder"],
+        ["xpath=//input[@id='txtPrecificacao']", "xpath:attributes"],
+        ["xpath=//div[10]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "287cd281-334d-4b30-aa1d-17e56917394d",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtPrecificacao",
+      "targets": [
+        ["id=txtPrecificacao", "id"],
+        ["name=txtPrecificacao", "name"],
+        ["css=#txtPrecificacao", "css:finder"],
+        ["xpath=//input[@id='txtPrecificacao']", "xpath:attributes"],
+        ["xpath=//div[10]/input", "xpath:position"]
+      ],
+      "value": "A"
+    }, {
+      "id": "d5213da9-acb7-406d-9c90-350afcd7df5a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-lg-8",
+      "targets": [
+        ["css=.col-lg-8", "css:finder"],
+        ["xpath=//form/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "641f83b3-9259-459b-a29b-604c55885faa",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtQuantidade",
+      "targets": [
+        ["id=txtQuantidade", "id"],
+        ["name=txtQuantidade", "name"],
+        ["css=#txtQuantidade", "css:finder"],
+        ["xpath=//input[@id='txtQuantidade']", "xpath:attributes"],
+        ["xpath=//div[11]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "805748a6-f932-4724-a780-b88b65c4b4b4",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtQuantidade",
+      "targets": [
+        ["id=txtQuantidade", "id"],
+        ["name=txtQuantidade", "name"],
+        ["css=#txtQuantidade", "css:finder"],
+        ["xpath=//input[@id='txtQuantidade']", "xpath:attributes"],
+        ["xpath=//div[11]/input", "xpath:position"]
+      ],
+      "value": "1000"
+    }, {
+      "id": "4f3ca2c3-4236-45c2-abaf-cf1fa3d22240",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtPreco",
+      "targets": [
+        ["id=txtPreco", "id"],
+        ["name=txtPreco", "name"],
+        ["css=#txtPreco", "css:finder"],
+        ["xpath=//input[@id='txtPreco']", "xpath:attributes"],
+        ["xpath=//div[12]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4eef4779-3863-4953-abd3-6383edfcc962",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtPreco",
+      "targets": [
+        ["id=txtPreco", "id"],
+        ["name=txtPreco", "name"],
+        ["css=#txtPreco", "css:finder"],
+        ["xpath=//input[@id='txtPreco']", "xpath:attributes"],
+        ["xpath=//div[12]/input", "xpath:position"]
+      ],
+      "value": "10"
+    }, {
+      "id": "e92706ac-0797-4163-a2fc-6ff5c8630154",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtAltura",
+      "targets": [
+        ["id=txtAltura", "id"],
+        ["name=txtAltura", "name"],
+        ["css=#txtAltura", "css:finder"],
+        ["xpath=//input[@id='txtAltura']", "xpath:attributes"],
+        ["xpath=//blockquote/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2e4d1ab3-acc2-49b7-9ff8-e55d36d5f882",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtAltura",
+      "targets": [
+        ["id=txtAltura", "id"],
+        ["name=txtAltura", "name"],
+        ["css=#txtAltura", "css:finder"],
+        ["xpath=//input[@id='txtAltura']", "xpath:attributes"],
+        ["xpath=//blockquote/input", "xpath:position"]
+      ],
+      "value": "1"
+    }, {
+      "id": "e09367ed-71d3-4512-9e2d-f42e52a01ee5",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtLargura",
+      "targets": [
+        ["id=txtLargura", "id"],
+        ["name=txtLargura", "name"],
+        ["css=#txtLargura", "css:finder"],
+        ["xpath=//input[@id='txtLargura']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7b9bc51b-64ec-4b9b-8014-01933722425a",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtLargura",
+      "targets": [
+        ["id=txtLargura", "id"],
+        ["name=txtLargura", "name"],
+        ["css=#txtLargura", "css:finder"],
+        ["xpath=//input[@id='txtLargura']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "1"
+    }, {
+      "id": "cc99e090-16e2-418f-9345-dcbb1a94528f",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtProfundidade",
+      "targets": [
+        ["id=txtProfundidade", "id"],
+        ["name=txtProfundidade", "name"],
+        ["css=#txtProfundidade", "css:finder"],
+        ["xpath=//input[@id='txtProfundidade']", "xpath:attributes"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a128365e-4949-401a-8bcd-9c8c7c49fbdd",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtProfundidade",
+      "targets": [
+        ["id=txtProfundidade", "id"],
+        ["name=txtProfundidade", "name"],
+        ["css=#txtProfundidade", "css:finder"],
+        ["xpath=//input[@id='txtProfundidade']", "xpath:attributes"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "1"
+    }, {
+      "id": "bdcd223a-b325-4277-ad45-5d60daa1df6a",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtPeso",
+      "targets": [
+        ["id=txtPeso", "id"],
+        ["name=txtPeso", "name"],
+        ["css=#txtPeso", "css:finder"],
+        ["xpath=//input[@id='txtPeso']", "xpath:attributes"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fc6d5424-e3ed-40e0-a010-2354f5926660",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtPeso",
+      "targets": [
+        ["id=txtPeso", "id"],
+        ["name=txtPeso", "name"],
+        ["css=#txtPeso", "css:finder"],
+        ["xpath=//input[@id='txtPeso']", "xpath:attributes"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": "1"
+    }, {
+      "id": "f2559732-0927-4fbb-b942-59c74a9551c5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.switch-wrap:nth-child(1) label",
+      "targets": [
+        ["css=.switch-wrap:nth-child(1) label", "css:finder"],
+        ["xpath=//label", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5390eb12-1d58-4e0f-bbc0-a55492ae2215",
+      "comment": "",
+      "command": "click",
+      "target": "id=mgImagem",
+      "targets": [],
+      "value": "C:\\fakepath\\generico.jpg"
+    }, {
+      "id": "0e24faee-19fb-4d65-9006-c4e7345e5009",
+      "comment": "",
+      "command": "click",
+      "target": "id=OPERACAO",
+      "targets": [
+        ["id=OPERACAO", "id"],
+        ["name=OPERACAO", "name"],
+        ["css=#OPERACAO", "css:finder"],
+        ["xpath=//button[@id='OPERACAO']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "28839aa5-63e0-47c4-965d-298968d4d54e",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "49b6b222-8cfb-4f2d-8053-6e59d3beb442",
+    "name": "List Mangá",
+    "commands": [{
+      "id": "4c9b81b4-6864-4dc5-9f5d-57ec5b35bd66",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/LojaMangaV2/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a7b0ccde-9b64-41ac-b85a-24918e3978ee",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1293x926",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "77a23026-a55a-4873-9630-a8b221d9355e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flaticon-user",
+      "targets": [
+        ["css=.flaticon-user", "css:finder"],
+        ["xpath=//span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2bae7113-e0ea-4fa0-b68b-4ed66f888109",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtEmail",
+      "targets": [
+        ["id=txtEmail", "id"],
+        ["name=txtEmail", "name"],
+        ["css=#txtEmail", "css:finder"],
+        ["xpath=//input[@id='txtEmail']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "466b3512-e854-4b79-94c4-0dae45e3c62c",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtEmail",
+      "targets": [
+        ["id=txtEmail", "id"],
+        ["name=txtEmail", "name"],
+        ["css=#txtEmail", "css:finder"],
+        ["xpath=//input[@id='txtEmail']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "admin@admin.com"
+    }, {
+      "id": "2347b2ed-db34-4013-a83b-224cb786d2bb",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtSenha",
+      "targets": [
+        ["id=txtSenha", "id"],
+        ["name=txtSenha", "name"],
+        ["css=#txtSenha", "css:finder"],
+        ["xpath=//input[@id='txtSenha']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f1164a27-a94e-45c1-8509-656ddd63e0ee",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtSenha",
+      "targets": [
+        ["id=txtSenha", "id"],
+        ["name=txtSenha", "name"],
+        ["css=#txtSenha", "css:finder"],
+        ["xpath=//input[@id='txtSenha']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "qwer1234"
+    }, {
+      "id": "d802e0e9-30b7-4760-b121-61ef520db7e3",
+      "comment": "",
+      "command": "click",
+      "target": "id=OPERACAO",
+      "targets": [
+        ["id=OPERACAO", "id"],
+        ["name=OPERACAO", "name"],
+        ["css=#OPERACAO", "css:finder"],
+        ["xpath=//button[@id='OPERACAO']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a5ca5132-46c2-4e4c-b906-450e907b4e21",
+      "comment": "",
+      "command": "click",
+      "target": "css=form:nth-child(3) > #OPERACAO",
+      "targets": [
+        ["css=form:nth-child(3) > #OPERACAO", "css:finder"],
+        ["xpath=(//button[@id='OPERACAO'])[2]", "xpath:attributes"],
+        ["xpath=//form[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Lista de Produtos')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "9db284c1-a1a4-4b46-b535-6d79f4da0804",
+    "name": "Remove Mangá",
+    "commands": [{
+      "id": "3b1d065e-a886-4dcc-8d56-fa3fc9f70d47",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/LojaMangaV2/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "77879e8d-3177-47e1-b5c2-e8c8f121a5d0",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1293x926",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "37f586dd-e369-4cd7-894c-d010bd1bcc77",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flaticon-user",
+      "targets": [
+        ["css=.flaticon-user", "css:finder"],
+        ["xpath=//span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e3f7be8c-73ac-4eb4-aa1a-754fffb13a9e",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtEmail",
+      "targets": [
+        ["id=txtEmail", "id"],
+        ["name=txtEmail", "name"],
+        ["css=#txtEmail", "css:finder"],
+        ["xpath=//input[@id='txtEmail']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "37ee1767-cdc1-4f83-90b0-255aabb1b5fd",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtEmail",
+      "targets": [
+        ["id=txtEmail", "id"],
+        ["name=txtEmail", "name"],
+        ["css=#txtEmail", "css:finder"],
+        ["xpath=//input[@id='txtEmail']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "admin@admin.com"
+    }, {
+      "id": "27810537-79ec-4e20-83c0-a801fc678e4a",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtSenha",
+      "targets": [
+        ["id=txtSenha", "id"],
+        ["name=txtSenha", "name"],
+        ["css=#txtSenha", "css:finder"],
+        ["xpath=//input[@id='txtSenha']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a00fb002-a9cf-4291-a945-4a9e2479ca92",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtSenha",
+      "targets": [
+        ["id=txtSenha", "id"],
+        ["name=txtSenha", "name"],
+        ["css=#txtSenha", "css:finder"],
+        ["xpath=//input[@id='txtSenha']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "qwer1234"
+    }, {
+      "id": "dc602ebc-6d01-4636-a3a5-f91c39ab5fa0",
+      "comment": "",
+      "command": "click",
+      "target": "id=OPERACAO",
+      "targets": [
+        ["id=OPERACAO", "id"],
+        ["name=OPERACAO", "name"],
+        ["css=#OPERACAO", "css:finder"],
+        ["xpath=//button[@id='OPERACAO']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1859f86d-87a7-4eab-b6a7-beb259937ff5",
+      "comment": "",
+      "command": "click",
+      "target": "css=form:nth-child(3) > #OPERACAO",
+      "targets": [
+        ["css=form:nth-child(3) > #OPERACAO", "css:finder"],
+        ["xpath=(//button[@id='OPERACAO'])[2]", "xpath:attributes"],
+        ["xpath=//form[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Lista de Produtos')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8a79b01f-06be-4c83-a867-75399f814e0a",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(12) #OPERACAO",
+      "targets": [
+        ["css=tr:nth-child(12) #OPERACAO", "css:finder"],
+        ["xpath=(//a[contains(text(),'Visualizar%>')])[12]", "xpath:link"],
+        ["xpath=(//a[@id='OPERACAO'])[12]", "xpath:attributes"],
+        ["xpath=//a[contains(@href, 'VisualizarManga?idMg=19&OPERACAO=VISUALIZAR&PAGINA=admin')]", "xpath:href"],
+        ["xpath=//tr[12]/td/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1264e245-32f4-4380-aecd-d6dfa79f3f59",
+      "comment": "",
+      "command": "click",
+      "target": "id=OPERACAO",
+      "targets": [
+        ["id=OPERACAO", "id"],
+        ["name=OPERACAO", "name"],
+        ["css=#OPERACAO", "css:finder"],
+        ["xpath=//button[@id='OPERACAO']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Excluir Manga')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "af5a1f09-a2ea-4000-b8e2-312aa083d4d4",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "850eb663-26fd-4c66-a067-4a1e3c0e8af7",
+    "name": "List Cliente",
+    "commands": [{
+      "id": "d11902b7-5d8b-41f1-9f11-22bacdbe17e8",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/LojaMangaV2/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "693333c9-7dee-4c2a-a0f9-fbd68f6f8e2b",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1293x926",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b493dfde-1814-4d57-8422-20eb6d2c67ba",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flaticon-user",
+      "targets": [
+        ["css=.flaticon-user", "css:finder"],
+        ["xpath=//span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7ce19ef5-cd04-4704-baaa-453930a94e4d",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtEmail",
+      "targets": [
+        ["id=txtEmail", "id"],
+        ["name=txtEmail", "name"],
+        ["css=#txtEmail", "css:finder"],
+        ["xpath=//input[@id='txtEmail']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1d5f0b8d-3148-404f-ab50-c4f572f8fce1",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtEmail",
+      "targets": [
+        ["id=txtEmail", "id"],
+        ["name=txtEmail", "name"],
+        ["css=#txtEmail", "css:finder"],
+        ["xpath=//input[@id='txtEmail']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "admin@admin.com"
+    }, {
+      "id": "85e6068a-908c-4cb0-a947-2c794a2b525d",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtSenha",
+      "targets": [
+        ["id=txtSenha", "id"],
+        ["name=txtSenha", "name"],
+        ["css=#txtSenha", "css:finder"],
+        ["xpath=//input[@id='txtSenha']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "afda51ed-d375-4f21-8ce6-e8788d5c1e49",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtSenha",
+      "targets": [
+        ["id=txtSenha", "id"],
+        ["name=txtSenha", "name"],
+        ["css=#txtSenha", "css:finder"],
+        ["xpath=//input[@id='txtSenha']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "qwer1234"
+    }, {
+      "id": "3237bb06-258a-49c4-b483-eae0de6822ed",
+      "comment": "",
+      "command": "click",
+      "target": "id=OPERACAO",
+      "targets": [
+        ["id=OPERACAO", "id"],
+        ["name=OPERACAO", "name"],
+        ["css=#OPERACAO", "css:finder"],
+        ["xpath=//button[@id='OPERACAO']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "58ed2772-7d02-4e45-b705-8c2891b811d1",
+      "comment": "",
+      "command": "click",
+      "target": "id=OPERACAO",
+      "targets": [
+        ["id=OPERACAO", "id"],
+        ["name=OPERACAO", "name"],
+        ["css=form:nth-child(2) > #OPERACAO", "css:finder"],
+        ["xpath=//button[@id='OPERACAO']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Lista de Clientes')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3af35c8d-f529-42a7-a362-825933eab362",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "4854641a-a186-434d-be06-cc10bbd44c3d",
+    "name": "List Pedido",
+    "commands": [{
+      "id": "2ede56b5-9f7b-4212-a4cb-92b013e38c0b",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/LojaMangaV2/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "895df533-f630-471d-b289-0ab6f25544a2",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1293x926",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b9c43749-7308-49f8-b314-289f663998f5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.flaticon-user",
+      "targets": [
+        ["css=.flaticon-user", "css:finder"],
+        ["xpath=//span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bab5204a-96ed-4110-a4ca-44a1924675e3",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtEmail",
+      "targets": [
+        ["id=txtEmail", "id"],
+        ["name=txtEmail", "name"],
+        ["css=#txtEmail", "css:finder"],
+        ["xpath=//input[@id='txtEmail']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2783c398-4362-4a21-bf43-4cf589509dab",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtEmail",
+      "targets": [
+        ["id=txtEmail", "id"],
+        ["name=txtEmail", "name"],
+        ["css=#txtEmail", "css:finder"],
+        ["xpath=//input[@id='txtEmail']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "admin@admin.com"
+    }, {
+      "id": "78b2ee06-d9d1-466f-9295-c81e0474f4de",
+      "comment": "",
+      "command": "click",
+      "target": "id=txtSenha",
+      "targets": [
+        ["id=txtSenha", "id"],
+        ["name=txtSenha", "name"],
+        ["css=#txtSenha", "css:finder"],
+        ["xpath=//input[@id='txtSenha']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d9316d26-9318-4a3f-a032-f518b16d33db",
+      "comment": "",
+      "command": "type",
+      "target": "id=txtSenha",
+      "targets": [
+        ["id=txtSenha", "id"],
+        ["name=txtSenha", "name"],
+        ["css=#txtSenha", "css:finder"],
+        ["xpath=//input[@id='txtSenha']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "qwer1234"
+    }, {
+      "id": "a5316837-84ac-4eac-95d6-567d8a701ac9",
+      "comment": "",
+      "command": "click",
+      "target": "id=OPERACAO",
+      "targets": [
+        ["id=OPERACAO", "id"],
+        ["name=OPERACAO", "name"],
+        ["css=#OPERACAO", "css:finder"],
+        ["xpath=//button[@id='OPERACAO']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "18882a7f-cc80-4872-b778-321a2c29cf90",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Lista de Pedidos",
+      "targets": [
+        ["linkText=Lista de Pedidos", "linkText"],
+        ["css=.genric-btn:nth-child(4)", "css:finder"],
+        ["xpath=//a[contains(text(),'Lista de Pedidos')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'autenticado/admin/orders-list-admin.jsp')]", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'Lista de Pedidos')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "90070b97-5470-4738-a09b-0b73793b2cb2",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "986c2c59-549b-4b2c-ab94-de10ed293789",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["c6d1a2e3-53dc-4107-a081-dde8d2b3026e"]
+  }],
+  "urls": ["http://localhost:8080/LojaMangaV2/"],
+  "plugins": []
+}
