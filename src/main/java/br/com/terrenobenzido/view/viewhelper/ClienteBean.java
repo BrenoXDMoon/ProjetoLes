@@ -1,7 +1,9 @@
 package br.com.terrenobenzido.view.viewhelper;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
 import br.com.terrenobenzido.modelo.dao.ClienteDAO;
+import br.com.terrenobenzido.modelo.dao.EnderecoDAO;
 import br.com.terrenobenzido.modelo.dominio.CartaoCredito;
 import br.com.terrenobenzido.modelo.dominio.Cliente;
 import br.com.terrenobenzido.modelo.dominio.Endereco;
@@ -38,8 +41,8 @@ public class ClienteBean {
 	@Transactional
 	public String salvar() {
 
-		List<Endereco> listaEnd = new ArrayList<Endereco>();
-		List<CartaoCredito> listaCard = new ArrayList<CartaoCredito>();
+		Set<Endereco> listaEnd = new HashSet<Endereco>();
+		Set<CartaoCredito> listaCard = new HashSet<CartaoCredito>();
 
 		listaEnd.add(endereco);
 		listaCard.add(cartao);
@@ -51,32 +54,30 @@ public class ClienteBean {
 		cliente.setAtivo(true);
 		cliente.setTipoCli(TIPO_CLIENTE.Basico);
 
-		System.out.println(dao.salvar(cliente));
-
-		login(cliente);
+		cliente = (Cliente) dao.salvar(cliente).getEntidades().get(0);
+		
+		HttpSession session = request.getSession(true);
+		
+		session.setAttribute("status", false);
+		
+		session.setAttribute("cliente", cliente);
 		
 		return "/cliente/perfil.xhtml?faces-redirect=true";
 	}
 	
 	@Transactional
-	public Cliente login(Cliente cliente) {
-		Cliente clienteS = dao.login(cliente);
+	public Cliente login(String user, String pwd) {
+		EnderecoDAO endDao = new EnderecoDAO();
+		Cliente clienteS = dao.login(user, pwd);
+		List<Endereco> listEnd = new ArrayList<Endereco>();
+		
 		if (clienteS != null) {
-			
-			logoutInterno();
-			HttpSession session = request.getSession();
-			
-			session.setAttribute("u_id", clienteS.getId());
-			session.setAttribute("u_nome", clienteS.getNomeCompleto());
-			session.setAttribute("u_email", clienteS.getEmail());
-			session.setAttribute("u_funcao", clienteS.getFuncao());
 
 			return clienteS;
 		}
 		else {
 			return null;
 		}
-
 	}
 
 	public List<Cliente> listarClientes() {
@@ -93,6 +94,10 @@ public class ClienteBean {
 
 	public String excluirCliente() {
 
+		cliente.setAtivo(false);
+		
+		dao.excluir(cliente);
+		
 		return "";
 	}
 
@@ -120,12 +125,6 @@ public class ClienteBean {
 		}
 
 		return listaCli;
-	}
-
-	
-
-	public Cliente procuraEmail(String email) {
-		return dao.procuraEmail(email);
 	}
 
 	public ICommand getCmd() {
@@ -168,5 +167,7 @@ public class ClienteBean {
 	public void setRequest(HttpServletRequest request) {
 		this.request = request;
 	}
+
+	
 
 }

@@ -24,8 +24,7 @@
 
 	<H1 class='text-white'>Perfil</H1>
 
-	<h:dataTable var="cliente"
-		value="#{clienteBean.procuraEmail(request.getSession().getAttribute('u_email'))}"
+	<h:dataTable var="cliente" value="#{request.getSession().getAttribute('cliente')}"
 		class="table table-bordered table-striped table-hover bg-white">
 		<h:column>
 			<f:facet name="header">Nome</f:facet>
@@ -45,14 +44,14 @@
         </h:column>
 		<h:column>
 			<f:facet name="header">endereços</f:facet>
-			<ui:repeat value="#{cleinte.enderecos}" var="endereco">
-                #{enderecos.cidade}
+			<ui:repeat value="#{cliente.enderecos}" var="endereco">
+                #{endereco.cidade};<p> </p>
             </ui:repeat>
 		</h:column>
 		<h:column>
 			<f:facet name="header">Cartões</f:facet>
-			<ui:repeat value="#{cleinte.cartoes}" var="cartao">
-                #{cartao.numeroCartao}
+			<ui:repeat value="#{cliente.cartoes}" var="cartao">
+                #{cartao.numeroCartao}<p> </p>
             </ui:repeat>
 		</h:column>
 	</h:dataTable>

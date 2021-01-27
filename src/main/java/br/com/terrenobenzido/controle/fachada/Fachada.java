@@ -202,16 +202,6 @@ public class Fachada implements IFachada {
         return resultado;
 
     }
-    
-    @Override
-    public Resultado login(EntidadeDominio entidade) {
-    	resultado = new Resultado();
-    	Cliente cli = (Cliente) entidade;
-    	
-    	ClienteDAO dao = new ClienteDAO(); 
-    	resultado.setEntidades(dao.login(entidade).getEntidades());
-    	return resultado;
-    }
 
     @Override
     public Resultado visualizar(EntidadeDominio entidade) {

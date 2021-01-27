@@ -1,10 +1,10 @@
 package br.com.terrenobenzido.modelo.dominio;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
@@ -44,10 +44,10 @@ public class Cliente extends EntidadeDominio {
 	private String senha;
 
 	@OneToMany
-	private List<Endereco> enderecos = new ArrayList<Endereco>();
+	private Set<Endereco> enderecos = new HashSet<Endereco>();
 
 	@OneToMany
-	private List<CartaoCredito> cartoes = new ArrayList<CartaoCredito>();
+	private Set<CartaoCredito> cartoes = new HashSet<CartaoCredito>();
 
 	private boolean ativo;
 
@@ -108,19 +108,19 @@ public class Cliente extends EntidadeDominio {
 		this.senha = senha;
 	}
 
-	public List<Endereco> getEnderecos() {
+	public Set<Endereco> getEnderecos() {
 		return enderecos;
 	}
 
-	public void setEnderecos(List<Endereco> enderecos) {
+	public void setEnderecos(Set<Endereco> enderecos) {
 		this.enderecos = enderecos;
 	}
 
-	public List<CartaoCredito> getCartoes() {
+	public Set<CartaoCredito> getCartoes() {
 		return cartoes;
 	}
 
-	public void setCartoes(List<CartaoCredito> cartoes) {
+	public void setCartoes(Set<CartaoCredito> cartoes) {
 		this.cartoes = cartoes;
 	}
 

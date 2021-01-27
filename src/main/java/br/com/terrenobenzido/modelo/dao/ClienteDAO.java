@@ -19,8 +19,8 @@ public class ClienteDAO extends AbstractDAO {
 
 		Cliente cliente = (Cliente) ent;
 		manager.persist(cliente);
-		manager.persist(cliente.getEnderecos().get(0));
-		manager.persist(cliente.getCartoes().get(0));
+		manager.persist(cliente.getEnderecos());
+		manager.persist(cliente.getCartoes());
 
 		Resultado resultado = new Resultado();
 		resultado.add(cliente);
@@ -43,7 +43,8 @@ public class ClienteDAO extends AbstractDAO {
 	@Override
 	public Resultado excluir(EntidadeDominio ent) {
 		Cliente cliente = (Cliente) ent;
-		manager.persist(cliente);
+		
+		manager.merge(cliente);
 
 		Resultado resultado = new Resultado();
 		resultado.add(cliente);
@@ -53,7 +54,7 @@ public class ClienteDAO extends AbstractDAO {
 
 	@Override
 	public Resultado listar(EntidadeDominio ent) {
-		String jpql = "select distinct(c) from Cliente join fetch c.enderecos join fetch c.cartoes";
+		String jpql = "select distinct(c) from Cliente c join fetch c.enderecos join fetch c.cartoes";
 
 		Resultado resultado = new Resultado();
 		resultado.setEntidades(manager.createQuery(jpql, EntidadeDominio.class).getResultList());
@@ -64,7 +65,7 @@ public class ClienteDAO extends AbstractDAO {
 	@Override
 	public Resultado visualizar(EntidadeDominio ent) {
 
-		String jpql = "select distinct(c) from Cliente where c.id = :id join fetch c.enderecos join fetch c.cartoes";
+		String jpql = "select distinct(c) from Cliente c where c.id = :id join fetch c.enderecos join fetch c.cartoes";
 
 		Cliente cli = (Cliente) ent;
 
@@ -74,31 +75,10 @@ public class ClienteDAO extends AbstractDAO {
 		return resultado;
 	}
 
-	public Resultado login(EntidadeDominio ent) {
-
-		Cliente cliente = (Cliente) ent;
-
-		Resultado resultado = new Resultado();
-		resultado.add(cliente);
-
-		return resultado;
+	public Cliente login(String email, String senha) {
+		String jpql = "select distinct(c) from Cliente c join fetch c.enderecos join fetch c.cartoes where c.email = :email and c.senha = :senha";
+	
+			return manager.createQuery(jpql, Cliente.class).setParameter("email", email).setParameter("senha", senha).getSingleResult();
+		
 	}
-
-	public Cliente login(Cliente user) {
-		String jpql = "select distinct(c) from Cliente c where c.email = :email and c.senha= :senha";
-
-		try {
-			return manager.createQuery(jpql, Cliente.class).setParameter("email", user.getEmail())
-					.setParameter("senha", user.getSenha()).getSingleResult();
-		} catch (Exception e) {
-			return null;
-		}
-	}
-
-	public Cliente procuraEmail(String email) {
-		String jpql = "select distinct(c) from Cliente c where c.email = :email";
-
-		return manager.createQuery(jpql, Cliente.class).setParameter("email", email).getSingleResult();
-	}
-
 }

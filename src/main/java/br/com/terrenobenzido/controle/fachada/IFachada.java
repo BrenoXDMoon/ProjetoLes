@@ -10,5 +10,4 @@ public interface IFachada {
 	public Resultado editar(EntidadeDominio ent);
 	public Resultado excluir(EntidadeDominio ent);
 	public Resultado visualizar(EntidadeDominio entidade);
-	public Resultado login(EntidadeDominio entidade);
 }
