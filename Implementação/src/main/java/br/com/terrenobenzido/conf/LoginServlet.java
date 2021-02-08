@@ -31,28 +31,30 @@ public class LoginServlet extends HttpServlet {
 		// get request parameters for userID and password
 		String user = request.getParameter("user");
 		String pwd = request.getParameter("senha");
+		cliente.setEmail(user);
+		cliente.setSenha(pwd);
 
-		HttpSession session = request.getSession(true);
-		RequestDispatcher rd = null;
-		Cliente clienteS = bean.login(user, pwd);
+		HttpSession session = request.getSession(false);
+		Cliente clienteS = bean.login(cliente);
 
 		if (clienteS != null) {
+			
 			session.setAttribute("status", false);
 			
-			session.setAttribute("cliente", clienteS);
-			
 			if (clienteS.getFuncao().equals("ADMIN")) {
-				rd = request.getRequestDispatcher("admin/admin.xhtml");		
+				response.sendRedirect("admin/admin.xhtml");			
 			}
 			else {
-				rd = request.getRequestDispatcher("cliente/perfil.xhtml");				
+				response.sendRedirect("cliente/perfil.xhtml");				
 			}
-			
-			rd.forward(request, response);
 		} else {
 			
 			session.setAttribute("status", true);
 			response.sendRedirect("login.xhtml");
+//			RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.xhtml");
+//			PrintWriter out = response.getWriter();
+//			out.println("<font color=red>Either user name or password is wrong.</font>");
+//			rd.include(request, response);
 		}
 
 	}

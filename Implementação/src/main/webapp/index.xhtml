@@ -24,13 +24,9 @@ set=ISO-8859-1" />
 		<a class="navbar-brand mb-0 h1"
 			href="#{request.contextPath}/index.xhtml">Terreno Benzido</a> <a
 			class="py-2 d-none d-md-inline-block"
-			href="#{request.contextPath}/cadastroCliente.xhtml">Cadastro</a> 
-				
-			<c:if test="#{clienteBean.request.getSession(false).getAttribute('cliente') == null}">
-				<a href="#{request.contextPath}/login.xhtml" class="py-2 d-none d-md-inline-block">Login</a>
-			</c:if>
-			
-			<a
+			href="#{request.contextPath}/cadastroCliente.xhtml">Cadastro</a> <a
+			class="py-2 d-none d-md-inline-block"
+			href="#{request.contextPath}/login.xhtml">Login</a> <a
 			class="py-2 d-none d-md-inline-block"
 			href="#{request.contextPath}/carrinho.xhtml">Carrinho</a> 
 			<c:if
@@ -39,7 +35,7 @@ set=ISO-8859-1" />
 			href="#{request.contextPath}/admin/cartas/lista.xhtml">Lista</a> 
 			</c:if>
 			<c:if
-				test="#{clienteBean.request.getSession(false).getAttribute('cliente') != null}">
+			test="#{clienteBean.request.getSession(false).getAttribute('u_email') != null}">
 			<h:commandButton
 			value="logout" action="#{clienteBean.logout}" /> 
 		</c:if> #{request.getSession(false).getAttribute("u_email")} </nav> </header>

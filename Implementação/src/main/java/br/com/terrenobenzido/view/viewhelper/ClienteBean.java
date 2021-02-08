@@ -1,9 +1,7 @@
 package br.com.terrenobenzido.view.viewhelper;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
@@ -12,7 +10,6 @@ import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
 import br.com.terrenobenzido.modelo.dao.ClienteDAO;
-import br.com.terrenobenzido.modelo.dao.EnderecoDAO;
 import br.com.terrenobenzido.modelo.dominio.CartaoCredito;
 import br.com.terrenobenzido.modelo.dominio.Cliente;
 import br.com.terrenobenzido.modelo.dominio.Endereco;
@@ -41,8 +38,8 @@ public class ClienteBean {
 	@Transactional
 	public String salvar() {
 
-		Set<Endereco> listaEnd = new HashSet<Endereco>();
-		Set<CartaoCredito> listaCard = new HashSet<CartaoCredito>();
+		List<Endereco> listaEnd = new ArrayList<Endereco>();
+		List<CartaoCredito> listaCard = new ArrayList<CartaoCredito>();
 
 		listaEnd.add(endereco);
 		listaCard.add(cartao);
@@ -54,29 +51,28 @@ public class ClienteBean {
 		cliente.setAtivo(true);
 		cliente.setTipoCli(TIPO_CLIENTE.Basico);
 
-		cliente = (Cliente) dao.salvar(cliente).getEntidades().get(0);
-		
-		HttpSession session = request.getSession(true);
-		
-		session.setAttribute("status", false);
-		
-		session.setAttribute("cliente", cliente);
+		System.out.println(dao.salvar(cliente));
+
+		login(cliente);
 		
 		return "/cliente/perfil.xhtml?faces-redirect=true";
 	}
 	
 	@Transactional
-	public Cliente login(String user, String pwd) {
+
+	public Cliente login(Cliente cliente) {
 		
-		cliente = dao.login(user, pwd);
+		cliente = dao.login(cliente);
 		
 		if (cliente != null) {
+
 
 			return cliente;
 		}
 		else {
 			return null;
 		}
+
 	}
 
 	public List<Cliente> listarClientes() {
@@ -95,10 +91,6 @@ public class ClienteBean {
 
 	public String excluirCliente() {
 
-		cliente.setAtivo(false);
-		
-		dao.excluir(cliente);
-		
 		return "";
 	}
 	
@@ -144,6 +136,12 @@ public class ClienteBean {
 		return listaCli;
 	}
 
+	
+
+	public Cliente procuraEmail(String email) {
+		return dao.procuraEmail(email);
+	}
+
 	public ICommand getCmd() {
 		return cmd;
 	}
@@ -184,7 +182,5 @@ public class ClienteBean {
 	public void setRequest(HttpServletRequest request) {
 		this.request = request;
 	}
-
-	
 
 }
