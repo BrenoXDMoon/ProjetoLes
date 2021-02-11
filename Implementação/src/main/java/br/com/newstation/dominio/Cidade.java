@@ -1,17 +1,15 @@
 package br.com.newstation.dominio;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
+
+@Embeddable
 public class Cidade extends EntidadeDominio{
 
-	private String descricao;
+	private String cidade;
+	
+	@Embedded
 	private Estado estado;
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
 
 	public Estado getEstado() {
 		return estado;
@@ -19,5 +17,13 @@ public class Cidade extends EntidadeDominio{
 
 	public void setEstado(Estado estado) {
 		this.estado = estado;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
 	}
 }

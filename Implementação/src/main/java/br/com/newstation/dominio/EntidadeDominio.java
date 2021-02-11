@@ -4,13 +4,13 @@ import java.util.Date;
 
 public class EntidadeDominio {
 
-	private Integer id;
+	private int id;
 	private Date dtCadastro;
 	
 	public Integer getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public Date getDtCadastro() {
