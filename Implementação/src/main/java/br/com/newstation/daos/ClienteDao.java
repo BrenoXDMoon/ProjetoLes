@@ -11,7 +11,7 @@ public class ClienteDao extends AbstractDao {
 
 		Cliente cliente = (Cliente) ent;
 		manager.persist(cliente);
-		manager.persist(cliente.getEnderecos().get(0));
+		manager.persist(cliente.getEnderecos());
 
 		Resultado resultado = new Resultado();
 		resultado.add(cliente);

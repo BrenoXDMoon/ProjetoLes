@@ -35,9 +35,13 @@ public class ClienteBean {
 
 		List<Endereco> listaEnd = new ArrayList<Endereco>();
 
-		listaEnd.add(endereco);
+		//listaEnd.add(endereco);
 
-		cliente.setEnderecos(listaEnd);
+		//cliente.setEnderecos(listaEnd);
+		
+		cmd.executar(cliente);
+		
+		System.out.println("SUCESSO!!!");
 		
 		return "/cliente/perfil.xhtml?faces-redirect=true";
 	}
