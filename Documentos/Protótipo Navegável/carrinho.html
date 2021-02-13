@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/custom.css" rel="stylesheet">
+    <title>Carrinho</title>
+</head>
+
+<body>
+    <header class="site-header sticky-top py-1">
+        <nav class="container d-flex flex-column flex-md-row justify-content-between">
+            <a class="py-2 d-none d-md-inline-block" href="index.html">NewStation</a>
+            <a class="py-2 d-none d-md-inline-block" href="cliente/login.html">Login</a>
+            <a class="py-2 d-none d-md-inline-block" href="cliente/addCliente.html">Cadastre-se</a>
+            <a class="py-2 d-none d-md-inline-block" href="carrinho.html">Carrinho</a>
+        </nav>
+    </header>
+    <section class="container mt-5">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-2 text-center">
+                <img src="assets/img/cartas/blue-eyes.png" width="50%">
+            </div>
+            <div class="col-8 text-center">
+                <label for="cars">Quantidade:</label>
+                <select name="cars" id="cars">
+                    <option value="volvo">1</option>
+                    <option value="saab">2</option>
+                    <option value="mercedes">3</option>
+                    <option value="audi">4</option>
+                </select>
+            </div>
+            <div class="col-2 text-center">
+                <label for="total">Total</label>
+                <span name="total" style="background-color: white; border-radius: 6px; color: black;">R$10,00</span>
+            </div>
+
+        </div>
+        <div class="row justify-content-end">
+            <div class="text-end">
+                <a href="checkout.html" style="text-decoration:none;">
+                    <button class="btn-carrin ml-0">Finalizar</button>
+                </a>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
