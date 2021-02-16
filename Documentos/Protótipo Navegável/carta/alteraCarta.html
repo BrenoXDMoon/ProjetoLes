@@ -1,12 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+    <link href="../assets/css/custom.css" rel="stylesheet">
+    <title>Alterar Carta</title>
 </head>
-<body>
 
+<body class="bg-dark text-white">
+    <header class="site-header sticky-top py-1">
+        <nav class="container d-flex flex-column flex-md-row justify-content-between">
+            <a class="py-2 d-none d-md-inline-block" href="../index.html">NewStation</a>
+            <a class="py-2 d-none d-md-inline-block" href="../admin.html">Admin</a>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-10">
+                <h2>Alterar Cartas</h2>
+                <form enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label value="">Nome da Carta</label>
+                        <input type="text" class="form-control" required="true" id="titulo" value="blue-eyes" />
+
+                    </div>
+                    <div class="form-group">
+                        <label value="">Descrição da Carta</label>
+                        <input type="text" class="form-control" required="true" id="descricao" value="descrição" />
+
+                    </div>
+                    <div class="form-group">
+                        <label value="" >Preço</label>
+                        <input type="text" class="form-control" required="true" id='preco' value="10,00" />
+
+                    </div>
+                    <div class="form-group">
+                        <label value="" >Raridade</label>
+                        <input type="text" class="form-control" id="raridade" value="Rara"/>
+
+                    </div>
+                    <div class="form-group">
+                        <label value="" >Quantidade</label>
+                        <input type="text" class="form-control" id="quantidade" value="4"/>
+
+                    </div>
+                    <div class="form-group">
+                        
+                        <img height="400px" class="my-3" src="../assets/img/cartas/blue-eyes.png"
+                        >
+                        <input type="file"="imagemCarta" class="form-control" />
+
+                    </div>
+                    
+                </form>
+                <a href="listaCarta.html" style="text-decoration: none;"><button class="n-primary my-3">Cadastrar</button></a>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
