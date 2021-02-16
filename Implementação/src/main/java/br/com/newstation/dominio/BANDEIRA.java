@@ -4,4 +4,5 @@ public enum BANDEIRA {
 
 	VISA,
 	MASTERCARD
+
 }

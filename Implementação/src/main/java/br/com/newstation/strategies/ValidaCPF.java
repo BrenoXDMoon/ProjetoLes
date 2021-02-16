@@ -12,7 +12,8 @@ public class ValidaCPF implements IStrategy {
 		Cliente cliente = (Cliente) ent;
         Boolean isValid = true;
         
-        String CPF = cliente.getCpf();        
+        String CPF = cliente.getCpf();
+
         
         if (CPF.equals("00000000000") ||
             CPF.equals("11111111111") ||
