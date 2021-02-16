@@ -3,7 +3,6 @@ package br.com.newstation.strategies;
 import java.util.InputMismatchException;
 
 import br.com.newstation.dominio.Cliente;
-import br.com.newstation.dominio.Documento;
 import br.com.newstation.dominio.EntidadeDominio;
 
 public class ValidaCPF implements IStrategy {
@@ -13,13 +12,7 @@ public class ValidaCPF implements IStrategy {
 		Cliente cliente = (Cliente) ent;
         Boolean isValid = true;
         
-        String CPF = "";
-        
-        for(Documento doc : cliente.getDocumentos()) {
-        	if(doc.getTipoDocumento().getNome() == "CPF") {
-        		CPF = doc.getCodigo();
-        	}
-        }
+        String CPF = cliente.getCpf();
         
         
         if (CPF.equals("00000000000") ||

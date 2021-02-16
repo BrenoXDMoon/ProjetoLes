@@ -18,7 +18,7 @@ public class ValidaExistenciaClientePorCPF implements IStrategy {
 		Cliente cli = (Cliente) ent;
 		String jpql = "select c from Cliente c where c.cpf = :cpf";
 		
-		List<Cliente> ls = (List<Cliente>) manager.createQuery(jpql, Cliente.class).setParameter("cpf", cli.getDocumentos().get(0));
+		List<Cliente> ls = (List<Cliente>) manager.createQuery(jpql, Cliente.class).setParameter("cpf", cli.getCpf());
 		
 		if(ls.isEmpty()) {
 			return null;
