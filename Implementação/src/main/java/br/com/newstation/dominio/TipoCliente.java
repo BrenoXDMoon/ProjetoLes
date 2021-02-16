@@ -1,11 +1,14 @@
 package br.com.newstation.dominio;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Transient;
 
 @Embeddable
 public class TipoCliente extends EntidadeDominio {
 	
 	private String tipoCliente;
+	
+	@Transient
 	private String descricao;
 	
 	public String gettipoCliente() {

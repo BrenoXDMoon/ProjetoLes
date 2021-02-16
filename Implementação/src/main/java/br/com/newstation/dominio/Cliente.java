@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Cliente extends Pessoa{
+public class Cliente extends EntidadeDominio{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,9 +20,13 @@ public class Cliente extends Pessoa{
 	@Embedded
 	private TipoCliente tipoCliente;
 	private String nome;
+	private String cpf;
 	
 	@OneToMany
 	private List<Endereco> enderecos = new ArrayList<Endereco>();
+	
+	@OneToMany
+	private List<CartaoCredito> cartoes;
 	
 	public TipoCliente getTipoCliente() {
 		return tipoCliente;
@@ -54,5 +58,21 @@ public class Cliente extends Pessoa{
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public List<CartaoCredito> getCartoes() {
+		return cartoes;
+	}
+
+	public void setCartoes(List<CartaoCredito> cartoes) {
+		this.cartoes = cartoes;
 	}
 }
