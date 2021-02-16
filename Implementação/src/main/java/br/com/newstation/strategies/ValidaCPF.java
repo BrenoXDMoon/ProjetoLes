@@ -13,7 +13,6 @@ public class ValidaCPF implements IStrategy {
         Boolean isValid = true;
         
         String CPF = cliente.getCpf();
-
         
         if (CPF.equals("00000000000") ||
             CPF.equals("11111111111") ||

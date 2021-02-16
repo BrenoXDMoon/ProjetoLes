@@ -77,5 +77,4 @@ public class CartaoCredito {
 	public void setBandeira(BANDEIRA bandeira) {
 		this.bandeira = bandeira;
 	}
-
 }

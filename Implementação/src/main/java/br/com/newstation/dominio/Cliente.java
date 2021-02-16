@@ -69,13 +69,13 @@ public class Cliente extends EntidadeDominio {
 		this.id = id;
 	}
 
-
 	public String getEmail() {
 		return email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
+
 
 	}
 
@@ -94,5 +94,4 @@ public class Cliente extends EntidadeDominio {
 	public void setSenha(Senha senha) {
 		this.senha = senha;
 	}
-
 }
