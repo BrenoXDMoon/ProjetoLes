@@ -2,3 +2,28 @@ body{
     background-color: rgb(39, 48, 51);
     color: whitesmoke;
 }
+
+a{
+    text-decoration: none!important;
+}
+
+.ml-25{
+    margin-left: 25%;
+}
+
+table  tr td img{
+    width: 30%;
+    height: 30%;
+}
+
+table  tr td{
+    text-align: center;
+}
+table tr{
+    color: white
+    ;
+}
+
+.site-header a{
+    color: #1e7e34 !important
+}
