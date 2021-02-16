@@ -7,7 +7,6 @@ public class EditarCommand extends AbstractCommand {
 
 	@Override
 	public Resultado executar(EntidadeDominio ent) {
-		// TODO Auto-generated method stub
 		return fachada.editar(ent);
 	}
 
