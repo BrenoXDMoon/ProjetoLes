@@ -13,6 +13,7 @@ public class CartaoCredito {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
 	private String numero;
 	private String nomeImpresso;
 	private String codigoSeguranca;
