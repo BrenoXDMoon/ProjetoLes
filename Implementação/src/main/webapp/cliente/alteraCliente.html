@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/custom.css" rel="stylesheet">
+    <title>Altera Cadastro</title>
+</head>
+
+<body>
+    <header class="site-header sticky-top py-1">
+        <nav class="container d-flex flex-column flex-md-row justify-content-between">
+            <a class="py-2 d-none d-md-inline-block" href="../index.html">NewStation</a>
+            <a class="py-2 d-none d-md-inline-block" href="login.html">Login</a>
+            <a class="py-2 d-none d-md-inline-block" href="../carrinho.html">Carrinho</a>
+        </nav>
+    </header>
+    <section class="container perfil mt-5">
+        <form enctype="multipart/form-data">
+            <h4 class="py-4">Dados de Cliente</h4>
+            <div class="border">
+                <div class="row justify-content-center">
+                    <div class="col-10">
+                        <div class="form-group">
+                            <label value="Nome Completo" />Nome Completo</label>
+                            <input type="text" value='' required="true" id="nomeCompleto" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label value="CPF" />CPF</label>
+                            <input type="text" value='' required="true" id="cpf" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Data de Nascimento</label>
+                            <input type="text" value="" id="dataNascimento" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label value="E-mail">E-mail</label>
+                            <input type="text" value="" id="email" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Senha</label>
+                            <input type="text" value="" id="senha" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <a href="perfil.html" style="text-decoration: none;"><button class="text-black mt-3">Salvar</button></a>
+    </section>
+
+
+</body>
+
+</html>

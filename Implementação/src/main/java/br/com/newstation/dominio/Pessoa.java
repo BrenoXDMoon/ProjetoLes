@@ -1,16 +1,15 @@
 package br.com.newstation.dominio;
 
-import java.util.List;
 
 public class Pessoa extends EntidadeDominio {
 
-	private List<Documento> documentos;
+	private String cpf;
 
-	public List<Documento> getDocumentos() {
-		return documentos;
+	public String getCpf() {
+		return cpf;
 	}
 
-	public void setDocumentos(List<Documento> documentos) {
-		this.documentos = documentos;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 }

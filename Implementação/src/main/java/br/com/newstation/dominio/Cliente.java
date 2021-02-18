@@ -1,5 +1,6 @@
 package br.com.newstation.dominio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Embedded;
@@ -21,7 +22,7 @@ public class Cliente extends Pessoa{
 	private String nome;
 	
 	@OneToMany
-	private List<Endereco> enderecos;
+	private List<Endereco> enderecos = new ArrayList<Endereco>();
 	
 	public TipoCliente getTipoCliente() {
 		return tipoCliente;

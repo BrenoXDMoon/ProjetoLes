@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/custom.css" rel="stylesheet">
+    <title>Perfil</title>
+</head>
+
+<body class="text-white bg-dark">
+    <header class="site-header  py-1">
+        <nav class="container d-flex flex-column flex-md-row justify-content-between">
+            <a class="py-2 d-none d-md-inline-block" href="../index.html">NewStation</a>
+            <a class="py-2 d-none d-md-inline-block" href="login.html">Login</a>
+            <a class="py-2 d-none d-md-inline-block" href="addCliente.html">Cadastre-se</a>
+            <a class="py-2 d-none d-md-inline-block" href="../carrinho.html">Carrinho</a>
+        </nav>
+    </header>
+    <section class="container perfil mt-5">
+        <div class="row">
+            <div class="col-12 text-center">
+
+
+                <h1 class='text-white'>Perfil</h1>
+                <table class="table table-bordered table-striped table-hover">
+                    <tr>
+                        <th>Nome</th>   
+                        <th>Cpf</th>
+                        <th>Editar</th>
+                    </tr>
+                    <tr>
+                        <td>Admin</td>
+                        <td>123.456.789-38</td>
+                        <td><a href="alteraCliente.html"><button>Editar</button></a></td>
+                    </tr>
+                </table>
+
+                <h1 class='text-white'>Endereço</h1>
+                <table class="table table-bordered table-striped table-hover">
+                    <tr>
+                        <th>Logadouro</th> 
+                        <th>CEP</th>
+                        <th>Editar</th>
+                        <th>Deletar</th>
+                    </tr>
+                    <tr>
+                        <td>Rua</td>
+                        <td>0800200</td>
+                        <td><a href="alteraEndereco.html"><button>Editar</button></a></td>
+                        <td><button>Deletar</button></td>
+                    </tr>
+                </table>
+                <a href="addEndereco.html"><button
+                    class="text-black">ADD</button></a>
+
+                <h1 class='text-white'>Cartão</h1>
+                <table class="table table-bordered table-striped table-hover">
+                    <tr>
+                        
+                        <th>Data de Validade</th>
+                        <th>Numero do Cartão</th>
+                        <th>Editar</th>
+                        <th>Deletar</th>
+                    </tr>
+                    <tr>
+                        <td>00/00</td>
+                        <td>xxxx xxxx xxxx 8426</td>
+                        <td><a href="alteraCartao.html"><button>Editar</button></a></td>
+                        <td><button>Deletar</button></td>
+                        
+                    </tr>
+                </table>
+                <a href="addCartao.html" ><button
+                    class="text-black">ADD</button></a>
+                <br>
+                <br>
+                
+                <br>
+                <br>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="../assets/css/style.css" rel="stylesheet"/>
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../assets/css/custom.css" rel="stylesheet"/>
+    <title>Cadastro</title>
+</head>
+
+<body>
+    <header class="site-header py-1">
+        <nav class="container d-flex flex-column flex-md-row justify-content-between">
+            <a class="py-2 d-none d-md-inline-block" href="../index.html">NewStation</a>
+            <a class="py-2 d-none d-md-inline-block" href="login.html">Login</a>
+            <a class="py-2 d-none d-md-inline-block" href="../carrinho.html">Carrinho</a>
+        </nav>
+    </header>
+    <section class="container perfil mt-5">
+        <h:form enctype="multipart/form-data" >
+					<h4 class="py-4">Dados de Cliente</h4>
+					<div class="border">
+						<div class="row justify-content-center">
+							<div class="col-10">
+								<div class="form-group">
+									<label value="Nome Completo">Nome Completo</label>
+									<input type="text" value=''
+										required="true" id="nomeCompleto" class="form-control" />
+								</div>
+								<div class="form-group">
+									<label value="CPF" >CPF</label>
+							
+									<h:inputText value="#{clienteBean.cliente.cpf}" required="true" id="cpf" styleClass="form-control"/>
+								</div>
+
+								<div class="form-group">
+									<label >Data de Nascimento</label>
+									<h:inputText value="#{clienteBean.cliente.}" required="true" id="dataNascimento" styleClass="form-control"/>
+								</div>
+
+								<div class="form-group">
+									<label value="E-mail">E-mail</label>
+									<input type="text" value="" id="email"
+										class="form-control" />
+								</div>
+
+								<div class="form-group">
+									<label>Senha</label>
+									<input type="text" value="" id="senha"
+										class="form-control" />
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<h4 class="py-4">Dados de Endereço do Cliente</h4>
+					<div class="border">
+						<div class="row justify-content-center">
+							<div class="col-10">
+								<div class="form-group">
+									<label value="Logradouro">Logradouro</label>
+									<input type="text" value=""
+										id="logradouro" class="form-control" />
+								</div>
+
+								<div class="form-group">
+									<label value="Numero" >Número</label>
+									<input type="text" value="" id="numero"
+										class="form-control" />
+								</div>
+
+								<div class="form-group">
+									<label value="Bairro" >Bairro</label>
+									<input type="text" value="" id="bairro"
+										class="form-control" />
+								</div>
+
+								<div class="form-group">
+									<label value="Complemento" >Complemento</label>
+									<input type="text" value=""
+										id="complemento" class="form-control" />
+								</div>
+
+								<div class="form-group">
+									<label value="CEP" >CEP</label>
+									<input type="text" value="" id="cep"
+										class="form-control" />
+								</div>
+
+								<div class="form-group">
+									<label value="Cidade" >Cidade</label>
+									<input type="text" value="" id="cidade"
+										class="form-control" />
+								</div>
+
+								<div class="form-group">
+									<label value="Estado" >Estado</label>
+									<input type="text" value="" id="estado"
+										class="form-control" />
+								</div>
+
+								<div class="form-group">
+                                    <label >Tipo de Endereço</label>
+                                    <select name="cars" id="cars">
+                                        <option value="volvo">Cobrança</option>
+                                        <option value="saab">Entrega</option>
+                                    </select>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+					<h4 class="py-4">Dados de Cartão do Cliente</h4>
+					<div class="border">
+						<div class="row justify-content-center">
+							<div class="col-10">
+
+								<div class="form-group">
+									<label >Número do Cartão</label>
+									<h:inputText value="#{clienteBean.cliente.nome}" required="true" id="nome" styleClass="form-control"/>
+								</div>
+
+								<div class="form-group">
+									<label >Nome impresso</label>
+									<input type="text" value=""
+										id="nomeImpresso" class="form-control" />
+								</div>
+
+								<div class="form-group">
+									<label >Validade</label>
+									<input type="text" value=""
+										id="validade" class="form-control" />
+								</div>
+
+								<div class="form-group">
+									<label >Código de Segurança</label>
+									<input type="text" value=""
+										id="codigoSeguranca" class="form-control" />
+								</div>
+
+								<div class="form-group">
+									<label >Bandeira do Cartão</label>
+									<input type="text" value=""
+										id="bandeira" class="form-control" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<h:commandButton value="Cadastrar" action="#{clienteBean.salvar}" styleClass="btn"/>
+                </h:form>
+    </section>
+</body>
+</html>
