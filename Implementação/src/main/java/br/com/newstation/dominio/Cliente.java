@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Cliente extends EntidadeDominio{
+public class Cliente extends EntidadeDominio {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
