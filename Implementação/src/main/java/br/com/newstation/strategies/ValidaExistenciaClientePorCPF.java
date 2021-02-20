@@ -1,5 +1,6 @@
 package br.com.newstation.strategies;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -11,7 +12,7 @@ import br.com.newstation.dominio.EntidadeDominio;
 public class ValidaExistenciaClientePorCPF implements IStrategy {
 
 	@PersistenceContext
-	EntityManager manager;
+	private EntityManager manager;
 	
 	@Override
 	public String processar(EntidadeDominio ent) {

@@ -25,6 +25,7 @@ public class Facade implements IFachada{
 	public Facade(){
 		
 		daos = new HashMap<String, IDao>();
+		rns = new HashMap<String, Map<String,List<IStrategy>>>();
 		
 		
 		//----------SETANDO OS DAOS--------//
