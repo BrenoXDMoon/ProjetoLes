@@ -3,11 +3,10 @@ package br.com.newstation.vh;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.servlet.http.Part;
 import javax.transaction.Transactional;
 
@@ -17,19 +16,18 @@ import br.com.newstation.dominio.Carta;
 import br.com.newstation.dominio.Estoque;
 import br.com.newstation.infra.FileSaver;
 
-@Named
-@RequestScoped
+@Model
 public class AdminCartaBean {
+
+	@Inject
+	private EstoqueDao daoE;
 
 	@Inject
 	private FacesContext context;
 
 	@Inject
 	private CartaDao dao;
-	
-	@Inject
-	private EstoqueDao daoE;
-	
+
 	private Carta carta = new Carta();
 	private Estoque estoque = new Estoque();
 	private Part imagemCarta;
@@ -44,14 +42,14 @@ public class AdminCartaBean {
 		carta.setAtivo(true);
 		carta.setEstoque(estoque);
 		dao.salvar(carta);
-		
+
 		FileSaver fileSaver = new FileSaver();
 		carta.setImagemPath(fileSaver.write(imagemCarta, "cartas"));
-		
+
 		context.getExternalContext().getFlash().setKeepMessages(true);
 
 		context.addMessage(null, new FacesMessage("Carta cadastrada com sucesso!"));
-	
+
 		return "/cartas/lista?faces-redirect=true";
 	}
 

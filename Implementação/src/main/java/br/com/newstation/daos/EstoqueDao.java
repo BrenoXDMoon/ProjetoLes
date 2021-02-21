@@ -5,6 +5,7 @@ import javax.persistence.PersistenceContext;
 
 import br.com.newstation.dominio.Estoque;
 
+
 public class EstoqueDao {
 
 	@PersistenceContext
