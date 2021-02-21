@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,18 +19,27 @@ public class Cliente extends Pessoa{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Embedded
-	private TipoCliente tipoCliente;
 	private String nome;
+	private String email;
 	
+	@Embedded
+	private Senha senha;
+
 	@OneToMany
 	private List<Endereco> enderecos = new ArrayList<Endereco>();
 	
-	public TipoCliente getTipoCliente() {
+	@OneToMany
+	private List<CartaoCredito> cartoes = new ArrayList<CartaoCredito>();
+	
+	@Enumerated(EnumType.STRING)
+	private TIPO_CLIENTE tipoCliente;
+	
+	
+	public TIPO_CLIENTE getTIPO_CLIENTE() {
 		return tipoCliente;
 	}
 	
-	public void setTipoCliente(TipoCliente tipoCliente) {
+	public void setTIPO_CLIENTE(TIPO_CLIENTE tipoCliente) {
 		this.tipoCliente = tipoCliente;
 	}
 	
@@ -54,5 +65,29 @@ public class Cliente extends Pessoa{
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public List<CartaoCredito> getCartoes() {
+		return cartoes;
+	}
+
+	public void setCartoes(List<CartaoCredito> cartoes) {
+		this.cartoes = cartoes;
+	}
+
+	public Senha getSenha() {
+		return senha;
+	}
+
+	public void setSenha(Senha senha) {
+		this.senha = senha;
 	}
 }

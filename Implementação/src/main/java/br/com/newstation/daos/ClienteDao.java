@@ -1,17 +1,27 @@
 package br.com.newstation.daos;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.EntidadeDominio;
 import br.com.newstation.dominio.Resultado;
 
-public class ClienteDao extends AbstractDao {
+public class ClienteDao implements IDao{
+
+	@PersistenceContext
+	private EntityManager manager;
 
 	@Override
 	public Resultado salvar(EntidadeDominio ent) {
+		
+		System.out.println("- CHEGOU NO DAO");
 
 		Cliente cliente = (Cliente) ent;
+		
 		manager.persist(cliente);
 		manager.persist(cliente.getEnderecos());
+		manager.persist(cliente.getCartoes());
 
 		Resultado resultado = new Resultado();
 		resultado.add(cliente);
@@ -71,6 +81,12 @@ public class ClienteDao extends AbstractDao {
 		String jpql = "select distinct(c) from Cliente c where c.email = :email";
 
 		return manager.createQuery(jpql, Cliente.class).setParameter("email", email).getSingleResult();
+	}
+
+	@Override
+	public Resultado excluir(EntidadeDominio ent) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -7,6 +7,9 @@ public class SalvarCommand extends AbstractCommand {
 
 	@Override
 	public Resultado executar(EntidadeDominio ent) {
+		
+		System.out.println("- CHEGOU NA CMD");
+		
 		return fachada.salvar(ent);
 	}
 }
