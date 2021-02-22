@@ -25,8 +25,8 @@
             <div class="col-2 text-center">
                 <img src="assets/img/cartas/blue-eyes.png" width="50%">
             </div>
-            <div class="col-8 text-center">
-                <label for="cars">Quantidade:</label>
+            <div class="col-2 text-center">
+                <p >Quantidade:</p>
                 <select name="cars" id="cars">
                     <option value="volvo">1</option>
                     <option value="saab">2</option>
@@ -35,31 +35,39 @@
                 </select>
             </div>
             <div class="col-2 text-center">
-                <label for="total">Total</label>
-                <span name="total" style="background-color: white; border-radius: 6px; color: black;">R$10,00</span>
+                <p>Valor unitário</p>
+                <p>R$10,00</p>
+            </div>
+            <div class="col-2 text-center">
+                <p >Valor</p>
+                <span name="total" style=" color: white;">R$10,00</span>
+            </div>
+            <div class="col-2 text-center">
+                <button class="btn">Remover</button>
             </div>
 
         </div>
-        <div class="row justify-content-end cupom">
-            <div class="text-end">
-                <a href="checkout.html" style="text-decoration:none;">
-                    <button class="btn-carrin ml-0">Finalizar</button>
-                </a>
-            </div>
-        </div>
-        <div class="row justify-content-center cartao">
-            <div class="col-10">
+        <br>
+        <br>
+        <div class="row justify-content-end cartao ml-4">
+            <div class="col-4 mb-3">
+                <h5>Calcular Frete</h5>
+                <input type="text" />
+                <button>Calcular</button>
                 
             </div>
         </div>
-        <div class="row justify-content-center Endereço">
-            <div class="col-10">
-
+        <div class="row justify-content-end ml-4">
+            <div class="col-4">
+                <label for="total" class="mb-0">Total do pedido</p></label>
+                <p name="total"><span style=" color: white;">R$10,00</span></p>
             </div>
         </div>
-        <div class="row justify-content-center valor total">
-            <div class="col-10">
-
+        <div class="row justify-content-end cupom ml-4">
+            <div class="col-4 text-end">
+                <a href="checkout.html" style="text-decoration:none;">
+                    <button class="btn-carrin ml-0">Finalizar</button>
+                </a>
             </div>
         </div>
     </section>

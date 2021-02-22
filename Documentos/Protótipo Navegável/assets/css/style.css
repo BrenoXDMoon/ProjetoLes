@@ -24,6 +24,15 @@ table tr{
     ;
 }
 
+
+.ml-13{
+    margin-left: 13%!important;
+}
+
+.ml-8{
+    margin-left: 8%;
+}
+
 .site-header a{
     color: #1e7e34 !important
 }
