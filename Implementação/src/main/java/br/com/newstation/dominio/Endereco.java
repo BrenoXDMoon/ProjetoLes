@@ -2,12 +2,14 @@ package br.com.newstation.dominio;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Endereco extends EntidadeDominio {
+public class Endereco {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,9 +21,10 @@ public class Endereco extends EntidadeDominio {
 	private String numero;
 	private String cep;
 	private String complemento;
+	private String bairro;
 	
-	@Embedded
-	private TipoEndereco tipoEndereco;
+	@Enumerated(EnumType.STRING)
+	private TIPO_ENDERECO tipoEndereco;
 
 	public Endereco() {
 
@@ -67,11 +70,11 @@ public class Endereco extends EntidadeDominio {
 		this.complemento = complemento;
 	}
 
-	public TipoEndereco getTipoEndereco() {
+	public TIPO_ENDERECO getTipoEndereco() {
 		return tipoEndereco;
 	}
 
-	public void setTipoEndereco(TipoEndereco tipoEndereco) {
+	public void setTipoEndereco(TIPO_ENDERECO tipoEndereco) {
 		this.tipoEndereco = tipoEndereco;
 	}
 
@@ -81,5 +84,13 @@ public class Endereco extends EntidadeDominio {
 
 	public void setId(Integer id) {
 		Id = id;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
 	}
 }

@@ -49,6 +49,8 @@ public class Facade implements IFachada{
 	@Override
 	public Resultado salvar(EntidadeDominio ent) {
 		
+		System.out.println("- CHEGOU NA FACHADA");
+		
 		String nmClasse = ent.getClass().getName();
 		
 		Map<String, List<IStrategy>> mapaEntidade = rns.get(nmClasse);
@@ -57,7 +59,7 @@ public class Facade implements IFachada{
 		executarRegras(ent, rnEnt);
 		
 		if(sb.length() == 0) {
-			dao = daos.get(ent.getClass());
+			dao = daos.get(nmClasse);
 			dao.salvar(ent);			
 		}else {
 			
