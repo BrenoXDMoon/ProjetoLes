@@ -1,6 +1,8 @@
 package br.com.newstation.daos;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
 import br.com.newstation.dominio.Cliente;
@@ -9,19 +11,31 @@ import br.com.newstation.dominio.Resultado;
 
 public class ClienteDao implements IDao{
 
-	@PersistenceContext
 	private EntityManager manager;
+	
+	private EntityManagerFactory factory = Persistence.createEntityManagerFactory("newstation");
 
 	@Override
 	public Resultado salvar(EntidadeDominio ent) {
+		
+		
+		
+		manager = factory.createEntityManager();
 		
 		System.out.println("- CHEGOU NO DAO");
 
 		Cliente cliente = (Cliente) ent;
 		
+		
+		manager.getTransaction().begin();
 		manager.persist(cliente);
-		manager.persist(cliente.getEnderecos());
-		manager.persist(cliente.getCartoes());
+		manager.persist(cliente.getEnderecos().get(0));
+		manager.persist(cliente.getCartoes().get(0));
+		
+		manager.getTransaction().commit();
+		
+		manager.close();
+		factory.close();
 
 		Resultado resultado = new Resultado();
 		resultado.add(cliente);
