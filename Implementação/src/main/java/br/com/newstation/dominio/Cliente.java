@@ -1,5 +1,10 @@
 package br.com.newstation.dominio;
 
+<<<<<<< Updated upstream
+=======
+import java.util.ArrayList;
+import java.util.Date;
+>>>>>>> Stashed changes
 import java.util.List;
 
 import javax.persistence.Embedded;
@@ -20,7 +25,15 @@ public class Cliente extends EntidadeDominio{
 	private TipoCliente tipoCliente;
 	private String nome;
 	private String cpf;
+<<<<<<< Updated upstream
 	
+=======
+	private Date dataNascimento;
+
+	@Embedded
+	private Senha senha;
+
+>>>>>>> Stashed changes
 	@OneToMany
 	private List<Endereco> enderecos;
 	
@@ -74,4 +87,31 @@ public class Cliente extends EntidadeDominio{
 	public void setCartoes(List<CartaoCredito> cartoes) {
 		this.cartoes = cartoes;
 	}
+<<<<<<< Updated upstream
+=======
+
+	public Senha getSenha() {
+		return senha;
+	}
+
+	public void setSenha(Senha senha) {
+		this.senha = senha;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public Date getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+>>>>>>> Stashed changes
 }

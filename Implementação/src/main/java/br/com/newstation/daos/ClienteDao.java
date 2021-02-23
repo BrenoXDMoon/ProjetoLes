@@ -82,6 +82,9 @@ public class ClienteDao extends AbstractDao {
 		
 		return resultado;
 	}
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
 }
