@@ -8,6 +8,4 @@ public enum TIPO_CLIENTE {
 	Basico,
 	Médio,
 	Avançado;
-	
-	
 }

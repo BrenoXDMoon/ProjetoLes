@@ -1,10 +1,15 @@
 package br.com.newstation.daos;
 
+import javax.persistence.EntityManager;
+
 import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.EntidadeDominio;
 import br.com.newstation.dominio.Resultado;
 
-public class ClienteDao extends AbstractDao {
+public class ClienteDao implements IDao{
+
+	private EntityManager manager;
+
 
 	@Override
 	public Resultado salvar(EntidadeDominio ent) {
@@ -82,9 +87,4 @@ public class ClienteDao extends AbstractDao {
 		
 		return resultado;
 	}
-<<<<<<< Updated upstream
-
-
-=======
->>>>>>> Stashed changes
 }

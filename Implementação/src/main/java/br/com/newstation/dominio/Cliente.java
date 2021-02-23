@@ -1,14 +1,13 @@
 package br.com.newstation.dominio;
 
-<<<<<<< Updated upstream
-=======
 import java.util.ArrayList;
 import java.util.Date;
->>>>>>> Stashed changes
 import java.util.List;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,32 +20,20 @@ public class Cliente extends EntidadeDominio{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Embedded
-	private TipoCliente tipoCliente;
+	@Enumerated(EnumType.STRING)
+	private TIPO_CLIENTE tipoCliente;
 	private String nome;
 	private String cpf;
-<<<<<<< Updated upstream
-	
-=======
+
 	private Date dataNascimento;
 
 	@Embedded
 	private Senha senha;
-
->>>>>>> Stashed changes
 	@OneToMany
-	private List<Endereco> enderecos;
+	private List<Endereco> enderecos = new ArrayList<Endereco>();
 	
 	@OneToMany
-	private List<CartaoCredito> cartoes;
-	
-	public TipoCliente getTipoCliente() {
-		return tipoCliente;
-	}
-	
-	public void setTipoCliente(TipoCliente tipoCliente) {
-		this.tipoCliente = tipoCliente;
-	}
+	private List<CartaoCredito> cartoes = new ArrayList<CartaoCredito>();
 	
 	public String getNome() {
 		return nome;
@@ -72,14 +59,6 @@ public class Cliente extends EntidadeDominio{
 		this.id = id;
 	}
 
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
 	public List<CartaoCredito> getCartoes() {
 		return cartoes;
 	}
@@ -87,8 +66,6 @@ public class Cliente extends EntidadeDominio{
 	public void setCartoes(List<CartaoCredito> cartoes) {
 		this.cartoes = cartoes;
 	}
-<<<<<<< Updated upstream
-=======
 
 	public Senha getSenha() {
 		return senha;
@@ -113,5 +90,4 @@ public class Cliente extends EntidadeDominio{
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
->>>>>>> Stashed changes
 }
