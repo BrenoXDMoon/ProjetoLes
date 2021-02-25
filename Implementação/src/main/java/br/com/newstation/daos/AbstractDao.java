@@ -10,7 +10,7 @@ public abstract class AbstractDao implements IDao{
 	protected EntityManager manager;
 	
 	void abrirConexao(){
-		manager = factory.createEntityManager();
+		this.manager = this.factory.createEntityManager();
 	}
 	
 }
