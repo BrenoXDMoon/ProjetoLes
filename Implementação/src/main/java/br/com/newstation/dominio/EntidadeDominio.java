@@ -17,5 +17,4 @@ public class EntidadeDominio {
 	public void setDtCadastro(LocalDate dtCadastro) {
 		this.dtCadastro = dtCadastro;
 	}
-	
 }

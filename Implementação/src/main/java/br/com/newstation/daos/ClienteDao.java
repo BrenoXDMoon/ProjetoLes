@@ -27,7 +27,6 @@ public class ClienteDao extends AbstractDao{
 		manager.persist(cliente.getEnderecos().get(0));
 		manager.persist(cliente.getDocumentos().get(0));
 		
-		
 		resultado.setEntidade(cliente);
 		
 		System.out.println("- CLIENTE SALVO COM SUCESSO!!!");
