@@ -1,23 +1,29 @@
 package br.com.newstation.vh;
 
 import javax.enterprise.inject.Model;
+import javax.inject.Inject;
 import javax.transaction.Transactional;
 
-import br.com.newstation.commands.ICommand;
-import br.com.newstation.commands.SalvarCommand;
+import br.com.newstation.daos.ClienteDao;
 import br.com.newstation.dominio.BANDEIRA;
 import br.com.newstation.dominio.CartaoCredito;
 import br.com.newstation.dominio.Cidade;
 import br.com.newstation.dominio.Cliente;
+import br.com.newstation.dominio.Documento;
 import br.com.newstation.dominio.Endereco;
 import br.com.newstation.dominio.Estado;
 import br.com.newstation.dominio.Senha;
+import br.com.newstation.dominio.TIPO_CLIENTE;
+import br.com.newstation.dominio.TIPO_DOCUMENTO;
 import br.com.newstation.dominio.TIPO_ENDERECO;
+import br.com.newstation.strategies.ValidaCPF;
+import br.com.newstation.strategies.ValidaExistenciaClientePorCPF;
 
 @Model
 public class ClienteSalvarBean {
-
-	private ICommand cmd;
+	
+	@Inject
+	private ClienteDao dao;
 	
 	private Cliente cliente = new Cliente();
 	
@@ -31,38 +37,59 @@ public class ClienteSalvarBean {
 	
 	private Estado estado = new Estado();
 	
-	
+	private Documento documento = new Documento();
 	
 	@Transactional
 	public String salvar(){
 		
-		System.out.println("- CHEGOU NA BEAN");
-		System.out.println(" senha:" + senha.getSenha() + " |confirma senha:" + senha.getConfirmaSenha());
-//		if(senha.getSenha() == senha.getConfirmaSenha()) {
+		if(senha.getConfirmaSenha().equals(senha.getSenha())) {
+			System.out.println("- SENHA VALIDADA NA BEAN");
 			
-		System.out.println("- SENHA VALIDADA NA BEAN");
+			cliente.setSenha(senha);
+			
+			cidade.setEstado(estado);
+			
+			endereco.setCidade(cidade);
+			
+			cliente.setTipoCliente(TIPO_CLIENTE.Basico);
+			
+			cliente.getDocumentos().add(documento);
+			
+			cliente.getEnderecos().add(endereco);
+			cliente.getCartoes().add(cartao);
+			
+			if(executarRegrasSalvar(documento).equals(null)) {
+				
+				dao.salvar(cliente);
+				return "/cliente/perfil.xhtml?faces-redirect=true";
+				
+			}else {
+								
+				return "cliente/login?faces-redirect=true";
+				
+			}		
+		}else {
+			
+			return "";
+			
+		}
+	}	
+
+	private String executarRegrasSalvar(Documento doc) {
 		
-		cmd = new SalvarCommand();
+		String retorno = null;	
 		
-		cliente.setSenha(senha);
+		if(doc.getTipoDocumento().equals(TIPO_DOCUMENTO.CPF)) {
+			ValidaCPF validaCpf = new ValidaCPF();
+			
+			ValidaExistenciaClientePorCPF validaExist = new ValidaExistenciaClientePorCPF();
+			
+			retorno = validaCpf.processar(doc) + validaExist.processar(doc);	
+		}
 		
-		cidade.setEstado(estado);
 		
-		endereco.setCidade(cidade);
-		
-		cliente.getEnderecos().add(endereco);
-		cliente.getCartoes().add(cartao);
-		
-		cmd.executar(cliente);
-		
-		return "/cliente/perfil.xhtml?faces-redirect=true";			
-//		}else {
-//			return "";
-//		}
+		return retorno;
 	}
-	
-	
-	
 
 	public Cliente getCliente() {
 		return cliente;
@@ -101,29 +128,33 @@ public class ClienteSalvarBean {
 		return cidade;
 	}
 
-
-
-
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
 	}
-
-
-
 
 	public Estado getEstado() {
 		return estado;
 	}
 
-
-
-
 	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
 
+	public ClienteDao getDao() {
+		return dao;
+	}
 
+	public void setDao(ClienteDao dao) {
+		this.dao = dao;
+	}
+	
+	public Documento getDocumento() {
+		return documento;
+	}
 
+	public void setDocumento(Documento documento) {
+		this.documento = documento;
+	}
 
 	public TIPO_ENDERECO[] getTipos() {
 		return TIPO_ENDERECO.values();
@@ -131,5 +162,9 @@ public class ClienteSalvarBean {
 
 	public BANDEIRA[] getBandeiras() {
 		return BANDEIRA.values();
+	}
+	
+	public TIPO_DOCUMENTO[] getDocumentos() {
+		return TIPO_DOCUMENTO.values();
 	}
 }

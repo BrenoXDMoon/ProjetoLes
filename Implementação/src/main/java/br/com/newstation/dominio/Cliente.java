@@ -1,7 +1,7 @@
 package br.com.newstation.dominio;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Embedded;
@@ -12,9 +12,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Email;
 
 @Entity
-public class Cliente extends EntidadeDominio{
+public class Cliente extends Pessoa{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,9 +24,9 @@ public class Cliente extends EntidadeDominio{
 	@Enumerated(EnumType.STRING)
 	private TIPO_CLIENTE tipoCliente;
 	private String nome;
-	private String cpf;
-
-	private Date dataNascimento;
+	@Email
+	private String email;
+	private LocalDate dataNascimento;
 
 	@Embedded
 	private Senha senha;
@@ -75,19 +76,27 @@ public class Cliente extends EntidadeDominio{
 		this.senha = senha;
 	}
 
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-	public Date getDataNascimento() {
+	public LocalDate getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
+	}
+
+	public TIPO_CLIENTE getTipoCliente() {
+		return tipoCliente;
+	}
+
+	public void setTipoCliente(TIPO_CLIENTE tipoCliente) {
+		this.tipoCliente = tipoCliente;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }

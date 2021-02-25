@@ -1,22 +1,21 @@
 package br.com.newstation.dominio;
 
-import java.util.Date;
+import java.time.LocalDate;
+
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 public class EntidadeDominio {
 
-	private int id;
-	private Date dtCadastro;
+	@Temporal(TemporalType.DATE)
+	protected LocalDate dtCadastro;
 	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public Date getDtCadastro() {
+	public LocalDate getDtCadastro() {
 		return dtCadastro;
 	}
-	public void setDtCadastro(Date dtCadastro) {
+	
+	public void setDtCadastro(LocalDate dtCadastro) {
 		this.dtCadastro = dtCadastro;
 	}
+	
 }
