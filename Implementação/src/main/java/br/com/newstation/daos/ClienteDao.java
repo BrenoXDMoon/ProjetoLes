@@ -1,27 +1,36 @@
 package br.com.newstation.daos;
 
+import java.util.List;
+
+import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.EntidadeDominio;
 import br.com.newstation.dominio.Resultado;
 
-public class ClienteDao implements IDao{
-
+@Stateful
+public class ClienteDao extends AbstractDao{	
+	
+	@PersistenceContext
 	private EntityManager manager;
-
-
+	
 	@Override
 	public Resultado salvar(EntidadeDominio ent) {
-		
-		Cliente cliente = (Cliente) ent;
-		manager.persist(cliente);
 
-		manager.persist(cliente.getEnderecos());
 		Resultado resultado = new Resultado();
-		resultado.add(cliente);
+		Cliente cliente = (Cliente) ent;
+		
+		manager.persist(cliente);
+		manager.persist(cliente.getCartoes().get(0));
+		manager.persist(cliente.getEnderecos().get(0));
+		manager.persist(cliente.getDocumentos().get(0));
 		
 		
+		resultado.setEntidade(cliente);
+		
+		System.out.println("- CLIENTE SALVO COM SUCESSO!!!");
 		return resultado;
 	}
 
@@ -29,36 +38,30 @@ public class ClienteDao implements IDao{
 	public Resultado editar(EntidadeDominio ent) {
 		
 		Cliente cliente = (Cliente) ent;
+		
 		manager.merge(cliente);
+		return null;
 		
-		Resultado resultado = new Resultado();
-		resultado.add(cliente);
-		
-		
-		return resultado;
 	}
+
+
 
 	@Override
 	public Resultado excluir(EntidadeDominio ent) {
-		Cliente cliente = (Cliente) ent;
-		manager.persist(cliente);
+		return null;
+		// TODO Auto-generated method stub
 		
-		Resultado resultado = new Resultado();
-		resultado.add(cliente);
-		
-		
-		return resultado;
 	}
+
+
 
 	@Override
 	public Resultado listar(EntidadeDominio ent) {
-		String jpql = "select distinct(c) from Cliente join fetch c.enderecos join fetch c.cartoes";
 		
-		Resultado resultado = new Resultado();
-		resultado.setEntidades(manager.createQuery(jpql, EntidadeDominio.class).getResultList());
-		
-		return resultado;
+		return null;
 	}
+	
+	
 	
 	public Resultado visualizar(EntidadeDominio ent) {
 		

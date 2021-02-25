@@ -2,17 +2,18 @@ package br.com.newstation.strategies;
 
 import java.util.InputMismatchException;
 
-import br.com.newstation.dominio.Cliente;
+import br.com.newstation.dominio.Documento;
 import br.com.newstation.dominio.EntidadeDominio;
 
 public class ValidaCPF implements IStrategy {
 
 	@Override
 	public String processar(EntidadeDominio ent) {
-		Cliente cliente = (Cliente) ent;
+		
+		Documento doc = (Documento) ent;
         Boolean isValid = true;
         
-        String CPF = cliente.getCpf();
+        String CPF = doc.getCodigo();
         
         
         if (CPF.equals("00000000000") ||
