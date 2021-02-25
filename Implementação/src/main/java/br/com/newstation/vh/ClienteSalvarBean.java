@@ -73,7 +73,7 @@ public class ClienteSalvarBean {
 			cliente.setDtCadastro(LocalDate.now());
 			
 			
-			cliente.setDataNascimento(LocalDate.parse(dataNascimento,formatter));
+			cliente.setDataNascimento(LocalDate.parse(validade,formatter));
 		
 			SalvarCommand cmd = new SalvarCommand();
 		

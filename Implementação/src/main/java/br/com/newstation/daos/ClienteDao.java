@@ -11,14 +11,18 @@ public class ClienteDao extends AbstractDao{
 	
 	@Override
 	public Resultado salvar(EntidadeDominio ent) {
+		
+		abrirConexao();
 
 		Resultado resultado = new Resultado();
 		Cliente cliente = (Cliente) ent;
 		
+		manager.getTransaction().begin();
 		manager.persist(cliente);
 		manager.persist(cliente.getCartoes().get(0));
 		manager.persist(cliente.getEnderecos().get(0));
 		manager.persist(cliente.getDocumentos().get(0));
+		manager.getTransaction().commit();
 		
 		resultado.setEntidade(cliente);
 		
