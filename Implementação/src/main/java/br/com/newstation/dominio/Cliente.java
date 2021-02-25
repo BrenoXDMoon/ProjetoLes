@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -21,11 +22,18 @@ public class Cliente extends Pessoa{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@Column
 	@Enumerated(EnumType.STRING)
 	private TIPO_CLIENTE tipoCliente;
+	
+	@Column
 	private String nome;
+	
+	@Column
 	@Email
 	private String email;
+	
+	@Column
 	private LocalDate dataNascimento;
 
 	@Embedded

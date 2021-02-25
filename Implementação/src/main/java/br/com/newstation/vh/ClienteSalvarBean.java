@@ -1,9 +1,15 @@
 package br.com.newstation.vh;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
+import br.com.newstation.command.SalvarCommand;
 import br.com.newstation.daos.ClienteDao;
 import br.com.newstation.dominio.BANDEIRA;
 import br.com.newstation.dominio.CartaoCredito;
@@ -16,8 +22,6 @@ import br.com.newstation.dominio.Senha;
 import br.com.newstation.dominio.TIPO_CLIENTE;
 import br.com.newstation.dominio.TIPO_DOCUMENTO;
 import br.com.newstation.dominio.TIPO_ENDERECO;
-import br.com.newstation.strategies.ValidaCPF;
-import br.com.newstation.strategies.ValidaExistenciaClientePorCPF;
 
 @Model
 public class ClienteSalvarBean {
@@ -39,11 +43,17 @@ public class ClienteSalvarBean {
 	
 	private Documento documento = new Documento();
 	
+	private String dataNascimento;
+	
+	private String validade;
+	
 	@Transactional
-	public String salvar(){
+	public String salvar() throws ParseException{
 		
 		if(senha.getConfirmaSenha().equals(senha.getSenha())) {
 			System.out.println("- SENHA VALIDADA NA BEAN");
+			
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 			
 			cliente.setSenha(senha);
 			
@@ -53,43 +63,26 @@ public class ClienteSalvarBean {
 			
 			cliente.setTipoCliente(TIPO_CLIENTE.Basico);
 			
+			documento.setValidade(LocalDate.parse(dataNascimento,formatter));
+			
 			cliente.getDocumentos().add(documento);
 			
 			cliente.getEnderecos().add(endereco);
 			cliente.getCartoes().add(cartao);
 			
+			cliente.setDtCadastro(LocalDate.now());
 			
-			if(executarRegrasSalvar(documento).equals(null)) {
-				
-				dao.salvar(cliente);
-				return "/cliente/perfil?faces-redirect=true";
-				
-			}else {
-								
-				return "/cliente/login?faces-redirect=true";
-				
-			}		
+			
+			cliente.setDataNascimento(LocalDate.parse(dataNascimento,formatter));
+		
+			SalvarCommand cmd = new SalvarCommand();
+		
+			this.cliente = (Cliente) cmd.executar(cliente).getEntidade();
+		
+			return "/cliente/perfil.xhtml?faces-redirect=true";
 		}else {
-			
 			return "";
-			
 		}
-	}	
-
-	private String executarRegrasSalvar(Documento doc) {
-		
-		String retorno = null;	
-		
-		if(doc.getTipoDocumento().equals(TIPO_DOCUMENTO.CPF)) {
-			ValidaCPF validaCpf = new ValidaCPF();
-			
-			ValidaExistenciaClientePorCPF validaExist = new ValidaExistenciaClientePorCPF();
-			
-			retorno = validaCpf.processar(doc) + validaExist.processar(doc);	
-		}
-		
-		
-		return retorno;
 	}
 
 	public Cliente getCliente() {
@@ -167,5 +160,21 @@ public class ClienteSalvarBean {
 	
 	public TIPO_DOCUMENTO[] getDocumentos() {
 		return TIPO_DOCUMENTO.values();
+	}
+
+	public String getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(String dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	public String getValidade() {
+		return validade;
+	}
+
+	public void setValidade(String validade) {
+		this.validade = validade;
 	}
 }
