@@ -1,20 +1,13 @@
 package br.com.newstation.daos;
 
-import java.util.List;
-
 import javax.ejb.Stateful;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.EntidadeDominio;
 import br.com.newstation.dominio.Resultado;
 
 @Stateful
-public class ClienteDao extends AbstractDao{	
-	
-	@PersistenceContext
-	private EntityManager manager;
+public class ClienteDao extends AbstractDao{
 	
 	@Override
 	public Resultado salvar(EntidadeDominio ent) {
