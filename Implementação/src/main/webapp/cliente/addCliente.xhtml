@@ -18,7 +18,7 @@
     <header class="site-header py-1">
         <nav class="container d-flex flex-column flex-md-row justify-content-between">
             <a class="py-2 d-none d-md-inline-block" href="../index.html">NewStation</a>
-            <a class="py-2 d-none d-md-inline-block" href="login.html">Login</a>
+            <a class="py-2 d-none d-md-inline-block" href="login.xhtml">Login</a>
             <a class="py-2 d-none d-md-inline-block" href="../carrinho.html">Carrinho</a>
         </nav>
     </header>
@@ -49,7 +49,7 @@
 						<div class="form-group">
 							<label >Data de Nascimento</label>
 							<h:inputText value="#{clienteSalvarBean.cliente.dataNascimento}" required="true" id="dataNascimento" class="form-control" > 
-								<f:convertDateTime pattern="dd/MM/yyyy"/>
+								
 							</h:inputText>
 							
 						</div>
@@ -96,7 +96,7 @@
 
 						<div class="form-group">
 							<label value="Complemento" >Complemento</label>
-							<h:inputText value="#{clienteSalvarBean.endereco.complemento}" required="true" id="complemento" class="form-control"/>
+							<h:inputText value="#{clienteSalvarBean.endereco.complemento}"  id="complemento" class="form-control"/>
 						</div>
 
 						<div class="form-group">
@@ -144,7 +144,7 @@
 						<div class="form-group">
 							<label >Validade</label>
 							<h:inputText  value="#{clienteSalvarBean.cartao.validade}" id="validade" class="form-control">
-								<f:convertDateTime pattern="yyyy-MM-dd"/> 
+								
 							</h:inputText>
 							
 						</div>

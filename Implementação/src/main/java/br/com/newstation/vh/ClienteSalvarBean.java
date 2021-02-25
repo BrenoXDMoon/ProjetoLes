@@ -58,14 +58,15 @@ public class ClienteSalvarBean {
 			cliente.getEnderecos().add(endereco);
 			cliente.getCartoes().add(cartao);
 			
+			
 			if(executarRegrasSalvar(documento).equals(null)) {
 				
 				dao.salvar(cliente);
-				return "/cliente/perfil.xhtml?faces-redirect=true";
+				return "/cliente/perfil?faces-redirect=true";
 				
 			}else {
 								
-				return "cliente/login?faces-redirect=true";
+				return "/cliente/login?faces-redirect=true";
 				
 			}		
 		}else {
