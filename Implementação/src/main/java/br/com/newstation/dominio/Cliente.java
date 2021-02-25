@@ -30,6 +30,8 @@ public class Cliente extends Pessoa{
 
 	@Embedded
 	private Senha senha;
+	
+	
 	@OneToMany
 	private List<Endereco> enderecos = new ArrayList<Endereco>();
 	

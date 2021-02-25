@@ -71,14 +71,14 @@ public class ClienteDao extends AbstractDao{
 
 	public Resultado login(EntidadeDominio ent) {
 		
-		String jpql = "select distinct(c) from Cliente where c.email = :email, c.senha= :senha join fetch c.enderecos join fetch c.cartoes";
+		String jpql = "select distinct(c) from Cliente where c.email = :email, c.senha= :senha join fetch c.enderecos join fetch c.cartoes join fetch c.documentos";
 		Cliente cliente = (Cliente) ent;
-		
-		
-		manager.persist(cliente);
-		
 		Resultado resultado = new Resultado();
-		resultado.add(cliente);
+		
+		resultado.setEntidade(manager.createQuery(jpql, Cliente.class)
+				.setParameter("email", cliente.getEmail())
+				.setParameter("senha", cliente.getSenha().getSenha())
+				.getSingleResult());
 		
 		return resultado;
 	}
