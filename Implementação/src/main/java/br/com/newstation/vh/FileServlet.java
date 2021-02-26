@@ -18,6 +18,11 @@ import br.com.newstation.infra.FileSaver;
 @WebServlet("/file/*")
 public class FileServlet extends HttpServlet {
 
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 		@Override
 		protected void service(HttpServletRequest req, HttpServletResponse res) 
 					throws ServletException, IOException {
