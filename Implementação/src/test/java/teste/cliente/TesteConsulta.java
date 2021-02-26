@@ -2,9 +2,9 @@ package teste.cliente;
 
 import java.util.List;
 
+import br.com.newstation.command.ListarCommand;
 import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.EntidadeDominio;
-import br.com.newstation.vh.ListarCommand;
 
 public class TesteConsulta {
 

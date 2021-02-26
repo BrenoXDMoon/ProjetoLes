@@ -27,6 +27,7 @@
 		<div class="">
 			<h:dataTable var="cli" value="#{clienteListarBean.clientes}"
 				class="table table-bordered table-striped table-hover">
+				
 				<h:column>
 					<f:facet name="header">ID</f:facet>
 	        	 	#{cli.id}
@@ -39,7 +40,7 @@
 		        
 				<h:column>
 					<f:facet name="header">Documentos</f:facet>
-		         	#{cli.documentos}
+		         	#{cli.documentos.get(0).tipoDocumento}
 		        </h:column>
 		        
 				<h:column>
@@ -50,8 +51,7 @@
 				<h:column>
 					<f:facet name="header">Delete</f:facet>
 					<h:form>
-						<h:commandButton value='deletar'
-							action='#{clienteExcluirBean.excluir(carta)}' />
+						<h:commandButton value='Deletar' action='#{clienteExcluirBean.excluir(carta)}' class="btn btn-danger"/>
 					</h:form>
 				</h:column>
 			</h:dataTable>

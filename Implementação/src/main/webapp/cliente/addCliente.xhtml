@@ -8,9 +8,9 @@
 	
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link href="../assets/css/style.css" rel="stylesheet"/>
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../assets/css/custom.css" rel="stylesheet"/>
+    <link href="#{request.contextPath}/assets/css/style.css" rel="stylesheet"/>
+    <link href="#{request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="#{request.contextPath}/assets/css/custom.css" rel="stylesheet"/>
     <title>Cadastro</title>
 </head>
 
@@ -29,20 +29,20 @@
 				<div class="row justify-content-center">
 					<div class="col-10">
 						<div class="form-group">
-							<label value="Nome Completo">Nome Completo</label>
+							<label>Nome Completo</label>
 							<h:inputText value="#{clienteSalvarBean.cliente.nome}" required="true" id="nome" class="form-control"/>
 						</div>
 						<div class="form-group">
-							<label value="CPF">Documento</label> <br />
+							<label>Documento</label> <br />
 							<h:selectOneListbox value="#{clienteSalvarBean.documento.tipoDocumento}" styleClass="form-select">
 	                        	<f:selectItems value="#{clienteSalvarBean.documentos}" var="doc" itemLabel="#{doc}" itemValue="#{doc}"/>
 	                        </h:selectOneListbox>
 	                        
 	                        <br />
 	                        
-	                        <label value="CPF">Código</label>
+	                        <label>Código</label>
 	                        <h:inputText value="#{clienteSalvarBean.documento.codigo}" class="form-control"/>
-	                        <label value="CPF">Validade</label>
+	                        <label>Validade</label>
 	                        <h:inputText value="#{clienteSalvarBean.validade}" class="form-control"/>
 						</div>
 
@@ -53,7 +53,7 @@
 						</div>
 
 						<div class="form-group">
-							<label value="E-mail">E-mail</label>
+							<label>E-mail</label>
 							<h:inputText value="#{clienteSalvarBean.cliente.email}" required="true" id="email" class="form-control">
 								<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
 							</h:inputText>
@@ -78,37 +78,37 @@
 				<div class="row justify-content-center">
 					<div class="col-10">
 						<div class="form-group">
-							<label value="Logradouro" >Logradouro</label>
+							<label>Logradouro</label>
 							<h:inputText value="#{clienteSalvarBean.endereco.logradouro}" required="true" id="logradouro" class="form-control"/>
 						</div>
 
 						<div class="form-group">
-							<label value="Numero" >Número</label>
+							<label>Número</label>
 							<h:inputText value="#{clienteSalvarBean.endereco.numero}" required="true" id="numero" class="form-control"/>
 						</div>
 
 						<div class="form-group">
-							<label value="Bairro" >Bairro</label>
+							<label>Bairro</label>
 							<h:inputText value="#{clienteSalvarBean.endereco.bairro}" required="true" id="bairro" class="form-control"/>
 						</div>
 
 						<div class="form-group">
-							<label value="Complemento" >Complemento</label>
+							<label>Complemento</label>
 							<h:inputText value="#{clienteSalvarBean.endereco.complemento}"  id="complemento" class="form-control"/>
 						</div>
 
 						<div class="form-group">
-							<label value="CEP" >CEP</label>
+							<label>CEP</label>
 							<h:inputText value="#{clienteSalvarBean.endereco.cep}" required="true" id="cep" class="form-control"/>
 						</div>
 
 						<div class="form-group">
-							<label value="Cidade" >Cidade</label>
+							<label>Cidade</label>
 							<h:inputText value="#{clienteSalvarBean.cidade.cidade}" required="true" id="cidade" class="form-control"/>
 						</div>
 
 						<div class="form-group">
-							<label value="Estado" >Estado</label>
+							<label>Estado</label>
 							<h:inputText value="#{clienteSalvarBean.estado.estado}" required="true" id="estado" class="form-control"/>
 						</div>
 

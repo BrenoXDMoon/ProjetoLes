@@ -1,5 +1,8 @@
 package br.com.newstation.daos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.Stateful;
 
 import br.com.newstation.dominio.Cliente;
@@ -60,14 +63,16 @@ public class ClienteDao extends AbstractDao{
 		
 		Resultado resultado = new Resultado();
 		
+		List<Cliente> lista = new ArrayList<Cliente>();
+		
 		manager.getTransaction().begin();
-
-		for(Cliente c : manager.createQuery(jpql, Cliente.class).getResultList()) {
-			resultado.add(c);
-		}
+		lista = manager.createQuery(jpql, Cliente.class).getResultList();
 		
 		manager.getTransaction().commit();
 		
+		for(Cliente c : lista) {
+			resultado.add(c);
+		}
 		
 		manager.close();
 		factory.close();
