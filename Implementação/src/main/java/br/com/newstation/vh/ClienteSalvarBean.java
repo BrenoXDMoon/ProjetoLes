@@ -23,6 +23,7 @@ import br.com.newstation.dominio.TIPO_CLIENTE;
 import br.com.newstation.dominio.TIPO_DOCUMENTO;
 import br.com.newstation.dominio.TIPO_ENDERECO;
 
+
 @Model
 public class ClienteSalvarBean {
 	
@@ -53,6 +54,7 @@ public class ClienteSalvarBean {
 		if(senha.getConfirmaSenha().equals(senha.getSenha())) {
 			System.out.println("- SENHA VALIDADA NA BEAN");
 			
+			
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 			
 			cliente.setSenha(senha);
@@ -60,6 +62,7 @@ public class ClienteSalvarBean {
 			cidade.setEstado(estado);
 			
 			endereco.setCidade(cidade);
+			
 			
 			cliente.setTipoCliente(TIPO_CLIENTE.Basico);
 			
