@@ -6,6 +6,7 @@ import java.util.List;
 import javax.enterprise.inject.Model;
 
 import br.com.newstation.command.ListarCommand;
+
 import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.EntidadeDominio;
 

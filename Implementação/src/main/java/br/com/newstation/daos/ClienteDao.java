@@ -56,6 +56,7 @@ public class ClienteDao extends AbstractDao{
 		abrirConexao();
 		
 		String jpql = "select distinct(c) from Cliente c join fetch c.documentos";
+
 		
 		Resultado resultado = new Resultado();
 		
@@ -82,8 +83,10 @@ public class ClienteDao extends AbstractDao{
 		Cliente cli = (Cliente) ent;
 		
 		Resultado resultado = new Resultado();
-		resultado.add((EntidadeDominio)manager.createQuery(jpql, Cliente.class)
-				.setParameter("id", cli.getId()));
+		resultado.setEntidade((EntidadeDominio)manager
+				.createQuery(jpql, Cliente.class)
+				.setParameter("id", cli.getId())
+				.getSingleResult());
 		
 		
 		return resultado;
