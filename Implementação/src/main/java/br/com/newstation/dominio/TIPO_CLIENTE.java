@@ -4,6 +4,7 @@ public enum TIPO_CLIENTE {
 
 	Basico,
 	Medio,
-	Avancado
+	Avancado,
+	Admin
 	
 }
