@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,7 +21,7 @@ public class Documento extends EntidadeDominio {
 	@Column
 	private LocalDate validade;
 	
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	private TIPO_DOCUMENTO tipoDocumento;
 	
 	public String getCodigo() {

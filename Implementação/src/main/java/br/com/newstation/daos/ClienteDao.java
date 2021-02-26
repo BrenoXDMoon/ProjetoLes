@@ -54,7 +54,28 @@ public class ClienteDao extends AbstractDao{
 	@Override
 	public Resultado listar(EntidadeDominio ent) {
 		
+<<<<<<< Updated upstream
 		return null;
+=======
+		abrirConexao();
+		
+		String jpql = "select distinct(c) from Cliente c join fetch c.documentos";
+		
+		Resultado resultado = new Resultado();
+		
+		manager.getTransaction().begin();
+
+		for(Cliente c : manager.createQuery(jpql, Cliente.class).getResultList()) {
+			resultado.add(c);
+		}
+		
+		manager.getTransaction().commit();
+		
+		
+		manager.close();
+		factory.close();
+		return resultado;
+>>>>>>> Stashed changes
 	}
 	
 	

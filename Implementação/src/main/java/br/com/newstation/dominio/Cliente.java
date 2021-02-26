@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 
 @Entity
-public class Cliente extends Pessoa{
+public class Cliente extends EntidadeDominio{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,13 +38,15 @@ public class Cliente extends Pessoa{
 
 	@Embedded
 	private Senha senha;
-	
-	
+
 	@OneToMany
 	private List<Endereco> enderecos = new ArrayList<Endereco>();
 	
 	@OneToMany
 	private List<CartaoCredito> cartoes = new ArrayList<CartaoCredito>();
+	
+	@OneToMany
+	private List<Documento> documentos = new ArrayList<Documento>();
 	
 	public String getNome() {
 		return nome;
@@ -76,6 +78,14 @@ public class Cliente extends Pessoa{
 
 	public void setCartoes(List<CartaoCredito> cartoes) {
 		this.cartoes = cartoes;
+	}
+	
+	public List<Documento> getDocumentos() {
+		return documentos;
+	}
+
+	public void setDocumentos(List<Documento> documentos) {
+		this.documentos = documentos;
 	}
 
 	public Senha getSenha() {
