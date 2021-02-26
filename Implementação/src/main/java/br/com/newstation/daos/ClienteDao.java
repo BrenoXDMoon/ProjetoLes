@@ -53,10 +53,6 @@ public class ClienteDao extends AbstractDao{
 
 	@Override
 	public Resultado listar(EntidadeDominio ent) {
-		
-<<<<<<< Updated upstream
-		return null;
-=======
 		abrirConexao();
 		
 		String jpql = "select distinct(c) from Cliente c join fetch c.documentos";
@@ -75,7 +71,6 @@ public class ClienteDao extends AbstractDao{
 		manager.close();
 		factory.close();
 		return resultado;
->>>>>>> Stashed changes
 	}
 	
 	
