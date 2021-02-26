@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -15,26 +16,37 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 
 @Entity
-public class Cliente extends Pessoa{
+public class Cliente extends EntidadeDominio{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@Column
 	@Enumerated(EnumType.STRING)
 	private TIPO_CLIENTE tipoCliente;
+	
+	@Column
 	private String nome;
+	
+	@Column
 	@Email
 	private String email;
+	
+	@Column
 	private LocalDate dataNascimento;
 
 	@Embedded
 	private Senha senha;
+
 	@OneToMany
 	private List<Endereco> enderecos = new ArrayList<Endereco>();
 	
 	@OneToMany
 	private List<CartaoCredito> cartoes = new ArrayList<CartaoCredito>();
+	
+	@OneToMany
+	private List<Documento> documentos = new ArrayList<Documento>();
 	
 	public String getNome() {
 		return nome;
@@ -66,6 +78,14 @@ public class Cliente extends Pessoa{
 
 	public void setCartoes(List<CartaoCredito> cartoes) {
 		this.cartoes = cartoes;
+	}
+	
+	public List<Documento> getDocumentos() {
+		return documentos;
+	}
+
+	public void setDocumentos(List<Documento> documentos) {
+		this.documentos = documentos;
 	}
 
 	public Senha getSenha() {

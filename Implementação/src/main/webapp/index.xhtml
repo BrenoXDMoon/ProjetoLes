@@ -9,9 +9,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="assets/css/style.css" rel="stylesheet"/>
-    <link href="assets/css/custom.css" rel="stylesheet"/>
+    <link href="#{request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="#{request.contextPath}/assets/css/style.css" rel="stylesheet"/>
+    <link href="#{request.contextPath}/assets/css/custom.css" rel="stylesheet"/>
     <title>Index</title>
 </head> 
 
@@ -19,10 +19,10 @@
     <header class="site-header  py-1">
         <nav class="container d-flex flex-column flex-md-row justify-content-between">
             <a class="py-2 d-none d-md-inline-block" href="index.xhtml">NewStation</a>
-            <a class="py-2 d-none d-md-inline-block" href="admin.html">Admin</a>
-            <a class="py-2 d-none d-md-inline-block" href="cliente/login.xhtml">Login</a>
-            <a class="py-2 d-none d-md-inline-block" href="cliente/addCliente.html">Cadastre-se</a>
-            <a class="py-2 d-none d-md-inline-block" href="carrinho.html">Carrinho</a>
+            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/admin/admin.xhtml">Admin</a>
+            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
+            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/addCliente.xhtml">Cadastre-se</a>
+            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/carrinho.xhtml">Carrinho</a>
         </nav>
     </header>
     <section class="container index mt-5">

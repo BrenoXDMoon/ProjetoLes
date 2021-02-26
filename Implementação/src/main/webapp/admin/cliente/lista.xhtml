@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="#{request.contextPath}/assets/css/style.css"
+	rel="stylesheet" />
+<link href="#{request.contextPath}/assets/css/bootstrap.min.css"
+	rel="stylesheet" />
+
+<title>Adicionar Carta</title>
+</head>
+
+<body class="bg-dark text-white">
+	<header class="site-header py-1"> <nav
+		class="container d-flex flex-column flex-md-row justify-content-between">
+	<a class="py-2 d-none d-md-inline-block" href="../index.html">NewStation</a>
+	<a class="py-2 d-none d-md-inline-block" href="../admin.html">Admin</a>
+	</nav> </header>
+	<section class="container index mt-5">
+	<div class="row">
+		<div class="">
+			<h:dataTable var="cli" value="#{clienteListarBean.clientes}"
+				class="table table-bordered table-striped table-hover">
+				
+				<h:column>
+					<f:facet name="header">ID</f:facet>
+	        	 	#{cli.id}
+	        	</h:column>
+	        	
+				<h:column>
+					<f:facet name="header">Nome</f:facet>
+		        	 #{cli.nome}
+		        </h:column>
+		        
+				<h:column>
+					<f:facet name="header">Documentos</f:facet>
+		         	#{cli.documentos.get(0).tipoDocumento}
+		        </h:column>
+		        
+				<h:column>
+					<f:facet name="header">Tipo de Cliente</f:facet>
+		         	#{cli.tipoCliente}
+		        </h:column>
+		        
+				<h:column>
+					<f:facet name="header">Delete</f:facet>
+					<h:form>
+						<h:commandButton value='Deletar' action='#{clienteExcluirBean.excluir(carta)}' class="btn btn-danger"/>
+					</h:form>
+				</h:column>
+			</h:dataTable>
+		</div>
+	</div>
+
+	</section>
+
+</body>
+
+<script src="#{request.contextPath}/assets/js/bootstrap.min.js"></script>
+</html>

@@ -2,12 +2,11 @@ package br.com.newstation.dominio;
 
 import java.time.LocalDate;
 
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.Column;
 
 public class EntidadeDominio {
 
-	@Temporal(TemporalType.DATE)
+	@Column
 	protected LocalDate dtCadastro;
 	
 	public LocalDate getDtCadastro() {
@@ -17,5 +16,4 @@ public class EntidadeDominio {
 	public void setDtCadastro(LocalDate dtCadastro) {
 		this.dtCadastro = dtCadastro;
 	}
-	
 }

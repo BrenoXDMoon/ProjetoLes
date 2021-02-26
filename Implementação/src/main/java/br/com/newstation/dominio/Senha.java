@@ -11,7 +11,6 @@ public class Senha {
 	@Transient
 	private String confirmaSenha;
 	
-	
 	public String getSenha() {
 		return senha;
 	}
