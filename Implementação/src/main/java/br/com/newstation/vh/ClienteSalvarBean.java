@@ -1,10 +1,13 @@
 package br.com.newstation.vh;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import javax.enterprise.inject.Model;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
@@ -48,7 +51,11 @@ public class ClienteSalvarBean {
 	private String validade;
 	
 	@Transactional
-	public String salvar() throws ParseException{
+	public void salvar() throws ParseException, IOException{
+		
+		FacesContext fContext = FacesContext.getCurrentInstance();
+		ExternalContext extContext = fContext.getExternalContext();
+		
 		
 		if(senha.getConfirmaSenha().equals(senha.getSenha())) {
 			System.out.println("- SENHA VALIDADA NA BEAN");
@@ -81,9 +88,9 @@ public class ClienteSalvarBean {
 		
 			this.cliente = (Cliente) cmd.executar(cliente).getEntidade();
 		
-			return "/cliente/perfil.xhtml?faces-redirect=true";
+			extContext.redirect(extContext.getRequestContextPath() + "/cliente/perfil.html");
 		}else {
-			return "";
+			extContext.redirect(extContext.getRequestContextPath() + "/cliente/addCliente.xhtml");
 		}
 	}
 
