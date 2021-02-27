@@ -12,6 +12,7 @@ public class ValidaCPF implements IStrategy {
 	@Override
 	public String processar(EntidadeDominio ent) {
 		
+		System.out.println("istrategy um");
 		Cliente cliente = (Cliente) ent;
 		
         Boolean isValid = true;
@@ -90,9 +91,10 @@ public class ValidaCPF implements IStrategy {
                 if(!isValid)
                     return "CPF inválido";
                 else
+                	System.out.println("istrategy 2");
                     return null;
             }else {
-            	
+            	System.out.println("istrategy dois");
             	return null;
             	
             }

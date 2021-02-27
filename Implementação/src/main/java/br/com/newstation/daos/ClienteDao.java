@@ -14,7 +14,7 @@ public class ClienteDao extends AbstractDao{
 	
 	@Override
 	public Resultado salvar(EntidadeDominio ent) {
-		
+		System.out.println("AGAH!");
 		abrirConexao();
 
 		Resultado resultado = new Resultado();

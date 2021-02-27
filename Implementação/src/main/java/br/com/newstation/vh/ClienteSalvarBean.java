@@ -1,10 +1,13 @@
 package br.com.newstation.vh;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import javax.enterprise.inject.Model;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
@@ -47,11 +50,12 @@ public class ClienteSalvarBean {
 	
 	private String validade;
 	
+	
 	@Transactional
 	public String salvar() throws ParseException{
 		
 		if(senha.getConfirmaSenha().equals(senha.getSenha())) {
-			System.out.println("- SENHA VALIDADA NA BEAN");
+			System.out.println("roselia");
 			
 			
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -78,12 +82,13 @@ public class ClienteSalvarBean {
 			cliente.setDataNascimento(LocalDate.parse(validade,formatter));
 		
 			SalvarCommand cmd = new SalvarCommand();
+			
 		
 			this.cliente = (Cliente) cmd.executar(cliente).getEntidade();
-		
-			return "/cliente/perfil.xhtml?faces-redirect=true";
+			
+			return "/cliente/perfil?faces-redirect=true";
 		}else {
-			return "";
+			return "/cliente/index?faces-redirect=true";
 		}
 	}
 

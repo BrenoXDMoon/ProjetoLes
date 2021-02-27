@@ -67,7 +67,7 @@ public class Fachada implements IFachada {
         List<IStrategy> rnsEntidade = mapaEntidade.get("SALVAR");
 
         executarRegras(entidade, rnsEntidade);
-
+        
         if (sb.length() == 0) {
         	
             IDao dao = daos.get(nmClasse);
