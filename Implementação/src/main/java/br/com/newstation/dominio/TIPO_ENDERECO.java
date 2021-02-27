@@ -1,7 +1,7 @@
 package br.com.newstation.dominio;
 
 public enum TIPO_ENDERECO {
-	COBRANÇA("Cobrança") ,
+	COBRANCA("Cobrança") ,
 	ENTREGA("Entrega");
 
 	private String label;
