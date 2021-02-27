@@ -69,7 +69,6 @@ public class ClienteSalvarBean {
 			
 			endereco.setCidade(cidade);
 			
-			
 			cliente.setTipoCliente(TIPO_CLIENTE.Basico);
 			
 			documento.setValidade(LocalDate.parse(dataNascimento,formatter));
