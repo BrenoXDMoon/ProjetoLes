@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.ejb.Stateful;
 
+import org.hibernate.jpa.QueryHints;
+
 import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.EntidadeDominio;
 import br.com.newstation.dominio.Resultado;
@@ -99,14 +101,37 @@ public class ClienteDao extends AbstractDao{
 
 	public Resultado login(EntidadeDominio ent) {
 		
-		String jpql = "select distinct(c) from Cliente where c.email = :email, c.senha= :senha join fetch c.enderecos join fetch c.cartoes join fetch c.documentos";
+		String jpql = "select distinct(c) from Cliente c join fetch c.enderecos where c.email = :email and c.senha.senha = :senha";
+		String jpql2 ="select distinct(c) from Cliente c join fetch c.documentos where c.email = :email and c.senha.senha = :senha";
+		String jpql3 = "select distinct(c) from Cliente c join fetch c.cartoes where c.email = :email and c.senha.senha = :senha";
+		
 		Cliente cliente = (Cliente) ent;
 		Resultado resultado = new Resultado();
 		
-		resultado.setEntidade(manager.createQuery(jpql, Cliente.class)
+		Cliente cli = new Cliente();
+		
+		abrirConexao();
+		manager.getTransaction().begin();
+		
+		cli = manager.createQuery(jpql, Cliente.class)
 				.setParameter("email", cliente.getEmail())
 				.setParameter("senha", cliente.getSenha().getSenha())
-				.getSingleResult());
+				.setHint(QueryHints.HINT_FETCH_SIZE, 3)
+				.getSingleResult();
+		
+		cli = manager.createQuery(jpql2, Cliente.class)
+				.setParameter("email", cliente.getEmail())
+				.setParameter("senha", cliente.getSenha().getSenha())
+				.setHint(QueryHints.HINT_FETCH_SIZE, 3)
+				.getSingleResult();
+		
+		cli = manager.createQuery(jpql3, Cliente.class)
+				.setParameter("email", cliente.getEmail())
+				.setParameter("senha", cliente.getSenha().getSenha())
+				.setHint(QueryHints.HINT_FETCH_SIZE, 3)
+				.getSingleResult();
+		
+		manager.getTransaction().commit();
 		
 		return resultado;
 	}
