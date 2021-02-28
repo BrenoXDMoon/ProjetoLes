@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link href="#{request.contextPath}/assets/css/style.css"
+	rel="stylesheet" />
+<link href="#{request.contextPath}/assets/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link href="#{request.contextPath}/assets/css/custom.css"
+	rel="stylesheet" />
+<title>Perfil</title>
+</head>
+
+<f:metadata>
+	<f:viewParam id="id" name="id" value="#{}" />
+	<f:viewAction action="#{perfilBean.Carregar()}" />
+</f:metadata>
+
+<body class="text-white bg-dark">
+	<header class="site-header  py-1">
+		<nav
+			class="container d-flex flex-column flex-md-row justify-content-between">
+			<a class="py-2 d-none d-md-inline-block"
+				href="#{request.contextPath}/index.xhtml">NewStation</a> 
+			<a	class="py-2 d-none d-md-inline-block"
+				href="#{request.contextPath}/cliente/login.xhtml">Login</a>
+			<a	class="py-2 d-none d-md-inline-block"
+				href="#{request.contextPath}/cliente/addCliente.xhtml">Cadastre-se</a>
+			<a class="py-2 d-none d-md-inline-block"
+				href="#{request.contextPath}/carrinho.xhtml">Carrinho</a>
+		</nav>
+	</header>
+	<section class="container perfil mt-5">
+		<div class="row">
+			<div class="col-12 text-center">
+
+				<h1 class='text-white'>Perfil</h1>
+				<h:dataTable var="cli" value="#{perfilBean.cliente}"
+					class="table table-bordered table-striped table-hover">
+
+					<h:column>
+						<f:facet name="header">Nome</f:facet>
+	        	 		#{cli.nome}
+	        	</h:column>
+					<h:column>
+						<f:facet name="header">Documento</f:facet>
+	        	 		#{perfilBean.doc.codigo}
+	        	</h:column>
+
+					<h:column>
+						<f:facet name="header">Editar</f:facet>
+						<h:form>
+							<h:commandButton value='Editar'
+								action="#{clienteEditarBean.redir}" />
+						</h:form>
+					</h:column>
+				</h:dataTable>
+
+				<h1 class='text-white'>Endereço</h1>
+				<h:dataTable var="end" value="#{perfilBean.endereco}"
+					class="table table-bordered table-striped table-hover">
+					<h:column>
+						<f:facet name="header">Logadouro</f:facet>
+	        	 		#{end.logradouro}
+	        	</h:column>
+					<h:column>
+						<f:facet name="header">CEP</f:facet>
+	        	 		#{end.cep}
+	        	</h:column>
+					<h:column>
+						<f:facet name="header">Adicionar</f:facet>
+						<h:form>
+							<h:commandButton value='Adicionar'
+								action='#{EnderecoAdcionarBean.adicionar(end)}' />
+						</h:form>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Editar</f:facet>
+						<h:form>
+							<h:commandButton value='Editar'
+								action='#{EnderecoAlterarBean.editar(end)}' />
+						</h:form>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Deletar</f:facet>
+						<h:form>
+							<h:commandButton value='deletar'
+								action='#{EnderecoDeletaBean.delete(end)}' />
+						</h:form>
+					</h:column>
+				</h:dataTable>
+
+				<h1 class='text-white'>Cartão</h1>
+				<h:dataTable var="cart" value="#{perfilBean.cartao}"
+					class="table table-bordered table-striped table-hover">
+					<h:column>
+						<f:facet name="header">Data de Validade</f:facet>
+	        	 		#{cart.validade}
+	        	</h:column>
+					<h:column>
+						<f:facet name="header">Numero do Cartão</f:facet>
+	        	 		#{cart.numero}
+	        	</h:column>
+					<h:column>
+						<f:facet name="header">Adicionar</f:facet>
+						<h:form>
+							<h:commandButton value='Adicionar'
+								action='#{CartaoAdcionarBean.adicionar(cart)}' />
+						</h:form>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Editar</f:facet>
+						<h:form>
+							<h:commandButton value='Editar'
+								action='#{CartaoAlterarBean.editar(cart)}' />
+						</h:form>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Deletar</f:facet>
+						<h:form>
+							<h:commandButton value='deletar'
+								action='#{CartaoDeletaBean.delete(cart)}' />
+						</h:form>
+					</h:column>
+
+				</h:dataTable>
+
+				<br /> <br /> <br /> <br />
+			</div>
+		</div>
+	</section>
+
+</body>
+
+</html>

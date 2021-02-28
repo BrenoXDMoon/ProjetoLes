@@ -15,7 +15,7 @@
     <title>Index</title>
 </head> 
 
-<body>
+<body class="bg-dark text-white">
     <header class="site-header  py-1">
         <nav class="container d-flex flex-column flex-md-row justify-content-between">
             <a class="py-2 d-none d-md-inline-block" href="index.xhtml">NewStation</a>
@@ -23,47 +23,51 @@
             <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
             <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/addCliente.xhtml">Cadastre-se</a>
             <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/carrinho.xhtml">Carrinho</a>
+            
+            <h:form> 
+            	<h:commandButton action="#{clienteEditarBean.redir}" styleClass="btn btn-success" value="Cadastrar"/>
+            </h:form>
         </nav>
     </header>
     <section class="container index mt-5">
         <div class="row justify-content-center" style="height: 550px;">
             <div class="col-4">
-                <a href="carta/detalheCarta.html"> <img height="30%" src="assets/img/cartas/alecrim.jpg" alt="aromage alecrim"/></a>
+                <a href="carta-detalhe.xhtml"> <img height="30%" src="assets/img/cartas/alecrim.jpg" alt="aromage alecrim"/></a>
                 <p>Nome</p><span>Aromage Rosemary</span>
-                <p>Preço</p><span>R$10,00</span>
+                <p>Preï¿½o</p><span>R$10,00</span>
             </div>
             <div class="col-4">
-                <a href="carta/detalheCarta.html"> <img height="30%" src="assets/img/cartas/blue-eyes.png"
+                <a href="carta-detalhe.xhtml"> <img height="30%" src="assets/img/cartas/blue-eyes.png"
                         alt="blue-eyes"/></a>
                 <p>Nome</p><span>blue-eyes</span>
-                <p>Preço</p><span>R$10,00</span>
+                <p>Preï¿½o</p><span>R$10,00</span>
             </div>
             <div class="col-4">
-                <a href="carta/detalheCarta.html"> <img height="30%" src="assets/img/cartas/alecrim-sincro.png"
+                <a href="carta-detalhe.xhtml"> <img height="30%" src="assets/img/cartas/alecrim-sincro.png"
                         alt="alecrim-sincro"/></a>
                 <p>Nome</p><span>Aromsaseraphy Rosemary</span>
-                <p>Preço</p><span>R$10,00</span>
+                <p>Preï¿½o</p><span>R$10,00</span>
             </div>
         </div>
 
         <div class="row justify-content-center overflow-hidden" style="height: 550px;">
             <div class="col-4">
-                <a href="carta/detalheCarta.html">
+                <a href="carta-detalhe.xhtml">
                     <img height="40%" src="assets/img/cartas/AromageJasmine.webp" alt="AromageJasmine"/></a>
-                <p>Nome</p><span>Aromágico Jamin</span>
-                <p>Preço</p><span>R$10,00</span>
+                <p>Nome</p><span>Aromï¿½gico Jamin</span>
+                <p>Preï¿½o</p><span>R$10,00</span>
             </div>
             <div class="col-4">
-                <a href="carta/detalheCarta.html"> <img height="40%" src="assets/img/cartas/BusterBlader.webp"
+                <a href="carta-detalhe.xhtml"> <img height="40%" src="assets/img/cartas/BusterBlader.webp"
                         alt="BusterBlader"/></a>
                 <p>Nome</p><span>Buster Blader</span>
-                <p>Preço</p><span>R$10,00</span>
+                <p>Preï¿½o</p><span>R$10,00</span>
             </div>
             <div class="col-4">
-                <a href="carta/detalheCarta.html"> <img height="40%" src="assets/img/cartas/Manjerona-Doce.webp"
+                <a href="carta-detalhe.xhtml"> <img height="40%" src="assets/img/cartas/Manjerona-Doce.webp"
                         alt="Manjerona-Doce"/></a>
                 <p>Nome</p><span>Aromsaseraphy Marjoram</span>
-                <p>Preço</p><span>R$10,00</span>
+                <p>Preï¿½o</p><span>R$10,00</span>
             </div>
         </div>
     </section>

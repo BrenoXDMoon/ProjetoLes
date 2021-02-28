@@ -67,7 +67,7 @@ public class Fachada implements IFachada {
         List<IStrategy> rnsEntidade = mapaEntidade.get("SALVAR");
 
         executarRegras(entidade, rnsEntidade);
-
+        
         if (sb.length() == 0) {
         	
             IDao dao = daos.get(nmClasse);
@@ -88,7 +88,7 @@ public class Fachada implements IFachada {
         String nmClasse = entidade.getClass().getName();
 
         Map<String, List<IStrategy>> mapaEntidade = regrasNegocio.get(nmClasse);
-        List<IStrategy> rnsEntidade = mapaEntidade.get("ALTERAR");
+        List<IStrategy> rnsEntidade = mapaEntidade.get("EDITAR");
 
         executarRegras(entidade, rnsEntidade);
 
@@ -123,7 +123,7 @@ public class Fachada implements IFachada {
         String nmClasse = entidade.getClass().getName();
 
         IDao dao = daos.get(nmClasse);
-        resultado.setEntidades(dao.listar(entidade).getEntidades());
+        resultado = dao.listar(entidade);
 
         return resultado;
 

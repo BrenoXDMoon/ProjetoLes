@@ -1,13 +1,10 @@
 package br.com.newstation.vh;
 
-import java.io.IOException;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import javax.enterprise.inject.Model;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
@@ -50,28 +47,26 @@ public class ClienteSalvarBean {
 	
 	private String validade;
 	
+	
 	@Transactional
-	public void salvar() throws ParseException, IOException{
-		
-		FacesContext fContext = FacesContext.getCurrentInstance();
-		ExternalContext extContext = fContext.getExternalContext();
-		
+	public String salvar() throws ParseException{
 		
 		if(senha.getConfirmaSenha().equals(senha.getSenha())) {
-			System.out.println("- SENHA VALIDADA NA BEAN");
 			
 			
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 			
 			cliente.setSenha(senha);
 			
+			cliente.setAtivo(true);
+			
 			cidade.setEstado(estado);
 			
 			endereco.setCidade(cidade);
-			
+
 			cliente.setTipoCliente(TIPO_CLIENTE.Basico);
 			
-			documento.setValidade(LocalDate.parse(dataNascimento,formatter));
+			documento.setValidade(LocalDate.parse(validade,formatter));
 			
 			cliente.getDocumentos().add(documento);
 			
@@ -79,17 +74,16 @@ public class ClienteSalvarBean {
 			cliente.getCartoes().add(cartao);
 			
 			cliente.setDtCadastro(LocalDate.now());
-			
-			
-			cliente.setDataNascimento(LocalDate.parse(validade,formatter));
+
+			cliente.setDataNascimento(LocalDate.parse(dataNascimento,formatter));
 		
 			SalvarCommand cmd = new SalvarCommand();
-		
+
 			this.cliente = (Cliente) cmd.executar(cliente).getEntidade();
-		
-			extContext.redirect(extContext.getRequestContextPath() + "/cliente/perfil.html");
+			
+			return "/cliente/perfil?faces-redirect=true";
 		}else {
-			extContext.redirect(extContext.getRequestContextPath() + "/cliente/addCliente.xhtml");
+			return "/cliente/index?faces-redirect=true";
 		}
 	}
 

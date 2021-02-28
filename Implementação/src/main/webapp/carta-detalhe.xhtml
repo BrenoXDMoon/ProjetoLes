@@ -6,10 +6,15 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-<h:head>
-	<h:outputStylesheet library="css" name="bootstrap.min.css" />
-	<h:outputStylesheet library="css" name="style-admin.css" />
-</h:head>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="#{request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="#{request.contextPath}/assets/css/style.css" rel="stylesheet"/>
+    <link href="#{request.contextPath}/assets/css/custom.css" rel="stylesheet"/>
+    <title>Detalhe da Carta</title>
+</head> 
 
 <f:metadata>
 	<f:viewParam id="id" name="id" value="#{cartaDetalheBean.id}" />
@@ -20,14 +25,13 @@
 <title>#{cartaDetalheBean.carta.nome}</title>
 
 </head>
-<body>
+<body class="bg-dark text-white">
 
 	<h:form>
 		<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#{request.contextPath}/index.xhtml">Terreno
-					Benzido</a>
+				<a class="navbar-brand" href="#{request.contextPath}/index.xhtml">New Station</a>
 			</div>
 
 		</div>

@@ -1,19 +1,22 @@
 package br.com.newstation.dominio;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
+
 
 @Entity
 public class Cliente extends EntidadeDominio{
@@ -38,15 +41,18 @@ public class Cliente extends EntidadeDominio{
 
 	@Embedded
 	private Senha senha;
-
-	@OneToMany
-	private List<Endereco> enderecos = new ArrayList<Endereco>();
 	
-	@OneToMany
-	private List<CartaoCredito> cartoes = new ArrayList<CartaoCredito>();
+	@Column
+	private boolean ativo;
 	
-	@OneToMany
-	private List<Documento> documentos = new ArrayList<Documento>();
+	@OneToMany(fetch = FetchType.EAGER)
+	private Set<Endereco> enderecos = new HashSet<Endereco>();
+		
+	@OneToMany(fetch = FetchType.EAGER)
+	private Set<CartaoCredito> cartoes = new HashSet<CartaoCredito>();
+	
+	@OneToMany(fetch = FetchType.EAGER)
+	private Set<Documento> documentos = new HashSet<Documento>();
 	
 	public String getNome() {
 		return nome;
@@ -56,11 +62,11 @@ public class Cliente extends EntidadeDominio{
 		this.nome = nome;
 	}
 	
-	public List<Endereco> getEnderecos() {
+	public Set<Endereco> getEnderecos() {
 		return enderecos;
 	}
 	
-	public void setEnderecos(List<Endereco> enderecos) {
+	public void setEnderecos(Set<Endereco> enderecos) {
 		this.enderecos = enderecos;
 	}
 
@@ -72,19 +78,19 @@ public class Cliente extends EntidadeDominio{
 		this.id = id;
 	}
 
-	public List<CartaoCredito> getCartoes() {
+	public Set<CartaoCredito> getCartoes() {
 		return cartoes;
 	}
 
-	public void setCartoes(List<CartaoCredito> cartoes) {
+	public void setCartoes(Set<CartaoCredito> cartoes) {
 		this.cartoes = cartoes;
 	}
 	
-	public List<Documento> getDocumentos() {
+	public Set<Documento> getDocumentos() {
 		return documentos;
 	}
 
-	public void setDocumentos(List<Documento> documentos) {
+	public void setDocumentos(Set<Documento> documentos) {
 		this.documentos = documentos;
 	}
 
@@ -118,5 +124,13 @@ public class Cliente extends EntidadeDominio{
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
 	}
 }

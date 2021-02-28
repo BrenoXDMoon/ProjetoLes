@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="#{request.contextPath}/assets/css/style.css"
+	rel="stylesheet" />
+<link href="#{request.contextPath}/assets/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link href="#{request.contextPath}/assets/css/custom.css"
+	rel="stylesheet" />
+<title>Altera Cadastro</title>
+</head>
+
+<f:metadata>
+	<f:viewAction action="#{clienteEditarBean.listar()}" />
+</f:metadata>
+
+<body class="bg-dark text-white">
+	<header class="site-header sticky-top py-1">
+		<nav
+			class="container d-flex flex-column flex-md-row justify-content-between">
+			<a class="py-2 d-none d-md-inline-block"
+				href="#{request.contextPath}/index.xhtml">NewStation</a> <a
+				class="py-2 d-none d-md-inline-block"
+				href="#{request.contextPath}/cliente/login.xhtml">Login</a> <a
+				class="py-2 d-none d-md-inline-block"
+				href="#{request.contextPath}/carrinho.xhtml">Carrinho</a>
+		</nav>
+	</header>
+	<section class="container perfil mt-5">
+		<h:form enctype="multipart/form-data">
+			<h4 class="py-4">Dados de Cliente</h4>
+			<div class="border">
+				<div class="row justify-content-center">
+					<div class="col-10">
+						<div class="form-group">
+							<h:outputLabel value="Nome Completo" />
+							<h:inputText value="#{clienteEditarBean.cliente.nome}"
+								required="true" id="nomeCompleto" styleClass="form-control" />
+							<h:message for='nomeCompleto' />
+						</div>
+						<div class="form-group">
+							<h:outputLabel value="Documento" />
+							<h:inputText value='#{clienteEditarBean.documento.codigo}' required="true"
+								id="cpf" styleClass="form-control" />
+							<h:message for='cpf' />
+						</div>
+
+						<div class="form-group">
+							<h:outputLabel value="Data de Nascimento" />
+							<h:inputText value="#{clienteEditarBean.dataNascimento}"
+								id="dataNascimento" styleClass="form-control" />
+							<h:message for="dataNascimento" />
+						</div>
+
+						<div class="form-group">
+							<h:outputLabel value="E-mail" />
+							<h:inputText value="#{clienteEditarBean.cliente.email}" id="email"
+								styleClass="form-control" />
+							<h:message for="email" />
+						</div>
+
+						<div class="form-group">
+							<h:outputLabel value="Senha" />
+							<h:inputText value="#{clienteEditarBean.senha.senha}" id="senha"
+								styleClass="form-control" />
+							<h:message for="senha" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<h:commandButton value='Atualizar' action='#{clienteEditarBean.Editar}'
+						styleClass="btn btn-primary my-3" />
+		</h:form>
+		
+	</section>
+
+
+</body>
+
+</html>
