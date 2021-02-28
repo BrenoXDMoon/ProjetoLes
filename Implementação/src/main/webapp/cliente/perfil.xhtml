@@ -19,7 +19,7 @@
 </head>
 
 <f:metadata>
-	<f:viewParam id="id" name="id" value="#{perfilBean.id}" />
+	<f:viewParam id="id" name="id" value="#{}" />
 	<f:viewAction action="#{perfilBean.Carregar()}" />
 </f:metadata>
 
@@ -30,7 +30,7 @@
 			<a class="py-2 d-none d-md-inline-block"
 				href="#{request.contextPath}/index.xhtml">NewStation</a> 
 			<a	class="py-2 d-none d-md-inline-block"
-				href="#{request.contextPath}/cliente/login.xhtml">Login</a> 
+				href="#{request.contextPath}/cliente/login.xhtml">Login</a>
 			<a	class="py-2 d-none d-md-inline-block"
 				href="#{request.contextPath}/cliente/addCliente.xhtml">Cadastre-se</a>
 			<a class="py-2 d-none d-md-inline-block"

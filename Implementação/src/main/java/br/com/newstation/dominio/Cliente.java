@@ -44,16 +44,6 @@ public class Cliente extends EntidadeDominio{
 	
 	@Column
 	private boolean ativo;
-
-	
-//	@OneToMany(fetch = FetchType.EAGER)
-//	private List<Endereco> enderecos = new ArrayList<Endereco>();
-//		
-//	@OneToMany(fetch = FetchType.EAGER)
-//	private List<CartaoCredito> cartoes = new ArrayList<CartaoCredito>();
-//	
-//	@OneToMany(fetch = FetchType.EAGER)
-//	private List<Documento> documentos = new ArrayList<Documento>();
 	
 	@OneToMany(fetch = FetchType.EAGER)
 	private Set<Endereco> enderecos = new HashSet<Endereco>();

@@ -123,7 +123,7 @@ public class Fachada implements IFachada {
         String nmClasse = entidade.getClass().getName();
 
         IDao dao = daos.get(nmClasse);
-        resultado.setEntidades(dao.listar(entidade).getEntidades());
+        resultado = dao.listar(entidade);
 
         return resultado;
 

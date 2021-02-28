@@ -63,8 +63,7 @@ public class ClienteSalvarBean {
 			cidade.setEstado(estado);
 			
 			endereco.setCidade(cidade);
-			
-			
+
 			cliente.setTipoCliente(TIPO_CLIENTE.Basico);
 			
 			documento.setValidade(LocalDate.parse(validade,formatter));
@@ -75,13 +74,11 @@ public class ClienteSalvarBean {
 			cliente.getCartoes().add(cartao);
 			
 			cliente.setDtCadastro(LocalDate.now());
-			
-			
+
 			cliente.setDataNascimento(LocalDate.parse(dataNascimento,formatter));
 		
 			SalvarCommand cmd = new SalvarCommand();
-			
-		
+
 			this.cliente = (Cliente) cmd.executar(cliente).getEntidade();
 			
 			return "/cliente/perfil?faces-redirect=true";

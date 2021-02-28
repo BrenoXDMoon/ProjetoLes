@@ -1,11 +1,14 @@
 package br.com.newstation.vh;
 
 import javax.enterprise.inject.Model;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
 import br.com.newstation.command.ICommand;
 import br.com.newstation.command.LoginCommand;
 import br.com.newstation.dominio.Cliente;
+import br.com.newstation.dominio.TIPO_CLIENTE;
 
 @Model
 public class LoginBean {
@@ -16,10 +19,20 @@ public class LoginBean {
 	private ICommand cmd;
 	
 	@Transactional
-	public void login() {
+	public String login() {
 		cmd = new LoginCommand();
 		
 		this.cliente = (Cliente) cmd.executar(cliente).getEntidade();
+		
+		if(this.cliente.getTipoCliente().equals(TIPO_CLIENTE.Admin)) {
+			
+			return "/admin/admin?faces-redirect=true";
+			
+		}else {
+			
+			return "/cliente/perfil?faces-redirect=true";
+			
+		}
 	}
 	
 	public Cliente getCliente() {

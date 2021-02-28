@@ -80,7 +80,7 @@ public class ClienteDao extends AbstractDao {
 	public Resultado listar(EntidadeDominio ent) {
 		abrirConexao();
 
-		String jpql = "select distinct(c) from Cliente c join fetch c.documentos  where c.ativo=1";
+		String jpql = "select distinct(c) from Cliente c join fetch c.documentos ";
 
 		Resultado resultado = new Resultado();
 
@@ -128,5 +128,22 @@ public class ClienteDao extends AbstractDao {
 				.setParameter("senha", cliente.getSenha().getSenha()).getSingleResult());
 
 		return resultado;
+	}
+
+	public List<Cliente> listarSemCao() {
+		abrirConexao();
+
+		String jpql = "select distinct(c) from Cliente c join fetch c.documentos";
+
+		Resultado resultado = new Resultado();
+
+		List<Cliente> lista = new ArrayList<Cliente>();
+
+		manager.getTransaction().begin();
+		lista = manager.createQuery(jpql, Cliente.class).getResultList();
+
+		manager.getTransaction().commit();
+		
+		return lista;
 	}
 }
