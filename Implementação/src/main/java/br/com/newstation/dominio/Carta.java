@@ -23,6 +23,7 @@ public class Carta extends EntidadeDominio {
 
 	@OneToOne
 	private Estoque estoque;
+	
 	private String imagemPath;
 
 	public String getNome() {

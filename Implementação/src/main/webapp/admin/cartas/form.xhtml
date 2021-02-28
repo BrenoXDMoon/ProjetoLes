@@ -37,42 +37,42 @@
 				<h:form enctype="multipart/form-data">
 					<div class="form-group">
 						<h:outputLabel value="Nome da Carta" />
-						<h:inputText value='#{CartaSalvarBean.carta.nome}'
+						<h:inputText value='#{cartaSalvarBean.carta.nome}'
 							required="true" id="titulo" styleClass="form-control" />
 						<h:message for='titulo' />
 					</div>
 					<div class="form-group">
 						<h:outputLabel value="Descrição da Carta" />
-						<h:inputText value='#{CartaSalvarBean.carta.descricao}'
+						<h:inputText value='#{cartaSalvarBean.carta.descricao}'
 							required="true" id="descricao" styleClass="form-control" />
 						<h:message for='descricao' />
 					</div>
 					<div class="form-group">
 						<h:outputLabel value="Preço" />
-						<h:inputText value='#{CartaSalvarBean.carta.preco}'
+						<h:inputText value='#{cartaSalvarBean.carta.preco}'
 							required="true" id='preco' styleClass="form-control" />
 						<h:message for='preco' />
 					</div>
 					<div class="form-group">
 						<h:outputLabel value="Raridade" />
-						<h:inputText value="#{CartaSalvarBean.carta.raridade}"
+						<h:inputText value="#{cartaSalvarBean.carta.raridade}"
 							id="raridade" styleClass="form-control" />
 						<h:message for="raridade" />
 					</div>
 					<div class="form-group">
 						<h:outputLabel value="Quantidade" />
-						<h:inputText value="#{CartaSalvarBean.estoque.quantidade}"
+						<h:inputText value="#{cartaSalvarBean.estoque.quantidade}"
 							id="quantidade" styleClass="form-control"  />
 						<h:message for="quantidade" />
 					</div>
 					<div class="form-group">
 						<h:outputLabel value="Imagem da Carta" />
-						<h:inputFile value="#{CartaSalvarBean.imagemCarta}" id="imagemCarta"
+						<h:inputFile value="#{cartaSalvarBean.imagemCarta}" id="imagemCarta"
 							styleClass="form-control" />
 						<h:message for="imagemCarta" />
 					</div>
 					<h:commandButton value='Cadastrar'
-						action='#{CartaSalvarBean.salvar}'
+						action='#{cartaSalvarBean.salvar}'
 						styleClass="btn btn-primary my-3" />
 				</h:form>
 			</div>

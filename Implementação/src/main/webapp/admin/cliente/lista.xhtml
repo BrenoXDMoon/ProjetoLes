@@ -17,17 +17,17 @@
 </head>
 
 <body class="bg-dark text-white">
-	<header class="site-header py-1"> <nav
-		class="container d-flex flex-column flex-md-row justify-content-between">
-	<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
-	<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/admin.xhtml">Admin</a>
-	</nav> </header>
+	<header class="site-header py-1"> 
+		<nav class="container d-flex flex-column flex-md-row justify-content-between">
+			<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
+			<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/admin.xhtml">Admin</a>
+		</nav> 
+	</header>
 	<section class="container index mt-5">
 	<div class="row">
 		<div class="">
 			<h:dataTable var="cli" value="#{clienteListarBean.clientes}"
 				class="table table-bordered table-striped table-hover">
-				
 				<h:column>
 					<f:facet name="header">ID</f:facet>
 	        	 	#{cli.id}
@@ -40,7 +40,7 @@
 		        
 				<h:column>
 					<f:facet name="header">Documentos</f:facet>
-		         	#{cli.documentos.get(0).tipoDocumento}
+		         	#{clienteListarBean.doc.codigo}
 		        </h:column>
 		        
 				<h:column>
@@ -51,7 +51,7 @@
 				<h:column>
 					<f:facet name="header">Delete</f:facet>
 					<h:form>
-						<h:commandButton value='Deletar' action='#{clienteExcluirBean.excluir(carta)}' class="btn btn-danger"/>
+						<h:commandButton value='Deletar' action='#{clienteExcluirBean.excluir(cli)}' class="btn btn-danger"/>
 					</h:form>
 				</h:column>
 			</h:dataTable>

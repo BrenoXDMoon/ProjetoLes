@@ -88,7 +88,7 @@ public class Fachada implements IFachada {
         String nmClasse = entidade.getClass().getName();
 
         Map<String, List<IStrategy>> mapaEntidade = regrasNegocio.get(nmClasse);
-        List<IStrategy> rnsEntidade = mapaEntidade.get("ALTERAR");
+        List<IStrategy> rnsEntidade = mapaEntidade.get("EDITAR");
 
         executarRegras(entidade, rnsEntidade);
 

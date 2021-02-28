@@ -12,6 +12,7 @@
 		<class>br.com.newstation.dominio.Endereco</class>
 		<class>br.com.newstation.dominio.CartaoCredito</class>
 		<class>br.com.newstation.dominio.Documento</class>
+		<class>br.com.newstation.dominio.Estoque</class>
 		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
 		<properties>
 			<property name="hibernate.cache.infinispan.entity.expiration.lifespan" value="900000"/>
