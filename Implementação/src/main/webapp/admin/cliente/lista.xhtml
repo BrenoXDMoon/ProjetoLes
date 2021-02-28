@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core">
 <head>
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -15,6 +16,7 @@
 
 <title>Lista Cliente</title>
 </head>
+
 
 <body class="bg-dark text-white">
 	<header class="site-header py-1"> 
@@ -40,14 +42,14 @@
 		        
 				<h:column>
 					<f:facet name="header">Documentos</f:facet>
-		         	#{clienteListarBean.doc.codigo}
+		         	#{cli.documentos.toArray()[0].codigo}
 		        </h:column>
 		        
 				<h:column>
 					<f:facet name="header">Tipo de Cliente</f:facet>
 		         	#{cli.tipoCliente}
 		        </h:column>
-		        
+		       
 				<h:column>
 					<f:facet name="header">Delete</f:facet>
 					<h:form>

@@ -27,10 +27,8 @@ public class PerfilBean {
 	
 	public void Carregar() {
 		
-		cliente.setId(3);
+		cliente.setId(6);
 		cliente =  (Cliente) dao.visualizar(cliente).getEntidade();
-//		id = cliente.getId();
-		id = 1;
 		
 		setEndereco((Endereco) cliente.getEnderecos().toArray()[0]);
 		

@@ -94,7 +94,7 @@ public class ClienteDao extends AbstractDao {
 		for (Cliente c : lista) {
 			resultado.add(c);
 		}
-
+		
 		manager.close();
 		factory.close();
 		return resultado;
