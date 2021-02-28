@@ -19,8 +19,8 @@
 </head>
 
 <f:metadata>
-	<f:viewParam id="id" name="id" value="#{}" />
-	<f:viewAction action="#{perfilBean.Carregar()}" />
+	<f:viewParam id="id" name="id" value="#{loginBean.cliente.id}" />
+	<f:viewAction action="#{loginBean.Carregar()}" />
 </f:metadata>
 
 <body class="text-white bg-dark">
@@ -42,7 +42,7 @@
 			<div class="col-12 text-center">
 
 				<h1 class='text-white'>Perfil</h1>
-				<h:dataTable var="cli" value="#{perfilBean.cliente}"
+				<h:dataTable var="cli" value="#{loginBean.cliente}"
 					class="table table-bordered table-striped table-hover">
 
 					<h:column>

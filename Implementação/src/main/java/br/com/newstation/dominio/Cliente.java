@@ -1,10 +1,13 @@
 package br.com.newstation.dominio;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -15,11 +18,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 
 
 @Entity
-public class Cliente extends EntidadeDominio{
+@Named
+@SessionScoped
+public class Cliente extends EntidadeDominio implements Serializable{
+
+	@Transient
+	private static final long serialVersionUID = -4432775194088650877L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

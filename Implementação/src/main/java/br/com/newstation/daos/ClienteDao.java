@@ -122,13 +122,21 @@ public class ClienteDao extends AbstractDao {
 
 	public Resultado login(EntidadeDominio ent) {
 
+		abrirConexao();
 
-		String jpql = "select distinct(c) from Cliente where c.email = :email, c.senha= :senha join fetch c.enderecos join fetch c.cartoes join fetch c.documentos";
+		String jpql = "select distinct(c) from Cliente c join fetch c.enderecos join fetch c.cartoes join fetch c.documentos where c.email = :email and c.senha= :senha";
 		Cliente cliente = (Cliente) ent;
 		Resultado resultado = new Resultado();
 
+		manager.getTransaction().begin();
+		
 		resultado.setEntidade(manager.createQuery(jpql, Cliente.class).setParameter("email", cliente.getEmail())
-				.setParameter("senha", cliente.getSenha().getSenha()).getSingleResult());
+				.setParameter("senha", cliente.getSenha()).getSingleResult());
+		
+		manager.getTransaction().commit();
+		
+		manager.close();
+		factory.close();
 		return resultado;
 	}
 
@@ -137,14 +145,15 @@ public class ClienteDao extends AbstractDao {
 
 		String jpql = "select distinct(c) from Cliente c join fetch c.documentos";
 
-		Resultado resultado = new Resultado();
-
 		List<Cliente> lista = new ArrayList<Cliente>();
 
 		manager.getTransaction().begin();
 		lista = manager.createQuery(jpql, Cliente.class).getResultList();
 
 		manager.getTransaction().commit();
+		
+		manager.close();
+		factory.close();
 		
 		return lista;
 	}
