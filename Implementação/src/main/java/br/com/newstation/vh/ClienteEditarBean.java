@@ -28,6 +28,9 @@ public class ClienteEditarBean {
 		ClienteDao dao = new ClienteDao();
 		cliente = (Cliente) dao.visualizar(cliente).getEntidade();
 		
+		dataNascimento = cliente.getDataNascimento().toString();
+		
+		senha = cliente.getSenha();
 	}
 	
 	@Transactional
@@ -42,7 +45,7 @@ public class ClienteEditarBean {
 		EditarCommand cmd = new EditarCommand();
 		cmd.executar(cliente);
 		
-		return "/index?faces-redirect=true";
+		return "/admin/cliente/lista?faces-redirect=true";
 		//return "/cliente/perfil?faces-redirect=true";
 	}
 
