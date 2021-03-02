@@ -11,6 +11,7 @@ import br.com.newstation.daos.ClienteDao;
 import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.Documento;
 import br.com.newstation.dominio.Senha;
+import br.com.newstation.dominio.TIPO_CLIENTE;
 
 @Model
 public class ClienteEditarBean {
@@ -91,5 +92,10 @@ public class ClienteEditarBean {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	
+	public TIPO_CLIENTE[] getTipoCliente(){
+		
+		return TIPO_CLIENTE.values();
 	}
 }

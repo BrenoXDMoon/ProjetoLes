@@ -24,13 +24,27 @@ public class PerfilBean {
 	
 	public void Carregar() {
 		
-		cliente.setId(1);
+		
 		cliente =  (Cliente) dao.visualizar(cliente).getEntidade();
 		
 		setEndereco((Endereco) cliente.getEnderecos().toArray()[0]);
 		
 		Object[] array_doc = cliente.getDocumentos().toArray();
 		doc = (Documento) array_doc[0];
+	}
+	
+	public String Carregar(Integer id) {
+		
+		cliente.setId(id);
+		
+		cliente =  (Cliente) dao.visualizar(cliente).getEntidade();
+		
+		setEndereco((Endereco) cliente.getEnderecos().toArray()[0]);
+		
+		Object[] array_doc = cliente.getDocumentos().toArray();
+		doc = (Documento) array_doc[0];
+		
+		return "/cliente/perfil?faces-redirect=true";
 	}
 
 	public Cliente getCliente() {

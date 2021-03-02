@@ -65,6 +65,13 @@
 								styleClass="form-control" />
 							<h:message for="senha" />
 						</div>
+						
+						<h:outputLabel value="Tipo do CLiente" />
+								<h:selectOneListbox value="#{clienteEditarBean.cliente.tipoCliente}" class="form-select">
+		                        	<f:selectItems value="#{clienteEditarBean.tipoCliente}" var="tipo" itemLabel="#{tipo}" itemValue="#{tipo}"/>
+		                        </h:selectOneListbox>
+								
+							<h:message for="tipoCliente" />
 					</div>
 				</div>
 			</div>

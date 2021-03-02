@@ -15,6 +15,7 @@ import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.Documento;
 import br.com.newstation.dominio.Endereco;
 import br.com.newstation.dominio.Estado;
+import br.com.newstation.dominio.Resultado;
 import br.com.newstation.dominio.Senha;
 import br.com.newstation.dominio.TIPO_CLIENTE;
 import br.com.newstation.dominio.TIPO_DOCUMENTO;
@@ -74,11 +75,23 @@ public class ClienteSalvarBean {
 		
 			SalvarCommand cmd = new SalvarCommand();
 
-			this.cliente = (Cliente) cmd.executar(cliente).getEntidade();
+			Resultado resultado = cmd.executar(cliente);
 			
-			return "/cliente/perfil?faces-redirect=true";
+			this.cliente = (Cliente) resultado.getEntidade();
+			
+			if(resultado.getMensagem().equals(null)) {
+				
+				return "/admin/cliente/lista?faces-redirect=true";
+				
+			}else {
+				
+				return "/cliente/addCliente?faces-redirect=true";
+				
+			}
 		}else {
-			return "/cliente/index?faces-redirect=true";
+			
+			return "/cliente/addCliente?faces-redirect=true";
+			
 		}
 	}
 
