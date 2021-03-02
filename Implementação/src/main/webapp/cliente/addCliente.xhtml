@@ -123,43 +123,6 @@
 				</div>
 			</div>
 
-			<h4 class="py-4">Dados de Cartão do Cliente</h4>
-			<div class="border">
-				<div class="row justify-content-center">
-					<div class="col-10">
-
-						<div class="form-group">
-							<label >Número do Cartão</label>
-							<h:inputText value="#{clienteSalvarBean.cartao.numero}" id="numeroCartao" styleClass="form-control" />
-						</div>
-
-						<div class="form-group">
-							<label >Nome impresso</label>
-							<h:inputText value="#{clienteSalvarBean.cartao.nomeImpresso}" id="nomeImpresso" class="form-control"/>
-							
-						</div>
-
-						<div class="form-group">
-							<label >Validade</label>
-							<h:inputText  value="#{clienteSalvarBean.cartao.validade}" id="validade" class="form-control"/>
-							
-						</div>
-
-						<div class="form-group">
-							<label >Código de Segurança</label>
-							<h:inputText value="#{clienteSalvarBean.cartao.codigoSeguranca}" id="codigoSeguranca" class="form-control"/>
-							
-						</div>
-
-						<div class="form-group">
-							<label >Bandeira do Cartão</label> <br />
-							<h:selectOneListbox value="#{clienteSalvarBean.cartao.bandeira}" class="form-select">
-	                        	<f:selectItems value="#{clienteSalvarBean.bandeiras}" var="bandeira" itemLabel="#{bandeira}" itemValue="#{bandeira}"/>
-	                        </h:selectOneListbox>
-						</div>
-					</div>
-				</div>
-			</div>
         	<h:commandButton class="text-black" type="submit" action="#{clienteSalvarBean.salvar}" styleClass="btn btn-success mt-5" value="Cadastrar" />					
    		</h:form>
    	</div>
