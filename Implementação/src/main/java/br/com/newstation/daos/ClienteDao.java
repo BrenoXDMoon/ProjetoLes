@@ -107,8 +107,11 @@ public class ClienteDao extends AbstractDao {
 
 		abrirConexao();
 		
-		String jpql = "select distinct(c) from Cliente c join fetch c.documentos where c.id = :id";
+		String jpql = "select distinct(c) from Cliente c where c.id = :id";
 		Cliente cli = (Cliente) ent;
+		
+		
+		System.out.println(cli.getId());
 		manager.getTransaction().begin();
 		Resultado resultado = new Resultado();
 		resultado.setEntidade((EntidadeDominio) manager.createQuery(jpql, Cliente.class).setParameter("id", cli.getId())

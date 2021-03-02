@@ -119,14 +119,14 @@ public class Fachada implements IFachada {
 
     @Override
     public Resultado listar(EntidadeDominio entidade) {
-        resultado = new Resultado();
+    	
+    	resultado = new Resultado();
         String nmClasse = entidade.getClass().getName();
 
         IDao dao = daos.get(nmClasse);
         resultado = dao.listar(entidade);
 
         return resultado;
-
     }
 
     @Override

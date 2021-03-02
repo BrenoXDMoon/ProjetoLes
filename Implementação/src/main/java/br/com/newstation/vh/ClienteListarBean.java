@@ -6,6 +6,7 @@ import java.util.List;
 import javax.enterprise.inject.Model;
 
 import br.com.newstation.command.ListarCommand;
+import br.com.newstation.daos.ClienteDao;
 import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.Documento;
 import br.com.newstation.dominio.EntidadeDominio;
@@ -30,7 +31,6 @@ public class ClienteListarBean {
 
 //		ClienteDao dao = new ClienteDao();
 //		clientes = dao.listarSemCao();
-//		
 
 		return clientes;
 	}

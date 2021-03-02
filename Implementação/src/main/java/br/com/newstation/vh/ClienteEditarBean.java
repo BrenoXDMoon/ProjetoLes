@@ -7,6 +7,7 @@ import javax.enterprise.inject.Model;
 import javax.transaction.Transactional;
 
 import br.com.newstation.command.EditarCommand;
+import br.com.newstation.daos.ClienteDao;
 import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.Documento;
 import br.com.newstation.dominio.Senha;
@@ -16,26 +17,21 @@ public class ClienteEditarBean {
 
 	private Senha senha = new Senha();
 
-	private Cliente cliente = new Cliente();
-
-	private Documento documento = new Documento();
+	private static Cliente cliente = new Cliente();
+	
+	private Integer id;
 
 	private String dataNascimento;
-
 	
-	public void listar() {
-		ClienteListarBean lisb = new ClienteListarBean();
-
-		cliente = lisb.getClientes().get(0);
-		Object[] arrayDoc = cliente.getDocumentos().toArray();
-		documento = (Documento) arrayDoc[0];
-		dataNascimento = cliente.getDataNascimento().toString();
-		senha = cliente.getSenha();
+	public void carregaDetalhe() {
+		
+		ClienteDao dao = new ClienteDao();
+		cliente = (Cliente) dao.visualizar(cliente).getEntidade();
 		
 	}
 	
 	@Transactional
-	public String Editar() {
+	public String editar() {
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
@@ -53,6 +49,13 @@ public class ClienteEditarBean {
 	public String redir() {
 		return "/cliente/alteraCliente?faces-redirect=true";
 	}
+	
+	public String redirAdmin(Cliente cli) {
+		
+		this.cliente = cli;
+		
+		return "/admin/cliente/editar?faces-redirect=true";
+	}
 
 	public Cliente getCliente() {
 		return cliente;
@@ -61,14 +64,6 @@ public class ClienteEditarBean {
 	public void setCliente(Cliente cliente) {
 
 		this.cliente = cliente;
-	}
-
-	public Documento getDocumento() {
-		return documento;
-	}
-
-	public void setDocumento(Documento documento) {
-		this.documento = documento;
 	}
 
 	public String getDataNascimento() {
@@ -85,5 +80,13 @@ public class ClienteEditarBean {
 
 	public void setSenha(Senha senha) {
 		this.senha = senha;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 }
