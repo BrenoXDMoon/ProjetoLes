@@ -2,7 +2,6 @@ package br.com.newstation.dominio;
 
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -47,9 +46,6 @@ public class Cliente extends EntidadeDominio{
 	
 	@OneToMany(fetch = FetchType.EAGER)
 	private Set<Endereco> enderecos = new HashSet<Endereco>();
-		
-	@OneToMany(fetch = FetchType.EAGER)
-	private Set<CartaoCredito> cartoes = new HashSet<CartaoCredito>();
 	
 	@OneToMany(fetch = FetchType.EAGER)
 	private Set<Documento> documentos = new HashSet<Documento>();
@@ -76,14 +72,6 @@ public class Cliente extends EntidadeDominio{
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public Set<CartaoCredito> getCartoes() {
-		return cartoes;
-	}
-
-	public void setCartoes(Set<CartaoCredito> cartoes) {
-		this.cartoes = cartoes;
 	}
 	
 	public Set<Documento> getDocumentos() {

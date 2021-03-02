@@ -21,7 +21,6 @@ public class ClienteDao extends AbstractDao {
 
 		manager.getTransaction().begin();
 		manager.persist(cliente);
-		manager.persist(cliente.getCartoes().toArray()[0]);
 		manager.persist(cliente.getEnderecos().toArray()[0]);
 		manager.persist(cliente.getDocumentos().toArray()[0]);
 		manager.getTransaction().commit();

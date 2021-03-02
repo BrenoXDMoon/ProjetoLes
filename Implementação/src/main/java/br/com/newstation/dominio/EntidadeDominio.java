@@ -3,10 +3,10 @@ package br.com.newstation.dominio;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
 
 public class EntidadeDominio {
 
-	@Column
 	protected LocalDate dtCadastro;
 	
 	public LocalDate getDtCadastro() {

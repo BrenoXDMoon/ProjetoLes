@@ -10,8 +10,6 @@ import javax.transaction.Transactional;
 
 import br.com.newstation.command.SalvarCommand;
 import br.com.newstation.daos.ClienteDao;
-import br.com.newstation.dominio.BANDEIRA;
-import br.com.newstation.dominio.CartaoCredito;
 import br.com.newstation.dominio.Cidade;
 import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.Documento;
@@ -32,8 +30,6 @@ public class ClienteSalvarBean {
 	private Cliente cliente = new Cliente();
 	
 	private Endereco endereco = new Endereco();
-	
-	private CartaoCredito cartao = new CartaoCredito();
 	
 	private Senha senha = new Senha();
 	
@@ -71,7 +67,6 @@ public class ClienteSalvarBean {
 			cliente.getDocumentos().add(documento);
 			
 			cliente.getEnderecos().add(endereco);
-			cliente.getCartoes().add(cartao);
 			
 			cliente.setDtCadastro(LocalDate.now());
 
@@ -103,14 +98,6 @@ public class ClienteSalvarBean {
 		this.endereco = endereco;
 	}
 
-	public CartaoCredito getCartao() {
-		return cartao;
-	}
-
-	public void setCartao(CartaoCredito cartao) {
-		this.cartao = cartao;
-		
-	}
 	
 	public Senha getSenha() {
 		return senha;
@@ -154,10 +141,6 @@ public class ClienteSalvarBean {
 
 	public TIPO_ENDERECO[] getTipos() {
 		return TIPO_ENDERECO.values();
-	}
-
-	public BANDEIRA[] getBandeiras() {
-		return BANDEIRA.values();
 	}
 	
 	public TIPO_DOCUMENTO[] getDocumentos() {
