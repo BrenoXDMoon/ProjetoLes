@@ -79,7 +79,7 @@ public class ClienteSalvarBean {
 			
 			this.cliente = (Cliente) resultado.getEntidade();
 			
-			if(resultado.getMensagem().equals(null)) {
+			if(resultado.getMensagem() == null) {
 				
 				return "/admin/cliente/lista?faces-redirect=true";
 				
