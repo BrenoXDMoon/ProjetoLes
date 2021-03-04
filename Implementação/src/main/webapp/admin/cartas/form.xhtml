@@ -16,20 +16,12 @@
 </head> 
 
 <h:body styleClass="bg-dark text-white">
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-	<div class="container">
-		<div class="navbar-header">
-			<h:link value="New Station" outcome="/index.xhtml"
-				styleClass="navbar-brand" />
-		</div>
-		<div id="navbar" class="collapse navbar-collapse">
-			<ul class="nav navbar-nav">
-				<li><h:link value="Lista" outcome="lista" /></li>
-				<li class="active"><a href="#">Cadastro</a></li>
-			</ul>
-		</div>
-	</div>
-	</nav>
+	<header class="site-header  py-1">
+	        <nav class="container d-flex flex-column flex-md-row justify-content-between">
+	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
+	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/admin/cartas/lista.xhtml">Listar</a>
+	        </nav>
+	    </header>
 	<div class="container">
 		<div class="row">
 			<div class="col-10">

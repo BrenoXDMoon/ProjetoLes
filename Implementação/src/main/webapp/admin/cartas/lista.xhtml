@@ -16,74 +16,54 @@
 	rel="stylesheet" />
 <link href="#{request.contextPath}/assets/css/custom.css"
 	rel="stylesheet" />
-<title>Cadastra Carta</title>
+<title>Listar Carta</title>
 </head>
 <h:body styleClass="bg-dark text-white">
-	<h:form>
-		<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#{request.contextPath}/index.xhtml">New
-					Station</a>
-			</div>
-			<div id="navbar" class="navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li class="#{lista}"><a value="Lista"
-						href="#{request.contextPath}/admin/cartas/lista.xhtml">Lista</a></li>
-					<li class="#{cadastro}"><a value="Lista"
-						href="#{request.contextPath}/admin/cartas/form.xhtml">Cadastro</a></li>
-					<li class="#{adm}"><a value="Lista"
-						href="#{request.contextPath}/admin/admin.xhtml">Admistração</a></li>
-				</ul>
-			</div>
-		</div>
-		</nav>
-	</h:form>
+	
+		 <header class="site-header  py-1">
+	        <nav class="container d-flex flex-column flex-md-row justify-content-between">
+	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
+	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/admin/admin.xhtml">Admin</a>
+	        </nav>
+	    </header>
+	
 
-	<h2>Lista de Cartas</h2>
+	
 
-
-	<h:button value="Cadastrar Cartas" outcome="form" />
+	<div class="row justify-content-center">
+		<div class="col-10">
+		<h2>Lista de Cartas</h2>
+		
+			<h:button styleClass = "my-3" value="Cadastrar Cartas" outcome="form" />
 
 			<h:dataTable var="carta" value="#{adminListaCartaBean.cartas}"
-			class="table table-bordered table-striped table-hover">
-			<h:column>
-				<f:facet name="header">Nome</f:facet>
-        	 #{carta.nome}
-        </h:column>
-			<h:column>
-				<f:facet name="header">Descrição</f:facet>
-        	 #{carta.descricao}
-        </h:column>
-			<h:column>
-				<f:facet name="header">Raridade</f:facet>
-         	#{carta.raridade}
-        </h:column>
-			<h:column>
-				<f:facet name="header">Preço</f:facet>
-         	#{carta.preco}
-        </h:column>
-			<h:column>
-				<f:facet name="header">Quantidade</f:facet>
-         	#{carta.estoque.quantidade}
-        </h:column>
-			<h:column>
-				<f:facet name="header">Delete</f:facet>
-				<h:form>
-					<h:commandButton value='deletar'
-						action='#{cartaExcluirBean.delete(carta)}' />
-				</h:form>
-			</h:column>
-			<h:column>
-				<f:facet name="header">Alterar</f:facet>
-				<li><a
-					href="#{request.contextPath}/admin/cartas/alterar.xhtml?id=#{carta.id}"><button>Alterar</button></a>
-				</li>
-			</h:column>
-			<h:column>
-				<img src="#{request.contextPath}/file/#{carta.imagemPath}"
-					height="30%" width="30%" alt="#{carta.nome}" />
-			</h:column>
-		</h:dataTable>
+				class="table table-bordered table-striped table-hover lista-carta">
+				<h:column >
+					<f:facet name="header">Nome</f:facet>
+					<a class="decoration-none font-weight-bold text-white" href="#{request.contextPath}/admin/cartas/alterar.xhtml?id=#{carta.id}">#{carta.nome}</a>        	 
+		        </h:column>
+				<h:column>
+					<f:facet name="header">Descrição</f:facet>
+		        	 #{carta.descricao}
+		        </h:column>
+				<h:column>
+					<f:facet name="header">Raridade</f:facet>
+		         	#{carta.raridade}
+		        </h:column>
+				<h:column>
+					<f:facet name="header">Preço</f:facet>
+		         	#{carta.preco}
+		        </h:column>
+				<h:column>
+					<f:facet name="header">Quantidade</f:facet>
+		         	#{carta.estoque.quantidade}
+		        </h:column>
+				<h:column>
+					<img src="#{request.contextPath}/file/#{carta.imagemPath}"
+						width="30%" alt="#{carta.nome}" />
+				</h:column>
+			</h:dataTable>
+		</div>
+	</div>
 </h:body>
 </html>
