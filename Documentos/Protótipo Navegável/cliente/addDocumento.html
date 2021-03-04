@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="../assets/css/style.css" rel="stylesheet">
+	<link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+	<title>Adicionar Documento</title>
+</head>
+
+<body class="bg-dark text-white">
+	<header class="site-header sticky-top py-1">
+		<nav class="container d-flex flex-column flex-md-row justify-content-between">
+			<a class="py-2 d-none d-md-inline-block" href="../index.html">NewStation</a>
+			<a class="py-2 d-none d-md-inline-block" href="login.html">Login</a>
+			<a class="py-2 d-none d-md-inline-block" href="../carrinho.html">Carrinho</a>
+		</nav>
+	</header>
+	<section class="container perfil mt-5">
+		<form enctype="multipart/form-data">
+			<h4 class="py-4">Adicionar Documento</h4>
+			<div class="border">
+				<div class="row justify-content-center">
+					<div class="col-10">
+						
+						
+							<div class="form-group mt-3">
+								<select name="tipoDocumento" id="doc">
+									<option value="cpf">CPF</option>
+									<option value="rg">RG</option>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label>Codigo</label>
+								<input type="text" value="" id="codigo" class="form-control" />
+							</div>
+
+							<div class="form-group">
+								<label>Validade</label>
+								<input type="text" value="" id="validade" class="form-control" />
+							</div>
+					</div>
+				</div>
+			</div>		
+		</form>
+		<a href="perfil.html" style="text-decoration: none;"><button class="text-black my-4">Adicionar</button></a>
+	</section>
+
+</body>
+
+</html>

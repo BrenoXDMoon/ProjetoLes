@@ -11,7 +11,7 @@
     <title>Altera Cartão</title>
 </head>
 
-<body>
+<body class="bg-dark text-white">
     <header class="site-header sticky-top py-1">
         <nav class="container d-flex flex-column flex-md-row justify-content-between">
             <a class="py-2 d-none d-md-inline-block" href="../index.html">NewStation</a>
@@ -28,32 +28,35 @@
 
 								<div class="form-group">
 									<label >Número do Cartão</label>
-									<input type="text" value=""
+									<input type="text" value="5544 7865 0216 8426"
 										id="numeroCartao" class="form-control" />
 								</div>
 
 								<div class="form-group">
 									<label >Nome impresso</label>
-									<input type="text" value=""
+									<input type="text" value="Nome 1"
 										id="nomeImpresso" class="form-control" />
 								</div>
 
 								<div class="form-group">
 									<label >Validade</label>
-									<input type="text" value=""
+									<input type="text" value="00/00"
 										id="validade" class="form-control" />
 								</div>
 
 								<div class="form-group">
 									<label >Código de Segurança</label>
-									<input type="text" value=""
+									<input type="text" value="cvc"
 										id="codigoSeguranca" class="form-control" />
 								</div>
 
 								<div class="form-group">
-									<label >Bandeira do Cartão</label>
-									<input type="text" value=""
-										id="bandeira" class="form-control" />
+									<label >Bandeira do Cartão</label><br>
+									<select name="cars" id="cars">
+										<option value="volvo" selected="True">Elo</option>
+										<option value="saab">Master Card</option>
+										<option value="#">Visa</option>
+									</select>
 								</div>
 							</div>
 						</div>
