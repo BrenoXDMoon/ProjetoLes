@@ -15,4 +15,9 @@ public class EstoqueDao {
 		manager.persist(estoque);
 	}
 	
+	public Estoque update(Estoque estoque) {
+		Estoque estoqueFind = manager.getReference(Estoque.class, estoque.getId());
+		estoqueFind.setQuantidade(estoque.getQuantidade());
+		return estoqueFind;
+	}
 }

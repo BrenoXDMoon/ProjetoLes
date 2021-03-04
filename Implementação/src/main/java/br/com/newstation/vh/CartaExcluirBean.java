@@ -1,27 +1,22 @@
 package br.com.newstation.vh;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 import br.com.newstation.daos.CartaDao;
 import br.com.newstation.dominio.Carta;
 
 @Model
-public class AdminListaCartaBean {
+public class CartaExcluirBean{
 
 	@Inject
 	private CartaDao dao;
 
-	private List<Carta> cartas = new ArrayList<>();
-
-	public List<Carta> getCartas() {
-		this.cartas = dao.listar();
-		return cartas;
-
+	@Transactional
+	public String delete(Carta carta) {
+		dao.delete(carta);
+		return "/admin/cartas/lista?faces-redirect=true";
 	}
-
-
+	
 }

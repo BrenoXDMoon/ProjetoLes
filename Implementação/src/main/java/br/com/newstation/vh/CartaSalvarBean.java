@@ -41,7 +41,7 @@ public class CartaSalvarBean {
 		FileSaver fileSaver = new FileSaver();
 		carta.setImagemPath(fileSaver.write(imagemCarta, "cartas"));
 
-		return "/cartas/lista?faces-redirect=true";
+		return "/admin/cartas/lista?faces-redirect=true";
 	}
 
 	@Transactional

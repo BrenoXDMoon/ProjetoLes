@@ -6,8 +6,8 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <f:metadata>
-	<f:viewParam id="id" name="id" value="#{adminUpdateCartaBean.id}" />
-	<f:viewAction action="#{adminUpdateCartaBean.carregaDetalhe()}" />
+	<f:viewParam id="id" name="id" value="#{cartaEditarBean.id}" />
+	<f:viewAction action="#{cartaEditarBean.carregaDetalhe()}" />
 </f:metadata>
 
 <head>
@@ -42,58 +42,58 @@
 				<h:form enctype="multipart/form-data">
 					<div class="form-group">
 						<h:outputLabel value="Nome da Carta" />
-						<h:inputText value='#{adminUpdateCartaBean.carta.nome}'
+						<h:inputText value='#{cartaEditarBean.carta.nome}'
 							required="true" id="titulo" styleClass="form-control" />
 
 						<h:message for='titulo' />
 					</div>
 					<div class="form-group">
 						<h:outputLabel value="Descrição da Carta" />
-						<h:inputText value='#{adminUpdateCartaBean.carta.descricao}'
+						<h:inputText value='#{cartaEditarBean.carta.descricao}'
 							required="true" id="descricao" styleClass="form-control" />
 
 						<h:message for='descricao' />
 					</div>
 					<div class="form-group">
 						<h:outputLabel value="Preço" />
-						<h:inputText value='#{adminUpdateCartaBean.carta.preco}'
+						<h:inputText value='#{cartaEditarBean.carta.preco}'
 							required="true" id='preco' styleClass="form-control" />
 
 						<h:message for='preco' />
 					</div>
 					<div class="form-group">
 						<h:outputLabel value="Raridade" />
-						<h:inputText value='#{adminUpdateCartaBean.carta.raridade}'
+						<h:inputText value='#{cartaEditarBean.carta.raridade}'
 							id="raridade" styleClass="form-control" />
 
 						<h:message for="raridade" />
 					</div>
-					<h:inputHidden value="#{adminUpdateCartaBean.estoque.id}"
+					<h:inputHidden value="#{cartaEditarBean.estoque.id}"
 						id="estoqueId" />
-					<h:inputHidden value="#{adminUpdateCartaBean.carta.id}"
+					<h:inputHidden value="#{cartaEditarBean.carta.id}"
 						id="cartaId" />
-						<h:inputHidden value="#{adminUpdateCartaBean.carta.imagemPath}"
+						<h:inputHidden value="#{cartaEditarBean.carta.imagemPath}"
 						id="cartaimagemCarta" />
 					<div class="form-group">
 
 						<h:outputLabel value="Quantidade" />
-						<h:inputText value='#{adminUpdateCartaBean.estoque.quantidade}'
+						<h:inputText value='#{cartaEditarBean.estoque.quantidade}'
 							id="quantidade" styleClass="form-control" />
 
 						<h:message for="quantidade" />
 					</div>
 					<div class="form-group my-4">
 						<div>
-							<img src="#{request.contextPath}/file/#{adminUpdateCartaBean.carta.imagemPath}"
+							<img src="#{request.contextPath}/file/#{cartaEditarBean.carta.imagemPath}"
 								height="30%" width="30%" />
 						</div>
 						<h:outputLabel value="Imagem da Carta" />
-						<h:inputFile value="#{adminUpdateCartaBean.imagemCarta}"
+						<h:inputFile value="#{cartaEditarBean.imagemCarta}"
 							id="imagemCarta" styleClass="form-control" />
 						<h:message for="imagemCarta" />
 					</div>
 					<h:commandButton value='Atualizar'
-						action='#{adminUpdateCartaBean.salvar}'
+						action='#{cartaEditarBean.salvar}'
 						styleClass="btn btn-primary my-3">
 						
 					</h:commandButton>

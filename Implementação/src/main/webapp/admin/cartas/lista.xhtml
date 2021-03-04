@@ -45,45 +45,45 @@
 
 	<h:button value="Cadastrar Cartas" outcome="form" />
 
-	<h:dataTable var="carta" value="#{adminListaCartaBean.cartas}"
-		class="table table-bordered table-striped table-hover">
-		<h:column>
-			<f:facet name="header">Nome</f:facet>
-        	 	#{carta.nome}
-        	</h:column>
-		<h:column>
-			<f:facet name="header">Descrição</f:facet>
+			<h:dataTable var="carta" value="#{adminListaCartaBean.cartas}"
+			class="table table-bordered table-striped table-hover">
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+        	 #{carta.nome}
+        </h:column>
+			<h:column>
+				<f:facet name="header">Descrição</f:facet>
         	 #{carta.descricao}
         </h:column>
-		<h:column>
-			<f:facet name="header">Raridade</f:facet>
+			<h:column>
+				<f:facet name="header">Raridade</f:facet>
          	#{carta.raridade}
         </h:column>
-		<h:column>
-			<f:facet name="header">Preço</f:facet>
+			<h:column>
+				<f:facet name="header">Preço</f:facet>
          	#{carta.preco}
         </h:column>
-		<h:column>
-			<f:facet name="header">Quantidade</f:facet>
+			<h:column>
+				<f:facet name="header">Quantidade</f:facet>
          	#{carta.estoque.quantidade}
         </h:column>
-		<h:column>
-			<f:facet name="header">Delete</f:facet>
-			<h:form>
-				<h:commandButton value='deletar'
-					action='#{adminListaCartaBean.delete(carta)}' />
-			</h:form>
-		</h:column>
-		<h:column>
-			<f:facet name="header">Alterar</f:facet>
-			<li><a
-				href="#{request.contextPath}/admin/cartas/alterar.xhtml?id=#{carta.id}"><button>Alterar</button></a>
-			</li>
-		</h:column>
-		<h:column>
-			<img src="#{request.contextPath}/file/#{carta.imagemPath}"
-				height="30%" width="30%" alt="#{carta.nome}" />
-		</h:column>
-	</h:dataTable>
+			<h:column>
+				<f:facet name="header">Delete</f:facet>
+				<h:form>
+					<h:commandButton value='deletar'
+						action='#{cartaExcluirBean.delete(carta)}' />
+				</h:form>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Alterar</f:facet>
+				<li><a
+					href="#{request.contextPath}/admin/cartas/alterar.xhtml?id=#{carta.id}"><button>Alterar</button></a>
+				</li>
+			</h:column>
+			<h:column>
+				<img src="#{request.contextPath}/file/#{carta.imagemPath}"
+					height="30%" width="30%" alt="#{carta.nome}" />
+			</h:column>
+		</h:dataTable>
 </h:body>
 </html>

@@ -24,13 +24,26 @@ public class CartaDao{
 	}
 	
 	public void delete(Carta carta) {
-		Carta cartaFind = manager.find(Carta.class, carta);
-		System.out.println(cartaFind.getNome());
-		cartaFind.setAtivo(false);
-//		manager.setProperty("ativo", false);
-		
+		Carta cartaDelete = manager.getReference(Carta.class, carta.getId());
+		cartaDelete.setAtivo(false);
+		System.out.println(buscarPorId(carta.getId()));
+	}
+	
+	
+	public void update(Carta carta) {
+		Carta cartaFind = manager.getReference(Carta.class, carta.getId());
+		cartaFind.setNome(carta.getNome());
+		cartaFind.setDescricao(carta.getDescricao());
+		cartaFind.setPreco(carta.getPreco());
+		cartaFind.setRaridade(carta.getRaridade());
+		cartaFind.setEstoque(carta.getEstoque());
+
+		if (carta.getImagemPath() != null) {
+			cartaFind.setImagemPath(carta.getImagemPath());
+		}
+
 //		manager.remove(manager.contains(carta) ? carta : manager.merge(carta));distinct(C)
-		
+
 	}
 	
 	public List<Carta> listar() {
@@ -55,9 +68,7 @@ public class CartaDao{
 	}
 
 	public Carta buscarPorId(Integer id) {
-		String jpql = "select c from Carta c "
-
-				+ "where l.id = :id";
+		String jpql = "select c from Carta c where c.id = :id";
 		return manager.createQuery(jpql, Carta.class)
 				.setParameter("id", id)
 				.getSingleResult();
