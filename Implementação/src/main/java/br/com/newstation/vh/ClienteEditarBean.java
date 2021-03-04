@@ -27,7 +27,7 @@ public class ClienteEditarBean {
 	public void carregaDetalhe() {
 		
 		ClienteDao dao = new ClienteDao();
-		cliente = (Cliente) dao.visualizar(cliente).getEntidade();
+		cliente =  dao.visualizar(cliente);
 		
 		dataNascimento = cliente.getDataNascimento().toString();
 		

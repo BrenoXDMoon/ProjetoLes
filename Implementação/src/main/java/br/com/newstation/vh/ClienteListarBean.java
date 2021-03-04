@@ -20,17 +20,8 @@ public class ClienteListarBean {
 
 	public List<Cliente> getClientes() {
 
-		Cliente cliente = new Cliente();
-
-		ListarCommand cmd = new ListarCommand();
-
-		for (EntidadeDominio e : cmd.executar(cliente).getEntidades()) {
-
-			clientes.add((Cliente) e);
-		}
-
-//		ClienteDao dao = new ClienteDao();
-//		clientes = dao.listarSemCao();
+		ClienteDao dao = new ClienteDao();
+		clientes = dao.listarSemCao();
 
 		return clientes;
 	}

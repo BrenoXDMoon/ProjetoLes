@@ -128,16 +128,6 @@ public class Fachada implements IFachada {
 
         return resultado;
     }
-
-    @Override
-    public Resultado login(EntidadeDominio entidade) {
-        resultado = new Resultado();
-
-        ClienteDao dao = new ClienteDao();
-        resultado = dao.login(entidade);
-        
-        return resultado;
-    }
     
 
     private void executarRegras(EntidadeDominio entidade, List<IStrategy> rnsEntidade) {

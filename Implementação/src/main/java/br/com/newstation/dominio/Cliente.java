@@ -39,7 +39,7 @@ public class Cliente extends EntidadeDominio{
 	private LocalDate dataNascimento;
 
 	@Embedded
-	private Senha senha;
+	private Senha senha = new Senha();
 	
 	@Column
 	private boolean ativo;

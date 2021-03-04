@@ -9,6 +9,5 @@ public interface IFachada {
 	Resultado editar(EntidadeDominio ent);
 	Resultado excluir(EntidadeDominio ent);
 	Resultado listar(EntidadeDominio ent);
-	Resultado login(EntidadeDominio ent);
 	
 }

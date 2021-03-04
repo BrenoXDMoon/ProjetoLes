@@ -81,7 +81,9 @@ public class ClienteSalvarBean {
 			
 			if(resultado.getMensagem() == null) {
 				
-				return "/admin/cliente/lista?faces-redirect=true";
+				
+				
+				return "/cliente/perfil?faces-redirect=true";
 				
 			}else {
 				

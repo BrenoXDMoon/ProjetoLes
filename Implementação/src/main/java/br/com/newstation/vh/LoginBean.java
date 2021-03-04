@@ -1,12 +1,10 @@
 package br.com.newstation.vh;
 
 import javax.enterprise.inject.Model;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import javax.inject.Inject;
 import javax.transaction.Transactional;
 
-import br.com.newstation.command.ICommand;
-import br.com.newstation.command.LoginCommand;
+import br.com.newstation.daos.ClienteDao;
 import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.TIPO_CLIENTE;
 
@@ -14,26 +12,36 @@ import br.com.newstation.dominio.TIPO_CLIENTE;
 public class LoginBean {
 
 	private Cliente cliente = new Cliente();
-	private Integer id;
+	private static Integer id;
 	
-	private ICommand cmd;
+	@Inject
+	ClienteDao dao;
 	
 	@Transactional
 	public String login() {
-		cmd = new LoginCommand();
 		
-		this.cliente = (Cliente) cmd.executar(cliente).getEntidade();
+		this.cliente = dao.login(cliente);
+		
+		this.id = cliente.getId();
 		
 		if(this.cliente.getTipoCliente().equals(TIPO_CLIENTE.Admin)) {
 			
 			return "/admin/admin?faces-redirect=true";
-			
 		}else {
 			
 			return "/cliente/perfil?faces-redirect=true";
-			
 		}
 	}
+	
+	public void carregar() {
+		
+		this.cliente.setId(getId());
+		
+		this.cliente = dao.visualizar(cliente);
+		
+		System.out.println("- Carregando o cara na tela");
+	}
+
 	
 	public Cliente getCliente() {
 		return cliente;
