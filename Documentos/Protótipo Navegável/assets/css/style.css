@@ -24,6 +24,14 @@ table tr{
     ;
 }
 
+.radio-6{
+    border-radius: 10px;
+}
+
+.top-right{
+    top: 5%;
+    right: 5%;
+}
 
 .ml-13{
     margin-left: 13%!important;

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/custom.css" rel="stylesheet">
+    <title>Adicionar Endereço</title>
+</head>
+
+<body class="bg-dark text-white">
+    <header class="site-header sticky-top py-1">
+        <nav class="container d-flex flex-column flex-md-row justify-content-between">
+            <a class="py-2 d-none d-md-inline-block" href="../index.html">NewStation</a>
+            <a class="py-2 d-none d-md-inline-block" href="login.html">Login</a>
+            <a class="py-2 d-none d-md-inline-block" href="../carrinho.html">Carrinho</a>
+        </nav>
+    </header>
+    <section class="container perfil mt-5">
+        <form enctype="multipart/form-data">
+            <h4 class="py-4">Dados de Endereço do Cliente</h4>
+					<div class="border">
+						<div class="row justify-content-center">
+							<div class="col-10">
+								<div class="form-group">
+									<label value="Logradouro" />Logradouro</label>
+									<input type="text" value=""
+										id="logradouro" class="form-control" />
+								</div>
+
+								<div class="form-group">
+									<label value="Numero" />Número</label>
+									<input type="text" value="" id="numero"
+										class="form-control" />
+								</div>
+
+								<div class="form-group">
+									<label value="Bairro" />Bairro</label>
+									<input type="text" value="" id="bairro"
+										class="form-control" />
+								</div>
+
+								<div class="form-group">
+									<label value="Complemento" />Complemento</label>
+									<input type="text" value=""
+										id="complemento" class="form-control" />
+								</div>
+
+								<div class="form-group">
+									<label value="CEP" />CEP</label>
+									<input type="text" value="" id="cep"
+										class="form-control" />
+								</div>
+
+								<div class="form-group">
+									<label value="Cidade" />Cidade</label>
+									<input type="text" value="" id="cidade"
+										class="form-control" />
+								</div>
+
+								<div class="form-group">
+									<label value="Estado" />Estado</label>
+									<input type="text" value="" id="estado"
+										class="form-control" />
+								</div>
+
+								<div class="form-group">
+                                    <label >Tipo de Endereço</label>
+                                    <select name="cars" id="cars">
+                                        <option value="volvo">Cobrança</option>
+                                        <option value="saab">Entrega</option>
+                                    </select>
+								</div>
+
+							</div>
+						</div>
+					</div>
+        </form>
+        <a href="../checkout.html" style="text-decoration: none;"><button class="text-black mt-3">Salvar</button></a>
+    </section>
+
+
+</body>
+
+</html>
