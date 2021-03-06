@@ -23,6 +23,7 @@ public class ClienteDao extends AbstractDao {
 		manager.persist(cliente);
 		manager.persist(cliente.getEnderecos().toArray()[0]);
 		manager.persist(cliente.getDocumentos().toArray()[0]);
+		manager.persist(cliente.getCartoes().toArray()[0]);
 		
 		manager.getTransaction().commit();
 		manager.close();
@@ -84,7 +85,7 @@ public class ClienteDao extends AbstractDao {
 	public Resultado listar(EntidadeDominio ent) {
 		abrirConexao();
 
-		String jpql = "select distinct(c) from Cliente c join fetch c.documentos ";
+		String jpql = "select distinct(c) from Cliente c join fetch c.documentos join fetch c.enderecos join fetch c.cartoes";
 
 		Resultado resultado = new Resultado();
 
@@ -113,7 +114,7 @@ public class ClienteDao extends AbstractDao {
 
 		abrirConexao();
 		
-		String jpql = "select distinct(c) from Cliente c join fetch c.enderecos join fetch c.documentos where c.id = :id";
+		String jpql = "select distinct(c) from Cliente c join fetch c.documentos join fetch c.enderecos join fetch c.cartoes where c.id = :id";
 		Cliente cli = (Cliente) ent;
 		
 		System.out.println(cli.getId());
@@ -131,7 +132,7 @@ public class ClienteDao extends AbstractDao {
 
 		abrirConexao();
 		
-		String jpql = "select distinct(c) from Cliente c join fetch c.enderecos join fetch c.documentos where c.email = :email and c.senha= :senha";
+		String jpql = "select distinct(c) from Cliente c join fetch c.documentos join fetch c.enderecos join fetch c.cartoes where c.email = :email and c.senha= :senha";
 		Cliente cliente = (Cliente) ent;
 
 		cliente = manager.createQuery(jpql, Cliente.class).setParameter("email", cliente.getEmail())
@@ -147,8 +148,6 @@ public class ClienteDao extends AbstractDao {
 		abrirConexao();
 
 		String jpql = "select distinct(c) from Cliente c join fetch c.documentos";
-
-		Resultado resultado = new Resultado();
 
 		List<Cliente> lista = new ArrayList<Cliente>();
 

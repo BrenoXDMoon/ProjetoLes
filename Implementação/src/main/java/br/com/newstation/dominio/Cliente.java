@@ -50,6 +50,9 @@ public class Cliente extends EntidadeDominio{
 	@OneToMany(fetch = FetchType.EAGER)
 	private Set<Documento> documentos = new HashSet<Documento>();
 	
+	@OneToMany(fetch = FetchType.EAGER)
+	private Set<CartaoCredito> cartoes = new HashSet<CartaoCredito>();
+	
 	public String getNome() {
 		return nome;
 	}
@@ -120,5 +123,13 @@ public class Cliente extends EntidadeDominio{
 
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
+	}
+
+	public Set<CartaoCredito> getCartoes() {
+		return cartoes;
+	}
+
+	public void setCartoes(Set<CartaoCredito> cartoes) {
+		this.cartoes = cartoes;
 	}
 }

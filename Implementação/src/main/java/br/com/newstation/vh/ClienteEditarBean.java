@@ -9,7 +9,6 @@ import javax.transaction.Transactional;
 import br.com.newstation.command.EditarCommand;
 import br.com.newstation.daos.ClienteDao;
 import br.com.newstation.dominio.Cliente;
-import br.com.newstation.dominio.Documento;
 import br.com.newstation.dominio.Senha;
 import br.com.newstation.dominio.TIPO_CLIENTE;
 
@@ -37,7 +36,7 @@ public class ClienteEditarBean {
 	@Transactional
 	public String editar() {
 
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 		cliente.setDataNascimento(LocalDate.parse(dataNascimento, formatter));
 		cliente.setSenha(senha);
@@ -47,7 +46,6 @@ public class ClienteEditarBean {
 		cmd.executar(cliente);
 		
 		return "/admin/cliente/lista?faces-redirect=true";
-		//return "/cliente/perfil?faces-redirect=true";
 	}
 
 	public String redir() {

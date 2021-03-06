@@ -1,32 +1,38 @@
 package br.com.newstation.daos;
 
-import br.com.newstation.dominio.EntidadeDominio;
-import br.com.newstation.dominio.Resultado;
+import java.util.List;
 
-public class EnderecoDao extends AbstractDao {
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-	@Override
-	public Resultado salvar(EntidadeDominio ent) {
-		// TODO Auto-generated method stub
-		return null;
+import br.com.newstation.dominio.Endereco;
+
+public class EnderecoDao{
+
+	@PersistenceContext	
+	private EntityManager manager;
+	
+	public void salvar(Endereco doc) {
+		
+		manager.persist(doc);
 	}
 
-	@Override
-	public Resultado editar(EntidadeDominio ent) {
-		// TODO Auto-generated method stub
-		return null;
+	public void editar(Endereco doc) {
+		
+		manager.merge(doc);
+		
 	}
 
-	@Override
-	public Resultado excluir(EntidadeDominio ent) {
-		// TODO Auto-generated method stub
-		return null;
+	public void excluir(Endereco doc) {
+		manager.merge(doc);
+		
 	}
 
-	@Override
-	public Resultado listar(EntidadeDominio ent) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Endereco> listar(Endereco doc) {
+		
+		String jpql = "select d from Endereco d where d.ativo = true";
+		
+		return manager.createQuery(jpql, Endereco.class).getResultList();
 	}
 
 }

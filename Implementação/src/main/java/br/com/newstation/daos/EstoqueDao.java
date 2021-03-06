@@ -14,5 +14,13 @@ public class EstoqueDao {
 	public void salvar(Estoque estoque) {
 		manager.persist(estoque);
 	}
+
+	public void editar(Estoque estoque) {
+		manager.merge(estoque);
+	}
+	
+	public void excluir(Estoque estoque) {
+		manager.remove(estoque);
+	}
 	
 }

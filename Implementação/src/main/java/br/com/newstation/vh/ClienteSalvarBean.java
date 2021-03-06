@@ -10,6 +10,8 @@ import javax.transaction.Transactional;
 
 import br.com.newstation.command.SalvarCommand;
 import br.com.newstation.daos.ClienteDao;
+import br.com.newstation.dominio.BANDEIRA;
+import br.com.newstation.dominio.CartaoCredito;
 import br.com.newstation.dominio.Cidade;
 import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.Documento;
@@ -40,6 +42,8 @@ public class ClienteSalvarBean {
 	
 	private Documento documento = new Documento();
 	
+	private CartaoCredito cartao = new CartaoCredito();
+	
 	private String dataNascimento;
 	
 	private String validade;
@@ -69,6 +73,8 @@ public class ClienteSalvarBean {
 			
 			cliente.getEnderecos().add(endereco);
 			
+			cliente.getCartoes().add(cartao);
+			
 			cliente.setDtCadastro(LocalDate.now());
 
 			cliente.setDataNascimento(LocalDate.parse(dataNascimento,formatter));
@@ -81,7 +87,8 @@ public class ClienteSalvarBean {
 			
 			if(resultado.getMensagem() == null) {
 				
-				
+				LoginBean lb = new LoginBean();
+				lb.setId(this.cliente.getId());
 				
 				return "/cliente/perfil?faces-redirect=true";
 				
@@ -161,6 +168,10 @@ public class ClienteSalvarBean {
 	public TIPO_DOCUMENTO[] getDocumentos() {
 		return TIPO_DOCUMENTO.values();
 	}
+	
+	public BANDEIRA[] getBandeiras() {
+		return BANDEIRA.values();
+	}
 
 	public String getDataNascimento() {
 		return dataNascimento;
@@ -176,5 +187,13 @@ public class ClienteSalvarBean {
 
 	public void setValidade(String validade) {
 		this.validade = validade;
+	}
+
+	public CartaoCredito getCartao() {
+		return cartao;
+	}
+
+	public void setCartao(CartaoCredito cartao) {
+		this.cartao = cartao;
 	}
 }

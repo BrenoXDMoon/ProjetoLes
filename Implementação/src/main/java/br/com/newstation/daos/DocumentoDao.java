@@ -1,34 +1,40 @@
 package br.com.newstation.daos;
 
-import br.com.newstation.dominio.EntidadeDominio;
-import br.com.newstation.dominio.Resultado;
+import java.util.List;
 
-public class DocumentoDao  extends AbstractDao{
+import javax.ejb.Stateful;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
+import br.com.newstation.dominio.Documento;
+
+@Stateful
+public class DocumentoDao{
+
+	@PersistenceContext
+	private EntityManager manager;
 	
-	
-	@Override
-	public Resultado salvar(EntidadeDominio ent) {
-		// TODO Auto-generated method stub
-		return null;
+	public void salvar(Documento doc) {
+		
+		manager.persist(doc);
 	}
 
-	@Override
-	public Resultado editar(EntidadeDominio ent) {
-		// TODO Auto-generated method stub
-		return null;
+	public void editar(Documento doc) {
+		
+		manager.merge(doc);
+		
 	}
 
-	@Override
-	public Resultado excluir(EntidadeDominio ent) {
-		// TODO Auto-generated method stub
-		return null;
+	public void excluir(Documento doc) {
+		manager.merge(doc);
+		
 	}
 
-	@Override
-	public Resultado listar(EntidadeDominio ent) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Documento> listar(Documento doc) {
+		
+		String jpql = "select d from Documento d where d.ativo = true";
+		
+		return manager.createQuery(jpql, Documento.class).getResultList();
 	}
 
 }

@@ -1,32 +1,38 @@
 package br.com.newstation.daos;
 
-import br.com.newstation.dominio.EntidadeDominio;
-import br.com.newstation.dominio.Resultado;
+import java.util.List;
 
-public class CartaoCreditoDao extends AbstractDao {
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-	@Override
-	public Resultado salvar(EntidadeDominio ent) {
-		// TODO Auto-generated method stub
-		return null;
+import br.com.newstation.dominio.CartaoCredito;
+
+public class CartaoCreditoDao{
+
+	@PersistenceContext
+	private EntityManager manager;
+	
+	public void salvar(CartaoCredito doc) {
+		
+		manager.persist(doc);
 	}
 
-	@Override
-	public Resultado editar(EntidadeDominio ent) {
-		// TODO Auto-generated method stub
-		return null;
+	public void editar(CartaoCredito doc) {
+		
+		manager.merge(doc);
+		
 	}
 
-	@Override
-	public Resultado excluir(EntidadeDominio ent) {
-		// TODO Auto-generated method stub
-		return null;
+	public void excluir(CartaoCredito doc) {
+		manager.merge(doc);
+		
 	}
 
-	@Override
-	public Resultado listar(EntidadeDominio ent) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<CartaoCredito> listar(CartaoCredito doc) {
+		
+		String jpql = "select d from CartaoCredito d where d.ativo = true";
+		
+		return manager.createQuery(jpql, CartaoCredito.class).getResultList();
 	}
 
 }
