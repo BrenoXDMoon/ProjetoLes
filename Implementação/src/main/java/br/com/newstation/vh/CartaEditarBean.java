@@ -26,7 +26,6 @@ public class CartaEditarBean {
 
 	@Transactional
 	public String salvar() {
-//		System.out.println("Quantidade"+carta.getEstoque().getQuantidade());
 		
 		carta.setEstoque(daoE.update(estoque));
 

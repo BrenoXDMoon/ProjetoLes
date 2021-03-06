@@ -31,13 +31,13 @@
 	
 
 	<div class="row justify-content-center">
-		<div class="col-10">
+		<div class="col-10 text-center">
 		<h2>Lista de Cartas</h2>
 		
 			<h:button styleClass = "my-3" value="Cadastrar Cartas" outcome="form" />
 
 			<h:dataTable var="carta" value="#{adminListaCartaBean.cartas}"
-				class="table table-bordered table-striped table-hover lista-carta">
+				class="table table-bordered table-striped table-hover lista-carta ">
 				<h:column >
 					<f:facet name="header">Nome</f:facet>
 					<a class="decoration-none font-weight-bold text-white" href="#{request.contextPath}/admin/cartas/alterar.xhtml?id=#{carta.id}">#{carta.nome}</a>        	 
@@ -58,9 +58,10 @@
 					<f:facet name="header">Quantidade</f:facet>
 		         	#{carta.estoque.quantidade}
 		        </h:column>
-				<h:column>
+				<h:column styleClass="w-min">
+					<f:facet name="header">Imagem</f:facet>
 					<img src="#{request.contextPath}/file/#{carta.imagemPath}"
-						width="30%" alt="#{carta.nome}" />
+						width="40%" alt="#{carta.nome}" />
 				</h:column>
 			</h:dataTable>
 		</div>

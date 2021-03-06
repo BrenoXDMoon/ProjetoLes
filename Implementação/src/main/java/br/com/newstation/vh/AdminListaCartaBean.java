@@ -22,6 +22,7 @@ public class AdminListaCartaBean {
 		return cartas;
 
 	}
+	
 
 
 }

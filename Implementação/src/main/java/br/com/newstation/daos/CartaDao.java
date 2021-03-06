@@ -30,22 +30,6 @@ public class CartaDao{
 	}
 	
 	
-	public void update(Carta carta) {
-		Carta cartaFind = manager.getReference(Carta.class, carta.getId());
-		cartaFind.setNome(carta.getNome());
-		cartaFind.setDescricao(carta.getDescricao());
-		cartaFind.setPreco(carta.getPreco());
-		cartaFind.setRaridade(carta.getRaridade());
-		cartaFind.setEstoque(carta.getEstoque());
-
-		if (carta.getImagemPath() != null) {
-			cartaFind.setImagemPath(carta.getImagemPath());
-		}
-
-//		manager.remove(manager.contains(carta) ? carta : manager.merge(carta));distinct(C)
-
-	}
-	
 	public List<Carta> listar() {
 		
 		String jpql = "select C from Carta C where C.ativo=true";

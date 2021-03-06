@@ -12,6 +12,7 @@ import br.com.newstation.daos.CartaDao;
 import br.com.newstation.daos.EstoqueDao;
 import br.com.newstation.dominio.Carta;
 import br.com.newstation.dominio.Estoque;
+import br.com.newstation.dominio.RARIDADE;
 import br.com.newstation.infra.FileSaver;
 
 @Model
@@ -93,6 +94,10 @@ public class CartaSalvarBean {
 
 	public void setEstoque(Estoque estoque) {
 		this.estoque = estoque;
+	}
+	
+	public RARIDADE[] getRaridade() {
+		return RARIDADE.values();
 	}
 
 }

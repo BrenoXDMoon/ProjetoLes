@@ -27,3 +27,7 @@ table tr{
 .site-header a{
     color: #1e7e34 !important
 }
+
+.w-min{
+	width: min-content;
+}

@@ -46,10 +46,10 @@
 						<h:message for='preco' />
 					</div>
 					<div class="form-group">
-						<h:outputLabel value="Raridade" />
-						<h:inputText value="#{cartaSalvarBean.carta.raridade}"
-							id="raridade" styleClass="form-control" />
-						<h:message for="raridade" />
+						<h:outputLabel value="Raridade" /><br />
+						<h:selectOneListbox value="#{cartaSalvarBean.carta.raridade}" styleClass="form-select">
+	                        	<f:selectItems value="#{cartaSalvarBean.raridade}" var="raridade" itemLabel="#{raridade}" itemValue="#{raridade}"/>
+                        </h:selectOneListbox>	
 					</div>
 					<div class="form-group">
 						<h:outputLabel value="Quantidade" />

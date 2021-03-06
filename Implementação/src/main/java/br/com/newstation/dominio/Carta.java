@@ -3,6 +3,8 @@ package br.com.newstation.dominio;
 import java.math.BigDecimal;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,7 +19,10 @@ public class Carta extends EntidadeDominio {
 
 	private String nome;
 	private String descricao;
-	private String raridade;
+	
+	@Enumerated(EnumType.STRING)
+	private RARIDADE raridade;
+	
 	private BigDecimal preco;
 	private boolean ativo;
 
@@ -50,11 +55,11 @@ public class Carta extends EntidadeDominio {
 		this.descricao = descricao;
 	}
 
-	public String getRaridade() {
+	public RARIDADE getRaridade() {
 		return raridade;
 	}
 
-	public void setRaridade(String raridade) {
+	public void setRaridade(RARIDADE raridade) {
 		this.raridade = raridade;
 	}
 
