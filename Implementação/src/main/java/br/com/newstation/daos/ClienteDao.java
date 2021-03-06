@@ -8,6 +8,8 @@ import javax.ejb.Stateful;
 import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.EntidadeDominio;
 import br.com.newstation.dominio.Resultado;
+import br.com.newstation.dominio.Senha;
+import br.com.newstation.seguranca.CriptografaSenha;
 
 @Stateful
 public class ClienteDao extends AbstractDao {
@@ -134,7 +136,12 @@ public class ClienteDao extends AbstractDao {
 		
 		String jpql = "select distinct(c) from Cliente c join fetch c.documentos join fetch c.enderecos join fetch c.cartoes where c.email = :email and c.senha= :senha";
 		Cliente cliente = (Cliente) ent;
-
+		
+		CriptografaSenha crp = new CriptografaSenha();
+		Senha senha = new Senha();
+		senha.setSenha(crp.criptoSenha(cliente.getSenha().getSenha()));
+		cliente.setSenha(senha);
+				
 		cliente = manager.createQuery(jpql, Cliente.class).setParameter("email", cliente.getEmail())
 				.setParameter("senha", cliente.getSenha()).getSingleResult();
 

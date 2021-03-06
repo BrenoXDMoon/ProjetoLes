@@ -11,6 +11,7 @@ import br.com.newstation.daos.ClienteDao;
 import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.Senha;
 import br.com.newstation.dominio.TIPO_CLIENTE;
+import br.com.newstation.seguranca.CriptografaSenha;
 
 @Model
 public class ClienteEditarBean {
@@ -18,6 +19,8 @@ public class ClienteEditarBean {
 	private Senha senha = new Senha();
 
 	private static Cliente cliente = new Cliente();
+	
+	CriptografaSenha crp = new CriptografaSenha();
 	
 	private Integer id;
 
@@ -28,18 +31,26 @@ public class ClienteEditarBean {
 		ClienteDao dao = new ClienteDao();
 		cliente =  dao.visualizar(cliente);
 		
-		dataNascimento = cliente.getDataNascimento().toString();
+		dataNascimento = cliente.getDataNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")).toString();
 		
-		senha = cliente.getSenha();
+		//senha = cliente.getSenha();
 	}
 	
 	@Transactional
 	public String editar() {
 
+		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 		cliente.setDataNascimento(LocalDate.parse(dataNascimento, formatter));
-		cliente.setSenha(senha);
+		
+		
+		if (senha != null) {
+			
+			senha.setSenha(crp.criptoSenha(senha.getSenha()));
+			cliente.setSenha(senha);
+			
+		}
 
 
 		EditarCommand cmd = new EditarCommand();

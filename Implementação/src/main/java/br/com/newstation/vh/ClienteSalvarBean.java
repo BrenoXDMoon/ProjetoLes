@@ -22,6 +22,7 @@ import br.com.newstation.dominio.Senha;
 import br.com.newstation.dominio.TIPO_CLIENTE;
 import br.com.newstation.dominio.TIPO_DOCUMENTO;
 import br.com.newstation.dominio.TIPO_ENDERECO;
+import br.com.newstation.seguranca.CriptografaSenha;
 
 
 @Model
@@ -48,6 +49,7 @@ public class ClienteSalvarBean {
 	
 	private String validade;
 	
+	CriptografaSenha crp = new CriptografaSenha();
 	
 	@Transactional
 	public String salvar() throws ParseException{
@@ -56,6 +58,8 @@ public class ClienteSalvarBean {
 			
 			
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			
+			senha.setSenha(crp.criptoSenha(senha.getSenha()));
 			
 			cliente.setSenha(senha);
 			
