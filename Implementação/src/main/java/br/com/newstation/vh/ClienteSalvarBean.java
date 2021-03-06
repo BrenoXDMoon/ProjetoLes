@@ -5,11 +5,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import javax.enterprise.inject.Model;
-import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 import br.com.newstation.command.SalvarCommand;
-import br.com.newstation.daos.ClienteDao;
 import br.com.newstation.dominio.BANDEIRA;
 import br.com.newstation.dominio.CartaoCredito;
 import br.com.newstation.dominio.Cidade;
@@ -26,9 +24,7 @@ import br.com.newstation.dominio.TIPO_ENDERECO;
 
 @Model
 public class ClienteSalvarBean {
-	
-	@Inject
-	private ClienteDao dao;
+
 	
 	private Cliente cliente = new Cliente();
 	
@@ -143,14 +139,6 @@ public class ClienteSalvarBean {
 
 	public void setEstado(Estado estado) {
 		this.estado = estado;
-	}
-
-	public ClienteDao getDao() {
-		return dao;
-	}
-
-	public void setDao(ClienteDao dao) {
-		this.dao = dao;
 	}
 	
 	public Documento getDocumento() {
