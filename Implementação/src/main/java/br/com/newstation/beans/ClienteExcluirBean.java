@@ -1,4 +1,4 @@
-package br.com.newstation.vh;
+package br.com.newstation.beans;
 
 import javax.enterprise.inject.Model;
 

@@ -1,4 +1,4 @@
-package br.com.newstation.vh;
+package br.com.newstation.beans;
 
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -10,13 +10,10 @@ import javax.transaction.Transactional;
 import br.com.newstation.command.SalvarCommand;
 import br.com.newstation.dominio.BANDEIRA;
 import br.com.newstation.dominio.CartaoCredito;
-import br.com.newstation.dominio.Cidade;
 import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.Documento;
 import br.com.newstation.dominio.Endereco;
-import br.com.newstation.dominio.Estado;
 import br.com.newstation.dominio.Resultado;
-import br.com.newstation.dominio.Senha;
 import br.com.newstation.dominio.TIPO_CLIENTE;
 import br.com.newstation.dominio.TIPO_DOCUMENTO;
 import br.com.newstation.dominio.TIPO_ENDERECO;
@@ -25,17 +22,10 @@ import br.com.newstation.seguranca.CriptografaSenha;
 
 @Model
 public class ClienteSalvarBean {
-
 	
 	private Cliente cliente = new Cliente();
 	
 	private Endereco endereco = new Endereco();
-	
-	private Senha senha = new Senha();
-	
-	private Cidade cidade = new Cidade();
-	
-	private Estado estado = new Estado();
 	
 	private Documento documento = new Documento();
 	
@@ -50,20 +40,13 @@ public class ClienteSalvarBean {
 	@Transactional
 	public String salvar() throws ParseException{
 		
-		if(senha.getConfirmaSenha().equals(senha.getSenha())) {
-			
+		if(cliente.getSenha().getConfirmaSenha().equals(cliente.getSenha().getSenha())) {
 			
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 			
-			senha.setSenha(crp.criptoSenha(senha.getSenha()));
-			
-			cliente.setSenha(senha);
+			cliente.getSenha().setSenha(crp.criptoSenha(cliente.getSenha().getSenha()));
 			
 			cliente.setAtivo(true);
-			
-			cidade.setEstado(estado);
-			
-			endereco.setCidade(cidade);
 
 			cliente.setTipoCliente(TIPO_CLIENTE.Basico);
 			
@@ -118,31 +101,6 @@ public class ClienteSalvarBean {
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
-	}
-
-	
-	public Senha getSenha() {
-		return senha;
-	}
-
-	public void setSenha(Senha senha) {
-		this.senha = senha;
-	}
-	
-	public Cidade getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(Cidade cidade) {
-		this.cidade = cidade;
-	}
-
-	public Estado getEstado() {
-		return estado;
-	}
-
-	public void setEstado(Estado estado) {
-		this.estado = estado;
 	}
 	
 	public Documento getDocumento() {

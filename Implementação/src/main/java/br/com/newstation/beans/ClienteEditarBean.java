@@ -1,4 +1,4 @@
-package br.com.newstation.vh;
+package br.com.newstation.beans;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -43,7 +43,6 @@ public class ClienteEditarBean {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 		cliente.setDataNascimento(LocalDate.parse(dataNascimento, formatter));
-		
 		
 		if (senha != null) {
 			

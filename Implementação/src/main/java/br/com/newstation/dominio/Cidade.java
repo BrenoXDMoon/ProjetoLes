@@ -9,7 +9,7 @@ public class Cidade extends EntidadeDominio{
 	private String cidade;
 	
 	@Embedded
-	private Estado estado;
+	private Estado estado = new Estado();
 
 	public Estado getEstado() {
 		return estado;

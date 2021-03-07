@@ -16,7 +16,7 @@ public class Endereco {
 	private Integer Id;
 	
 	@Embedded
-	private Cidade cidade;
+	private Cidade cidade = new Cidade();
 	private String logradouro;
 	private String numero;
 	private String cep;

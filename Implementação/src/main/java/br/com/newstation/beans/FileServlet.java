@@ -1,4 +1,4 @@
-package br.com.newstation.vh;
+package br.com.newstation.beans;
 
 import java.io.IOException;
 import java.net.FileNameMap;

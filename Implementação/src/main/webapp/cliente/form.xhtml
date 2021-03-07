@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="#{request.contextPath}/assets/css/style.css" rel="stylesheet"/>
+    <link href="#{request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="#{request.contextPath}/assets/css/custom.css" rel="stylesheet"/>
+    <title>Cadastro</title>
+</head>
+
+<body class="bg-dark text-white p-5">
+    <header class="site-header py-1">
+        <nav class="container d-flex flex-column flex-md-row justify-content-between">
+            <a class="py-2 d-none d-md-inline-block" href="index.xhtml">NewStation</a>
+            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/admin/admin.xhtml">Admin</a>
+            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
+            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/addCliente.xhtml">Cadastre-se</a>
+            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/carrinho.xhtml">Carrinho</a>
+        </nav>
+    </header>
+    <div class="container perfil mt-5">
+        <h:form enctype="multipart/form-data">
+			<h4 class="py-4">Dados de Cliente</h4>
+			<div class="border">
+				<div class="row justify-content-center">
+					<div class="col-10">
+						<div class="form-group">
+							<h:outputLabel value="Nome Completo"/> <br />
+							<h:inputText value="#{clienteSalvarBean.cliente.nome}" required="true" id="nome" class="form-control"/>
+						</div>
+						<div class="form-group">
+							<h:outputLabel value="Documento"/> <br />
+							<h:selectOneListbox value="#{clienteSalvarBean.documento.tipoDocumento}" styleClass="form-select">
+	                        	<f:selectItems value="#{clienteSalvarBean.documentos}" var="doc" itemLabel="#{doc}" itemValue="#{doc}"/>
+	                        </h:selectOneListbox>
+	                        
+	                        <br />
+	                        
+	                        <h:outputLabel value="Código"/> <br />
+	                        <h:inputText value="#{clienteSalvarBean.documento.codigo}" class="form-control"/>
+	                         <h:outputLabel value="Validade"/> <br />
+	                        <h:inputText value="#{clienteSalvarBean.validade}" class="form-control"/>
+						</div>
+
+						<div class="form-group">
+							<h:outputLabel value="Data de Nascimento"/> <br />
+							<h:inputText value="#{clienteSalvarBean.dataNascimento}" required="true" id="dataNascimento" class="form-control"/>
+							
+						</div>
+
+						<div class="form-group">
+							<h:outputLabel value="E-mail"/> <br />
+							<h:inputText value="#{clienteSalvarBean.cliente.email}" required="true" id="email" class="form-control">
+								<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+							</h:inputText>
+						</div>
+
+						<div class="form-group">
+							<h:outputLabel value="Senha"/> <br />
+							<h:inputSecret value="#{clienteSalvarBean.cliente.senha.senha}" required="true" id="senha" class="form-control"/>
+							 
+						</div>
+						<div class="form-group">
+							<h:outputLabel value="Confirmar Senha"/> <br />
+							<h:inputSecret value="#{clienteSalvarBean.cliente.senha.confirmaSenha}" required="true" id="confirmaSenha" class="form-control"/>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<h4 class="py-4">Dados de Endereço do Cliente</h4>
+			<div class="border">
+				<div class="row justify-content-center">
+					<div class="col-10">
+						<div class="form-group">
+							<h:outputLabel value="Logradouro"/> <br />
+							<h:inputText value="#{clienteSalvarBean.endereco.logradouro}" required="true" id="logradouro" class="form-control"/>
+						</div>
+
+						<div class="form-group">
+							<h:outputLabel value="Número"/> <br />
+							<h:inputText value="#{clienteSalvarBean.endereco.numero}" required="true" id="numero" class="form-control"/>
+						</div>
+
+						<div class="form-group">
+							<h:outputLabel value="Bairro"/> <br />
+							<h:inputText value="#{clienteSalvarBean.endereco.bairro}" required="true" id="bairro" class="form-control"/>
+						</div>
+
+						<div class="form-group">
+							<h:outputLabel value="Complemento"/> <br />
+							<h:inputText value="#{clienteSalvarBean.endereco.complemento}"  id="complemento" class="form-control"/>
+						</div>
+
+						<div class="form-group">
+							<h:outputLabel value="CEP"/> <br />
+							<h:inputText value="#{clienteSalvarBean.endereco.cep}" required="true" id="cep" class="form-control"/>
+						</div>
+
+						<div class="form-group">
+							<h:outputLabel value="Cidade"/> <br />
+							<h:inputText value="#{clienteSalvarBean.endereco.cidade.cidade}" required="true" id="cidade" class="form-control"/>
+						</div>
+
+						<div class="form-group">
+							<h:outputLabel value="Estado"/> <br />
+							<h:inputText value="#{clienteSalvarBean.endereco.cidade.estado.estado}" required="true" id="estado" class="form-control"/>
+						</div>
+
+						<div class="form-group">
+	                        <h:outputLabel value="Tipo de Endereço"/> <br />
+	                        <h:selectOneListbox value="#{clienteSalvarBean.endereco.tipoEndereco}" class="form-select">
+	                        	<f:selectItems value="#{clienteSalvarBean.tipos}" var="tipo" itemLabel="#{tipo}" itemValue="#{tipo}"/>
+	                        </h:selectOneListbox>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			
+			<h4 class="py-4">Dados de Endereço do Cartão de Crédito</h4>
+			<div class="border">
+				<div class="row justify-content-center">
+					<div class="col-10">
+						<div class="form-group">
+							<h:outputLabel value="Número do Cartão"/> <br />
+							<h:inputText value="#{clienteSalvarBean.cartao.numeroCartao}" required="true" id="numeroCartao" class="form-control"/>
+						</div>
+						
+						<div class="form-group">
+							<h:outputLabel value="Validade"/> <br />
+							<h:inputText value="#{clienteSalvarBean.cartao.validade}" required="true" id="valCard" class="form-control"/>
+						</div>
+						
+						<div class="form-group">
+							<h:outputLabel value="Código de Segurança"/> <br />
+							<h:inputText value="#{clienteSalvarBean.cartao.codigoSeguranca}" required="true" id="codigoSec" class="form-control"/>
+						</div>
+						
+						<div class="form-group">
+							<h:outputLabel value="Nome Impresso"/> <br />
+							<h:inputText value="#{clienteSalvarBean.cartao.nomeImpresso}" required="true" id="nomeImpresso" class="form-control" maxlength="3"/>
+						</div>
+
+						<div class="form-group">
+	                        <h:outputLabel value="Tipo de Endereço"/> <br />
+	                        <h:selectOneListbox value="#{clienteSalvarBean.cartao.bandeira}" class="form-select">
+	                        	<f:selectItems value="#{clienteSalvarBean.bandeiras}" var="band" itemLabel="#{band}" itemValue="#{band}"/>
+	                        </h:selectOneListbox>
+						</div>
+					</div>
+				</div>
+			</div>
+
+        	<h:commandButton class="text-black" type="submit" action="#{clienteSalvarBean.salvar}" styleClass="btn btn-success mt-5" value="Cadastrar" />				
+   		</h:form>
+   	</div>
+</body>
+</html>
