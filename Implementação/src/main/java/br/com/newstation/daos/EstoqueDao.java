@@ -23,4 +23,9 @@ public class EstoqueDao {
 		manager.remove(estoque);
 	}
 	
+	public Estoque update(Estoque estoque) {
+		Estoque estoqueFind = manager.getReference(Estoque.class, estoque.getId());
+		estoqueFind.setQuantidade(estoque.getQuantidade());
+		return estoqueFind;
+	}
 }

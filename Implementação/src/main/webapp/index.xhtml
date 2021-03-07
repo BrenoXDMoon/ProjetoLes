@@ -35,45 +35,27 @@
         </nav>
     </header>
     <section class="container index mt-5">
-        <div class="row justify-content-center" style="height: 550px;">
-            <div class="col-4">
-                <a href="carta-detalhe.xhtml"> <img height="30%" src="assets/img/cartas/alecrim.jpg" alt="aromage alecrim"/></a>
-                <p>Nome</p><span>Aromage Rosemary</span>
-                <p>Preço</p><span>R$10,00</span>
-            </div>
-            <div class="col-4">
-                <a href="carta-detalhe.xhtml"> <img height="30%" src="assets/img/cartas/blue-eyes.png"
-                        alt="blue-eyes"/></a>
-                <p>Nome</p><span>blue-eyes</span>
-                <p>Preço</p><span>R$10,00</span>
-            </div>
-            <div class="col-4">
-                <a href="carta-detalhe.xhtml"> <img height="30%" src="assets/img/cartas/alecrim-sincro.png"
-                        alt="alecrim-sincro"/></a>
-                <p>Nome</p><span>Aromsaseraphy Rosemary</span>
-                <p>Preço</p><span>R$10,00</span>
-            </div>
-        </div>
-
-        <div class="row justify-content-center overflow-hidden" style="height: 550px;">
-            <div class="col-4">
-                <a href="carta-detalhe.xhtml">
-                    <img height="40%" src="assets/img/cartas/AromageJasmine.webp" alt="AromageJasmine"/></a>
-                <p>Nome</p><span>Aromágico Jamin</span>
-                <p>Preço</p><span>R$10,00</span>
-            </div>
-            <div class="col-4">
-                <a href="carta-detalhe.xhtml"> <img height="40%" src="assets/img/cartas/BusterBlader.webp"
-                        alt="BusterBlader"/></a>
-                <p>Nome</p><span>Buster Blader</span>
-                <p>Preço</p><span>R$10,00</span>
-            </div>
-            <div class="col-4">
-                <a href="carta-detalhe.xhtml"> <img height="40%" src="assets/img/cartas/Manjerona-Doce.webp"
-                        alt="Manjerona-Doce"/></a>
-                <p>Nome</p><span>Aromsaseraphy Marjoram</span>
-                <p>Preço</p><span>R$10,00</span>
-            </div>
+        <div class="row justify-content-center">
+	        <div class="col-10 text-center">
+	        	<div class="row justify-content-left">
+	        		<ui:repeat value="#{adminListaCartaBean.cartas}" var="carta">
+			            <div class="col-4">
+		 					 <a href="#{request.contextPath}/carta-detalhe.xhtml?id=#{carta.id}"	title="#{carta.nome}">
+									<img class="carta-imagem"
+									src="#{request.contextPath}/file/#{carta.imagemPath}"
+									alt="#{carta.nome}" title="#{carta.nome}I" 
+									width="40%"/>
+								</a>
+							<br/>
+							<span>Nome</span>
+							<p>#{carta.nome}</p>
+							<span>Preço</span>
+							<p>#{carta.preco}</p>
+			            </div>
+			        </ui:repeat>
+	        	</div>
+	        </div>
+		        
         </div>
     </section>
 </body>
