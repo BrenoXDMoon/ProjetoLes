@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.Endereco;
 
 public class EnderecoDao{
@@ -12,23 +13,23 @@ public class EnderecoDao{
 	@PersistenceContext	
 	private EntityManager manager;
 	
-	public void salvar(Endereco doc) {
+	public void salvar(Cliente cli) {
 		
-		manager.persist(doc);
+		manager.persist(cli.getEnderecos().toArray()[0]);
 	}
 
-	public void editar(Endereco doc) {
+	public void editar(Cliente cli) {
 		
-		manager.merge(doc);
-		
-	}
-
-	public void excluir(Endereco doc) {
-		manager.merge(doc);
+		manager.merge(cli.getEnderecos().toArray()[0]);
 		
 	}
 
-	public List<Endereco> listar(Endereco doc) {
+	public void excluir(Cliente cli) {
+		manager.merge(cli.getEnderecos().toArray()[0]);
+		
+	}
+
+	public List<Endereco> listar(Cliente cli) {
 		
 		String jpql = "select d from Endereco d where d.ativo = true";
 		
