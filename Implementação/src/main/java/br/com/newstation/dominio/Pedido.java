@@ -8,27 +8,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 
 @Entity
 public class Pedido{
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
-
-	private Cliente cliente;
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Integer id;
 	
-	protected String dataAtualizacao;
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	private Cliente cliente;
 	
-	protected boolean ativo;
-	
+	@Lob
 	private String itens;
 	
+	protected String dataAtualizacao;
+	protected boolean ativo;
 	private String uuid;
-	
 	private BigDecimal total;
 	
 	@PrePersist

@@ -17,8 +17,7 @@ public class EnderecoDao{
 	
 	public void salvar(Cliente cli) {
 		
-		
-		manager.persist(cli.getEnderecos().toArray()[1]);
+		manager.persist(cli.getEnderecos().toArray()[cli.getEnderecos().size() - 1]);
 		manager.merge(cli);
 		
 	}

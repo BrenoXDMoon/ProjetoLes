@@ -52,14 +52,15 @@ public class LoginBean {
 			
 			System.out.println("- ENTROU");
 			
-			cardDao.salvar(card);
+			this.cliente.setId(getId());
+			this.cliente = dao.visualizar(cliente);
+			
+			cardDao.salvar(this.cliente);
 			
 			return "/cliente/perfil?faces-redirect=true";
-			
 		}catch (Exception e) {
 			
 			return "/cliente/endereco/form?faces-redirect=true";
-			
 		}
 	}
 	
@@ -88,7 +89,10 @@ public class LoginBean {
 			
 			System.out.println("- ENTROU");
 			
-			docDao.salvar(doc);
+			this.cliente.setId(getId());
+			this.cliente = dao.visualizar(cliente);
+			
+			docDao.salvar(this.cliente);
 			
 			return "/cliente/perfil?faces-redirect=true";
 			
@@ -109,7 +113,6 @@ public class LoginBean {
 			docDao.editar(doc);
 			
 			return "/cliente/perfil?faces-redirect=true";
-			
 		}catch (Exception e) {
 			
 			return "/cliente/endereco/form?faces-redirect=true";

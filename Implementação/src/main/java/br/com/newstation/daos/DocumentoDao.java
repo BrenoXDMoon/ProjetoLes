@@ -6,6 +6,7 @@ import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.Documento;
 
 @Stateful
@@ -14,9 +15,10 @@ public class DocumentoDao{
 	@PersistenceContext
 	private EntityManager manager;
 	
-	public void salvar(Documento doc) {
+	public void salvar(Cliente cliente) {
 		
-		manager.persist(doc);
+		manager.persist(cliente.getDocumentos().toArray()[cliente.getDocumentos().size() - 1]);
+		manager.merge(cliente);
 	}
 
 	public void editar(Documento doc) {
