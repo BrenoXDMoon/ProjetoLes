@@ -122,7 +122,10 @@ public class LoginBean {
 		
 		try {
 			
+			this.cliente.setId(getId());
+			this.cliente = dao.visualizar(cliente);
 			this.cliente.getEnderecos().add(endereco);
+			
 			
 			endDao.salvar(cliente);
 			

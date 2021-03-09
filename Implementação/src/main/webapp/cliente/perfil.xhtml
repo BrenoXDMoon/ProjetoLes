@@ -90,7 +90,7 @@
 				
 				
 
-				<h2 class='text-white'>Endereços</h2> <a href="endereco/form.xhtml" class="btn btn-success my-3">Adicionar Endereco</a>
+				<h2 class='text-white'>Endereços</h2> <a href="endereco/form.xhtml?id=#{loginBean.id}" class="btn btn-success my-3">Adicionar Endereco</a>
 				<h:dataTable var="end" value="#{loginBean.cliente.enderecos}"
 					class="table table-bordered table-striped table-hover">
 					<h:column>

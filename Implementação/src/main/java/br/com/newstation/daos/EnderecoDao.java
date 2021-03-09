@@ -17,8 +17,8 @@ public class EnderecoDao{
 	
 	public void salvar(Cliente cli) {
 		
-//		String jpql = "INSERT INTO Endereco VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 		
+		manager.persist(cli.getEnderecos().toArray()[1]);
 		manager.merge(cli);
 		
 	}
