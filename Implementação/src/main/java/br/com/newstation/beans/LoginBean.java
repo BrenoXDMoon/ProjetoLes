@@ -54,11 +54,11 @@ public class LoginBean {
 			
 			cardDao.salvar(card);
 			
-			return "cliente/perfil?faces-redirect=true";
+			return "/cliente/perfil?faces-redirect=true";
 			
 		}catch (Exception e) {
 			
-			return "cliente/endereco/form?faces-redirect=true";
+			return "/cliente/endereco/form?faces-redirect=true";
 			
 		}
 	}
@@ -72,11 +72,11 @@ public class LoginBean {
 			
 			cardDao.editar(card);
 			
-			return "cliente/perfil?faces-redirect=true";
+			return "/cliente/perfil?faces-redirect=true";
 			
 		}catch (Exception e) {
 			
-			return "cliente/endereco/form?faces-redirect=true";
+			return "/cliente/endereco/form?faces-redirect=true";
 			
 		}
 	}
@@ -90,11 +90,11 @@ public class LoginBean {
 			
 			docDao.salvar(doc);
 			
-			return "cliente/perfil?faces-redirect=true";
+			return "/cliente/perfil?faces-redirect=true";
 			
 		}catch (Exception e) {
 			
-			return "cliente/endereco/form?faces-redirect=true";
+			return "/cliente/endereco/form?faces-redirect=true";
 			
 		}
 	}
@@ -108,11 +108,11 @@ public class LoginBean {
 			
 			docDao.editar(doc);
 			
-			return "cliente/perfil?faces-redirect=true";
+			return "/cliente/perfil?faces-redirect=true";
 			
 		}catch (Exception e) {
 			
-			return "cliente/endereco/form?faces-redirect=true";
+			return "/cliente/endereco/form?faces-redirect=true";
 			
 		}
 	}
@@ -122,19 +122,15 @@ public class LoginBean {
 		
 		try {
 			
-			Cliente cli = this.cliente;
+			this.cliente.getEnderecos().add(endereco);
 			
-			cli.setEnderecos(new HashSet<Endereco>());
+			endDao.salvar(cliente);
 			
-			cli.getEnderecos().add(endereco);
-			
-			endDao.salvar(cli);
-			
-			return "cliente/perfil?faces-redirect=true";
+			return "/cliente/perfil?faces-redirect=true";
 			
 		}catch (Exception e) {
 			
-			return "cliente/endereco/form?faces-redirect=true";
+			return "/cliente/endereco/form?faces-redirect=true";
 			
 		}
 	}
@@ -153,11 +149,11 @@ public class LoginBean {
 			
 			endDao.editar(cli);
 			
-			return "cliente/perfil?faces-redirect=true";
+			return "/cliente/perfil?faces-redirect=true";
 			
 		}catch (Exception e) {
 			
-			return "cliente/endereco/form?faces-redirect=true";
+			return "/cliente/endereco/form?faces-redirect=true";
 			
 		}
 	}

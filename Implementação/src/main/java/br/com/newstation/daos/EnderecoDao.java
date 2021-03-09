@@ -2,12 +2,14 @@ package br.com.newstation.daos;
 
 import java.util.List;
 
+import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.Endereco;
 
+@Stateful
 public class EnderecoDao{
 
 	@PersistenceContext	
@@ -15,7 +17,10 @@ public class EnderecoDao{
 	
 	public void salvar(Cliente cli) {
 		
-		manager.persist(cli.getEnderecos().toArray()[0]);
+//		String jpql = "INSERT INTO Endereco VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+		
+		manager.merge(cli);
+		
 	}
 
 	public void editar(Cliente cli) {
@@ -25,6 +30,7 @@ public class EnderecoDao{
 	}
 
 	public void excluir(Cliente cli) {
+		
 		manager.merge(cli.getEnderecos().toArray()[0]);
 		
 	}
