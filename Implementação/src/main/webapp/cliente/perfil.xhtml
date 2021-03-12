@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
@@ -62,7 +63,7 @@
 	        	 		#{doc.tipoDocumento}
 	        		</h:column>
 					<h:column>
-						<f:facet name="header">Código</f:facet>
+						<f:facet name="header">CÃ³digo</f:facet>
 	        	 		#{doc.codigo}
 	        		</h:column>
 	        		
@@ -75,7 +76,7 @@
 						<f:facet name="header">Editar</f:facet>
 						<h:form>
 							<h:commandButton value='Editar'
-								action="#{clienteEditarBean.redir}"/>
+								action="#{loginBean.editarDocumento(doc)}"/>
 						</h:form>
 					</h:column>
 					<h:column>
@@ -90,7 +91,8 @@
 				
 				
 
-				<h2 class='text-white'>Endereços</h2> <a href="endereco/form.xhtml?id=#{loginBean.id}" class="btn btn-success my-3">Adicionar Endereco</a>
+				<h2 class='text-white'>EndereÃ§os</h2> 
+				<a href="endereco/form.xhtml?id=#{loginBean.id}" class="btn btn-success my-3">Adicionar Endereco</a>
 				<h:dataTable var="end" value="#{loginBean.cliente.enderecos}"
 					class="table table-bordered table-striped table-hover">
 					
@@ -103,7 +105,7 @@
 	        	 		#{end.cep}
 	        		</h:column>
 	        		<h:column>
-						<f:facet name="header">Tipo Endereço</f:facet>
+						<f:facet name="header">Tipo EndereÃ§o</f:facet>
 	        	 		#{end.tipoEndereco}
 	        		</h:column>
 					<h:column>
@@ -113,7 +115,7 @@
 						</h:form>
 					</h:column>
 					<h:column> 
-						<f:facet name="header">Deletar</f:facet>
+						<f:facet name="header">Deletar</f:facet> 
 						<h:form>
 							<h:commandButton value='Deletar' action="#{loginBean.delete_endereco(end)}" />
 						</h:form>   
@@ -121,10 +123,10 @@
 				</h:dataTable>
 				
 				
-				<h2 class='text-white'>Cartões</h2> <a href="cartao/form.xhtml" class="btn btn-success my-3">Adicionar Cartão</a>
+				<h2 class='text-white'>CartÃµes</h2> <a href="cartao/form.xhtml" class="btn btn-success my-3">Adicionar CartÃ£o</a>
 				<h:dataTable var="card" value="#{loginBean.cliente.cartoes}" class="table table-bordered table-striped table-hover">
 					<h:column>
-						<f:facet name="header">Número</f:facet>
+						<f:facet name="header">NÃºmero</f:facet>
 						#{card.numeroCartao}
 					</h:column>
 					<h:column>

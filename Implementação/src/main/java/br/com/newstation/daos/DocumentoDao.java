@@ -17,7 +17,7 @@ public class DocumentoDao{
 	
 	public void salvar(Cliente cliente) {
 		
-		manager.persist(cliente.getDocumentos().toArray()[cliente.getDocumentos().size() - 1]);
+		manager.persist(cliente.getDocumentos().toArray()[0]);
 		manager.merge(cliente);
 	}
 

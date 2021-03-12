@@ -104,7 +104,7 @@ public class LoginBean {
 	}
 	
 	@Transactional
-	public String editarDocumento(){
+	public String editarDocumento(Documento doc){
 		
 		try {
 			
@@ -166,13 +166,13 @@ public class LoginBean {
 		}
 	}
 
-	
-	public String delete_endereco(){
-		Endereco end = new Endereco();
-		end = endDao.busca(8);
-		cliente.getEnderecos().remove(end);
+	@Transactional
+	public String delete_endereco(Endereco end){
+//		 = new Endereco();
+//		end = endDao.busca(8);
+		this.cliente.getEnderecos().remove(end);
 		
-		dao.editar(cliente);
+		endDao.excluir(this.cliente, end);
 		
 		return "/cliente/perfil?faces-redirect=true";
 

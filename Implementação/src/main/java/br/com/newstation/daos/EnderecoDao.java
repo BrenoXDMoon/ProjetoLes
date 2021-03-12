@@ -19,9 +19,6 @@ public class EnderecoDao{
 
 				
 		manager.persist(cli.getEnderecos().toArray()[0]);
-
-		
-
 		manager.merge(cli);
 		
 	}
