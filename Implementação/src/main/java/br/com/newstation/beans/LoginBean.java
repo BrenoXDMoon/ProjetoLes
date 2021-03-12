@@ -140,7 +140,7 @@ public class LoginBean {
 	
 	
 	@Transactional
-	public String editarEndereco(){
+	public String editarEndereco(Integer end){
 		
 		try {
 			
@@ -149,6 +149,8 @@ public class LoginBean {
 			cli.setEnderecos(new HashSet<Endereco>());
 			
 			cli.getEnderecos().add(endereco);
+			
+			
 			
 			endDao.editar(cli);
 			
@@ -159,6 +161,18 @@ public class LoginBean {
 			return "/cliente/endereco/form?faces-redirect=true";
 			
 		}
+	}
+
+	
+	public String delete_endereco(){
+		Endereco end = new Endereco();
+		end = endDao.busca(8);
+		cliente.getEnderecos().remove(end);
+		
+		dao.editar(cliente);
+		
+		return "/cliente/perfil?faces-redirect=true";
+
 	}
 	
 	@Transactional

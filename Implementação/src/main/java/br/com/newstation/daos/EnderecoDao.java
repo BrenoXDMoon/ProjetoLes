@@ -16,9 +16,8 @@ public class EnderecoDao{
 	private EntityManager manager;
 	
 	public void salvar(Cliente cli) {
-		
-		
-		manager.persist(cli.getEnderecos().toArray()[1]);
+				
+		manager.persist(cli.getEnderecos().toArray()[0]);
 		manager.merge(cli);
 		
 	}
@@ -29,9 +28,11 @@ public class EnderecoDao{
 		
 	}
 
-	public void excluir(Cliente cli) {
+	public void excluir(Cliente cli,Endereco end) {
 		
-		manager.merge(cli.getEnderecos().toArray()[0]);
+		
+		manager.merge(cli);
+		manager.remove(end);
 		
 	}
 
@@ -42,4 +43,12 @@ public class EnderecoDao{
 		return manager.createQuery(jpql, Endereco.class).getResultList();
 	}
 
+	
+	public Endereco busca(int id) {
+		String jpql_e = "select c from endereco c where c.id = :id";
+		return  manager.createQuery(jpql_e, Endereco.class)
+				.setParameter("id", id)
+				.getSingleResult();
+	}
+	
 }

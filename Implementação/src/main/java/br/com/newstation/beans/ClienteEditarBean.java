@@ -59,7 +59,7 @@ public class ClienteEditarBean {
 	}
 
 	public String redir() {
-		return "/cliente/alteraCliente?faces-redirect=true";
+		return "/cliente/editar?faces-redirect=true";
 	}
 	
 	public String redirAdmin(Cliente cli) {

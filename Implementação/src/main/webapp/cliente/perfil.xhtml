@@ -80,7 +80,7 @@
 					</h:column>
 					<h:column>
 						<f:facet name="header">Deletar</f:facet>
-						<h:form>
+						<h:form enctype="multipart/form-data">
 							<h:commandButton value='Editar'
 								action="#{clienteEditarBean.redir}" />
 						</h:form>
@@ -93,6 +93,7 @@
 				<h2 class='text-white'>Endereços</h2> <a href="endereco/form.xhtml?id=#{loginBean.id}" class="btn btn-success my-3">Adicionar Endereco</a>
 				<h:dataTable var="end" value="#{loginBean.cliente.enderecos}"
 					class="table table-bordered table-striped table-hover">
+					
 					<h:column>
 						<f:facet name="header">Logadouro</f:facet>
 	        	 		#{end.logradouro}
@@ -102,21 +103,20 @@
 	        	 		#{end.cep}
 	        		</h:column>
 	        		<h:column>
-						<f:facet name="header">CEP</f:facet>
+						<f:facet name="header">Tipo Endereço</f:facet>
 	        	 		#{end.tipoEndereco}
 	        		</h:column>
 					<h:column>
 						<f:facet name="header">Editar</f:facet>
 						<h:form>
-							<h:commandButton value='Editar' action='#{EnderecoAlterarBean.editar(end)}' />
+							<h:commandButton value='Editar' action='#{loginBean.editarEndereco}' />   
 						</h:form>
 					</h:column>
-					<h:column>
+					<h:column> 
 						<f:facet name="header">Deletar</f:facet>
 						<h:form>
-							<h:commandButton value='deletar'
-								action='#{EnderecoDeletaBean.delete(end)}' />
-						</h:form>
+							<h:commandButton value='Deletar' action="#{loginBean.delete_endereco(end)}" />
+						</h:form>   
 					</h:column>
 				</h:dataTable>
 				
