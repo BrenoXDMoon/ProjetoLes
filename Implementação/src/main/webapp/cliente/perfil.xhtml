@@ -108,14 +108,13 @@
 					<h:column>
 						<f:facet name="header">Editar</f:facet>
 						<h:form>
-							<h:commandButton value='Editar' action='#{EnderecoAlterarBean.editar(end)}' />
+							<h:commandButton value='Editar' action='#{enderecoAlterarBean.editar(end)}' />
 						</h:form>
 					</h:column>
 					<h:column>
 						<f:facet name="header">Deletar</f:facet>
 						<h:form>
-							<h:commandButton value='deletar'
-								action='#{EnderecoDeletaBean.delete(end)}' />
+							<h:commandButton value='deletar' action='#{loginBean.excluirEndereco(end)}'/>
 						</h:form>
 					</h:column>
 				</h:dataTable>

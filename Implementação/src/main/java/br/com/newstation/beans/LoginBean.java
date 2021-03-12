@@ -22,7 +22,7 @@ import br.com.newstation.dominio.TIPO_ENDERECO;
 @Model
 public class LoginBean {
 
-	private Cliente cliente = new Cliente();
+	private static Cliente cliente = new Cliente();
 	private static Integer id;
 	private static boolean statusSessao;
 	private Endereco endereco = new Endereco();
@@ -165,16 +165,24 @@ public class LoginBean {
 	}
 	
 	@Transactional
+	public String excluirEndereco(Endereco end){
+	
+		endDao.excluir(end);
+		
+		return "/cliente/perfil?faces-redirect=true";
+	}
+	
+	@Transactional
 	public String login() {
 		
 		try {
-			this.cliente = dao.login(cliente);
+			setCliente(dao.login(cliente));
 			
 			this.id = cliente.getId();
 			
-			this.setStatusSessao(true);
+			setStatusSessao(true);
 			
-			if(this.cliente.getTipoCliente().equals(TIPO_CLIENTE.Admin)) {
+			if(getCliente().getTipoCliente().equals(TIPO_CLIENTE.Admin)) {
 				
 				return "/admin/admin?faces-redirect=true";
 			}else {

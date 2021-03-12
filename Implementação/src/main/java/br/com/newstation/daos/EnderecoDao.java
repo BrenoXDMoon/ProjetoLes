@@ -28,9 +28,9 @@ public class EnderecoDao{
 		
 	}
 
-	public void excluir(Cliente cli) {
+	public void excluir(Endereco end) {
 		
-		manager.merge(cli.getEnderecos().toArray()[0]);
+		manager.merge(end);
 		
 	}
 
