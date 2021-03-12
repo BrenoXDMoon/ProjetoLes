@@ -16,8 +16,12 @@ public class EnderecoDao{
 	private EntityManager manager;
 	
 	public void salvar(Cliente cli) {
+
 				
 		manager.persist(cli.getEnderecos().toArray()[0]);
+
+		
+
 		manager.merge(cli);
 		
 	}
