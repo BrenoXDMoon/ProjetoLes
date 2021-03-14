@@ -2,9 +2,6 @@ package br.com.newstation.dominio;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
-
 public class EntidadeDominio {
 
 	protected LocalDate dtCadastro;

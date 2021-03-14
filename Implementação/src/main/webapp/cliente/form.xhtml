@@ -63,12 +63,17 @@
 
 						<div class="form-group">
 							<h:outputLabel value="Senha"/> <br />
-							<h:inputSecret value="#{clienteSalvarBean.cliente.senha.senha}" required="true" id="senha" class="form-control"/>
+							<h:inputSecret value="#{clienteSalvarBean.cliente.senha.senha}" required="true" id="senha" class="form-control"
+							validatorMessage="Senha tem que ter 8 caracteres e conter caractere especial">
+								<f:validateRegex pattern = "(?=.*[@_-=+&$#!?/|.^])(?=.*[a-zA-Z])(?=.*[0-9]).{8,13}" />
+								<h:message for = "senha" style = "color:red" />
+							</h:inputSecret>
 							 
 						</div>
 						<div class="form-group">
 							<h:outputLabel value="Confirmar Senha"/> <br />
-							<h:inputSecret value="#{clienteSalvarBean.cliente.senha.confirmaSenha}" required="true" id="confirmaSenha" class="form-control"/>
+							<h:inputSecret value="#{clienteSalvarBean.cliente.senha.confirmaSenha}" required="true" id="confirmaSenha" class="form-control">
+							</h:inputSecret>
 						</div>
 					</div>
 				</div>
@@ -140,12 +145,12 @@
 						
 						<div class="form-group">
 							<h:outputLabel value="Código de Segurança"/> <br />
-							<h:inputText value="#{clienteSalvarBean.cartao.codigoSeguranca}" required="true" id="codigoSec" class="form-control"/>
+							<h:inputText value="#{clienteSalvarBean.cartao.codigoSeguranca}" required="true" id="codigoSec" class="form-control" maxlength="3"/>
 						</div>
 						
 						<div class="form-group">
 							<h:outputLabel value="Nome Impresso"/> <br />
-							<h:inputText value="#{clienteSalvarBean.cartao.nomeImpresso}" required="true" id="nomeImpresso" class="form-control" maxlength="3"/>
+							<h:inputText value="#{clienteSalvarBean.cartao.nomeImpresso}" required="true" id="nomeImpresso" class="form-control" />
 						</div>
 
 						<div class="form-group">

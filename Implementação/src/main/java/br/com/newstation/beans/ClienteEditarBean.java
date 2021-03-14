@@ -64,7 +64,7 @@ public class ClienteEditarBean {
 	
 	public String redirAdmin(Cliente cli) {
 		
-		this.cliente = cli;
+		ClienteEditarBean.cliente = cli;
 		
 		return "/admin/cliente/editar?faces-redirect=true";
 	}
@@ -75,7 +75,7 @@ public class ClienteEditarBean {
 
 	public void setCliente(Cliente cliente) {
 
-		this.cliente = cliente;
+		ClienteEditarBean.cliente = cliente;
 	}
 
 	public String getDataNascimento() {
