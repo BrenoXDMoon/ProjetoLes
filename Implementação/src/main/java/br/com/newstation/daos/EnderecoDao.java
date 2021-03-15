@@ -23,16 +23,16 @@ public class EnderecoDao{
 		
 	}
 
-	public void editar(Cliente cli) {
+	public void editar(Endereco end) {
 		
-		manager.merge(cli.getEnderecos().toArray()[0]);
+		manager.merge(manager.contains(end) ? end : manager.merge(end));
 		
 	}
 
 	public void excluir(Cliente cli,Endereco end) {
 		
-		manager.merge(cli);
-		manager.remove(end);
+		manager.merge(manager.contains(cli) ? cli : manager.merge(cli));
+		manager.remove(manager.contains(end) ? end : manager.merge(end));
 		
 	}
 

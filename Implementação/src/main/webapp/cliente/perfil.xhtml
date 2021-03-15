@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -16,8 +17,6 @@
 	rel="stylesheet" />
 <link href="#{request.contextPath}/assets/css/bootstrap.min.css"
 	rel="stylesheet" />
-<link href="#{request.contextPath}/assets/css/custom.css"
-	rel="stylesheet" />
 <title>Perfil</title>
 </head>
 
@@ -28,15 +27,15 @@
 
 <body class="text-white bg-dark">
 	<header class="site-header  py-1">
-		<nav
-			class="container d-flex flex-column flex-md-row justify-content-between">
+		<nav class="container d-flex flex-column flex-md-row justify-content-between">
 			 <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
-            <c:if test="#{!loginBean.isStatusSessao()}">
+			 
+            <c:if test="#{loginBean.isStatusSessao()}">
 	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
 	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/addCliente.xhtml">Cadastre-se</a>
             </c:if>
             
-            <c:if test="#{loginBean.isStatusSessao()}">
+            <c:if test="#{!loginBean.isStatusSessao()}">
             	<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/perfil.xhtml">Perfil</a>
             	<h:form>
 	            	<h:commandButton value="Logout" action="#{loginBean.logout}" class="btn btn-danger"/>            	
@@ -44,11 +43,13 @@
             </c:if>
             <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/carrinho.xhtml">Carrinho</a>
 		</nav>
+		
 	</header>
+
 	<section class="container perfil mt-5">
 		<div class="row">
 			<div class="col-12 text-center">
-
+  
 				<h1>Bem vindo, #{loginBean.cliente.nome}</h1> 
 				
 				<div class="my-5">
@@ -63,7 +64,7 @@
 	        	 		#{doc.tipoDocumento}
 	        		</h:column>
 					<h:column>
-						<f:facet name="header">CÃ³digo</f:facet>
+						<f:facet name="header">Código</f:facet>
 	        	 		#{doc.codigo}
 	        		</h:column>
 	        		
@@ -81,19 +82,19 @@
 					</h:column>
 					<h:column>
 						<f:facet name="header">Deletar</f:facet>
-						<h:form enctype="multipart/form-data">
-							<h:commandButton value='Editar'
+						<h:form>
+							<h:commandButton value='Deletar'
 								action="#{clienteEditarBean.redir}" />
 						</h:form>
 					</h:column>
 				</h:dataTable>
-				
+				 
 				
 				
 
-				<h2 class='text-white'>EndereÃ§os</h2> 
+				<h2 class='text-white'>Endereços</h2> 
 				<a href="endereco/form.xhtml?id=#{loginBean.id}" class="btn btn-success my-3">Adicionar Endereco</a>
-				<h:dataTable var="end" value="#{loginBean.cliente.enderecos}"
+				<h:dataTable var="end" value="#{loginBean.enderecos}"
 					class="table table-bordered table-striped table-hover">
 					
 					<h:column>
@@ -105,28 +106,29 @@
 	        	 		#{end.cep}
 	        		</h:column>
 	        		<h:column>
-						<f:facet name="header">Tipo EndereÃ§o</f:facet>
+						<f:facet name="header">Tipo Endereço</f:facet>
 	        	 		#{end.tipoEndereco}
 	        		</h:column>
 					<h:column>
 						<f:facet name="header">Editar</f:facet>
 						<h:form>
-							<h:commandButton value="Editar" action="#{loginBean.redirEditEnd(end)}" />
+							<h:commandButton value='Editar' action='#{loginBean.redirEndereco(end)}' />   
 						</h:form>
 					</h:column>
 					<h:column> 
 						<f:facet name="header">Deletar</f:facet> 
-						<h:form>
-							<h:commandButton value='Deletar' action="#{loginBean.deleteEndereco(end)}" />
+							<h:form>
+							<h:commandButton action ="#{loginBean.delete_endereco(end)}" value="Deletar"/> 
 						</h:form>   
 					</h:column>
 				</h:dataTable>
 				
 				
-				<h2 class='text-white'>CartÃµes</h2> <a href="cartao/form.xhtml" class="btn btn-success my-3">Adicionar CartÃ£o</a>
+				<h2 class='text-white'>Cartões</h2>
+				 <a href="cartao/form.xhtml" class="btn btn-success my-3">Adicionar Cartão</a>
 				<h:dataTable var="card" value="#{loginBean.cliente.cartoes}" class="table table-bordered table-striped table-hover">
 					<h:column>
-						<f:facet name="header">NÃºmero</f:facet>
+						<f:facet name="header">Número</f:facet>
 						#{card.numeroCartao}
 					</h:column>
 					<h:column>
@@ -138,6 +140,7 @@
 						#{card.bandeira}
 					</h:column>
 					<h:column>
+						<f:facet name="header">Editar</f:facet>
 						<h:form>
 							<h:commandButton value='Editar' action='#{cartaoBean.redirEditar}' />
 						</h:form>
