@@ -143,19 +143,13 @@ public class LoginBean {
 	
 	
 	@Transactional
-	public String editarEndereco(Integer end){
+	public String editarEndereco(){
 		
 		try {
 			
-			Cliente cli = this.cliente;
+			getCliente().getEnderecos().add(endereco);
 			
-			cli.setEnderecos(new HashSet<Endereco>());
-			
-			cli.getEnderecos().add(endereco);
-			
-			
-			
-			endDao.editar(cli);
+			endDao.editar(getCliente());
 			
 			return "/cliente/perfil?faces-redirect=true";
 			
@@ -167,11 +161,9 @@ public class LoginBean {
 	}
 
 	@Transactional
-	public String delete_endereco(Endereco end){
-//		 = new Endereco();
-//		end = endDao.busca(8);
-		this.cliente.getEnderecos().remove(end);
+	public String deleteEndereco(Endereco end){
 		
+		this.cliente.getEnderecos().remove(end);
 		endDao.excluir(this.cliente, end);
 		
 		return "/cliente/perfil?faces-redirect=true";
@@ -184,9 +176,9 @@ public class LoginBean {
 		try {
 			this.cliente = dao.login(cliente);
 			
-			this.id = cliente.getId();
+			setId(cliente.getId());
 			
-			this.setStatusSessao(true);
+			setStatusSessao(true);
 			
 			if(this.cliente.getTipoCliente().equals(TIPO_CLIENTE.Admin)) {
 				
@@ -206,7 +198,7 @@ public class LoginBean {
 	public String logout() {
 		
 		this.cliente = new Cliente();
-		this.setStatusSessao(false);
+		setStatusSessao(false);
 		return "/cliente/login?faces-redirect=true";
 	}
 	
@@ -215,8 +207,6 @@ public class LoginBean {
 		this.cliente.setId(getId());
 		
 		this.cliente = dao.visualizar(cliente);
-		
-		System.out.println("- Carregando o cara na tela");
 	}
 	
 	public Cliente getCliente() {
@@ -246,6 +236,13 @@ public class LoginBean {
 		}
 		
 		return as;
+	}
+	
+	public String redirEditEnd(Endereco end) {
+		
+		this.setEndereco(end);
+		
+		return "cliente/endereco/edit-form?faces-redirect=true";
 	}
 
 	public static boolean isStatusSessao() {

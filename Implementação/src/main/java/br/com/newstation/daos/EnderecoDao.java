@@ -31,7 +31,6 @@ public class EnderecoDao{
 
 	public void excluir(Cliente cli,Endereco end) {
 		
-		
 		manager.merge(cli);
 		manager.remove(end);
 		
