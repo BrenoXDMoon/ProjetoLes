@@ -65,8 +65,8 @@
 							<h:outputLabel value="Senha"/> <br />
 							<h:inputSecret value="#{clienteSalvarBean.cliente.senha.senha}" required="true" id="senha" class="form-control"
 							validatorMessage="Senha tem que ter 8 caracteres e conter caractere especial">
-								<f:validateRegex pattern = "(?=.*[@_-=+&$#!?/|.^])(?=.*[a-zA-Z])(?=.*[0-9]).{8,13}" />
-								<h:message for = "senha" style = "color:red" />
+								<f:validateRegex pattern = "(?=.*[@_-=+&$#!?/|.^])(?=.*[a-zA-Z])(?=.*[0-9]).{8,13}"/>
+								<h:message for = "senha" style = "color:red"/>
 							</h:inputSecret>
 							 
 						</div>

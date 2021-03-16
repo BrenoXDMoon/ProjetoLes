@@ -23,20 +23,30 @@ public class DocumentoDao{
 
 	public void editar(Documento doc) {
 		
-		manager.merge(doc);
+		manager.merge(manager.contains(doc) ? doc : manager.merge(doc));
 		
 	}
 
-	public void excluir(Documento doc) {
-		manager.merge(doc);
+	public void excluir(Cliente cli,Documento doc) {
+		
+		manager.merge(manager.contains(cli) ? cli : manager.merge(cli));
+		manager.remove(manager.contains(doc) ? doc : manager.merge(doc));
 		
 	}
 
-	public List<Documento> listar(Documento doc) {
+	public List<Documento> listar(Cliente cli) {
 		
 		String jpql = "select d from Documento d where d.ativo = true";
 		
 		return manager.createQuery(jpql, Documento.class).getResultList();
+	}
+
+	
+	public Documento busca(int id) {
+		String jpql_e = "select c from Documento c where c.id = :id";
+		return  manager.createQuery(jpql_e, Documento.class)
+				.setParameter("id", id)
+				.getSingleResult();
 	}
 
 }

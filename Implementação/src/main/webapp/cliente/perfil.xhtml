@@ -29,7 +29,6 @@
 	<header class="site-header  py-1">
 		<nav class="container d-flex flex-column flex-md-row justify-content-between">
 			 <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
-			 
             <c:if test="#{loginBean.isStatusSessao()}">
 	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
 	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/addCliente.xhtml">Cadastre-se</a>
@@ -118,7 +117,7 @@
 					<h:column> 
 						<f:facet name="header">Deletar</f:facet> 
 							<h:form>
-							<h:commandButton action ="#{loginBean.delete_endereco(end)}" value="Deletar"/> 
+							<h:commandButton action ="#{loginBean.deleteEndereco(end)}" value="Deletar"/> 
 						</h:form>   
 					</h:column>
 				</h:dataTable>

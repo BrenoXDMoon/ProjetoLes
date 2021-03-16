@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <head>
 <meta charset="UTF-8" />
@@ -15,10 +17,6 @@
 	rel="stylesheet" />
 <title>Altera Cadastro</title>
 </head>
-
-<f:metadata>
-	<f:viewAction action="#{clienteEditarBean.listar()}" />
-</f:metadata>
 
 <body class="bg-dark text-white">
 	<header class="site-header sticky-top py-1">
@@ -48,12 +46,6 @@
 							<h:inputText value="#{clienteEditarBean.cliente.nome}"
 								required="true" id="nomeCompleto" styleClass="form-control" />
 							<h:message for='nomeCompleto' />
-						</div>
-						<div class="form-group">
-							<h:outputLabel value="Documento" />
-							<h:inputText value='#{clienteEditarBean.documento.codigo}' required="true"
-								id="cpf" styleClass="form-control" />
-							<h:message for='cpf' />
 						</div>
 
 						<div class="form-group">

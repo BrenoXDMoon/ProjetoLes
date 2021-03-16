@@ -3,8 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -23,11 +22,20 @@
 <body class="bg-dark text-white p-5">
     <header class="site-header py-1">
         <nav class="container d-flex flex-column flex-md-row justify-content-between">
-            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
-           	<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/perfil.xhtml">Perfil</a>
-           	<h:commandButton value="Logout" action="#{loginBean.logout}" class="btn btn-danger"/>
+			<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
+            <c:if test="#{loginBean.isStatusSessao()}">
+	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
+	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/addCliente.xhtml">Cadastre-se</a>
+            </c:if>
+            
+            <c:if test="#{!loginBean.isStatusSessao()}">
+            	<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/perfil.xhtml">Perfil</a>
+            	<h:form>
+	            	<h:commandButton value="Logout" action="#{loginBean.logout}" class="btn btn-danger"/>            	
+            	</h:form>
+            </c:if>
             <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/carrinho.xhtml">Carrinho</a>
-        </nav>
+		</nav>
     </header>
     <section class="container perfil mt-5">
         <h:form enctype="multipart/form-data">
