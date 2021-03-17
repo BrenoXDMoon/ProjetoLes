@@ -52,17 +52,18 @@ public class LoginBean {
 		
 		try {
 			
-			System.out.println("- ENTROU");
-			
 			LoginBean.cliente.setId(getId());
 			LoginBean.cliente = dao.visualizar(cliente);
+			LoginBean.cliente.getCartoes().add(card);
 			
 			cardDao.salvar(LoginBean.cliente);
 			
 			return "/cliente/perfil?faces-redirect=true";
 		}catch (Exception e) {
 			
-			return "/cliente/endereco/form?faces-redirect=true";
+			e.printStackTrace();
+			
+			return "/cliente/cartao/form?faces-redirect=true";
 		}
 	}
 	
@@ -89,10 +90,9 @@ public class LoginBean {
 		
 		try {
 			
-			System.out.println("- ENTROU");
-			
 			LoginBean.cliente.setId(getId());
 			LoginBean.cliente = dao.visualizar(cliente);
+			LoginBean.cliente.getDocumentos().add(doc);
 			
 			docDao.salvar(LoginBean.cliente);
 			
@@ -143,16 +143,33 @@ public class LoginBean {
 		}
 	}
 	
+	public String redirCartao(CartaoCredito card){
+		LoginBean.card = card;
+		return "/cliente/cartao/edit-form?faces-redirect=true";
+	}
 	
-//	@Transactional
+	public String redirDocumento(Documento doc){
+		LoginBean.doc = doc;
+		return "/cliente/documento/edit-form?faces-redirect=true";
+	}
+	
 	public String redirEndereco(Endereco end){
 		LoginBean.endereco = end;
 		return "/cliente/endereco/edit-form?faces-redirect=true";
 	}
 	
-	public String redirCartao(CartaoCredito card){
-		LoginBean.card = card;
-		return "/cliente/endereco/edit-form?faces-redirect=true";
+	@Transactional
+	public String editarCliente(){
+		
+		try {
+			dao.editar(cliente);
+			return "/cliente/perfil?faces-redirect=true";
+			
+		}catch (Exception e) {
+			
+			return "/cliente/edit-form?faces-redirect=true";
+			
+		}
 	}
 	
 	@Transactional
@@ -168,11 +185,48 @@ public class LoginBean {
 			
 		}
 	}
-
-	
 	
 	@Transactional
-	public  String deleteEndereco(Endereco end){
+	public  String excluirCartao(CartaoCredito card){
+		
+		LoginBean.cliente.setId(getId());
+		LoginBean.cliente = dao.visualizar(cliente);
+		
+		for(CartaoCredito cards : cliente.getCartoes()) {
+			if(cards.getId().equals(card.getId())) {
+				cliente.getCartoes().remove(cards);
+				break;
+			}	
+		}
+		
+		cardDao.excluir(LoginBean.cliente, card);
+		
+		return "/cliente/perfil?faces-redirect=true";
+	}
+	
+	@Transactional
+	public  String excluirDocumento(Documento doc){
+		
+		LoginBean.cliente.setId(getId());
+		LoginBean.cliente = dao.visualizar(cliente);
+		
+		for(Documento docs : cliente.getDocumentos()) {
+			if(docs.getId().equals(doc.getId())) {
+				cliente.getDocumentos().remove(docs);
+				break;
+			}
+				
+		}
+		
+		
+		docDao.excluir(LoginBean.cliente, doc);
+		
+		return "/cliente/perfil?faces-redirect=true";
+
+	}
+	
+	@Transactional
+	public  String excluirEndereco(Endereco end){
 		
 		LoginBean.cliente.setId(getId());
 		LoginBean.cliente = dao.visualizar(cliente);

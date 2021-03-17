@@ -48,11 +48,11 @@
 	<section class="container perfil mt-5">
 		<div class="row">
 			<div class="col-12 text-center">
-  
 				<h1>Bem vindo, #{loginBean.cliente.nome}</h1> 
 				
 				<div class="my-5">
 					<a class="btn btn-primary" href="senha/form.xhtml">Alterar Senha</a>
+					<a class="btn btn-primary" href="edit-form.xhtml">Alterar Dados de Cliente</a>
 				</div>
 				
 				<h2 class="text-white mt-5">Documentos</h2>
@@ -76,20 +76,17 @@
 						<f:facet name="header">Editar</f:facet>
 						<h:form>
 							<h:commandButton value='Editar'
-								action="#{loginBean.editarDocumento(doc)}"/>
+								action="#{loginBean.redirDocumento(doc)}"/>
 						</h:form>
 					</h:column>
 					<h:column>
 						<f:facet name="header">Deletar</f:facet>
 						<h:form>
 							<h:commandButton value='Deletar'
-								action="#{clienteEditarBean.redir}" />
+								action="#{loginBean.excluirDocumento}" />
 						</h:form>
 					</h:column>
 				</h:dataTable>
-				 
-				
-				
 
 				<h2 class='text-white'>Endereços</h2> 
 				<a href="endereco/form.xhtml?id=#{loginBean.id}" class="btn btn-success my-3">Adicionar Endereco</a>
@@ -117,11 +114,10 @@
 					<h:column> 
 						<f:facet name="header">Deletar</f:facet> 
 							<h:form>
-							<h:commandButton action ="#{loginBean.deleteEndereco(end)}" value="Deletar"/> 
+							<h:commandButton action ="#{loginBean.excluirEndereco(end)}" value="Deletar"/> 
 						</h:form>   
 					</h:column>
 				</h:dataTable>
-				
 				
 				<h2 class='text-white'>Cartões</h2>
 				 <a href="cartao/form.xhtml" class="btn btn-success my-3">Adicionar Cartão</a>
@@ -141,14 +137,14 @@
 					<h:column>
 						<f:facet name="header">Editar</f:facet>
 						<h:form>
-							<h:commandButton value='Editar' action='#{cartaoBean.redirEditar}' />
+							<h:commandButton value='Editar' action='#{loginBean.redirCartao(card)}' />
 						</h:form>
 					</h:column>
 					<h:column>
 						<f:facet name="header">Deletar</f:facet>
 						<h:form>
 							<h:commandButton value='deletar'
-								action='#{cartaoBean.excluir(card)}' />
+								action='#{loginBean.excluirCartao(card)}' />
 						</h:form>
 					</h:column>
 				</h:dataTable>
