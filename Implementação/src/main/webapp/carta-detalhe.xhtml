@@ -27,42 +27,41 @@
 </head>
 <body class="bg-dark text-white">
 
-	<h:form>
-		<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#{request.contextPath}/index.xhtml">New Station</a>
-			</div>
-
-		</div>
+	<header class="site-header  py-1">
+		<nav
+			class="container d-flex flex-column flex-md-row justify-content-between">
+			<a class="py-2 d-none d-md-inline-block"
+				href="#{request.contextPath}/index.xhtml">NewStation</a> <a
+				class="py-2 d-none d-md-inline-block"
+				href="#{request.contextPath}/cliente/login.xhtml">Login</a> <a
+				class="py-2 d-none d-md-inline-block"
+				href="#{request.contextPath}/carrinho.xhtml">Carrinho</a>
 		</nav>
-	</h:form>
+	</header>
 
 
-	<section>
+	<section class="mt-5">
 	<div class="container">
 		<div class="row">
-			<div class='col-6'>
-				<ul>
-					<li>
-						<p>#{cartaDetalheBean.carta.nome}</p>
-					</li>
-					<li>
-						<p>#{cartaDetalheBean.carta.descricao}</p>
-					</li>
-					<li>
-						<p>#{cartaDetalheBean.carta.raridade}</p>
-					</li>
-					<li>
-						<p>#{cartaDetalheBean.carta.preco}</p>
-					</li>
-				</ul>
+			<div class='col-6 '>
+				
+					
+				<p>#{cartaDetalheBean.carta.nome}</p>
+		
+				<p>#{cartaDetalheBean.carta.raridade} - #{cartaDetalheBean.carta.descricao}</p>
+			
+				<p>#{cartaDetalheBean.carta.preco}</p>
+					
 			</div>
 			<div class='col-6'>
 				<img class="w-50"
 					src="#{request.contextPath}/file/#{cartaDetalheBean.carta.imagemPath}"
 					alt="#{cartaDetalheBean.carta.nome}"
 					title="#{cartaDetalheBean.carta.nome}" />
+					
+				<a href="#{request.contextPath}/carrinho.html" style="text-decoration: none;">
+					<button class="d-block mt-3 ml-17 btn-comprar btn">Adicionar ao Carrinho</button>
+				</a>
 			</div>
 
 		</div>
