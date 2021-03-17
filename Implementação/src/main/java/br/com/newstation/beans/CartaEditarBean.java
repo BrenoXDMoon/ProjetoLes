@@ -9,6 +9,7 @@ import br.com.newstation.daos.CartaDao;
 import br.com.newstation.daos.EstoqueDao;
 import br.com.newstation.dominio.Carta;
 import br.com.newstation.dominio.Estoque;
+import br.com.newstation.dominio.RARIDADE;
 import br.com.newstation.infra.FileSaver;
 
 
@@ -76,5 +77,9 @@ public class CartaEditarBean {
 
 	public void setImagemCarta(Part imagemCarta) {
 		this.imagemCarta = imagemCarta;
+	}
+	
+	public RARIDADE[] getRaridade() {
+		return RARIDADE.values();
 	}
 }

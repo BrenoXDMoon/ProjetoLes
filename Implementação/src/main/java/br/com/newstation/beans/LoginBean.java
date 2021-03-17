@@ -262,11 +262,11 @@ public class LoginBean {
 		return as;
 	}
 
-	public static boolean isStatusSessao() {
+	public  boolean isStatusSessao() {
 		return statusSessao;
 	}
 
-	public static void setStatusSessao(boolean statusSessao) {
+	public void setStatusSessao(boolean statusSessao) {
 		LoginBean.statusSessao = statusSessao;
 	}
 

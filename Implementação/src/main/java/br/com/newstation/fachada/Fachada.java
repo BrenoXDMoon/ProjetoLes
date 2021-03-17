@@ -13,6 +13,7 @@ import br.com.newstation.dominio.Resultado;
 import br.com.newstation.strategies.IStrategy;
 import br.com.newstation.strategies.ValidaCPF;
 import br.com.newstation.strategies.ValidaExistenciaClientePorCPF;
+import br.com.newstation.strategies.ValidaExistenciaPorEmail;
 
 public class Fachada implements IFachada {
 	
@@ -40,6 +41,7 @@ public class Fachada implements IFachada {
         
         rnsClienteSalvar.add(new ValidaCPF());
         rnsClienteSalvar.add(new ValidaExistenciaClientePorCPF());
+        rnsClienteSalvar.add(new ValidaExistenciaPorEmail());
         
         // Criando lista de RNs do Cliente Alterar
         List<IStrategy> rnsClienteEditar = new ArrayList<IStrategy>();
@@ -71,7 +73,7 @@ public class Fachada implements IFachada {
         if (sb.length() == 0) {
         	
             IDao dao = daos.get(nmClasse);
-            resultado = dao.salvar(entidade);
+           // resultado = dao.salvar(entidade);
             
         } else {
             resultado.add(entidade);
