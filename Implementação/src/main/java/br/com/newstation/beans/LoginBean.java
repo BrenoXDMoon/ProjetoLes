@@ -3,7 +3,6 @@ package br.com.newstation.beans;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -22,7 +21,6 @@ import br.com.newstation.dominio.TIPO_DOCUMENTO;
 import br.com.newstation.dominio.TIPO_ENDERECO;
 
 @Model
-@SessionScoped
 public class LoginBean {
 
 	private static Cliente cliente = new Cliente();

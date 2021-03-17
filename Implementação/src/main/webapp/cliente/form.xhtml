@@ -20,7 +20,7 @@
             <a class="py-2 d-none d-md-inline-block" href="index.xhtml">NewStation</a>
             <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/admin/admin.xhtml">Admin</a>
             <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
-            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/addCliente.xhtml">Cadastre-se</a>
+            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/form.xhtml">Cadastre-se</a>
             <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/carrinho.xhtml">Carrinho</a>
         </nav>
     </header>
@@ -65,7 +65,7 @@
 							<h:outputLabel value="Senha"/> <br />
 							<h:inputSecret value="#{clienteSalvarBean.cliente.senha.senha}" required="true" id="senha" class="form-control"
 							validatorMessage="Senha tem que ter 8 caracteres e conter caractere especial">
-								<f:validateRegex pattern = "(?=.*[@_-=+&$#!?/|.^])(?=.*[a-zA-Z])(?=.*[0-9]).{8,13}"/>
+								<f:validateRegex pattern = "(?=.*[@_-=+$#!?/|.^])(?=.*[a-zA-Z])(?=.*[0-9]).{8,13}"/>
 								<h:message for = "senha" style = "color:red"/>
 							</h:inputSecret>
 							 
