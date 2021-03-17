@@ -1,6 +1,5 @@
 package br.com.newstation.dominio;
 
-import javax.persistence.Cacheable;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Cacheable
 @Entity
 public class Endereco {
 

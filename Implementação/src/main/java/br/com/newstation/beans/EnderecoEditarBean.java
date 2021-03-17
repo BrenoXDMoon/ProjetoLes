@@ -17,6 +17,6 @@ public class EnderecoEditarBean {
 		this.endereco = endereco;
 	}
 	
-	
+
 	
 }

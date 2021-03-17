@@ -1,6 +1,7 @@
 package br.com.newstation.beans;
 
 import java.util.HashSet;
+import java.util.Set;
 
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
@@ -22,12 +23,13 @@ import br.com.newstation.dominio.TIPO_ENDERECO;
 @Model
 public class LoginBean {
 
-	private Cliente cliente = new Cliente();
+	private static Cliente cliente = new Cliente();
 	private static Integer id;
 	private static boolean statusSessao;
-	private Endereco endereco = new Endereco();
-	private Documento doc = new Documento();
-	private CartaoCredito card = new CartaoCredito();
+	private static Set<Endereco> enderecos = new HashSet<Endereco>();
+	private static Endereco endereco = new Endereco();
+	private static Documento doc = new Documento();
+	private static CartaoCredito card = new CartaoCredito();
 	
 	@Inject
 	ClienteDao dao;
@@ -52,10 +54,10 @@ public class LoginBean {
 			
 			System.out.println("- ENTROU");
 			
-			this.cliente.setId(getId());
-			this.cliente = dao.visualizar(cliente);
+			LoginBean.cliente.setId(getId());
+			LoginBean.cliente = dao.visualizar(cliente);
 			
-			cardDao.salvar(this.cliente);
+			cardDao.salvar(LoginBean.cliente);
 			
 			return "/cliente/perfil?faces-redirect=true";
 		}catch (Exception e) {
@@ -89,10 +91,10 @@ public class LoginBean {
 			
 			System.out.println("- ENTROU");
 			
-			this.cliente.setId(getId());
-			this.cliente = dao.visualizar(cliente);
+			LoginBean.cliente.setId(getId());
+			LoginBean.cliente = dao.visualizar(cliente);
 			
-			docDao.salvar(this.cliente);
+			docDao.salvar(LoginBean.cliente);
 			
 			return "/cliente/perfil?faces-redirect=true";
 			
@@ -104,7 +106,7 @@ public class LoginBean {
 	}
 	
 	@Transactional
-	public String editarDocumento(){
+	public String editarDocumento(Documento doc){
 		
 		try {
 			
@@ -125,9 +127,9 @@ public class LoginBean {
 		
 		try {
 			
-			this.cliente.setId(getId());
-			this.cliente = dao.visualizar(cliente);
-			this.cliente.getEnderecos().add(endereco);
+			LoginBean.cliente.setId(getId());
+			LoginBean.cliente = dao.visualizar(cliente);
+			LoginBean.cliente.getEnderecos().add(endereco);
 			
 			
 			endDao.salvar(cliente);
@@ -142,19 +144,22 @@ public class LoginBean {
 	}
 	
 	
+//	@Transactional
+	public String redirEndereco(Endereco end){
+		LoginBean.endereco = end;
+		return "/cliente/endereco/edit-form?faces-redirect=true";
+	}
+	
+	public String redirCartao(CartaoCredito card){
+		LoginBean.card = card;
+		return "/cliente/endereco/edit-form?faces-redirect=true";
+	}
+	
 	@Transactional
 	public String editarEndereco(){
 		
 		try {
-			
-			Cliente cli = this.cliente;
-			
-			cli.setEnderecos(new HashSet<Endereco>());
-			
-			cli.getEnderecos().add(endereco);
-			
-			endDao.editar(cli);
-			
+			endDao.editar(endereco);
 			return "/cliente/perfil?faces-redirect=true";
 			
 		}catch (Exception e) {
@@ -163,18 +168,41 @@ public class LoginBean {
 			
 		}
 	}
+
+	
+	
+	@Transactional
+	public  String deleteEndereco(Endereco end){
+		
+		LoginBean.cliente.setId(getId());
+		LoginBean.cliente = dao.visualizar(cliente);
+		
+		for(Endereco ends:cliente.getEnderecos()) {
+			if(ends.getId().equals(end.getId())) {
+				cliente.getEnderecos().remove(ends);
+				break;
+			}
+				
+		}
+		
+		
+		endDao.excluir(LoginBean.cliente, end);
+		
+		return "/cliente/perfil?faces-redirect=true";
+
+	}
 	
 	@Transactional
 	public String login() {
 		
 		try {
-			this.cliente = dao.login(cliente);
+			LoginBean.cliente = dao.login(cliente);
 			
-			this.id = cliente.getId();
+			LoginBean.id = cliente.getId();
 			
-			this.setStatusSessao(true);
+			setStatusSessao(true);
 			
-			if(this.cliente.getTipoCliente().equals(TIPO_CLIENTE.Admin)) {
+			if(LoginBean.cliente.getTipoCliente().equals(TIPO_CLIENTE.Admin)) {
 				
 				return "/admin/admin?faces-redirect=true";
 			}else {
@@ -191,18 +219,18 @@ public class LoginBean {
 	@Transactional
 	public String logout() {
 		
-		this.cliente = new Cliente();
-		this.setStatusSessao(false);
+		LoginBean.cliente = new Cliente();
+		setStatusSessao(false);
 		return "/cliente/login?faces-redirect=true";
 	}
 	
 	public void carregar() {
 		
-		this.cliente.setId(getId());
+		LoginBean.cliente.setId(getId());
 		
-		this.cliente = dao.visualizar(cliente);
+		LoginBean.cliente = dao.visualizar(cliente);
+		setEnderecos(cliente.getEnderecos());
 		
-		System.out.println("- Carregando o cara na tela");
 	}
 	
 	public Cliente getCliente() {
@@ -210,7 +238,7 @@ public class LoginBean {
 	}
 	
 	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+		LoginBean.cliente = cliente;
 	}
 	
 	public Integer getId() {
@@ -218,14 +246,14 @@ public class LoginBean {
 	}
 	
 	public void setId(Integer id) {
-		this.id = id;
+		LoginBean.id = id;
 	}
 	
 	public boolean listaVazia() {
 		
 		boolean as;
 		
-		if(this.cliente.getCartoes().isEmpty()) {
+		if(LoginBean.cliente.getCartoes().isEmpty()) {
 			as = true;
 		}else {
 			as = false;
@@ -247,7 +275,7 @@ public class LoginBean {
 	}
 
 	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
+		LoginBean.endereco = endereco;
 	}
 
 	public Documento getDoc() {
@@ -255,7 +283,7 @@ public class LoginBean {
 	}
 
 	public void setDoc(Documento doc) {
-		this.doc = doc;
+		LoginBean.doc = doc;
 	}
 	
 	public CartaoCredito getCard() {
@@ -263,7 +291,7 @@ public class LoginBean {
 	}
 
 	public void setCard(CartaoCredito card) {
-		this.card = card;
+		LoginBean.card = card;
 	}
 	
 	public BANDEIRA[] getBandeiras() {
@@ -276,6 +304,14 @@ public class LoginBean {
 	
 	public TIPO_DOCUMENTO[] getTipoDocumento() {
 		return TIPO_DOCUMENTO.values();
+	}
+
+	public  Set<Endereco> getEnderecos() {
+		return  enderecos;
+	}
+
+	public void setEnderecos(Set<Endereco> enderecos) {
+		LoginBean.enderecos = enderecos;
 	}
 	
 }
