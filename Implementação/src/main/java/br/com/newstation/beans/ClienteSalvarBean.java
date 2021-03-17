@@ -3,8 +3,12 @@ package br.com.newstation.beans;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import javax.enterprise.inject.Model;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 import br.com.newstation.command.SalvarCommand;
@@ -37,8 +41,23 @@ public class ClienteSalvarBean {
 	
 	CriptografaSenha crp = new CriptografaSenha();
 	
+	private static boolean emailError = false;
+	
+	private static boolean cpfError = false;
+	
 	@Transactional
 	public String salvar() throws ParseException{
+		
+//		ClienteListarBean clb = new ClienteListarBean();
+//		
+//		for(Cliente cli: clb.getClientes()) {
+//			if(cliente.getEmail().equals(cli.getEmail())) {
+//				emailError = true;
+//	            return "/cliente/form?faces-redirect=true";
+//			}
+//		}
+		
+		
 		
 		if(cliente.getSenha().getConfirmaSenha().equals(cliente.getSenha().getSenha())) {
 			
@@ -77,12 +96,12 @@ public class ClienteSalvarBean {
 				
 			}else {
 				
-				return "/cliente/addCliente?faces-redirect=true";
+				return "/cliente/form?faces-redirect=true";
 				
 			}
 		}else {
 			
-			return "/cliente/addCliente?faces-redirect=true";
+			return "/cliente/form?faces-redirect=true";
 			
 		}
 	}
@@ -145,5 +164,21 @@ public class ClienteSalvarBean {
 
 	public void setCartao(CartaoCredito cartao) {
 		this.cartao = cartao;
+	}
+
+	public  boolean isEmailError() {
+		return emailError;
+	}
+
+	public  void setEmailError(boolean emailError) {
+		ClienteSalvarBean.emailError = emailError;
+	}
+
+	public  boolean isCpfError() {
+		return cpfError;
+	}
+
+	public  void setCpfError(boolean cpfError) {
+		ClienteSalvarBean.cpfError = cpfError;
 	}
 }

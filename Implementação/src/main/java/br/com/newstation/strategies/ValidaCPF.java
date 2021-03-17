@@ -2,6 +2,7 @@ package br.com.newstation.strategies;
 
 import java.util.InputMismatchException;
 
+import br.com.newstation.beans.ClienteSalvarBean;
 import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.Documento;
 import br.com.newstation.dominio.EntidadeDominio;
@@ -12,7 +13,7 @@ public class ValidaCPF implements IStrategy {
 	@Override
 	public String processar(EntidadeDominio ent) {
 		
-		System.out.println("istrategy um");
+		ClienteSalvarBean csb = new ClienteSalvarBean();
 		Cliente cliente = (Cliente) ent;
 		
         Boolean isValid = true;
@@ -38,6 +39,7 @@ public class ValidaCPF implements IStrategy {
                 CPF.equals("88888888888") || CPF.equals("99999999999") ||
                 (CPF.length() != 11)) {
                     isValid = false;
+                    csb.setCpfError(true);
                     return "CPF inválido";
             }
                 
@@ -83,18 +85,19 @@ public class ValidaCPF implements IStrategy {
                      isValid = true;
                 else{ 
                     isValid = false;
+                    csb.setCpfError(true);
                     return "CPF inválido";
                 }
                     } catch (InputMismatchException erro) {
                     isValid = false;
                 }
-                if(!isValid)
+                if(!isValid) {
+                	csb.setCpfError(true);
                     return "CPF inválido";
+                }
                 else
-                	System.out.println("istrategy 2");
                     return null;
             }else {
-            	System.out.println("istrategy dois");
             	return null;
             	
             }

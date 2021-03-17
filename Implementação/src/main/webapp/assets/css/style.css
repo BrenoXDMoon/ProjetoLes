@@ -3,12 +3,23 @@ body{
     color: whitesmoke;
 }
 
+.btn-comprar{
+    background: #fba71b;
+    color: #fff;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
 a{
     text-decoration: none!important;
 }
 
 .ml-25{
     margin-left: 25%;
+}
+
+.ml-17{
+    margin-left: 17%;
 }
 
 table  tr td img{
