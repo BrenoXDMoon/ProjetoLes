@@ -23,7 +23,9 @@ import br.com.newstation.dominio.TIPO_ENDERECO;
 @Model
 public class LoginBean {
 
-	private static Cliente cliente = new Cliente();
+	@Inject
+	private Cliente cliente;
+	
 	private static Integer id;
 	private static boolean statusSessao;
 	private static Set<Endereco> enderecos = new HashSet<Endereco>();
@@ -52,11 +54,11 @@ public class LoginBean {
 		
 		try {
 			
-			LoginBean.cliente.setId(getId());
-			LoginBean.cliente = dao.visualizar(cliente);
-			LoginBean.cliente.getCartoes().add(card);
+			cliente.setId(getId());
+			cliente = dao.visualizar(cliente);
+			cliente.getCartoes().add(card);
 			
-			cardDao.salvar(LoginBean.cliente);
+			cardDao.salvar(cliente);
 			
 			return "/cliente/perfil?faces-redirect=true";
 		}catch (Exception e) {
@@ -90,11 +92,11 @@ public class LoginBean {
 		
 		try {
 			
-			LoginBean.cliente.setId(getId());
-			LoginBean.cliente = dao.visualizar(cliente);
-			LoginBean.cliente.getDocumentos().add(doc);
+			cliente.setId(getId());
+			cliente = dao.visualizar(cliente);
+			cliente.getDocumentos().add(doc);
 			
-			docDao.salvar(LoginBean.cliente);
+			docDao.salvar(cliente);
 			
 			return "/cliente/perfil?faces-redirect=true";
 			
@@ -127,9 +129,9 @@ public class LoginBean {
 		
 		try {
 			
-			LoginBean.cliente.setId(getId());
-			LoginBean.cliente = dao.visualizar(cliente);
-			LoginBean.cliente.getEnderecos().add(endereco);
+			cliente.setId(getId());
+			cliente = dao.visualizar(cliente);
+			cliente.getEnderecos().add(endereco);
 			
 			
 			endDao.salvar(cliente);
@@ -189,8 +191,8 @@ public class LoginBean {
 	@Transactional
 	public  String excluirCartao(CartaoCredito card){
 		
-		LoginBean.cliente.setId(getId());
-		LoginBean.cliente = dao.visualizar(cliente);
+		cliente.setId(getId());
+		cliente = dao.visualizar(cliente);
 		
 		for(CartaoCredito cards : cliente.getCartoes()) {
 			if(cards.getId().equals(card.getId())) {
@@ -199,7 +201,7 @@ public class LoginBean {
 			}	
 		}
 		
-		cardDao.excluir(LoginBean.cliente, card);
+		cardDao.excluir(cliente, card);
 		
 		return "/cliente/perfil?faces-redirect=true";
 	}
@@ -207,8 +209,8 @@ public class LoginBean {
 	@Transactional
 	public  String excluirDocumento(Documento doc){
 		
-		LoginBean.cliente.setId(getId());
-		LoginBean.cliente = dao.visualizar(cliente);
+		cliente.setId(getId());
+		cliente = dao.visualizar(cliente);
 		
 		for(Documento docs : cliente.getDocumentos()) {
 			if(docs.getId().equals(doc.getId())) {
@@ -219,7 +221,7 @@ public class LoginBean {
 		}
 		
 		
-		docDao.excluir(LoginBean.cliente, doc);
+		docDao.excluir(cliente, doc);
 		
 		return "/cliente/perfil?faces-redirect=true";
 
@@ -228,8 +230,8 @@ public class LoginBean {
 	@Transactional
 	public  String excluirEndereco(Endereco end){
 		
-		LoginBean.cliente.setId(getId());
-		LoginBean.cliente = dao.visualizar(cliente);
+		cliente.setId(getId());
+		cliente = dao.visualizar(cliente);
 		
 		for(Endereco ends:cliente.getEnderecos()) {
 			if(ends.getId().equals(end.getId())) {
@@ -240,7 +242,7 @@ public class LoginBean {
 		}
 		
 		
-		endDao.excluir(LoginBean.cliente, end);
+		endDao.excluir(cliente, end);
 		
 		return "/cliente/perfil?faces-redirect=true";
 
@@ -250,13 +252,13 @@ public class LoginBean {
 	public String login() {
 		
 		try {
-			LoginBean.cliente = dao.login(cliente);
+			cliente = dao.login(cliente);
 			
 			LoginBean.id = cliente.getId();
 			
 			setStatusSessao(true);
 			
-			if(LoginBean.cliente.getTipoCliente().equals(TIPO_CLIENTE.Admin)) {
+			if(cliente.getTipoCliente().equals(TIPO_CLIENTE.Admin)) {
 				
 				return "/admin/admin?faces-redirect=true";
 			}else {
@@ -273,16 +275,16 @@ public class LoginBean {
 	@Transactional
 	public String logout() {
 		
-		LoginBean.cliente = new Cliente();
+		cliente = new Cliente();
 		setStatusSessao(false);
 		return "/cliente/login?faces-redirect=true";
 	}
 	
 	public void carregar() {
 		
-		LoginBean.cliente.setId(getId());
+		cliente.setId(getId());
 		
-		LoginBean.cliente = dao.visualizar(cliente);
+		cliente = dao.visualizar(cliente);
 		setEnderecos(cliente.getEnderecos());
 		
 	}
@@ -292,7 +294,7 @@ public class LoginBean {
 	}
 	
 	public void setCliente(Cliente cliente) {
-		LoginBean.cliente = cliente;
+		cliente = cliente;
 	}
 	
 	public Integer getId() {
@@ -307,7 +309,7 @@ public class LoginBean {
 		
 		boolean as;
 		
-		if(LoginBean.cliente.getCartoes().isEmpty()) {
+		if(cliente.getCartoes().isEmpty()) {
 			as = true;
 		}else {
 			as = false;
