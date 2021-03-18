@@ -39,6 +39,10 @@ table tr{
     color: #1e7e34 !important
 }
 
+.w-30{
+	width: 30%;
+}
+
 .w-min{
 	width: min-content;
 }

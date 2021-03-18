@@ -2,11 +2,13 @@ package br.com.newstation.daos;
 
 import java.util.List;
 
+import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import br.com.newstation.dominio.Pedido;
 
+@Stateful
 public class PedidoDao {
 
 	@PersistenceContext	
@@ -34,11 +36,11 @@ public class PedidoDao {
 		return manager.createQuery(jpql, Pedido.class).getResultList();
 	}
 	
-	public Pedido buscarPorId(Pedido ped) {
+	public Pedido buscarPorId(int ped) {
 		
 		String jpql = "select p from Pedido p where p.id = :id";
 		
-		return manager.createQuery(jpql, Pedido.class).setParameter("id", ped.getId()).getSingleResult();
+		return manager.createQuery(jpql, Pedido.class).setParameter("id", ped).getSingleResult();
 	}
 
 }

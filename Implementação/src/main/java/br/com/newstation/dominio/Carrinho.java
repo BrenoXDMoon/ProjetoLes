@@ -1,26 +1,37 @@
 package br.com.newstation.dominio;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 
 import br.com.newstation.daos.PedidoDao;
 
-public class CarrinhoCompra {
 
-	private static final long serialVersionUID = 513384120723633752L;
-	private Set<CarrinhoItem> itens = new HashSet<>();
+@Named
+@SessionScoped
+public class Carrinho implements Serializable {
+
 	
+	private static final long serialVersionUID = 1L;
+
+	private Set<CarrinhoItem> itens = new HashSet<>();
+
 	@Inject
 	private PedidoDao compraDao;
 	
+	int quantidadeAnterior;
+	
 	public void add(CarrinhoItem item) {
+		quantidadeAnterior = item.getQuantidade();
 		itens.add(item);
 	}
 
@@ -29,8 +40,15 @@ public class CarrinhoCompra {
 	}
 
 	public BigDecimal getTotal(CarrinhoItem item) {
-		return item.getCarta().getPreco().multiply(
-				new BigDecimal(item.getQuantidade()));
+		if(quantidadeAnterior < item.getQuantidade()) {
+			System.out.println(item.getQuantidade());
+//			item.dropEstoque();
+		}
+		else {
+//			item.devolveEstoque();
+		}
+		
+		return item.getCarta().getPreco().multiply(new BigDecimal(item.getQuantidade()));
 	}
 
 	public BigDecimal getTotal() {
@@ -43,34 +61,31 @@ public class CarrinhoCompra {
 
 		return total;
 	}
-	
+
 	public void remover(CarrinhoItem item) {
-		itens.remove(item);
+		this.itens.remove(item);
 	}
-	
+
 	public Integer getQuantidadeTotal() {
 		return itens.stream().mapToInt(item -> item.getQuantidade()).sum();
 	}
-	
+
 	public void finalizar(Pedido compra) {
 		compra.setItens(toJson());
 		compra.setTotal(getTotal());
 		compraDao.salvar(compra);
+		
 	}
 
 	private String toJson() {
 		JsonArrayBuilder builder = Json.createArrayBuilder();
-		
+
 		for (CarrinhoItem item : itens) {
-			builder.add(Json.createObjectBuilder()
-				.add("nome", item.getCarta().getNome())
-				.add("preco", item.getCarta().getPreco())
-				.add("quantidade", item.getQuantidade())
-				.add("total", getTotal(item))
-			);
+			builder.add(Json.createObjectBuilder().add("Nome", item.getCarta().getNome())
+					.add("preco", item.getCarta().getPreco()).add("quantidade", item.getQuantidade())
+					.add("total", getTotal(item)));
 		}
-		
+
 		return builder.build().toString();
 	}
-	
 }
