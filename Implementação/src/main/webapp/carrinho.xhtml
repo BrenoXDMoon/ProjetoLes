@@ -35,51 +35,39 @@
 
 	<form class="formularioDoCarrinho" method="post" jsf:id="formCarrinho">
 		<table class="formularioDoCarrinho-tabela">
-			<thead class="formularioDoCarrinho-cabecalho">
-				<tr>
-					<th></th>
-					<th class="formularioDoCarrinho-cabecalho-item">Item</th>
-					<th
-						class="formularioDoCarrinho-cabecalho-item formularioDoCarrinho-cabecalho-preco">Preço</th>
-					<th class="formularioDoCarrinho-cabecalho-item">Qtd</th>
-					<th class="formularioDoCarrinho-cabecalho-item">Total</th>
-					<th></th>
-				</tr>
-			</thead>
 			<tbody>
 
-				<ui:repeat var="carrinhoItem" value="#{carrinhoBean.itens}"
-					varStatus="loop">
-					<tr>
-						<td class="formularioDoCarrinho-item"><a
-							href="#{request.contextPath}/album-detalhe.xhtml?id=#{carrinhoItem.carta.id}">
-								<img class="formularioDoCarrinho-item-imagem"
-								src="#{request.contextPath}/file/#{carrinhoItem.carta.imagemPath}" />
-						</a></td>
-						<td class="formularioDoCarrinho-item">
-							<h2 class="formularioDoCarrinho-item-titulo">#{carrinhoItem.carta.nome}</h2>
-						</td>
-						<td
-							class="formularioDoCarrinho-item formularioDoCarrinho-item-preco">R$#{carrinhoItem.carta.preco}</td>
-						<td class="formularioDoCarrinho-item"><input
-							class="formularioDoCarrinho-item-quantidade" type="number"
-							min="1" jsf:value="#{carrinhoBean.itens[loop.index].quantidade}" /></td>
-							<td>
-							<h:selectOneListbox value="#{carrinhoItem.carta.quantidade}" styleClass="form-select">
-	                        	<f:selectItems value="#{carrinhoItem.quantidade}" var="quantidade" itemLabel="#{quantidade}" itemValue="#{quantidade}"/> 
-                        </h:selectOneListbox>
-                        </td>
-						<td
-							class="formularioDoCarrinho-item formularioDoCarrinho-item-precoTotal"
-							title="Preço unitário: #{carrinhoItem.carta.preco}">R$#{carrinho.getTotal(carrinhoItem)}</td>
-						<td class="formularioDoCarrinho-item"><a
-							jsf:action="#{carrinhoBean.remover(carrinhoItem)}"> <img
-								class="formularioDoCarrinho-item-remover-imagem"
-								src="#{request.contextPath}/resources/imagens/trash.png" alt="X"
-								title="Remover" />
-						</a></td>
-					</tr>
-				</ui:repeat>
+				<h:dataTable var="item" value="#{carrinhoBean.itens}"
+				class="table table-bordered table-striped table-hover">
+				<h:column>
+					<f:facet name="header">Item</f:facet>
+					<img src="#{request.contextPath}/file/#{item.carta.imagemPath}"
+						width="40%" alt="#{carta.nome}" />
+	        	</h:column>
+	        	
+	        	<h:column>
+					<f:facet name="header">Nome</f:facet>
+	        	 	#{item.carta.nome}
+	        	</h:column>
+	        	
+	        	<h:column> 
+					<f:facet name="header">Preço</f:facet>
+	        	 	R$#{item.carta.preco}
+	        	</h:column>
+	        	
+	        	<h:column>
+					<f:facet name="header">Quantidade</f:facet>
+	        	 <h:selectOneListbox value="#{item.quantidade}">
+	        		 <f:selectItems	value="#{item.estoqueMax()}" var="Quantidade" itemValue="#{Quantidade}" itemLabel="#{Quantidade}"/>
+	        	 </h:selectOneListbox>
+	        	</h:column>
+	        	
+	        	<h:column>
+					<f:facet name="header">Total</f:facet>
+	        	 	R$#{carrinho.getTotal(item)}
+	        	</h:column>
+	        	
+				</h:dataTable>
 
 			</tbody>
 			<tfoot class="formularioDoCarrinho-rodape">
@@ -97,7 +85,7 @@
 						<button class="formularioDoCarrinho-atualizar" type="submit"
 							jsf:id="btnAtualizar">Atualizar</button>
 					</td>
-					<td class="formularioDoCarrinho-rodape-item">R$#{carrinhoCompras.getTotal()}</td>
+					<td class="formularioDoCarrinho-rodape-item">R$#{carrinho.getTotal()}</td>
 					<td></td>
 				</tr>
 			</tfoot>

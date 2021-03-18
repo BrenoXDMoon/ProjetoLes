@@ -70,7 +70,7 @@ public class Carrinho implements Serializable {
 		JsonArrayBuilder builder = Json.createArrayBuilder();
 
 		for (CarrinhoItem item : itens) {
-			builder.add(Json.createObjectBuilder().add("titulo", item.getCarta().getNome())
+			builder.add(Json.createObjectBuilder().add("Nome", item.getCarta().getNome())
 					.add("preco", item.getCarta().getPreco()).add("quantidade", item.getQuantidade())
 					.add("total", getTotal(item)));
 		}

@@ -1,5 +1,7 @@
 package br.com.newstation.dominio;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class CarrinhoItem {
 
@@ -19,9 +21,20 @@ public class CarrinhoItem {
 	public Integer getQuantidade() {
 		return quantidade;
 	}
+	
+	
+	public List<Integer> estoqueMax(){
+		List<Integer> lista = new ArrayList<Integer>();
+		for(int i = 1; i <= carta.getEstoque().getQuantidade(); i++) {
+			lista.add(i);
+		}
+		return  lista;
+	}
+	
 	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
