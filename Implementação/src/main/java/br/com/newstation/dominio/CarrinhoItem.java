@@ -1,5 +1,6 @@
 package br.com.newstation.dominio;
 
+
 public class CarrinhoItem {
 
 	private Carta carta;

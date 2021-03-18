@@ -26,7 +26,6 @@ public class CartaDao{
 	public void delete(Carta carta) {
 		Carta cartaDelete = manager.getReference(Carta.class, carta.getId());
 		cartaDelete.setAtivo(false);
-		System.out.println(buscarPorId(carta.getId()));
 	}
 	
 	
