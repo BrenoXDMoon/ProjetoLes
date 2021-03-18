@@ -28,7 +28,10 @@ public class Carrinho implements Serializable {
 	@Inject
 	private PedidoDao compraDao;
 	
+	int quantidadeAnterior;
+	
 	public void add(CarrinhoItem item) {
+		quantidadeAnterior = item.getQuantidade();
 		itens.add(item);
 	}
 
@@ -37,6 +40,14 @@ public class Carrinho implements Serializable {
 	}
 
 	public BigDecimal getTotal(CarrinhoItem item) {
+		if(quantidadeAnterior < item.getQuantidade()) {
+			System.out.println(item.getQuantidade());
+//			item.dropEstoque();
+		}
+		else {
+//			item.devolveEstoque();
+		}
+		
 		return item.getCarta().getPreco().multiply(new BigDecimal(item.getQuantidade()));
 	}
 
