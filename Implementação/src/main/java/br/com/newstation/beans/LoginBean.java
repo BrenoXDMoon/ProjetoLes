@@ -50,6 +50,38 @@ public class LoginBean {
 	}
 	
 	@Transactional
+	public String login() {
+		
+		try {
+			cliente = dao.login(cliente);
+			
+			LoginBean.id = cliente.getId();
+			
+			setStatusSessao(true);
+			
+			if(cliente.getTipoCliente().equals(TIPO_CLIENTE.Admin)) {
+				
+				return "/admin/admin?faces-redirect=true";
+			}else {
+				
+				return "/cliente/perfil?faces-redirect=true";
+			}
+			
+		}catch (Exception e) {
+			return "/cliente/login?faces-redirect=true";
+		}
+		
+	}
+	
+	@Transactional
+	public String logout() {
+		
+		cliente = new Cliente();
+		setStatusSessao(false);
+		return "/cliente/login?faces-redirect=true";
+	}
+	
+	@Transactional
 	public String salvarCartao(){
 		
 		try {
@@ -248,38 +280,6 @@ public class LoginBean {
 
 	}
 	
-	@Transactional
-	public String login() {
-		
-		try {
-			cliente = dao.login(cliente);
-			
-			LoginBean.id = cliente.getId();
-			
-			setStatusSessao(true);
-			
-			if(cliente.getTipoCliente().equals(TIPO_CLIENTE.Admin)) {
-				
-				return "/admin/admin?faces-redirect=true";
-			}else {
-				
-				return "/cliente/perfil?faces-redirect=true";
-			}
-			
-		}catch (Exception e) {
-			return "/cliente/login?faces-redirect=true";
-		}
-		
-	}
-	
-	@Transactional
-	public String logout() {
-		
-		cliente = new Cliente();
-		setStatusSessao(false);
-		return "/cliente/login?faces-redirect=true";
-	}
-	
 	public void carregar() {
 		
 		cliente.setId(getId());
@@ -294,7 +294,7 @@ public class LoginBean {
 	}
 	
 	public void setCliente(Cliente cliente) {
-		cliente = cliente;
+		this.cliente = cliente;
 	}
 	
 	public Integer getId() {
@@ -318,7 +318,7 @@ public class LoginBean {
 		return as;
 	}
 
-	public  boolean isStatusSessao() {
+	public boolean isStatusSessao() {
 		return statusSessao;
 	}
 
