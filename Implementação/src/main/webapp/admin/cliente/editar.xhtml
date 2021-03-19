@@ -67,9 +67,9 @@
 						</div>
 						
 						<h:outputLabel value="Tipo do CLiente" />
-								<h:selectOneListbox value="#{clienteEditarBean.cliente.tipoCliente}" class="form-select">
+								<h:selectOneMenu value="#{clienteEditarBean.cliente.tipoCliente}" class="form-select">
 		                        	<f:selectItems value="#{clienteEditarBean.tipoCliente}" var="tipo" itemLabel="#{tipo}" itemValue="#{tipo}"/>
-		                        </h:selectOneListbox>
+		                        </h:selectOneMenu>
 								
 							<h:message for="tipoCliente" />
 					</div>

@@ -37,9 +37,9 @@
 						</div>
 						<div class="form-group">
 							<h:outputLabel value="Documento"/> <br />
-							<h:selectOneListbox value="#{clienteSalvarBean.documento.tipoDocumento}" styleClass="form-select">
+							<h:selectOneMenu value="#{clienteSalvarBean.documento.tipoDocumento}" styleClass="form-select">
 	                        	<f:selectItems value="#{clienteSalvarBean.documentos}" var="doc" itemLabel="#{doc}" itemValue="#{doc}"/>
-	                        </h:selectOneListbox>
+	                        </h:selectOneMenu>
 	                        
 	                        <br />
 	                        
@@ -129,9 +129,9 @@
 
 						<div class="form-group">
 	                        <h:outputLabel value="Tipo de Endereço"/> <br />
-	                        <h:selectOneListbox value="#{clienteSalvarBean.endereco.tipoEndereco}" class="form-select">
+	                        <h:selectOneMenu value="#{clienteSalvarBean.endereco.tipoEndereco}" class="form-select">
 	                        	<f:selectItems value="#{clienteSalvarBean.tipos}" var="tipo" itemLabel="#{tipo}" itemValue="#{tipo}"/>
-	                        </h:selectOneListbox>
+	                        </h:selectOneMenu>
 						</div>
 
 					</div>
@@ -164,9 +164,9 @@
 
 						<div class="form-group">
 	                        <h:outputLabel value="Tipo de Endereço"/> <br />
-	                        <h:selectOneListbox value="#{clienteSalvarBean.cartao.bandeira}" class="form-select">
+	                        <h:selectOneMenu value="#{clienteSalvarBean.cartao.bandeira}" class="form-select">
 	                        	<f:selectItems value="#{clienteSalvarBean.bandeiras}" var="band" itemLabel="#{band}" itemValue="#{band}"/>
-	                        </h:selectOneListbox>
+	                        </h:selectOneMenu>
 						</div>
 					</div>
 				</div>

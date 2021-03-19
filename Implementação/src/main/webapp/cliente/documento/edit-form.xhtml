@@ -77,9 +77,9 @@
 
 						<div class="form-group">
 	                        <h:outputLabel value="Tipo de Endereço"/> <br />
-	                        <h:selectOneListbox value="#{enderecoBean.endereco.tipoEndereco}" class="form-select">
+	                        <h:selectOneMenu value="#{enderecoBean.endereco.tipoEndereco}" class="form-select">
 	                        	<f:selectItems value="#{enderecoBean.tipos}" var="tipo" itemLabel="#{tipo}" itemValue="#{tipo}"/>
-	                        </h:selectOneListbox>
+	                        </h:selectOneMenu>
 						</div>
 
 					</div>

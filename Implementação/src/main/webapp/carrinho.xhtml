@@ -33,10 +33,8 @@
 	<section class="infoSection container">
 	<h2 class="infoSection-titulo">Seu carrinho</h2>
 
-	<form class="formularioDoCarrinho" method="post" jsf:id="formCarrinho">
+	<h:form >
 		<table class="formularioDoCarrinho-tabela">
-			<tbody>
-
 				<h:dataTable var="item" value="#{carrinhoBean.itens}"
 				class="table table-bordered table-striped table-hover">
 				<h:column styleClass="w-30">
@@ -57,9 +55,9 @@
 	        	
 	        	<h:column>
 					<f:facet name="header">Quantidade</f:facet>
-	        	 <h:selectOneListbox value="#{item.quantidade}">
+	        	 <h:selectOneMenu  value="#{item.quantidade}">
 	        		 <f:selectItems	value="#{item.estoqueMax()}" var="Quantidade" itemValue="#{Quantidade}" itemLabel="#{Quantidade}"/>
-	        	 </h:selectOneListbox>
+	        	 </h:selectOneMenu >
 	        	</h:column>
 	        	
 	        	<h:column>
@@ -73,10 +71,8 @@
 								src="#{request.contextPath}/resources/imagens/trash.png" alt="X"
 								title="Remover" />
 						</a>
-						</h:column>
+				</h:column>
 				</h:dataTable>
-
-			</tbody>
 			<tfoot class="formularioDoCarrinho-rodape">
 				<tr>
 					<td
@@ -88,16 +84,18 @@
 								role="presentation"> compra</span>
 						</button>
 					</td>
+					
 					<td class="formularioDoCarrinho-rodape-item">
 						<button class="formularioDoCarrinho-atualizar" type="submit"
 							jsf:id="btnAtualizar">Atualizar</button>
 					</td>
+					
 					<td class="formularioDoCarrinho-rodape-item">R$#{carrinho.getTotal()}</td>
-					<td></td>
 				</tr>
 			</tfoot>
 		</table>
-	</form>
+		<h:commandButton value="Atualizar jsf" action="#{carrinhoBean.validaEstoque(carrinho.itens)}" />
+	</h:form>
 
 	</section>
 </body>

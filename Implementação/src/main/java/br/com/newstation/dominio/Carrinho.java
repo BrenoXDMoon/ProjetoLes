@@ -13,25 +13,24 @@ import javax.inject.Named;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 
+import br.com.newstation.beans.CarrinhoBean;
 import br.com.newstation.daos.PedidoDao;
-
 
 @Named
 @SessionScoped
 public class Carrinho implements Serializable {
 
-	
 	private static final long serialVersionUID = 1L;
 
 	private Set<CarrinhoItem> itens = new HashSet<>();
 
 	@Inject
 	private PedidoDao compraDao;
-	
-	int quantidadeAnterior;
-	
+
+	CarrinhoBean cb = new CarrinhoBean();
+
 	public void add(CarrinhoItem item) {
-		quantidadeAnterior = item.getQuantidade();
+		item.setQuantidadeAnterior(item.getQuantidade());
 		itens.add(item);
 	}
 
@@ -40,14 +39,6 @@ public class Carrinho implements Serializable {
 	}
 
 	public BigDecimal getTotal(CarrinhoItem item) {
-		if(quantidadeAnterior < item.getQuantidade()) {
-			System.out.println(item.getQuantidade());
-//			item.dropEstoque();
-		}
-		else {
-//			item.devolveEstoque();
-		}
-		
 		return item.getCarta().getPreco().multiply(new BigDecimal(item.getQuantidade()));
 	}
 
@@ -74,7 +65,7 @@ public class Carrinho implements Serializable {
 		compra.setItens(toJson());
 		compra.setTotal(getTotal());
 		compraDao.salvar(compra);
-		
+
 	}
 
 	private String toJson() {

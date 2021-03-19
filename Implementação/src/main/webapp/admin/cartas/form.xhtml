@@ -47,9 +47,9 @@
 					</div>
 					<div class="form-group">
 						<h:outputLabel value="Raridade" /><br />
-						<h:selectOneListbox value="#{cartaSalvarBean.carta.raridade}" styleClass="form-select">
+						<h:selectOneMenu value="#{cartaSalvarBean.carta.raridade}" styleClass="form-select">
 	                        	<f:selectItems value="#{cartaSalvarBean.raridade}" var="raridade" itemLabel="#{raridade}" itemValue="#{raridade}"/>
-                        </h:selectOneListbox>	
+                        </h:selectOneMenu>	
 					</div>
 					<div class="form-group">
 						<h:outputLabel value="Quantidade" />
