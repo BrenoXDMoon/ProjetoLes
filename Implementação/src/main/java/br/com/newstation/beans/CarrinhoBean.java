@@ -1,6 +1,5 @@
 package br.com.newstation.beans;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.inject.Model;
@@ -44,13 +43,14 @@ public class CarrinhoBean {
 	@Transactional
 	public void validaEstoque(List<CarrinhoItem> itens) {
 		System.out.println("itens:"+itens.size());
+		
 		for(CarrinhoItem item: itens) {
-			System.out.println("QTDE Anterio "+item.getQuantidadeAnterior());
-			System.out.println("QTDE Nova "+item.getQuantidade());
 			if (item.getQuantidadeAnterior() < item.getQuantidade()) {
 				dropEstoque(item.getCarta(), item.getQuantidade());
+				
 			} else if ((item.getQuantidadeAnterior() > item.getQuantidade())) {
-	//			devolveEstoque(item.getCarta(), item.getQuantidade());
+				devolveEstoque(item.getCarta(), item.getQuantidadeAnterior());
+				
 			}
 		item.setQuantidadeAnterior(item.getQuantidade());
 		}
@@ -58,7 +58,6 @@ public class CarrinhoBean {
 	
 	@Transactional
 	public void dropEstoque(Carta carta, int quantidade) {
-		System.out.println(carta.getEstoque().getQuantidade() - quantidade);
 		carta.getEstoque().setQuantidade(carta.getEstoque().getQuantidade() - quantidade);
 		daoE.editar(carta.getEstoque());
 	}

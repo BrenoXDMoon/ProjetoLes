@@ -84,17 +84,12 @@
 								role="presentation"> compra</span>
 						</button>
 					</td>
-					
-					<td class="formularioDoCarrinho-rodape-item">
-						<button class="formularioDoCarrinho-atualizar" type="submit"
-							jsf:id="btnAtualizar">Atualizar</button>
-					</td>
-					
+					<h:commandButton value="Atualizar jsf" action="#{carrinhoBean.validaEstoque(carrinho.itens)}" />
 					<td class="formularioDoCarrinho-rodape-item">R$#{carrinho.getTotal()}</td>
 				</tr>
 			</tfoot>
 		</table>
-		<h:commandButton value="Atualizar jsf" action="#{carrinhoBean.validaEstoque(carrinho.itens)}" />
+		
 	</h:form>
 
 	</section>
