@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/custom.css" rel="stylesheet">
+    <title>Checkout</title>
+</head>
+
+<body>
+    <header class="site-header text-light pb-5 pt-1">
+        <nav class="container d-flex flex-column flex-md-row justify-content-between">
+            <a class="py-2 d-none d-md-inline-block" href="index.html">NewStation</a>
+            <a class="py-2 d-none d-md-inline-block" href="admin.html">Admin</a>
+            <a class="py-2 d-none d-md-inline-block" href="cliente/login.html">Login</a>
+            <a class="py-2 d-none d-md-inline-block" href="cliente/addCliente.html">Cadastre-se</a>
+            <a class="py-2 d-none d-md-inline-block" href="carrinho.html">Carrinho</a>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="row justify-content-center pedido">
+            <div class="col-10">
+                <h4 class="ml-8 mb-4">Detalhe do Pedido</h4>
+                <div class="row justify-content-center">
+                    <div class="col-4 text-center">
+                        <img src="assets/img/cartas/blue-eyes.png" width="50%">
+                    </div>
+                    <div class="col-4">
+                        <p>Quantidade</p>
+                        <p>1</p>
+                    </div>
+                    <div class="col-4">
+                        <p>Valor</p>
+                        <p>R$10,00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center dados mt-5 ml-13">
+            <div class="col-6">
+                <h4 class="mb-3">Cartão</h4>
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <span>Bandeira do Cartão</span>
+                        <p>Elo</p>        
+                        <span>Numero</span>
+                        <p>xxxx xxxx xxxx 8426</p>
+                        <span>Código de Verificação</span>
+                        <p>000</p>
+                        <span>Valor</span>
+                        <p>00,00</p>
+                    </div>
+                </div>
+                <div class="border"></div>
+
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <span>Bandeira do Cartão</span>
+                        <p>visa</p>
+                        <span>Número</span>
+                        <p>xxxx xxxx xxxx 4861</p>
+                        <span>Código de Verificação </span>
+                        <p>cvc</p>
+                        <span>Valor</span>
+                        <p>00,00</p>
+                        <a href="trocarCartaoChekout.html" ><button>Trocar Cartão</button></a>
+                        <a href="cliente/addCartaoCheckout.html"><button>Adicionar outro Cartão</button></a>
+                        <a href="selecionaCartao.html"><button  class="my-3">Usar mais de um cartão</button></a>
+                    </div>
+                </div>
+            </div>
+            <!-- -->
+            <div class="col-6">
+                <h4 class=" mb-4">Endereço</h4>
+                <div class="row justify-content-center">
+                    <div class="col-12">
+
+                        <span>Rua</span>
+                        <p>Rua 1</p>
+
+
+                        <span>CEP</span>
+                        <p>0800200</p>
+
+
+                        <span>Cidade</span>
+                        <p>mogi das cruzes</p>
+                        <a href="trocarEnderecoChekout.html"><button>Trocar Endereço</button></a>
+                        <a href="cliente/addEnderecoCheckout.html"><button>Adicionar outro Endereço</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center my-5 ml-13">
+            <div class="col-12 text-start">
+                <h4 class="mb-3">Total</h4>
+                <div class="row justify-content-start">
+
+                    <div class="col-3">
+                        <span>Frete</span>
+                        <p>R$ 2,50</p>
+                    </div>
+                    <div class="col-3">
+                        <span>Produto</span>
+                        <p>R$10,00</p>
+                    </div>
+                    <div class="col-3">
+                        <span>Total</span>
+                        <p>R$12,50</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center ml-13">
+            <div class="col-12 te">
+                <p>Cupom</p>
+                <input type="text">
+                <button>Validar</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row justify-content-center mb-5">
+        <div class="col-4 text-right">
+            <a href="confirmacaoPedido.html"><button>Confirma Pedido</button></a>
+        </div>
+    </div>
+    </div>
+
+
+</body>
+
+</html>

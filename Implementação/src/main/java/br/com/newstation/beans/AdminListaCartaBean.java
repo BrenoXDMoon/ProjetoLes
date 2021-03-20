@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import br.com.newstation.daos.CartaDao;
 import br.com.newstation.dominio.Carta;
+import br.com.newstation.dominio.RARIDADE;
 
 @Model
 public class AdminListaCartaBean {
@@ -17,9 +18,11 @@ public class AdminListaCartaBean {
 
 	private List<Carta> cartas = new ArrayList<>();
 
-	public List<Carta> getCartas() {
-		this.cartas = dao.listar();
-		return cartas;
+	public List<Carta> getCartasAdmin() {
+		return dao.listarAll();
+	}
 
+	public RARIDADE[] getRaridade() {
+		return RARIDADE.values();
 	}
 }

@@ -9,13 +9,15 @@ import br.com.newstation.daos.CartaDao;
 import br.com.newstation.daos.EstoqueDao;
 import br.com.newstation.dominio.Carta;
 import br.com.newstation.dominio.Estoque;
+import br.com.newstation.dominio.RARIDADE;
 import br.com.newstation.infra.FileSaver;
-
 
 @Model
 public class CartaEditarBean {
+
 	@Inject
 	private CartaDao dao;
+
 	@Inject
 	private EstoqueDao daoE;
 
@@ -26,7 +28,7 @@ public class CartaEditarBean {
 
 	@Transactional
 	public String salvar() {
-		
+
 		carta.setEstoque(daoE.update(estoque));
 
 		if (imagemCarta != null) {
@@ -39,6 +41,14 @@ public class CartaEditarBean {
 
 		return "/admin/cartas/lista?faces-redirect=true";
 	}
+	
+	public void ativaCarta(Integer id) {
+		System.out.println("Nome aidi :"+id);
+		Carta cardRef = dao.buscarPorId(id);
+		cardRef.setAtivo(true);
+		dao.editar(cardRef);
+	}
+	
 
 	public void carregaDetalhe() {
 		this.setCarta(dao.buscarPorId(getId()));
@@ -76,5 +86,9 @@ public class CartaEditarBean {
 
 	public void setImagemCarta(Part imagemCarta) {
 		this.imagemCarta = imagemCarta;
+	}
+
+	public RARIDADE[] getRaridade() {
+		return RARIDADE.values();
 	}
 }

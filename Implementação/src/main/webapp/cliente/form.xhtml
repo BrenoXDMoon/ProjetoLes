@@ -4,7 +4,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 	
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -17,10 +18,10 @@
 <body class="bg-dark text-white p-5">
     <header class="site-header py-1">
         <nav class="container d-flex flex-column flex-md-row justify-content-between">
-            <a class="py-2 d-none d-md-inline-block" href="index.xhtml">NewStation</a>
+            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
             <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/admin/admin.xhtml">Admin</a>
             <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
-            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/addCliente.xhtml">Cadastre-se</a>
+            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/form.xhtml">Cadastre-se</a>
             <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/carrinho.xhtml">Carrinho</a>
         </nav>
     </header>
@@ -36,15 +37,20 @@
 						</div>
 						<div class="form-group">
 							<h:outputLabel value="Documento"/> <br />
-							<h:selectOneListbox value="#{clienteSalvarBean.documento.tipoDocumento}" styleClass="form-select">
+							<h:selectOneMenu value="#{clienteSalvarBean.documento.tipoDocumento}" styleClass="form-select">
 	                        	<f:selectItems value="#{clienteSalvarBean.documentos}" var="doc" itemLabel="#{doc}" itemValue="#{doc}"/>
-	                        </h:selectOneListbox>
+	                        </h:selectOneMenu>
 	                        
 	                        <br />
 	                        
 	                        <h:outputLabel value="Código"/> <br />
-	                        <h:inputText value="#{clienteSalvarBean.documento.codigo}" class="form-control"/>
-	                         <h:outputLabel value="Validade"/> <br />
+	                        <h:inputText value="#{clienteSalvarBean.documento.codigo}" class="form-control">
+	                        </h:inputText>
+	                        <c:if test="#{clienteSalvarBean.cpfError}">
+	                        	<span style="color:red;">Cpf Invalido</span>
+	                        </c:if>
+	                        <br />
+	                        <h:outputLabel value="Validade"/> <br />
 	                        <h:inputText value="#{clienteSalvarBean.validade}" class="form-control"/>
 						</div>
 
@@ -59,16 +65,24 @@
 							<h:inputText value="#{clienteSalvarBean.cliente.email}" required="true" id="email" class="form-control">
 								<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
 							</h:inputText>
+							<c:if test="#{clienteSalvarBean.emailError}">
+	                        	<span style="color:red;">Email Já Cadastrado</span>
+	                        </c:if>
 						</div>
 
 						<div class="form-group">
 							<h:outputLabel value="Senha"/> <br />
-							<h:inputSecret value="#{clienteSalvarBean.cliente.senha.senha}" required="true" id="senha" class="form-control"/>
+							<h:inputSecret value="#{clienteSalvarBean.cliente.senha.senha}" required="true" id="senha" class="form-control"
+							validatorMessage="Senha tem que ter 8 caracteres e Possuir numeros">
+								<f:validateRegex pattern = "(?=.*[a-zA-Z])(?=.*[0-9]).{8,13}"/>
+								<h:message for = "senha" style = "color:red"/>
+							</h:inputSecret>
 							 
 						</div>
 						<div class="form-group">
 							<h:outputLabel value="Confirmar Senha"/> <br />
-							<h:inputSecret value="#{clienteSalvarBean.cliente.senha.confirmaSenha}" required="true" id="confirmaSenha" class="form-control"/>
+							<h:inputSecret value="#{clienteSalvarBean.cliente.senha.confirmaSenha}" required="true" id="confirmaSenha" class="form-control">
+							</h:inputSecret>
 						</div>
 					</div>
 				</div>
@@ -115,9 +129,9 @@
 
 						<div class="form-group">
 	                        <h:outputLabel value="Tipo de Endereço"/> <br />
-	                        <h:selectOneListbox value="#{clienteSalvarBean.endereco.tipoEndereco}" class="form-select">
+	                        <h:selectOneMenu value="#{clienteSalvarBean.endereco.tipoEndereco}" class="form-select">
 	                        	<f:selectItems value="#{clienteSalvarBean.tipos}" var="tipo" itemLabel="#{tipo}" itemValue="#{tipo}"/>
-	                        </h:selectOneListbox>
+	                        </h:selectOneMenu>
 						</div>
 
 					</div>
@@ -140,19 +154,19 @@
 						
 						<div class="form-group">
 							<h:outputLabel value="Código de Segurança"/> <br />
-							<h:inputText value="#{clienteSalvarBean.cartao.codigoSeguranca}" required="true" id="codigoSec" class="form-control"/>
+							<h:inputText value="#{clienteSalvarBean.cartao.codigoSeguranca}" required="true" id="codigoSec" class="form-control" maxlength="3"/>
 						</div>
 						
 						<div class="form-group">
 							<h:outputLabel value="Nome Impresso"/> <br />
-							<h:inputText value="#{clienteSalvarBean.cartao.nomeImpresso}" required="true" id="nomeImpresso" class="form-control" maxlength="3"/>
+							<h:inputText value="#{clienteSalvarBean.cartao.nomeImpresso}" required="true" id="nomeImpresso" class="form-control" />
 						</div>
 
 						<div class="form-group">
 	                        <h:outputLabel value="Tipo de Endereço"/> <br />
-	                        <h:selectOneListbox value="#{clienteSalvarBean.cartao.bandeira}" class="form-select">
+	                        <h:selectOneMenu value="#{clienteSalvarBean.cartao.bandeira}" class="form-select">
 	                        	<f:selectItems value="#{clienteSalvarBean.bandeiras}" var="band" itemLabel="#{band}" itemValue="#{band}"/>
-	                        </h:selectOneListbox>
+	                        </h:selectOneMenu>
 						</div>
 					</div>
 				</div>

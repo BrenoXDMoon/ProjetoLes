@@ -21,7 +21,7 @@
 </f:metadata>
 
 <body class="bg-dark text-white">
-	<header class="site-header sticky-top py-1">
+	<header class="site-header  py-1">
 		<nav
 			class="container d-flex flex-column flex-md-row justify-content-between">
 			<a class="py-2 d-none d-md-inline-block"
@@ -67,9 +67,9 @@
 						</div>
 						
 						<h:outputLabel value="Tipo do CLiente" />
-								<h:selectOneListbox value="#{clienteEditarBean.cliente.tipoCliente}" class="form-select">
+								<h:selectOneMenu value="#{clienteEditarBean.cliente.tipoCliente}" class="form-select">
 		                        	<f:selectItems value="#{clienteEditarBean.tipoCliente}" var="tipo" itemLabel="#{tipo}" itemValue="#{tipo}"/>
-		                        </h:selectOneListbox>
+		                        </h:selectOneMenu>
 								
 							<h:message for="tipoCliente" />
 					</div>

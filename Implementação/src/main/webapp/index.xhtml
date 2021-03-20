@@ -4,42 +4,60 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="#{request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="#{request.contextPath}/assets/css/style.css" rel="stylesheet"/>
-    <link href="#{request.contextPath}/assets/css/custom.css" rel="stylesheet"/>
     <title>Index</title>
 </head> 
 
 <body class="bg-dark text-white">
     <header class="site-header  py-1">
         <nav class="container d-flex flex-column flex-md-row justify-content-between">
-            <a class="py-2 d-none d-md-inline-block" href="index.xhtml">NewStation</a>
-            <c:if test="#{!loginBean.isStatusSessao()}">
+			 <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
+            <c:if test="#{!loginBean.statusSessao}"> 
 	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
-	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/addCliente.xhtml">Cadastre-se</a>
+	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/form.xhtml">Cadastre-se</a>
             </c:if>
             
-            <c:if test="#{loginBean.isStatusSessao()}">
+            <c:if test="#{loginBean.statusSessao}">
             	<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/perfil.xhtml">Perfil</a>
             	<h:form>
 	            	<h:commandButton value="Logout" action="#{loginBean.logout}" class="btn btn-danger"/>            	
             	</h:form>
             </c:if>
             <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/carrinho.xhtml">Carrinho</a>
-        </nav>
+		</nav>
     </header>
     <section class="container index mt-5">
         <div class="row justify-content-center">
+        <div class='col-8 mb-4'>
+        	<h:form>
+	        	<div class="row justify-contente-center">
+		        	<div class="col-2 p-0 text-center mt-2" >
+		        	</div>
+		        	<div class="col-12 px-0 mb-3 troca-nome">
+		        	<h5>Filtros</h5>
+		        		<div class="row">
+			        		<div class="col-6">
+				        		<h:outputLabel for="busca" value="Buscar por nome"/><br/>
+					        	<h:inputText value="#{homeBean.busca}"  id="busca" placeholder="Busca" class="form-control"/>
+			        		</div>
+		        		</div>
+		        		<h:commandButton class="btn btn-primary" action="#{homeBean.filtraCartas}" value="Pesquisar"/> 
+		        	</div>
+	        	</div>
+        	</h:form>
+       </div>
 	        <div class="col-10 text-center">
 	        	<div class="row justify-content-left">
-	        		<ui:repeat value="#{adminListaCartaBean.cartas}" var="carta">
+	        		<ui:repeat value="#{homeBean.cartas}" var="carta">
 			            <div class="col-4">
-		 					 <a href="#{request.contextPath}/carta-detalhe.xhtml?id=#{carta.id}"	title="#{carta.nome}">
+		 					 <a href="#{request.contextPath}/carta-detalhe.xhtml?id=#{carta.id}" title="#{carta.nome}">
 									<img class="carta-imagem"
 									src="#{request.contextPath}/file/#{carta.imagemPath}"
 									alt="#{carta.nome}" title="#{carta.nome}I" 
@@ -50,6 +68,7 @@
 							<p>#{carta.nome}</p>
 							<span>Preço</span>
 							<p>#{carta.preco}</p>
+							<span>Raridade</span>
 			            </div>
 			        </ui:repeat>
 	        	</div>
@@ -57,5 +76,6 @@
 		        
         </div>
     </section>
+    <script type="" src="assets/js/troca-busca.js" />
 </body>
 </html>

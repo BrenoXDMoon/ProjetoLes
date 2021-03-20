@@ -26,13 +26,19 @@ public class CartaDao{
 	public void delete(Carta carta) {
 		Carta cartaDelete = manager.getReference(Carta.class, carta.getId());
 		cartaDelete.setAtivo(false);
-		System.out.println(buscarPorId(carta.getId()));
 	}
 	
 	
 	public List<Carta> listar() {
 		
 		String jpql = "select C from Carta C where C.ativo=true";
+				
+		return manager.createQuery(jpql, Carta.class).getResultList();
+	}
+	
+	public List<Carta> listarAll() {
+		
+		String jpql = "select C from Carta C ";
 				
 		return manager.createQuery(jpql, Carta.class).getResultList();
 	}
@@ -57,4 +63,16 @@ public class CartaDao{
 				.setParameter("id", id)
 				.getSingleResult();
 	}
+	
+	public List<Carta> filtro(String busca) {
+		
+		try {
+			return manager.createQuery("select c from Carta c where c.nome LIKE '%" + busca + "%' and c.ativo = 1", 
+					Carta.class)
+					.getResultList();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
 }

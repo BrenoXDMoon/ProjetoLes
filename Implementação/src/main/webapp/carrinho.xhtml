@@ -1,14 +1,98 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
-<ui:composition template="/templates/_cliente_header.xhtml">
-	entrou no carrinho
-</ui:composition>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="#{request.contextPath}/assets/css/style.css"
+	rel="stylesheet" />
+<link href="#{request.contextPath}/assets/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link href="#{request.contextPath}/assets/css/custom.css"
+	rel="stylesheet" />
+<title>Carrinho</title>
+</head>
 
-	
+<body class="bg-dark text-white">
+	<header class="site-header sticky-top py-1"> <nav
+		class="container d-flex flex-column flex-md-row justify-content-between">
+	<a class="py-2 d-none d-md-inline-block"
+		href="#{request.contextPath}/index.xhtml">NewStation</a> <a
+		class="py-2 d-none d-md-inline-block"
+		href="#{request.contextPath}/cliente/login.xhtml">Login</a> <a
+		class="py-2 d-none d-md-inline-block"
+		href="#{request.contextPath}/cliente/form.xhtml">Cadastre-se</a> <a
+		class="py-2 d-none d-md-inline-block"
+		href="#{request.contextPath}/carrinho.xhtml">Carrinho</a> </nav> </header>
+	<section class="infoSection container">
+	<h2 class="infoSection-titulo">Seu carrinho</h2>
+
+	<h:form >
+		<table class="formularioDoCarrinho-tabela">
+				<h:dataTable var="item" value="#{carrinhoBean.itens}"
+				class="table table-bordered table-striped table-hover">
+				<h:column styleClass="w-30">
+					<f:facet name="header">Item</f:facet>
+					<img src="#{request.contextPath}/file/#{item.carta.imagemPath}"
+						width="40%" alt="#{carta.nome}" />
+	        	</h:column>
+	        	
+	        	<h:column>
+					<f:facet name="header">Nome</f:facet>
+	        	 	#{item.carta.nome}
+	        	</h:column>
+	        	
+	        	<h:column> 
+					<f:facet name="header">Preço</f:facet>
+	        	 	R$#{item.carta.preco}
+	        	</h:column>
+	        	
+	        	<h:column>
+					<f:facet name="header">Quantidade</f:facet>
+	        	 <h:selectOneMenu  value="#{item.quantidade}">
+	        		 <f:selectItems	value="#{item.estoqueMax()}" var="Quantidade" itemValue="#{Quantidade}" itemLabel="#{Quantidade}"/>
+	        	 </h:selectOneMenu >
+	        	</h:column>
+	        	
+	        	<h:column>
+					<f:facet name="header">Total</f:facet>
+	        	 	R$#{carrinho.getTotal(item)}
+	        	</h:column>
+	        	
+	        	<h:column class="formularioDoCarrinho-item"><a
+							jsf:action="#{carrinho.remover(item)}"> <img
+								class="formularioDoCarrinho-item-remover-imagem"
+								src="#{request.contextPath}/resources/imagens/trash.png" alt="X"
+								title="Remover" />
+						</a>
+				</h:column>
+				</h:dataTable>
+			<tfoot class="formularioDoCarrinho-rodape">
+				<tr>
+					<td
+						class="formularioDoCarrinho-rodape-item formularioDoCarrinho-finalizar"
+						colspan="3">
+						<button class="formularioDoCarrinho-finalizar-botao" type="submit"
+							jsf:action="checkout?faces-redirect=true">
+							Finalizar<span class="formularioDoCarrinho-finalizar-botao-texto"
+								role="presentation"> compra</span>
+						</button>
+					</td>
+					<h:commandButton value="Atualizar jsf" action="#{carrinhoBean.validaEstoque(carrinho.itens)}" />
+					<td class="formularioDoCarrinho-rodape-item">R$#{carrinho.getTotal()}</td>
+				</tr>
+			</tfoot>
+		</table>
+		
+	</h:form>
+
+	</section>
+</body>
+
 </html>
