@@ -1,6 +1,6 @@
 package br.com.newstation.dominio;
 
-import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,6 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 
 
@@ -35,8 +37,8 @@ public class Cliente extends EntidadeDominio{
 	@Email
 	private String email;
 	
-	@Column
-	private LocalDate dataNascimento;
+	@Temporal(TemporalType.DATE)
+	private Calendar dataNascimento;
 
 	@Embedded
 	private Senha senha = new Senha();
@@ -93,11 +95,11 @@ public class Cliente extends EntidadeDominio{
 		this.senha = senha;
 	}
 
-	public LocalDate getDataNascimento() {
+	public Calendar getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(LocalDate dataNascimento) {
+	public void setDataNascimento(Calendar dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 

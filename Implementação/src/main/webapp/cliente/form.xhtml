@@ -51,12 +51,12 @@
 	                        </c:if>
 	                        <br />
 	                        <h:outputLabel value="Validade"/> <br />
-	                        <h:inputText value="#{clienteSalvarBean.validade}" class="form-control"/>
+	                        <h:inputText value="#{clienteSalvarBean.documento.validade}" class="form-control"/>
 						</div>
 
 						<div class="form-group">
 							<h:outputLabel value="Data de Nascimento"/> <br />
-							<h:inputText value="#{clienteSalvarBean.dataNascimento}" required="true" id="dataNascimento" class="form-control"/>
+							<h:inputText value="#{clienteSalvarBean.cliente.dataNascimento}" required="true" id="dataNascimento" class="form-control"/>
 							
 						</div>
 

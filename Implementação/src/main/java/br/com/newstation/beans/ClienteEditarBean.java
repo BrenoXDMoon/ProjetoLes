@@ -1,8 +1,5 @@
 package br.com.newstation.beans;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 import javax.enterprise.inject.Model;
 import javax.transaction.Transactional;
 
@@ -23,26 +20,17 @@ public class ClienteEditarBean {
 	CriptografaSenha crp = new CriptografaSenha();
 	
 	private Integer id;
-
-	private String dataNascimento;
 	
 	public void carregaDetalhe() {
 		
 		ClienteDao dao = new ClienteDao();
 		cliente =  dao.visualizar(cliente);
 		
-		dataNascimento = cliente.getDataNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")).toString();
-		
 		//senha = cliente.getSenha();
 	}
 	
 	@Transactional
 	public String editar() {
-
-		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-		cliente.setDataNascimento(LocalDate.parse(dataNascimento, formatter));
 		
 		if (senha != null) {
 			
@@ -76,14 +64,6 @@ public class ClienteEditarBean {
 	public void setCliente(Cliente cliente) {
 
 		ClienteEditarBean.cliente = cliente;
-	}
-
-	public String getDataNascimento() {
-		return dataNascimento;
-	}
-
-	public void setDataNascimento(String dataNascimento) {
-		this.dataNascimento = dataNascimento;
 	}
 
 	public Senha getSenha() {
