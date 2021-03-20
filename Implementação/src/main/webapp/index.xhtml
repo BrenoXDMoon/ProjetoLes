@@ -4,7 +4,8 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -35,6 +36,23 @@
     </header>
     <section class="container index mt-5">
         <div class="row justify-content-center">
+        <div class='col-8 mb-4'>
+        	<h:form>
+	        	<div class="row justify-contente-center">
+		        	<div class="col-2 p-0 text-center mt-2">
+			        		<h:selectOneMenu  value="#{adminListaCartaBean.filtro}">
+		        		 		<f:selectItems	value="#{adminListaCartaBean.filtros}" var="filtro" itemValue="#{filtro}" itemLabel="#{filtro}"/>
+		        		 	</h:selectOneMenu >
+		        	</div>
+		        	<div class="col-8 px-0 mb-3">
+			        	 	<h:inputText value="#{adminListaCartaBean.busca}"  id="busca" placeholder="Busca" class="form-control"/>
+		        	</div> 
+		        	<div class="col-2 p-0 text-center mt-2">
+		        		<h:commandButton  action="#{adminListaCartaBean.filtraCartas}" value="Pesquisar"/> 
+		       		</div>
+	        	</div>
+        	</h:form>
+       </div>
 	        <div class="col-10 text-center">
 	        	<div class="row justify-content-left">
 	        		<ui:repeat value="#{adminListaCartaBean.cartas}" var="carta">
@@ -50,6 +68,8 @@
 							<p>#{carta.nome}</p>
 							<span>Preço</span>
 							<p>#{carta.preco}</p>
+							<span>Raridade</span>
+							<p>#{carta.raridade}</p>
 			            </div>
 			        </ui:repeat>
 	        	</div>

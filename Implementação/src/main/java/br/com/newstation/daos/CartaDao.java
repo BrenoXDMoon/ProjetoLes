@@ -35,6 +35,13 @@ public class CartaDao{
 				
 		return manager.createQuery(jpql, Carta.class).getResultList();
 	}
+	
+	public List<Carta> listarAll() {
+		
+		String jpql = "select C from Carta C ";
+				
+		return manager.createQuery(jpql, Carta.class).getResultList();
+	}
 
 	public List<Carta> demaisCartas() {
 		String jpql = "select c from Carta c order by c.id desc";
@@ -56,4 +63,16 @@ public class CartaDao{
 				.setParameter("id", id)
 				.getSingleResult();
 	}
+	
+	public List<Carta> filtro(String busca, String filtro) {
+		
+		try {
+			return manager.createQuery("select c from Carta c where c."+filtro+" LIKE '%"+busca+"%' and c.ativo = 1", 
+					Carta.class)
+					.getResultList();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
 }

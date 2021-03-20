@@ -36,7 +36,7 @@
 		
 			<h:button styleClass = "my-3" value="Cadastrar Cartas" outcome="form" />
 
-			<h:dataTable var="carta" value="#{adminListaCartaBean.cartas}"
+			<h:dataTable var="carta" value="#{adminListaCartaBean.cartasAdmin}"
 				class="table table-bordered table-striped table-hover lista-carta ">
 				<h:column >
 					<f:facet name="header">Nome</f:facet>
@@ -58,11 +58,22 @@
 					<f:facet name="header">Quantidade</f:facet>
 		         	#{carta.estoque.quantidade}
 		        </h:column>
+		        <h:column>
+					<f:facet name="header">Status</f:facet>
+		         	#{carta.ativo}
+		        </h:column>
 				<h:column styleClass="w-min">
 					<f:facet name="header">Imagem</f:facet>
 					<img src="#{request.contextPath}/file/#{carta.imagemPath}"
 						width="40%" alt="#{carta.nome}" />
 				</h:column>
+				<h:column>
+					<f:facet name="header">Ativar Carta</f:facet>
+		         	<h:form>
+							<h:commandButton value='Ativar'
+								action="#{cartaEditarBean.ativaCarta(carta.id)}" />
+						</h:form>
+		        </h:column>
 			</h:dataTable>
 		</div>
 	</div>

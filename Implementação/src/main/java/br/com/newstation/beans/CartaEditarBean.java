@@ -42,6 +42,12 @@ public class CartaEditarBean {
 		return "/admin/cartas/lista?faces-redirect=true";
 	}
 	
+	public void ativaCarta(Integer id) {
+		System.out.println("Nome aidi :"+id);
+		Carta cardRef = dao.buscarPorId(id);
+		cardRef.setAtivo(true);
+		dao.editar(cardRef);
+	}
 	
 
 	public void carregaDetalhe() {
