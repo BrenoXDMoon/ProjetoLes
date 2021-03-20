@@ -12,7 +12,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="#{request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="#{request.contextPath}/assets/css/style.css" rel="stylesheet"/>
-    <link href="#{request.contextPath}/assets/css/custom.css" rel="stylesheet"/>
     <title>Index</title>
 </head> 
 
@@ -39,14 +38,19 @@
         <div class='col-8 mb-4'>
         	<h:form>
 	        	<div class="row justify-contente-center">
-		        	<div class="col-2 p-0 text-center mt-2">
-			        		<h:selectOneMenu  value="#{adminListaCartaBean.filtro}">
-		        		 		<f:selectItems	value="#{adminListaCartaBean.filtros}" var="filtro" itemValue="#{filtro}" itemLabel="#{filtro}"/>
-		        		 	</h:selectOneMenu >
+		        	<div class="col-2 p-0 text-center mt-2" >
+		        		<h:selectOneMenu  value="#{adminListaCartaBean.filtro}"  id="filtro" onchange="teste()">
+	        		 		<f:selectItems	value="#{adminListaCartaBean.filtros}" var="filtro" itemValue="#{filtro}" itemLabel="#{filtro}"/>
+	        		 	</h:selectOneMenu >
 		        	</div>
-		        	<div class="col-8 px-0 mb-3">
+		        	<div class="col-8 px-0 mb-3 troca-nome">
 			        	 	<h:inputText value="#{adminListaCartaBean.busca}"  id="busca" placeholder="Busca" class="form-control"/>
-		        	</div> 
+		        	</div>
+		          <div class="col-8 px-0 mb-3 troca-raridade oof">
+		        	 	<h:selectOneMenu  value="#{adminListaCartaBean.busca}">
+	        		 		<f:selectItems	value="#{adminListaCartaBean.raridade}" var="raridade" itemValue="#{raridade}" itemLabel="#{raridade}"/>
+	        		 	</h:selectOneMenu >
+		        	</div>	
 		        	<div class="col-2 p-0 text-center mt-2">
 		        		<h:commandButton  action="#{adminListaCartaBean.filtraCartas}" value="Pesquisar"/> 
 		       		</div>
@@ -77,5 +81,6 @@
 		        
         </div>
     </section>
+    <script type="" src="assets/js/troca-busca.js" />
 </body>
 </html>

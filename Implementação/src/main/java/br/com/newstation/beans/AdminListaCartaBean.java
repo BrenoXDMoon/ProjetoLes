@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import br.com.newstation.daos.CartaDao;
 import br.com.newstation.dominio.Carta;
+import br.com.newstation.dominio.RARIDADE;
 
 @Model
 public class AdminListaCartaBean {
@@ -62,5 +63,9 @@ public class AdminListaCartaBean {
 
 	public void setFiltros(String[] filtros) {
 		this.filtros = filtros;
+	}
+	
+	public RARIDADE[] getRaridade() {
+		return RARIDADE.values();
 	}
 }
