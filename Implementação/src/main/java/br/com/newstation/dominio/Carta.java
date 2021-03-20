@@ -71,11 +71,11 @@ public class Carta extends EntidadeDominio {
 	}
 
 	public Integer getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(Integer id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public String getImagemPath() {
@@ -99,7 +99,7 @@ public class Carta extends EntidadeDominio {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Id == null) ? 0 : Id.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -112,10 +112,10 @@ public class Carta extends EntidadeDominio {
 		if (getClass() != obj.getClass())
 			return false;
 		Carta other = (Carta) obj;
-		if (Id == null) {
-			if (other.Id != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!Id.equals(other.Id))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
