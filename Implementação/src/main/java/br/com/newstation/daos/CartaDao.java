@@ -64,10 +64,10 @@ public class CartaDao{
 				.getSingleResult();
 	}
 	
-	public List<Carta> filtro(String busca, String filtro) {
+	public List<Carta> filtro(String busca) {
 		
 		try {
-			return manager.createQuery("select c from Carta c where c."+filtro+" LIKE '%"+busca+"%' and c.ativo = 1", 
+			return manager.createQuery("select c from Carta c where c.nome LIKE '%" + busca + "%' and c.ativo = 1", 
 					Carta.class)
 					.getResultList();
 		} catch (Exception e) {

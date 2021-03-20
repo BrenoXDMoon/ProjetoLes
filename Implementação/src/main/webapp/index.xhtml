@@ -39,29 +39,25 @@
         	<h:form>
 	        	<div class="row justify-contente-center">
 		        	<div class="col-2 p-0 text-center mt-2" >
-		        		<h:selectOneMenu  value="#{adminListaCartaBean.filtro}"  id="filtro" onchange="teste()">
-	        		 		<f:selectItems	value="#{adminListaCartaBean.filtros}" var="filtro" itemValue="#{filtro}" itemLabel="#{filtro}"/>
-	        		 	</h:selectOneMenu >
 		        	</div>
-		        	<div class="col-8 px-0 mb-3 troca-nome">
-			        	 	<h:inputText value="#{adminListaCartaBean.busca}"  id="busca" placeholder="Busca" class="form-control"/>
+		        	<div class="col-12 px-0 mb-3 troca-nome">
+		        	<h5>Filtros</h5>
+		        		<div class="row">
+			        		<div class="col-6">
+				        		<h:outputLabel for="busca" value="Buscar por nome"/><br/>
+					        	<h:inputText value="#{homeBean.busca}"  id="busca" placeholder="Busca" class="form-control"/>
+			        		</div>
+		        		</div>
+		        		<h:commandButton class="btn btn-primary" action="#{homeBean.filtraCartas}" value="Pesquisar"/> 
 		        	</div>
-		          <div class="col-8 px-0 mb-3 troca-raridade oof">
-		        	 	<h:selectOneMenu  value="#{adminListaCartaBean.busca}">
-	        		 		<f:selectItems	value="#{adminListaCartaBean.raridade}" var="raridade" itemValue="#{raridade}" itemLabel="#{raridade}"/>
-	        		 	</h:selectOneMenu >
-		        	</div>	
-		        	<div class="col-2 p-0 text-center mt-2">
-		        		<h:commandButton  action="#{adminListaCartaBean.filtraCartas}" value="Pesquisar"/> 
-		       		</div>
 	        	</div>
         	</h:form>
        </div>
 	        <div class="col-10 text-center">
 	        	<div class="row justify-content-left">
-	        		<ui:repeat value="#{adminListaCartaBean.cartas}" var="carta">
+	        		<ui:repeat value="#{homeBean.cartas}" var="carta">
 			            <div class="col-4">
-		 					 <a href="#{request.contextPath}/carta-detalhe.xhtml?id=#{carta.id}"	title="#{carta.nome}">
+		 					 <a href="#{request.contextPath}/carta-detalhe.xhtml?id=#{carta.id}" title="#{carta.nome}">
 									<img class="carta-imagem"
 									src="#{request.contextPath}/file/#{carta.imagemPath}"
 									alt="#{carta.nome}" title="#{carta.nome}I" 
@@ -73,7 +69,6 @@
 							<span>Preço</span>
 							<p>#{carta.preco}</p>
 							<span>Raridade</span>
-							<p>#{carta.raridade}</p>
 			            </div>
 			        </ui:repeat>
 	        	</div>
