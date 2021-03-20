@@ -40,8 +40,8 @@ public class Fachada implements IFachada {
         List<IStrategy> rnsClienteSalvar = new ArrayList<IStrategy>();   
         
         rnsClienteSalvar.add(new ValidaCPF());
-        rnsClienteSalvar.add(new ValidaExistenciaClientePorCPF());
-        rnsClienteSalvar.add(new ValidaExistenciaPorEmail());
+//        rnsClienteSalvar.add(new ValidaExistenciaClientePorCPF());
+//        rnsClienteSalvar.add(new ValidaExistenciaPorEmail());
         
         // Criando lista de RNs do Cliente Alterar
         List<IStrategy> rnsClienteEditar = new ArrayList<IStrategy>();

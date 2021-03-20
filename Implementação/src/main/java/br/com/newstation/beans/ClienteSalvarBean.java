@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 import br.com.newstation.command.SalvarCommand;
+import br.com.newstation.daos.ClienteDao;
 import br.com.newstation.dominio.BANDEIRA;
 import br.com.newstation.dominio.CartaoCredito;
 import br.com.newstation.dominio.Cliente;
@@ -41,6 +42,9 @@ public class ClienteSalvarBean {
 	
 	private static boolean cpfError = false;
 	
+	@Inject
+	private ClienteDao dao;
+	
 	@Transactional
 	public String salvar() throws ParseException{		
 		
@@ -63,14 +67,17 @@ public class ClienteSalvarBean {
 			SalvarCommand cmd = new SalvarCommand();
 
 			System.out.println("- VOU ENTRAR NA COMMAND!!!");
-			Resultado resultado = cmd.executar(cliente);
+//			Resultado resultado = cmd.executar(cliente);
+//			
+//			this.cliente = (Cliente) resultado.getEntidade();
 			
-			this.cliente = (Cliente) resultado.getEntidade();
+			this.cliente = dao.salvar(cliente, "Salvei");
 			
-			if(resultado.getMensagem() == null) {
+			if(!this.cliente.equals(null)) {
 				
+				System.out.println("NENHUM ERRO ATÉ ENTÃO");
 				LoginBean lb = new LoginBean();
-				//lb.setId(this.cliente.getId());
+				lb.setId(this.cliente.getId());
 				
 				return "/cliente/perfil?faces-redirect=true";
 				

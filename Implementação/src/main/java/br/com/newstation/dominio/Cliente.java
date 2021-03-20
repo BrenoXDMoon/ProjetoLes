@@ -36,22 +36,22 @@ public class Cliente extends EntidadeDominio{
 	@Column
 	@Email
 	private String email;
-	
+
 	@Temporal(TemporalType.DATE)
 	private Calendar dataNascimento;
 
 	@Embedded
 	private Senha senha = new Senha();
-	
+
 	@Column
 	private boolean ativo;
-	
+
 	@OneToMany(fetch = FetchType.EAGER)
 	private Set<Endereco> enderecos = new HashSet<Endereco>();
-	
+
 	@OneToMany(fetch = FetchType.EAGER)
 	private Set<Documento> documentos = new HashSet<Documento>();
-	
+
 	@OneToMany(fetch = FetchType.EAGER)
 	private Set<CartaoCredito> cartoes = new HashSet<CartaoCredito>();
 	
