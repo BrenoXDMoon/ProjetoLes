@@ -27,8 +27,9 @@ public class CupomDao {
 	}
 	
 	public List<Cupom> listar(){
+		String jpql = "select C from Cupom C ";
 		
-		return null;
+		return manager.createQuery(jpql, Cupom.class).getResultList();
 	}
 	
 }

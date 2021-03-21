@@ -18,6 +18,7 @@ public class CupomListarBean {
 	
 	@Transactional
 	public String listar() {
+		cupons = dao.listar();
 		return null;
 	}
 
