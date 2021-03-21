@@ -14,15 +14,15 @@ public class CupomDao {
 	@PersistenceContext
 	EntityManager manager;
 	
-	public void salvar() {
+	public void salvar(Cupom cupom) {
+		manager.persist(cupom);
+	}
+	
+	public void editar(Cupom cupom) {
 		
 	}
 	
-	public void editar() {
-		
-	}
-	
-	public void excluir() {
+	public void excluir(Cupom cupom) {
 		
 	}
 	

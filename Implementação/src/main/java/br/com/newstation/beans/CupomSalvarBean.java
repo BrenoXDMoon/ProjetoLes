@@ -17,6 +17,7 @@ public class CupomSalvarBean {
 	
 	@Transactional
 	public String salvar() {
+		dao.salvar(cupom);
 		return null;
 	}
 
