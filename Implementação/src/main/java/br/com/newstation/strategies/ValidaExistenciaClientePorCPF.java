@@ -32,6 +32,7 @@ public class ValidaExistenciaClientePorCPF implements IStrategy {
 			if (ls.isEmpty()) {
 				return null;
 			} else {
+				System.out.println("- Cliente já cadastrado!!");
 				return "- Cliente já cadastrado!!";
 			}
 

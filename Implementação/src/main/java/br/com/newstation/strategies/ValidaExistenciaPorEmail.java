@@ -18,15 +18,16 @@ public class ValidaExistenciaPorEmail implements IStrategy {
 		
 		ClienteListarBean clb = new ClienteListarBean();
 		ClienteSalvarBean csb = new ClienteSalvarBean();
-		
 		Cliente cliente = (Cliente) ent;
 		
 		for(Cliente cli: clb.getClientes()) {
 			if(cliente.getEmail().equals(cli.getEmail())) {
 				csb.setEmailError(true);
+				System.out.println("Email já Cadastrado");
 	            return "Email já Cadastrado";
 			}
 		}
+		System.out.println("EMAIL VALIDADO");
 		return null;
 	}
 }
