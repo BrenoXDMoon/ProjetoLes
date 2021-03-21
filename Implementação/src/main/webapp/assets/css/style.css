@@ -14,7 +14,22 @@ a{
     text-decoration: none!important;
 }
 
+.btn-admin{
+	background-color: #2DACF8;
+	color:white;
+}
 
+.w180{
+	width: 180px!important;
+}
+
+.w180 a{
+	color:inherit;
+}
+
+.w180 a:hover{
+	color:#2DACF8;
+}
 
 .ml-25{
     margin-left: 25%;
