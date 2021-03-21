@@ -22,8 +22,8 @@ public class CupomDao {
 		
 	}
 	
-	public void excluir() {
-		
+	public void excluir(Cupom cupom) {
+		manager.remove(cupom);
 	}
 	
 	public List<Cupom> listar(){

@@ -15,6 +15,7 @@ public class CupomExcluirBean {
 	
 	@Transactional
 	public String excluir() {
+		dao.excluir(cupom);
 		return null;
 	}
 
