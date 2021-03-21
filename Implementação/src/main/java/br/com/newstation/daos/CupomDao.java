@@ -18,8 +18,8 @@ public class CupomDao {
 		
 	}
 	
-	public void editar() {
-		
+	public void editar(Cupom cupom) {
+		manager.merge(cupom);
 	}
 	
 	public void excluir() {

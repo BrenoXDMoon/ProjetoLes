@@ -15,6 +15,7 @@ public class CupomEditarBean {
 	
 	@Transactional
 	public String editar() {
+		dao.editar(cupom);
 		return null;
 	}
 
