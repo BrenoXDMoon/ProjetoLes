@@ -14,21 +14,22 @@ public class CupomDao {
 	@PersistenceContext
 	EntityManager manager;
 	
-	public void salvar() {
-		
+	public void salvar(Cupom cupom) {
+		manager.persist(cupom);
 	}
 	
 	public void editar(Cupom cupom) {
 		manager.merge(cupom);
 	}
 	
-	public void excluir() {
+	public void excluir(Cupom cupom) {
 		
 	}
 	
 	public List<Cupom> listar(){
+		String jpql = "select C from Cupom C ";
 		
-		return null;
+		return manager.createQuery(jpql, Cupom.class).getResultList();
 	}
 	
 }

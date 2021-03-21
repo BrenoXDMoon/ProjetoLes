@@ -148,6 +148,21 @@
 						</h:form>
 					</h:column>
 				</h:dataTable>
+				<div class="col-10 text-left">
+					<div class="row justify-content-left">
+						<ui:repeat value="#{cupomListarBean.cupons}" var="cupom">
+					            <div class="col-4">
+									<br/>
+									<span>Código</span>
+									<p>#{cupom.codigo}</p>
+									<span>Valor</span>
+									<p>#{cupom.preco}</p>
+									<span>Tipo</span>
+									<p>#{cupom.tipoCupom}</p>
+					            </div>
+					        </ui:repeat>
+				       </div>
+				</div>
 			</div>
 		</div>
 	</section>

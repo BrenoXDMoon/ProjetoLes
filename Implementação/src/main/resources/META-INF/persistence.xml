@@ -14,6 +14,7 @@
 		<class>br.com.newstation.dominio.Estoque</class>
 		<class>br.com.newstation.dominio.CartaoCredito</class>
 		<class>br.com.newstation.dominio.Carta</class>
+		<class>br.com.newstation.dominio.Cupom</class>
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="true" />

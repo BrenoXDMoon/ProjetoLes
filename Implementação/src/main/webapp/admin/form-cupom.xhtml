@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="#{request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="#{request.contextPath}/assets/css/style.css" rel="stylesheet"/>
+    <link href="#{request.contextPath}/assets/css/custom.css" rel="stylesheet"/>
+    <title>Cadastra Cupom teste</title>
+</head> 
+
+<h:body styleClass="bg-dark text-white">
+	<header class="site-header  py-1">
+	        <nav class="container d-flex flex-column flex-md-row justify-content-between">
+	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
+	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/admin/cartas/lista.xhtml">Listar</a>
+	        </nav>
+	    </header>
+	<div class="container">
+		<div class="row">
+			<div class="col-10">
+				<h2>Cadastro de Cupom</h2>
+				<h:form enctype="multipart/form-data">
+					<div class="form-group">
+						<h:outputLabel value="preço" />
+						<h:inputText value='#{cupomSalvarBean.cupom.preco}'
+							 id="descricao" styleClass="form-control" />
+						<h:message for='descricao' />
+					</div>
+					<div class="form-group">
+						<h:outputLabel value="desc" />
+						<h:inputTextarea row = "10" col = "10" value='#{cupomSalvarBean.cupom.descricao}'
+							 id='preco' styleClass="form-control" />
+						<h:message for='preco' />
+					</div>
+					<div class="form-group">
+						<h:outputLabel value="tipo" /><br />
+						<h:selectOneMenu value="#{cupomSalvarBean.cupom.tipoCupom}" styleClass="form-select">
+	                        	<f:selectItems value="#{cupomSalvarBean.tiposCupom}" var="tipo" itemLabel="#{tipo}" itemValue="#{tipo}"/>
+                        </h:selectOneMenu>	
+					</div>
+					<h:commandButton value='Cadastrar'
+						action='#{cupomSalvarBean.salvar}'
+						styleClass="btn btn-primary my-3" />
+				</h:form>
+			</div>
+		</div>
+	</div>
+</h:body>
+
+</html>
