@@ -23,7 +23,7 @@ public class Carrinho implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Set<CarrinhoItem> itens = new HashSet<>();
-
+ 
 	@Inject
 	private PedidoDao compraDao;
 

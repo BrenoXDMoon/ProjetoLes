@@ -69,7 +69,8 @@
 					<f:facet name="header">Ativar Carta</f:facet>
 		         	<h:form>
 							<h:commandButton value='Ativar'
-								action="#{cartaEditarBean.ativaCarta(carta.id)}" />
+								action="#{cartaEditarBean.ativaCarta(carta.id)}" 
+								rendered="#{!carta.ativo}"/>
 						</h:form>
 		        </h:column>
 			</h:dataTable>

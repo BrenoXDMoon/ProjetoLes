@@ -32,9 +32,6 @@ public class CarrinhoBean {
 		return "index?faces-redirect=true";
 	}
 
-	public void remover(CarrinhoItem item) {
-		carrinho.remover(item);
-	}
 
 	public List<CarrinhoItem> getItens() {
 		return carrinho.getItens();
@@ -66,6 +63,12 @@ public class CarrinhoBean {
 	public void devolveEstoque(Carta carta, int quantidade) {
 		carta.getEstoque().setQuantidade(carta.getEstoque().getQuantidade() + quantidade);
 		daoE.editar(carta.getEstoque());
+	}
+	
+	@Transactional
+	public void remover(CarrinhoItem item) {
+		devolveEstoque(item.getCarta(), item.getQuantidadeAnterior());
+		carrinho.remover(item);
 	}
 
 }

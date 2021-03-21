@@ -60,7 +60,7 @@
 		 					 <a href="#{request.contextPath}/carta-detalhe.xhtml?id=#{carta.id}" title="#{carta.nome}">
 									<img class="carta-imagem"
 									src="#{request.contextPath}/file/#{carta.imagemPath}"
-									alt="#{carta.nome}" title="#{carta.nome}I" 
+									alt="#{carta.nome}" title="#{carta.nome}" 
 									width="40%"/>
 								</a>
 							<br/>
@@ -69,6 +69,7 @@
 							<span>Preço</span>
 							<p>#{carta.preco}</p>
 							<span>Raridade</span>
+							<p>#{carta.raridade}</p>
 			            </div>
 			        </ui:repeat>
 	        	</div>

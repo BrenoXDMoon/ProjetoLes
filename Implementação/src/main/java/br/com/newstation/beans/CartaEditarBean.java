@@ -43,7 +43,6 @@ public class CartaEditarBean {
 	}
 	
 	public void ativaCarta(Integer id) {
-		System.out.println("Nome aidi :"+id);
 		Carta cardRef = dao.buscarPorId(id);
 		cardRef.setAtivo(true);
 		dao.editar(cardRef);
@@ -53,7 +52,6 @@ public class CartaEditarBean {
 	public void carregaDetalhe() {
 		this.setCarta(dao.buscarPorId(getId()));
 		this.estoque = carta.getEstoque();
-		System.out.println(estoque.getId());
 	}
 
 	public Carta getCarta() {
