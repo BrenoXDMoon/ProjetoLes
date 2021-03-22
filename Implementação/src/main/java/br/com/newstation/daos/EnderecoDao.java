@@ -15,9 +15,9 @@ public class EnderecoDao{
 	@PersistenceContext	
 	private EntityManager manager;
 	
-	public void salvar(Cliente cli,Endereco end) {
-
-		manager.persist(end);
+	public void salvar(Cliente cli) {
+		
+		manager.persist(cli.getEnderecos().toArray()[0]);
 		manager.merge(cli);
 		
 	}

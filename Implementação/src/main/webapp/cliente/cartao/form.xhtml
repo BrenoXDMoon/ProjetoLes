@@ -10,34 +10,34 @@
 	    <link href="#{request.contextPath}/assets/css/style.css" rel="stylesheet"/>
 	    <link href="#{request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet"/>
 	    <link href="#{request.contextPath}/assets/css/custom.css" rel="stylesheet"/>
-	    <title>Novo Cartï¿½o de Crï¿½dito</title>
+	    <title>Novo Cartão de Crédito</title>
 	</head>
 
 	<body class="bg-dark text-white p-5">
 	
 		<nav class="container d-flex flex-column flex-md-row justify-content-between">
 				<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
-	            <c:if test="#{loginBean.isStatusSessao()}">
+	            <c:if test="#{loginBean.statusSessao}">
 		            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
 		            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/form.xhtml">Cadastre-se</a>
 	            </c:if>
-
+	            
 	            <c:if test="#{!loginBean.statusSessao}">
 	            	<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/perfil.xhtml">Perfil</a>
 	            	<h:form>
-		            	<h:commandButton value="Logout" action="#{loginBean.logout}" class="btn btn-danger"/>
+		            	<h:commandButton value="Logout" action="#{loginBean.logout}" class="btn btn-danger"/>            	
 	            	</h:form>
 	            </c:if>
 	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/carrinho.xhtml">Carrinho</a>
 			</nav>
 	
 			<h:form>
-				<h4 class="py-4">Dados de Novo Cartï¿½o de Crï¿½dito</h4>
+				<h4 class="py-4">Dados de Novo Cartão de Crédito</h4>
 				<div class="border">
 					<div class="row justify-content-center">
 						<div class="col-10">
 							<div class="form-group">
-								<h:outputLabel value="Nï¿½mero do Cartï¿½o"/> <br />
+								<h:outputLabel value="Número do Cartão"/> <br />
 								<h:inputText value="#{loginBean.card.numeroCartao}" required="true" id="numeroCartao" class="form-control"/>
 							</div>
 	
@@ -47,7 +47,7 @@
 							</div>
 	
 							<div class="form-group">
-								<h:outputLabel value="Cï¿½digo de Seguranï¿½a"/> <br />
+								<h:outputLabel value="Código de Segurança"/> <br />
 								<h:inputText value="#{loginBean.card.codigoSeguranca}" required="true" id="codigoSec" class="form-control" maxlength="3"/>
 							</div>
 	
@@ -58,15 +58,15 @@
 	
 							<div class="form-group">
 		                        <h:outputLabel value="Bandeira"/> <br />
-		                        <h:selectOneMenu value="#{loginBean.card.bandeira}" class="form-select">
+		                        <h:selectOneListbox value="#{loginBean.card.bandeira}" class="form-select">
 		                        	<f:selectItems value="#{loginBean.bandeiras}" var="band" itemLabel="#{band}" itemValue="#{band}"/>
-		                        </h:selectOneMenu>
+		                        </h:selectOneListbox>
 							</div>
 						</div>
 					</div>
 				</div>
 	
-	        	<h:commandButton class="text-black" type="submit" action="#{loginBean.salvarCartao}" styleClass="btn btn-success mt-5" value="Adicionar Cartï¿½o" />
+	        	<h:commandButton class="text-black" type="submit" action="#{loginBean.salvarCartao}" styleClass="btn btn-success mt-5" value="Adicionar Cartão" />
 			</h:form>
 	
 	</body>

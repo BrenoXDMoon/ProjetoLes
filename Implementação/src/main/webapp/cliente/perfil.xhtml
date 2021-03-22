@@ -45,14 +45,15 @@
 		
 	</header>
 
-	<section class="container mt-5">
+	<section class="container perfil mt-5">
 		<div class="row">
-			<div class="col-12">
-				<h1 class="text-center">Bem vindo, #{loginBean.cliente.nome}</h1> 
+			<div class="col-12 text-center">
+				<h1>Bem vindo, #{loginBean.cliente.nome}</h1> 
 				<div class="my-5">
 					<a class="btn btn-primary" href="senha/form.xhtml">Alterar Senha</a>
-					
-					<a class="btn btn-primary" href="edit-form.xhtml?id=#{loginBean.cliente.id}">Alterar Dados de Cliente</a>
+					<h:form>
+						<a class="btn btn-primary" href="edit-form.xhtml?id=#{loginBean.cliente.id}">Alterar Dados de Cliente</a>
+					</h:form>
 				</div>
 				
 				<h2 class="text-white mt-5">Documentos</h2>
@@ -82,7 +83,7 @@
 						<f:facet name="header">Deletar</f:facet>
 						<h:form>
 							<h:commandButton value='Deletar'
-								action="#{loginBean.excluirDocumento}" />
+								action="#{loginBean.excluirDocumento(doc)}" />
 						</h:form>
 					</h:column>
 				</h:dataTable>
@@ -136,7 +137,7 @@
 					<h:column>
 						<f:facet name="header">Editar</f:facet>
 						<h:form>
-							<h:commandButton value='Editar' action='#{loginBean.redirCartao(card)}' /> 
+							<h:commandButton value='Editar' action='#{loginBean.redirCartao(card)}' />
 						</h:form>
 					</h:column>
 					<h:column>
@@ -147,21 +148,6 @@
 						</h:form>
 					</h:column>
 				</h:dataTable>
-				<div class="col-10 text-left">
-					<div class="row justify-content-left">
-						<ui:repeat value="#{cupomListarBean.cupons}" var="cupom">
-					            <div class="col-4">
-									<br/>
-									<span>Código</span>
-									<p>#{cupom.codigo}</p>
-									<span>Valor</span>
-									<p>#{cupom.preco}</p>
-									<span>Tipo</span>
-									<p>#{cupom.tipoCupom}</p>
-					            </div>
-					        </ui:repeat>
-				       </div>
-				</div>
 			</div>
 		</div>
 	</section>

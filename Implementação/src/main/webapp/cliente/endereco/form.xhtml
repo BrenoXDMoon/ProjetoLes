@@ -11,7 +11,7 @@
     <link href="#{request.contextPath}/assets/css/style.css" rel="stylesheet"/>
     <link href="#{request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="#{request.contextPath}/assets/css/custom.css" rel="stylesheet"/>
-    <title>Cadastro Endereï¿½o</title>
+    <title>Cadastro Endereço</title>
 </head>
 
 
@@ -28,10 +28,11 @@
 	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
 	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/form.xhtml">Cadastre-se</a>
             </c:if>
+            
             <c:if test="#{!loginBean.statusSessao}">
             	<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/perfil.xhtml">Perfil</a>
             	<h:form>
-	            	<h:commandButton value="Logout" action="#{loginBean.logout}" class="btn btn-danger"/>
+	            	<h:commandButton value="Logout" action="#{loginBean.logout}" class="btn btn-danger"/>            	
             	</h:form>
             </c:if>
             <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/carrinho.xhtml">Carrinho</a>
@@ -39,7 +40,7 @@
     </header>
     <section class="container perfil mt-5">
         <h:form enctype="multipart/form-data">
-            <h4 class="py-4">Dados de Endereï¿½o do Cliente</h4>
+            <h4 class="py-4">Dados de Endereço do Cliente</h4>
 			<div class="border">
 				<div class="row justify-content-center">
 					<div class="col-10">
@@ -49,7 +50,7 @@
 						</div>
 
 						<div class="form-group">
-							<h:outputLabel value="Nï¿½mero"/> <br />
+							<h:outputLabel value="Número"/> <br />
 							<h:inputText value="#{loginBean.endereco.numero}" required="true" id="numero" class="form-control"/>
 						</div>
 
@@ -79,7 +80,7 @@
 						</div>
 
 						<div class="form-group">
-	                        <h:outputLabel value="Tipo de Endereï¿½o"/> <br />
+	                        <h:outputLabel value="Tipo de Endereço"/> <br />
 	                        <h:selectOneListbox value="#{loginBean.endereco.tipoEndereco}" class="form-select">
 	                        	<f:selectItems value="#{loginBean.tipoEndereco}" var="tipo" itemLabel="#{tipo}" itemValue="#{tipo}"/>
 	                        </h:selectOneListbox>
