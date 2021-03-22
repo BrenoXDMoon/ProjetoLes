@@ -18,6 +18,11 @@
 <title>Altera Cadastro</title>
 </head>
 
+<f:metadata>
+	<f:viewParam id="id" name="id" value="#{clienteEditarBean.id}" />
+	<f:viewAction action="#{clienteEditarBean.carregaDetalhe()}" />
+</f:metadata>
+
 <body class="bg-dark text-white">
 	<header class="site-header sticky-top py-1">
 		<nav class="container d-flex flex-column flex-md-row justify-content-between">
@@ -50,7 +55,7 @@
 
 						<div class="form-group">
 							<h:outputLabel value="Data de Nascimento" />
-							<h:inputText value="#{clienteEditarBean.dataNascimento}"
+							<h:inputText value="#{clienteEditarBean.cliente.dataNascimento}"
 								id="dataNascimento" styleClass="form-control" />
 							<h:message for="dataNascimento" />
 						</div>
@@ -64,13 +69,10 @@
 					</div>
 				</div>
 			</div>
-			<h:commandButton value='Atualizar' action='#{loginBean.editarCliente()}'
+			<h:commandButton value='Atualizar' action='#{clienteEditarBean.editarCli}'
 						styleClass="btn btn-primary my-3" />
 		</h:form>
-		
 	</section>
-
-
 </body>
 
 </html>

@@ -22,12 +22,22 @@ public class ClienteEditarBean {
 	private Integer id;
 	
 	public void carregaDetalhe() {
-		
 		ClienteDao dao = new ClienteDao();
-		cliente =  dao.visualizar(cliente);
-		
-		//senha = cliente.getSenha();
+		Cliente cliente = new Cliente();
+		cliente.setId(getId());
+		ClienteEditarBean.cliente =  dao.visualizar(cliente);
+			
 	}
+	
+	@Transactional
+	public String editarCli() {
+		
+		EditarCommand cmd = new EditarCommand();
+		cmd.executar(ClienteEditarBean.cliente);
+		
+		return "/cliente/perfil.xhtml?faces-redirect=true";
+	}
+	
 	
 	@Transactional
 	public String editar() {
@@ -46,8 +56,10 @@ public class ClienteEditarBean {
 		return "/admin/cliente/lista?faces-redirect=true";
 	}
 
-	public String redir() {
-		return "/cliente/editar?faces-redirect=true";
+	public String redir(Cliente cli) {
+		ClienteEditarBean.cliente = cli;
+		
+		return "/cliente/edit-form?faces-redirect=true";
 	}
 	
 	public String redirAdmin(Cliente cli) {
