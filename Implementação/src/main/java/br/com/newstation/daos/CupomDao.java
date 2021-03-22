@@ -19,7 +19,7 @@ public class CupomDao {
 	}
 	
 	public void editar(Cupom cupom) {
-		
+		manager.merge(cupom);
 	}
 	
 	public void excluir(Cupom cupom) {
@@ -30,6 +30,13 @@ public class CupomDao {
 		String jpql = "select C from Cupom C ";
 		
 		return manager.createQuery(jpql, Cupom.class).getResultList();
+	}
+
+	public Cupom buscarById(Integer id) {
+		
+		String jpql = "select distinct(c) from Cupom c where c.id = :id";
+		
+		return manager.createQuery(jpql, Cupom.class).setParameter("id", id).getSingleResult();
 	}
 	
 }
