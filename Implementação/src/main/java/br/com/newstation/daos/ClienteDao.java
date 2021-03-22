@@ -169,7 +169,7 @@ public class ClienteDao extends AbstractDao {
 	public List<Cliente> listarSemCao() {
 		abrirConexao();
 
-		String jpql = "select distinct(c) from Cliente c join fetch c.documentos";
+		String jpql = "select distinct(c) from Cliente c";
 
 		List<Cliente> lista = new ArrayList<Cliente>();
 

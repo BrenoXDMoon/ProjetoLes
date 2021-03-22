@@ -16,9 +16,7 @@
 <title>Editar Cadastro</title>
 </head>
 
-<f:metadata>
-	<f:viewAction action="#{clienteEditarBean.carregaDetalhe()}" />
-</f:metadata>
+
 
 <body class="bg-dark text-white">
 	<header class="site-header  py-1">
@@ -47,8 +45,10 @@
 
 						<div class="form-group">
 							<h:outputLabel value="Data de Nascimento" />
-							<h:inputText value="#{clienteEditarBean.dataNascimento}"
-								id="dataNascimento" styleClass="form-control" />
+							<h:inputText value="#{clienteEditarBean.cliente.dataNascimento.time}"
+								id="dataNascimento" styleClass="form-control">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:inputText>
 							<h:message for="dataNascimento" />
 						</div>
 
