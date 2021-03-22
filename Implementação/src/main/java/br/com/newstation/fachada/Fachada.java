@@ -73,7 +73,7 @@ public class Fachada implements IFachada {
         if (sb.length() == 0) {
         	
             IDao dao = daos.get(nmClasse);
-           // resultado = dao.salvar(entidade);
+            resultado = dao.salvar(entidade);
             
         } else {
             resultado.add(entidade);
@@ -108,7 +108,7 @@ public class Fachada implements IFachada {
 
     @Override
     public Resultado excluir(EntidadeDominio entidade) {
-    	System.out.println("- Fachada Excluir");
+//    	System.out.println("- Fachada Excluir");
         resultado = new Resultado();
         String nmClasse = entidade.getClass().getName();
 

@@ -4,96 +4,30 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-<head>
-<meta charset="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link href="#{request.contextPath}/assets/css/style.css"
-	rel="stylesheet" />
-<link href="#{request.contextPath}/assets/css/bootstrap.min.css"
-	rel="stylesheet" />
-<title>Admin</title>
-</head>
-
-<body class="bg-dark text-white">
-
-	<header class="site-header  py-1">
-		<nav class="container d-flex flex-column flex-md-row justify-content-between">
-			<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
-		</nav>
-		</header>
-
-	<div class="container-fluid">
-		<div class="row">
-			<nav id="sidebarMenu" class="col-md-2 col-lg-2 d-md-block bg-dark sidebar collapse">
-			<div class="position-sticky pt-3">
-				<ul class="nav flex-column">
-					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="#{request.contextPath}/admin/admin.xhtml">
-							<span data-feather="home">Dashboard</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">
-							<span data-feather="file"></span>
-							<a class="py-2 d-none d-md-inline-block ml-3" href="#{request.contextPath}/admin/pedido/lista.xhtml">Pedidos</a>
-						</a>
-					</li>
-					<span class="font-weight-bold">Cartas</span>
-					<li class="nav-item">
-					<a class="nav-link" href="#{request.contextPath}/admin/cartas/lista.xhtml">
-						Lista de Cartas
-					</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#{request.contextPath}/admin/cartas/form.xhtml">
-							Cadastro de Cartas
-						</a>
-					</li>
-					<spam class="font-weight-bold">Cliente</spam>
-					<li class="nav-item">
-						<a class="nav-link" href="#{request.contextPath}/admin/cliente/lista.xhtml">
-							Lista de Clientes
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#{request.contextPath}/cliente/form.xhtml">
-							Cadastro de Clientes
-						</a>
-					</li>
-
-					<spam class="font-weight-bold">Cupons</spam>
-					<li class="nav-item">
-						<a class="nav-link" href="#{request.contextPath}/admin/cupom/lista.xhtml">
-							Lista de Cupons
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#{request.contextPath}/admin/cupom/form.xhtml">
-							Cadastro de Cupons
-						</a>
-					</li>
-				</ul>
-				</div>
-			</nav>
-			
-			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Dashboard</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-          <div class="btn-group me-2">
-          </div>
-          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <span data-feather="calendar"></span>
-            Essa Semana
-          </button>
-        </div>
-      </div>
-
-      <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
-    </main>
-			
-		</div>
-	</div>
-</body>
+	<head>
+	    <meta charset="UTF-8"/>
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	    <link href="#{request.contextPath}/assets/css/style.css" rel="stylesheet"/>
+	    <link href="#{request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet"/>
+	    <title>Admin</title>
+	</head>
+	
+	<body class="bg-dark text-white">
+	    <header class="site-header  py-1">
+	        <nav class="container d-flex flex-column flex-md-row justify-content-between">
+	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
+	        </nav>
+	    </header>
+	    <section class="container mt-5">
+	        <div class="row">
+	            <div class="col-10">
+	                <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/admin/cartas/lista.xhtml"><button class="btn btn-info">Lista de Cartas</button></a>
+	                <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/admin/pedido/lista.xhtml"><button class="btn btn-info">Lista de Pedidos</button></a>
+	                <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/admin/cliente/lista.xhtml"><button class="btn btn-info">Lista de Clientes</button></a>
+	            </div>
+	        </div>
+	
+	    </section>
+	</body>
 </html>

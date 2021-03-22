@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateful;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.EntidadeDominio;
@@ -13,9 +15,13 @@ import br.com.newstation.seguranca.CriptografaSenha;
 
 @Stateful
 public class ClienteDao extends AbstractDao {
+	
+	@PersistenceContext
+	EntityManager mngr;
 
 	@Override
 	public Resultado salvar(EntidadeDominio ent) {
+		
 		abrirConexao();
 
 		Resultado resultado = new Resultado();
@@ -28,6 +34,7 @@ public class ClienteDao extends AbstractDao {
 			manager.persist(cliente.getDocumentos().toArray()[0]);
 			manager.persist(cliente.getCartoes().toArray()[0]);
 			
+			manager.flush();
 			manager.getTransaction().commit();
 			manager.close();
 			factory.close();
@@ -118,9 +125,6 @@ public class ClienteDao extends AbstractDao {
 		return resultado;
 	}
 
-	
-
-	
 	public Cliente visualizar(EntidadeDominio ent) {
 
 		abrirConexao();
@@ -130,6 +134,8 @@ public class ClienteDao extends AbstractDao {
 		
 		System.out.println(cli.getId());
 		manager.getTransaction().begin();
+		
+		System.out.println("-ID DO CLIENTE: " + cli.getId());
 		
 		cli = manager.createQuery(jpql, Cliente.class).setParameter("id", cli.getId())
 				.getSingleResult();
@@ -174,5 +180,17 @@ public class ClienteDao extends AbstractDao {
 		manager.close();
 		factory.close();
 		return lista;
+	}
+	public Cliente salvar(Cliente cli, String str) {
+		
+		
+		mngr.persist(cli);
+		mngr.persist(cli.getCartoes().toArray()[0]);
+		mngr.persist(cli.getEnderecos().toArray()[0]);
+		mngr.persist(cli.getDocumentos().toArray()[0]);
+		
+		System.out.println(str);
+		
+		return cli;
 	}
 }
