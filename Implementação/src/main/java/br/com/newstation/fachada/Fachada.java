@@ -40,8 +40,8 @@ public class Fachada implements IFachada {
         List<IStrategy> rnsClienteSalvar = new ArrayList<IStrategy>();   
         
         rnsClienteSalvar.add(new ValidaCPF());
-//        rnsClienteSalvar.add(new ValidaExistenciaClientePorCPF());
-//        rnsClienteSalvar.add(new ValidaExistenciaPorEmail());
+        rnsClienteSalvar.add(new ValidaExistenciaClientePorCPF());
+        rnsClienteSalvar.add(new ValidaExistenciaPorEmail());
         
         // Criando lista de RNs do Cliente Alterar
         List<IStrategy> rnsClienteEditar = new ArrayList<IStrategy>();
@@ -73,7 +73,7 @@ public class Fachada implements IFachada {
         if (sb.length() == 0) {
         	
             IDao dao = daos.get(nmClasse);
-           // resultado = dao.salvar(entidade);
+            resultado = dao.salvar(entidade);
             
         } else {
             resultado.add(entidade);
@@ -108,7 +108,7 @@ public class Fachada implements IFachada {
 
     @Override
     public Resultado excluir(EntidadeDominio entidade) {
-    	System.out.println("- Fachada Excluir");
+//    	System.out.println("- Fachada Excluir");
         resultado = new Resultado();
         String nmClasse = entidade.getClass().getName();
 

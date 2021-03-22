@@ -69,7 +69,9 @@
 	        		
 	        		<h:column>
 	        			<f:facet name="header">Validade</f:facet>
-	        			#{doc.validade}
+	        			<h:outputText value="#{doc.validade.time}">]
+		        			<f:convertDateTime pattern="dd/MM/yyyy" />
+	        			</h:outputText>
 	        		</h:column>
 
 					<h:column>

@@ -14,9 +14,9 @@ public class ValidaCPF implements IStrategy {
 	@Override
 	public String processar(EntidadeDominio ent) {
 
-		System.out.println("- entrou na poha");
+//		System.out.println("- entrou na poha");
 		
-		ClienteSalvarBean csb = new ClienteSalvarBean();
+//		ClienteSalvarBean csb = new ClienteSalvarBean();
 		Cliente cliente = (Cliente) ent;
 
 		Boolean isValid = true;
@@ -30,13 +30,13 @@ public class ValidaCPF implements IStrategy {
 			}
 		}
 		
-		System.out.println(cpfValido(doc.getCodigo()));
+//		System.out.println(cpfValido(doc.getCodigo()));
 		
 		if(cpfValido(doc.getCodigo())) {
 			return null;
 		}else
 		{
-			System.out.println("CPF INVÁLIDO");
+//			System.out.println("CPF INVÁLIDO");
 			return "CPF INVÁLIDO";
 		}
 	}

@@ -4,12 +4,14 @@ import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
+import br.com.newstation.command.SalvarCommand;
 import br.com.newstation.daos.ClienteDao;
 import br.com.newstation.dominio.BANDEIRA;
 import br.com.newstation.dominio.CartaoCredito;
 import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.Documento;
 import br.com.newstation.dominio.Endereco;
+import br.com.newstation.dominio.Resultado;
 import br.com.newstation.dominio.TIPO_CLIENTE;
 import br.com.newstation.dominio.TIPO_DOCUMENTO;
 import br.com.newstation.dominio.TIPO_ENDERECO;
@@ -56,41 +58,22 @@ public class ClienteSalvarBean {
 
 			cliente.getCartoes().add(cartao);
 			
-			String validacao;
+			SalvarCommand cmd = new SalvarCommand();
+//			System.out.println("Entra command");
+			Resultado resultado = cmd.executar(cliente);
 			
-			if(this.documento.getTipoDocumento().equals(TIPO_DOCUMENTO.CPF)) {
-				ValidaCPF vCPF = new ValidaCPF();
-				ValidaExistenciaPorEmail existEmail = new ValidaExistenciaPorEmail();
+			this.cliente = (Cliente) resultado.getEntidade();
+			
+			if(resultado.getMensagem() == null) {
 				
-				validacao = vCPF.processar(cliente) + existEmail.processar(cliente);
+				LoginBean lb = new LoginBean();
+				lb.setId(this.cliente.getId());
+				
+				return "/cliente/perfil?faces-redirect=true";
 			}else {
-				ValidaExistenciaPorEmail existEmail = new ValidaExistenciaPorEmail();
-				validacao = existEmail.processar(cliente);
-			}
-			
-			
-
-			if(validacao == null) {
-				this.cliente = dao.salvar(cliente, "Salvei");
-				if (!this.cliente.equals(null)) {
-
-					System.out.println("NENHUM ERRO ATÉ ENTÃO");
-					LoginBean lb = new LoginBean();
-					lb.setId(this.cliente.getId());
-
-					return "/cliente/perfil?faces-redirect=true";
-
-				} else {
-
-					return "/cliente/form?faces-redirect=true";
-
-				}
-				
-			} else {
-				System.out.println("-ERRO DE VALIADAÇÃO");
 				return "/cliente/form?faces-redirect=true";
 			}
-
+			
 		} else {
 
 			return "/cliente/form?faces-redirect=true";
