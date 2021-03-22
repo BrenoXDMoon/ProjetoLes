@@ -1,14 +1,15 @@
 package br.com.newstation.dominio;
 
-import java.time.LocalDate;
+import java.util.Calendar;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Documento extends EntidadeDominio {
@@ -18,8 +19,8 @@ public class Documento extends EntidadeDominio {
 	private Integer id;
 	private String codigo;
 	
-	@Column
-	private LocalDate validade;
+	@Temporal(TemporalType.DATE)
+	private Calendar validade;
 	
 	@Enumerated(EnumType.STRING)
 	private TIPO_DOCUMENTO tipoDocumento;
@@ -32,11 +33,11 @@ public class Documento extends EntidadeDominio {
 		this.codigo = codigo;
 	}
 
-	public LocalDate getValidade() {
+	public Calendar getValidade() {
 		return validade;
 	}
 
-	public void setValidade(LocalDate validade) {
+	public void setValidade(Calendar validade) {
 		this.validade = validade;
 	}
 

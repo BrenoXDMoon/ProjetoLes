@@ -20,21 +20,30 @@ public class ClienteDao extends AbstractDao {
 
 		Resultado resultado = new Resultado();
 		Cliente cliente = (Cliente) ent;
-
-		manager.getTransaction().begin();
-		manager.persist(cliente);
-		manager.persist(cliente.getEnderecos().toArray()[0]);
-		manager.persist(cliente.getDocumentos().toArray()[0]);
-		manager.persist(cliente.getCartoes().toArray()[0]);
 		
-		manager.getTransaction().commit();
-		manager.close();
-		factory.close();
+		try {
+			manager.getTransaction().begin();
+			manager.persist(cliente);
+			manager.persist(cliente.getEnderecos().toArray()[0]);
+			manager.persist(cliente.getDocumentos().toArray()[0]);
+			manager.persist(cliente.getCartoes().toArray()[0]);
+			
+			manager.getTransaction().commit();
+			manager.close();
+			factory.close();
+			
+			resultado.setEntidade(cliente);
+			
+			System.out.println("- CLIENTE SALVO COM SUCESSO!!!");
+			return resultado;
+			
+		}catch(Exception e) {
+			
+			System.out.println("- ERRO AO SALVAR!!!");
+			
+			return null;
+		}
 
-		resultado.setEntidade(cliente);
-
-		System.out.println("- CLIENTE SALVO COM SUCESSO!!!");
-		return resultado;
 	}
 
 	@Override

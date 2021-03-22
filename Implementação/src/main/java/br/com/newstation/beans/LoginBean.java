@@ -29,6 +29,8 @@ public class LoginBean {
 	private static Integer id;
 	private static boolean statusSessao;
 	private static Set<Endereco> enderecos = new HashSet<Endereco>();
+	private static Set<CartaoCredito> cartoes = new HashSet<CartaoCredito>();
+	private static Set<Documento> documentos = new HashSet<Documento>();
 	private static Endereco endereco = new Endereco();
 	private static Documento doc = new Documento();
 	private static CartaoCredito card = new CartaoCredito();
@@ -82,6 +84,24 @@ public class LoginBean {
 	}
 	
 	@Transactional
+	public String editarCliente(){
+		
+		try {
+			
+			
+			
+			this.cliente = (Cliente) dao.editar(cliente).getEntidade();
+			
+			return "/cliente/perfil?faces-redirect=true";
+			
+		}catch (Exception e) {
+			
+			return "/cliente/edit-form?faces-redirect=true";
+			
+		}
+	}
+	
+	@Transactional
 	public String salvarCartao(){
 		
 		try {
@@ -114,7 +134,7 @@ public class LoginBean {
 			
 		}catch (Exception e) {
 			
-			return "/cliente/endereco/form?faces-redirect=true";
+			return "/cliente/cartao/form?faces-redirect=true";
 			
 		}
 	}
@@ -134,7 +154,7 @@ public class LoginBean {
 			
 		}catch (Exception e) {
 			
-			return "/cliente/endereco/form?faces-redirect=true";
+			return "/cliente/documento/form?faces-redirect=true";
 			
 		}
 	}
@@ -144,14 +164,12 @@ public class LoginBean {
 		
 		try {
 			
-			System.out.println("- ENTROU");
-			
 			docDao.editar(doc);
 			
 			return "/cliente/perfil?faces-redirect=true";
 		}catch (Exception e) {
 			
-			return "/cliente/endereco/form?faces-redirect=true";
+			return "/cliente/documento/form?faces-redirect=true";
 			
 		}
 	}
@@ -187,6 +205,7 @@ public class LoginBean {
 	public String redirDocumento(Documento doc){
 		
 		LoginBean.doc = doc;
+
 		return "/cliente/documento/edit-form?faces-redirect=true";
 		
 	}
@@ -196,20 +215,6 @@ public class LoginBean {
 		LoginBean.endereco = end;
 		return "/cliente/endereco/edit-form?faces-redirect=true";
 		
-	}
-	
-	@Transactional
-	public String editarCliente(){
-		
-		try {
-			dao.editar(cliente);
-			return "/cliente/perfil?faces-redirect=true";
-			
-		}catch (Exception e) {
-			
-			return "/cliente/edit-form?faces-redirect=true";
-			
-		}
 	}
 	
 	@Transactional
@@ -285,14 +290,15 @@ public class LoginBean {
 		return "/cliente/perfil?faces-redirect=true";
 
 	}
-	
+
 	public void carregar() {
-		
+
 		cliente.setId(getId());
-		
+
 		cliente = dao.visualizar(cliente);
 		setEnderecos(cliente.getEnderecos());
-		endereco = new Endereco();
+		setCartoes(cliente.getCartoes());
+		setDocumentos(cliente.getDocumentos());
 	}
 	
 	public Cliente getCliente() {
@@ -368,12 +374,28 @@ public class LoginBean {
 		return TIPO_DOCUMENTO.values();
 	}
 
-	public  Set<Endereco> getEnderecos() {
-		return  enderecos;
+	public Set<Endereco> getEnderecos() {
+		return 	enderecos;
 	}
 
 	public void setEnderecos(Set<Endereco> enderecos) {
 		LoginBean.enderecos = enderecos;
+	}
+
+	public Set<CartaoCredito> getCartoes() {
+		return cartoes;
+	}
+
+	public Set<Documento> getDocumentos() {
+		return documentos;
+	}
+
+	public void setCartoes(Set<CartaoCredito> cartoes) {
+		LoginBean.cartoes = cartoes;
+	}
+
+	public void setDocumentos(Set<Documento> docs) {
+		LoginBean.documentos = docs;
 	}
 	
 }

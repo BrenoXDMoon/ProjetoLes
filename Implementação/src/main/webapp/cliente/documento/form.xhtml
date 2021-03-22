@@ -21,19 +21,18 @@
 	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
 	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/form.xhtml">Cadastre-se</a>
             </c:if>
-            
             <c:if test="#{!loginBean.statusSessao}">
             	<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/perfil.xhtml">Perfil</a>
             	<h:form>
-	            	<h:commandButton value="Logout" action="#{loginBean.logout}" class="btn btn-danger"/>            	
+	            	<h:commandButton value="Logout" action="#{loginBean.logout}" class="btn btn-danger"/>
             	</h:form>
             </c:if>
             <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/carrinho.xhtml">Carrinho</a>
 		</nav>
-		
+
    <section class="container perfil mt-5">
         <h:form enctype="multipart/form-data">
-            <h4 class="py-4">Dados de Endereço do Cliente</h4>
+            <h4 class="py-4">Dados de Endereï¿½o do Cliente</h4>
 			<div class="border">
 				<div class="row justify-content-center">
 					<div class="col-10">
@@ -42,10 +41,8 @@
 							<h:selectOneListbox value="#{clienteSalvarBean.documento.tipoDocumento}" styleClass="form-select">
 	                        	<f:selectItems value="#{clienteSalvarBean.documentos}" var="doc" itemLabel="#{doc}" itemValue="#{doc}"/>
 	                        </h:selectOneListbox>
-	                        
 	                        <br />
-	                        
-	                        <h:outputLabel value="Código"/> <br />
+	                        <h:outputLabel value="Cï¿½digo"/> <br />
 	                        <h:inputText value="#{clienteSalvarBean.documento.codigo}" class="form-control">
 	                        </h:inputText>
 	                        <c:if test="#{clienteSalvarBean.cpfError}">

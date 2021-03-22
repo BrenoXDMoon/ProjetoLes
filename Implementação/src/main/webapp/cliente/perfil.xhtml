@@ -29,7 +29,7 @@
 	<header class="site-header  py-1">
 		<nav class="container d-flex flex-column flex-md-row justify-content-between">
 			 <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
-            <c:if test="#{loginBean.isStatusSessao()}">
+            <c:if test="#{loginBean.statusSessao}">
 	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
 	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/addCliente.xhtml">Cadastre-se</a>
             </c:if>
@@ -49,15 +49,17 @@
 		<div class="row">
 			<div class="col-12 text-center">
 				<h1>Bem vindo, #{loginBean.cliente.nome}</h1> 
-				
 				<div class="my-5">
 					<a class="btn btn-primary" href="senha/form.xhtml">Alterar Senha</a>
-					<a class="btn btn-primary" href="edit-form.xhtml">Alterar Dados de Cliente</a>
+					<h:form>
+						<h:commandButton value="Alterar Dados de Cliente jsf"  class="btn btn-primary" action="#{clienteEditarBean.redir(loginBean.cliente)}" />
+						<a class="btn btn-primary" href="edit-form.xhtml?id=#{loginBean.cliente.id}">Alterar Dados de Cliente</a>
+					</h:form>
 				</div>
 				
 				<h2 class="text-white mt-5">Documentos</h2>
 				<a href="documento/form.xhtml" class="btn btn-success my-3">Adicionar Documentos</a>
-				<h:dataTable var="doc" value="#{loginBean.cliente.documentos}" class="table table-bordered table-striped table-hover">
+				<h:dataTable var="doc" value="#{loginBean.documentos}" class="table table-bordered table-striped table-hover">
 					<h:column>
 						<f:facet name="header">Tipo</f:facet>
 	        	 		#{doc.tipoDocumento}
@@ -69,14 +71,13 @@
 	        		
 	        		<h:column>
 	        			<f:facet name="header">Validade</f:facet>
-	        			#{doc.validade}
+	        			#{doc.validade.time}
 	        		</h:column>
 
 					<h:column>
 						<f:facet name="header">Editar</f:facet>
 						<h:form>
-							<h:commandButton value='Editar'
-								action="#{loginBean.redirDocumento(doc)}"/>
+							<h:commandButton value='Editar' action="#{loginBean.redirDocumento(doc)}"/>
 						</h:form>
 					</h:column>
 					<h:column>
@@ -121,7 +122,7 @@
 				
 				<h2 class='text-white'>Cartões</h2>
 				 <a href="cartao/form.xhtml" class="btn btn-success my-3">Adicionar Cartão</a>
-				<h:dataTable var="card" value="#{loginBean.cliente.cartoes}" class="table table-bordered table-striped table-hover">
+				<h:dataTable var="card" value="#{loginBean.cartoes}" class="table table-bordered table-striped table-hover">
 					<h:column>
 						<f:facet name="header">Número</f:facet>
 						#{card.numeroCartao}

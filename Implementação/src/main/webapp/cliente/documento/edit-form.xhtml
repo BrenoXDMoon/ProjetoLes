@@ -6,87 +6,67 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link href="#{request.contextPath}/assets/css/style.css"
-	rel="stylesheet" />
-<link href="#{request.contextPath}/assets/css/bootstrap.min.css"
-	rel="stylesheet" />
-<link href="#{request.contextPath}/assets/css/custom.css"
-	rel="stylesheet" />
-<title>Editar Endereço</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link href="#{request.contextPath}/assets/css/style.css"
+		rel="stylesheet" />
+	<link href="#{request.contextPath}/assets/css/bootstrap.min.css"
+		rel="stylesheet" />
+	<link href="#{request.contextPath}/assets/css/custom.css"
+		rel="stylesheet" />
+	<title>Editar Endereï¿½o</title>
 </head>
 
 <body class="bg-dark text-white p-5">
 	<header class="site-header py-1">
 		<nav class="container d-flex flex-column flex-md-row justify-content-between">
 			<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
-            <c:if test="#{loginBean.isStatusSessao()}">
-	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
-	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/form.xhtml">Cadastre-se</a>
-            </c:if>
-            
-            <c:if test="#{!loginBean.isStatusSessao()}">
-            	<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/perfil.xhtml">Perfil</a>
-            	<h:form>
-	            	<h:commandButton value="Logout" action="#{loginBean.logout}" class="btn btn-danger"/>            	
-            	</h:form>
-            </c:if>
-            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/carrinho.xhtml">Carrinho</a>
+			<c:if test="#{loginBean.statusSessao}">
+				<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
+				<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/form.xhtml">Cadastre-se</a>
+			</c:if>
+			<c:if test="#{!loginBean.statusSessao}">
+				<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/perfil.xhtml">Perfil</a>
+				<h:form>
+					<h:commandButton value="Logout" action="#{loginBean.logout}" class="btn btn-danger" />
+				</h:form>
+			</c:if>
+			<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/carrinho.xhtml">Carrinho</a>
 		</nav>
 	</header>
 	<div class="container perfil mt-5">
-		<form enctype="multipart/form-data">
-            <h4 class="py-4">Dados de Endereço do Cliente</h4>
+
+		<h:form>
+			<h4 class="py-4">Editar Documento do Cliente</h4>
 			<div class="border">
 				<div class="row justify-content-center">
 					<div class="col-10">
-						<div class="form-group">
-							<h:outputLabel value="Logradouro"/> <br />
-							<h:inputText value="#{enderecoBean.endereco.logradouro}" required="true" id="logradouro" class="form-control"/>
-						</div>
-
-						<div class="form-group">
-							<h:outputLabel value="Número"/> <br />
-							<h:inputText value="#{enderecoBean.endereco.numero}" required="true" id="numero" class="form-control"/>
-						</div>
-
-						<div class="form-group">
-							<h:outputLabel value="Bairro"/> <br />
-							<h:inputText value="#{enderecoBean.endereco.bairro}" required="true" id="bairro" class="form-control"/>
-						</div>
-
-						<div class="form-group">
-							<h:outputLabel value="Complemento"/> <br />
-							<h:inputText value="#{enderecoBean.endereco.complemento}"  id="complemento" class="form-control"/>
-						</div>
-
-						<div class="form-group">
-							<h:outputLabel value="CEP"/> <br />
-							<h:inputText value="#{enderecoBean.endereco.cep}" required="true" id="cep" class="form-control"/>
-						</div>
-
-						<div class="form-group">
-							<h:outputLabel value="Cidade"/> <br />
-							<h:inputText value="#{enderecoBean.endereco.cidade.cidade}" required="true" id="cidade" class="form-control"/>
-						</div>
-
-						<div class="form-group">
-							<h:outputLabel value="Estado"/> <br />
-							<h:inputText value="#{enderecoBean.endereco.cidade.estado.estado}" required="true" id="estado" class="form-control"/>
-						</div>
-
-						<div class="form-group">
-	                        <h:outputLabel value="Tipo de Endereço"/> <br />
-	                        <h:selectOneMenu value="#{enderecoBean.endereco.tipoEndereco}" class="form-select">
-	                        	<f:selectItems value="#{enderecoBean.tipos}" var="tipo" itemLabel="#{tipo}" itemValue="#{tipo}"/>
-	                        </h:selectOneMenu>
-						</div>
-
+						<h:outputLabel value="Documento" />
+						<br />
+						<h:selectOneListbox value="#{loginBean.doc.tipoDocumento}"
+							styleClass="form-select">
+							<f:selectItems value="#{loginBean.tipoDocumento}" var="doc"
+								itemLabel="#{doc}" itemValue="#{doc}" />
+						</h:selectOneListbox>
+						<br />
+						<h:outputLabel value="Cï¿½digo" />
+						<br />
+						<h:inputText value="#{loginBean.doc.codigo}" class="form-control">
+						</h:inputText>
+						<c:if test="#{clienteSalvarBean.cpfError}">
+							<span style="color: red;">Cpf Invalido</span>
+						</c:if>
+						<br />
+						<h:outputLabel value="Validade" />
+						<br />
+						<h:inputText value="#{loginBean.validade}" class="form-control" />
 					</div>
+
 				</div>
 			</div>
-        </form>
-       <h:commandButton class="text-black" type="submit" action="#{clienteSalvarBean.salvar}" styleClass="btn btn-success mt-5" value="Cadastrar" />
+			<h:commandButton class="text-black" type="submit"
+				action="#{loginBean.salvarDocumento}"
+				styleClass="btn btn-success mt-5" value="Cadastrar" />
+		</h:form>
 	</div>
 </body>
 </html>

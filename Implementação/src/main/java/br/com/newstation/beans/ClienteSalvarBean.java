@@ -37,31 +37,16 @@ public class ClienteSalvarBean {
 	
 	private String dataNascimento;
 	
-	private String validade;
-	
-	CriptografaSenha crp = new CriptografaSenha();
-	
 	private static boolean emailError = false;
 	
 	private static boolean cpfError = false;
 	
 	@Transactional
-	public String salvar() throws ParseException{
-		
-//		ClienteListarBean clb = new ClienteListarBean();
-//		
-//		for(Cliente cli: clb.getClientes()) {
-//			if(cliente.getEmail().equals(cli.getEmail())) {
-//				emailError = true;
-//	            return "/cliente/form?faces-redirect=true";
-//			}
-//		}
-		
-		
+	public String salvar() throws ParseException{		
 		
 		if(cliente.getSenha().getConfirmaSenha().equals(cliente.getSenha().getSenha())) {
 			
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			CriptografaSenha crp = new CriptografaSenha();
 			
 			cliente.getSenha().setSenha(crp.criptoSenha(cliente.getSenha().getSenha()));
 			
@@ -69,20 +54,15 @@ public class ClienteSalvarBean {
 
 			cliente.setTipoCliente(TIPO_CLIENTE.Basico);
 			
-			documento.setValidade(LocalDate.parse(validade,formatter));
-			
 			cliente.getDocumentos().add(documento);
 			
 			cliente.getEnderecos().add(endereco);
 			
 			cliente.getCartoes().add(cartao);
-			
-			cliente.setDtCadastro(LocalDate.now());
-
-			cliente.setDataNascimento(LocalDate.parse(dataNascimento,formatter));
 		
 			SalvarCommand cmd = new SalvarCommand();
 
+			System.out.println("- VOU ENTRAR NA COMMAND!!!");
 			Resultado resultado = cmd.executar(cliente);
 			
 			this.cliente = (Cliente) resultado.getEntidade();
@@ -90,7 +70,7 @@ public class ClienteSalvarBean {
 			if(resultado.getMensagem() == null) {
 				
 				LoginBean lb = new LoginBean();
-				lb.setId(this.cliente.getId());
+				//lb.setId(this.cliente.getId());
 				
 				return "/cliente/perfil?faces-redirect=true";
 				
@@ -150,14 +130,6 @@ public class ClienteSalvarBean {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public String getValidade() {
-		return validade;
-	}
-
-	public void setValidade(String validade) {
-		this.validade = validade;
-	}
-
 	public CartaoCredito getCartao() {
 		return cartao;
 	}
@@ -174,7 +146,7 @@ public class ClienteSalvarBean {
 		ClienteSalvarBean.emailError = emailError;
 	}
 
-	public  boolean isCpfError() {
+	public boolean isCpfError() {
 		return cpfError;
 	}
 

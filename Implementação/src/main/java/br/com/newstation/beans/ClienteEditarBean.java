@@ -1,8 +1,5 @@
 package br.com.newstation.beans;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 import javax.enterprise.inject.Model;
 import javax.transaction.Transactional;
 
@@ -23,26 +20,27 @@ public class ClienteEditarBean {
 	CriptografaSenha crp = new CriptografaSenha();
 	
 	private Integer id;
-
-	private String dataNascimento;
 	
 	public void carregaDetalhe() {
-		
 		ClienteDao dao = new ClienteDao();
-		cliente =  dao.visualizar(cliente);
-		
-		dataNascimento = cliente.getDataNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")).toString();
-		
-		//senha = cliente.getSenha();
+		Cliente cliente = new Cliente();
+		cliente.setId(getId());
+		ClienteEditarBean.cliente =  dao.visualizar(cliente);
+			
 	}
 	
 	@Transactional
-	public String editar() {
-
+	public String editarCli() {
 		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-		cliente.setDataNascimento(LocalDate.parse(dataNascimento, formatter));
+		EditarCommand cmd = new EditarCommand();
+		cmd.executar(ClienteEditarBean.cliente);
+		
+		return "/cliente/perfil.xhtml?faces-redirect=true";
+	}
+	
+	
+	@Transactional
+	public String editar() {
 		
 		if (senha != null) {
 			
@@ -58,8 +56,10 @@ public class ClienteEditarBean {
 		return "/admin/cliente/lista?faces-redirect=true";
 	}
 
-	public String redir() {
-		return "/cliente/editar?faces-redirect=true";
+	public String redir(Cliente cli) {
+		ClienteEditarBean.cliente = cli;
+		
+		return "/cliente/edit-form?faces-redirect=true";
 	}
 	
 	public String redirAdmin(Cliente cli) {
@@ -76,14 +76,6 @@ public class ClienteEditarBean {
 	public void setCliente(Cliente cliente) {
 
 		ClienteEditarBean.cliente = cliente;
-	}
-
-	public String getDataNascimento() {
-		return dataNascimento;
-	}
-
-	public void setDataNascimento(String dataNascimento) {
-		this.dataNascimento = dataNascimento;
 	}
 
 	public Senha getSenha() {
