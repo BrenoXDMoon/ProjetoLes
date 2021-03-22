@@ -42,15 +42,15 @@
 	                        	<f:selectItems value="#{clienteSalvarBean.documentos}" var="doc" itemLabel="#{doc}" itemValue="#{doc}"/>
 	                        </h:selectOneListbox>
 	                        <br />
-	                        <h:outputLabel value="Cï¿½digo"/> <br />
-	                        <h:inputText value="#{clienteSalvarBean.documento.codigo}" class="form-control">
+	                        <h:outputLabel value="Código"/> <br />
+	                        <h:inputText value="#{loginBean.doc.codigo}" class="form-control">
 	                        </h:inputText>
-	                        <c:if test="#{clienteSalvarBean.cpfError}">
+	                        <c:if test="#{loginBean.}">
 	                        	<span style="color:red;">Cpf Invalido</span>
 	                        </c:if>
 	                        <br />
 	                        <h:outputLabel value="Validade"/> <br />
-	                        <h:inputText value="#{clienteSalvarBean.validade}" class="form-control"/>
+	                        <h:inputText value="#{loginBean.doc.validade}" class="form-control"/>
 						</div>
 					</div>
 				</div>

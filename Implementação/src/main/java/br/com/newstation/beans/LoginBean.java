@@ -154,7 +154,7 @@ public class LoginBean {
 			
 		}catch (Exception e) {
 			
-			return "/cliente/documento/form?faces-redirect=true";
+			return "/cliente/documento/edit-form?faces-redirect=true";
 			
 		}
 	}
