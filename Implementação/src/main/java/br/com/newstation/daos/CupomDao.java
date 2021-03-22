@@ -31,5 +31,12 @@ public class CupomDao {
 		
 		return manager.createQuery(jpql, Cupom.class).getResultList();
 	}
+
+	public Cupom buscarById(Integer id) {
+		
+		String jpql = "select distinct(c) from Cupom c where c.id = :id";
+		
+		return manager.createQuery(jpql, Cupom.class).setParameter("id", id).getSingleResult();
+	}
 	
 }
