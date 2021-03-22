@@ -52,7 +52,6 @@
 				<div class="my-5">
 					<a class="btn btn-primary" href="senha/form.xhtml">Alterar Senha</a>
 					<h:form>
-						<h:commandButton value="Alterar Dados de Cliente jsf"  class="btn btn-primary" action="#{clienteEditarBean.redir(loginBean.cliente)}" />
 						<a class="btn btn-primary" href="edit-form.xhtml?id=#{loginBean.cliente.id}">Alterar Dados de Cliente</a>
 					</h:form>
 				</div>
@@ -84,7 +83,7 @@
 						<f:facet name="header">Deletar</f:facet>
 						<h:form>
 							<h:commandButton value='Deletar'
-								action="#{loginBean.excluirDocumento}" />
+								action="#{loginBean.excluirDocumento(doc)}" />
 						</h:form>
 					</h:column>
 				</h:dataTable>

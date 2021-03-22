@@ -56,8 +56,10 @@ public class LoginBean {
 		
 		try {
 			cliente = dao.login(cliente);
+			System.out.println(cliente.getNome());
 			
 			LoginBean.id = cliente.getId();
+			System.out.println(LoginBean.id);
 			
 			setStatusSessao(true);
 			
@@ -87,8 +89,6 @@ public class LoginBean {
 	public String editarCliente(){
 		
 		try {
-			
-			
 			
 			this.cliente = (Cliente) dao.editar(cliente).getEntidade();
 			
@@ -265,7 +265,7 @@ public class LoginBean {
 	}
 	
 	@Transactional
-	public  String excluirEndereco(Endereco end){
+	public String excluirEndereco(Endereco end){
 		
 		cliente.setId(getId());
 		cliente = dao.visualizar(cliente);
@@ -277,7 +277,6 @@ public class LoginBean {
 			}
 				
 		}
-		
 		
 		endDao.excluir(cliente, end);
 		

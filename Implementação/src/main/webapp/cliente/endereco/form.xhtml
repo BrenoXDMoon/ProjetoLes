@@ -29,7 +29,7 @@
 	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/form.xhtml">Cadastre-se</a>
             </c:if>
             
-            <c:if test="#{!loginBean.statusSessao()}">
+            <c:if test="#{!loginBean.statusSessao}">
             	<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/perfil.xhtml">Perfil</a>
             	<h:form>
 	            	<h:commandButton value="Logout" action="#{loginBean.logout}" class="btn btn-danger"/>            	
