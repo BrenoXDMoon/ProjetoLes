@@ -23,7 +23,7 @@ public class CupomDao {
 	}
 	
 	public void excluir(Cupom cupom) {
-		
+		manager.remove(manager.getReference(Cupom.class, cupom.getId()));
 	}
 	
 	public List<Cupom> listar(){

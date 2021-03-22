@@ -17,63 +17,71 @@
 <title>Listar Pedidos</title>
 </head>
 <h:body styleClass="bg-dark text-white">
-	
-		 <header class="site-header  py-1">
-	        <nav class="container d-flex flex-column flex-md-row justify-content-between">
-	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
-	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/admin/admin.xhtml">Admin</a>
-	        </nav>
-	    </header>
-	
 
-	
+	<header class="site-header  py-1"> <nav
+		class="container d-flex flex-column flex-md-row justify-content-between">
+	<a class="py-2 d-none d-md-inline-block"
+		href="#{request.contextPath}/index.xhtml">NewStation</a> <a
+		class="py-2 d-none d-md-inline-block"
+		href="#{request.contextPath}/admin/admin.xhtml">Admin</a> </nav> </header>
 
-	<div class="row justify-content-center">
-		<div class="col-10 text-center">
-		<h2>Lista de Pedidos</h2>
-		
-			<h:button styleClass = "my-3" value="Cadastrar Cartas" outcome="form" />
+	<div class="container-fluid">
+		<div class="row">
+			<nav id="sidebarMenu"
+				class="col-2 d-md-block bg-dark sidebar collapse">
+			<div class="position-sticky pt-3">
+				<ul class="nav flex-column">
+					<li class="nav-item"><a class="nav-link active"
+						aria-current="page"
+						href="#{request.contextPath}/admin/admin.xhtml"> <span
+							data-feather="home">Dashboard</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" href="#"> <span
+							data-feather="file"></span> <a
+							class="py-2 d-none d-md-inline-block ml-3"
+							href="#{request.contextPath}/admin/pedido/lista.xhtml">Pedidos</a>
+					</a></li>
+					<span class="font-weight-bold">Cartas</span>
+					<li class="nav-item"><a class="nav-link"
+						href="#{request.contextPath}/admin/cartas/lista.xhtml"> Lista
+							de Cartas </a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="#{request.contextPath}/admin/cartas/form.xhtml">
+							Cadastro de Cartas </a></li>
+					<spam class="font-weight-bold">Cliente</spam>
+					<li class="nav-item"><a class="nav-link"
+						href="#{request.contextPath}/admin/cliente/lista.xhtml"> Lista
+							de Clientes </a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="#{request.contextPath}/cliente/form.xhtml"> Cadastro de
+							Clientes </a></li>
 
-			<h:dataTable var="pedido" value="#{pedidosListaBean.pedidos}"
-				class="table table-bordered table-striped table-hover lista-carta ">
-				<h:column >
-					<f:facet name="header">Nome</f:facet>
-					<a class="decoration-none font-weight-bold text-white" href="#{request.contextPath}/admin/cartas/alterar.xhtml?id=#{carta.id}">#{carta.nome}</a>        	 
-		        </h:column>
-				<h:column>
-					<f:facet name="header">Descrição</f:facet>
-		        	 #{carta.descricao}
-		        </h:column>
-				<h:column>
-					<f:facet name="header">Raridade</f:facet>
-		         	#{carta.raridade}
-		        </h:column>
-				<h:column>
-					<f:facet name="header">Preço</f:facet>
-		         	#{carta.preco}
-		        </h:column>
-				<h:column>
-					<f:facet name="header">Quantidade</f:facet>
-		         	#{carta.estoque.quantidade}
-		        </h:column>
-		        <h:column>
-					<f:facet name="header">Status</f:facet>
-		         	#{carta.ativo}
-		        </h:column>
-				<h:column styleClass="w-min">
-					<f:facet name="header">Imagem</f:facet>
-					<img src="#{request.contextPath}/file/#{carta.imagemPath}"
-						width="40%" alt="#{carta.nome}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Ativar Carta</f:facet>
-		         	<h:form>
-							<h:commandButton value='Ativar'
-								action="#{cartaEditarBean.ativaCarta(carta.id)}" 
-								rendered="#{!carta.ativo}"/>
-						</h:form>
-		        </h:column>
-			</h:dataTable>
+					<spam class="font-weight-bold">Cupons</spam>
+					<li class="nav-item"><a class="nav-link"
+						href="#{request.contextPath}/admin/cupom/lista.xhtml"> Lista
+							de Cupons </a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="#{request.contextPath}/admin/cupom/form.xhtml"> Cadastro
+							de Cupons </a></li>
+				</ul>
+			</div>
+			</nav>
+
+			<div class="col-10">
+				<h2>Lista de Pedidos</h2>
+				<h:dataTable var="pedido" value="#{pedidoListaBean.pedidos}"
+					class="table table-bordered table-striped">
+					<h:column>
+						<f:facet name="header">ID</f:facet>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Data do Pedido</f:facet>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Cliente</f:facet>
+					</h:column>
+				</h:dataTable>
+			</div>
 		</div>
 	</div>
 </h:body>
