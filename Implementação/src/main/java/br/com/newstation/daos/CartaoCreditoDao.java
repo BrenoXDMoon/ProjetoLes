@@ -13,9 +13,9 @@ public class CartaoCreditoDao{
 	@PersistenceContext
 	private EntityManager manager;
 	
-	public void salvar(Cliente cliente) {
+	public void salvar(Cliente cliente, CartaoCredito card) {
 		
-		manager.persist(cliente.getCartoes().toArray()[0]);
+		manager.persist(card);
 		manager.merge(cliente);
 	}
 

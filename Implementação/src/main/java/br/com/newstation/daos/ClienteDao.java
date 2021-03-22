@@ -87,7 +87,7 @@ public class ClienteDao extends AbstractDao {
 	public Resultado listar(EntidadeDominio ent) {
 		abrirConexao();
 
-		String jpql = "select distinct(c) from Cliente c join fetch c.documentos join fetch c.enderecos join fetch c.cartoes";
+		String jpql = "select distinct(c) from Cliente c ";
 
 		Resultado resultado = new Resultado();
 
@@ -116,7 +116,7 @@ public class ClienteDao extends AbstractDao {
 
 		abrirConexao();
 		
-		String jpql = "select distinct(c) from Cliente c join fetch c.documentos join fetch c.enderecos join fetch c.cartoes where c.id = :id";
+		String jpql = "select distinct(c) from Cliente c  where c.id = :id";
 		Cliente cli = (Cliente) ent;
 		
 		System.out.println(cli.getId());
@@ -134,7 +134,7 @@ public class ClienteDao extends AbstractDao {
 
 		abrirConexao();
 		
-		String jpql = "select distinct(c) from Cliente c join fetch c.documentos join fetch c.enderecos join fetch c.cartoes where c.email = :email and c.senha= :senha";
+		String jpql = "select distinct(c) from Cliente c  where c.email = :email and c.senha= :senha";
 		Cliente cliente = (Cliente) ent;
 		
 		CriptografaSenha crp = new CriptografaSenha();

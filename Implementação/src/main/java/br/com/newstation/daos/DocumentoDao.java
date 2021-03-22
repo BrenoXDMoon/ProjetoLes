@@ -15,9 +15,9 @@ public class DocumentoDao{
 	@PersistenceContext
 	private EntityManager manager;
 	
-	public void salvar(Cliente cliente) {
+	public void salvar(Cliente cliente, Documento doc) {
 		
-		manager.persist(cliente.getDocumentos().toArray()[0]);
+		manager.persist(doc);
 		manager.merge(cliente);
 	}
 
