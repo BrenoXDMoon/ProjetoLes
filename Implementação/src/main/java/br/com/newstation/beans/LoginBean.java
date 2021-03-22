@@ -90,7 +90,7 @@ public class LoginBean {
 			cliente = dao.visualizar(cliente);
 			cliente.getCartoes().add(card);
 			
-			cardDao.salvar(cliente);
+			cardDao.salvar(cliente, card);
 			
 			return "/cliente/perfil?faces-redirect=true";
 		}catch (Exception e) {
@@ -128,7 +128,7 @@ public class LoginBean {
 			cliente = dao.visualizar(cliente);
 			cliente.getDocumentos().add(doc);
 			
-			docDao.salvar(cliente);
+			docDao.salvar(cliente, doc);
 			
 			return "/cliente/perfil?faces-redirect=true";
 			
@@ -166,7 +166,7 @@ public class LoginBean {
 			cliente.getEnderecos().add(endereco);
 			
 			
-			endDao.salvar(cliente);
+			endDao.salvar(cliente, endereco);
 			
 			return "/cliente/perfil?faces-redirect=true";
 			
@@ -178,18 +178,24 @@ public class LoginBean {
 	}
 	
 	public String redirCartao(CartaoCredito card){
+		
 		LoginBean.card = card;
 		return "/cliente/cartao/edit-form?faces-redirect=true";
+		
 	}
 	
 	public String redirDocumento(Documento doc){
+		
 		LoginBean.doc = doc;
 		return "/cliente/documento/edit-form?faces-redirect=true";
+		
 	}
 	
 	public String redirEndereco(Endereco end){
+		
 		LoginBean.endereco = end;
 		return "/cliente/endereco/edit-form?faces-redirect=true";
+		
 	}
 	
 	@Transactional
@@ -286,7 +292,7 @@ public class LoginBean {
 		
 		cliente = dao.visualizar(cliente);
 		setEnderecos(cliente.getEnderecos());
-		
+		endereco = new Endereco();
 	}
 	
 	public Cliente getCliente() {
