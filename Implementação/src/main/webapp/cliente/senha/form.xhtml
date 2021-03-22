@@ -1,31 +1,89 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="#{request.contextPath}/assets/css/style.css"
+	rel="stylesheet" />
+<link href="#{request.contextPath}/assets/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link href="#{request.contextPath}/assets/css/custom.css"
+	rel="stylesheet" />
+<title>Troca Senha</title>
 </head>
-<body>
 
-	<nav class="container d-flex flex-column flex-md-row justify-content-between">
-			 <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
-            <c:if test="#{loginBean.isStatusSessao()}">
-	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
-	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/form.xhtml">Cadastre-se</a>
-            </c:if>
-            
-            <c:if test="#{!loginBean.statusSessao()}">
-            	<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/perfil.xhtml">Perfil</a>
-            	<h:form>
-	            	<h:commandButton value="Logout" action="#{loginBean.logout}" class="btn btn-danger"/>            	
-            	</h:form>
-            </c:if>
-            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/carrinho.xhtml">Carrinho</a>
-		</nav>
+<f:metadata>
+	<f:viewParam id="id" name="id" value="#{clienteEditarBean.id}" />
+	<f:viewAction action="#{clienteEditarBean.carregaDetalhe()}" />
+</f:metadata>
 
+<body class="bg-dark text-white p-5">
+
+	<nav
+		class="container d-flex flex-column flex-md-row justify-content-between">
+	<a class="py-2 d-none d-md-inline-block"
+		href="#{request.contextPath}/index.xhtml">NewStation</a> <c:if
+		test="#{loginBean.statusSessao}">
+		<a class="py-2 d-none d-md-inline-block"
+			href="#{request.contextPath}/cliente/login.xhtml">Login</a>
+		<a class="py-2 d-none d-md-inline-block"
+			href="#{request.contextPath}/cliente/form.xhtml">Cadastre-se</a>
+	</c:if> <c:if test="#{!loginBean.statusSessao}">
+		<a class="py-2 d-none d-md-inline-block"
+			href="#{request.contextPath}/cliente/perfil.xhtml">Perfil</a>
+		<h:form>
+			<h:commandButton value="Logout" action="#{loginBean.logout}"
+				class="btn btn-danger" />
+		</h:form>
+	</c:if> <a class="py-2 d-none d-md-inline-block"
+		href="#{request.contextPath}/carrinho.xhtml">Carrinho</a> </nav>
+	<div class="container perfil mt-5">
+		<h:form enctype="multipart/form-data">
+			<h4 class="py-4">Troca de Senha</h4>
+			<div class="border">
+				<div class="row justify-content-center">
+					<div class="col-10">
+						<div class="form-group">
+							<h:outputLabel value="Senha Atual" />
+							<br />
+							<h:inputSecret value="#{clienteEditarBean.senhaAtual}"
+								required="true" id="senhaAtual" class="form-control"
+								validatorMessage="Senha tem que ter 8 caracteres e Possuir numeros">
+								<f:validateRegex pattern="(?=.*[a-zA-Z])(?=.*[0-9]).{8,13}" />
+								<h:message for="senha" style="color:red" />
+							</h:inputSecret>
+
+						</div>
+					
+						<div class="form-group">
+							<h:outputLabel value="Nova Senha" />
+							<br />
+							<h:inputSecret value="#{clienteEditarBean.senha.senha}"
+								required="true" id="senhaNova" class="form-control"
+								validatorMessage="Senha tem que ter 8 caracteres e Possuir numeros">
+								<f:validateRegex pattern="(?=.*[a-zA-Z])(?=.*[0-9]).{8,13}" />
+								<h:message for="senha" style="color:red" />
+							</h:inputSecret>
+
+						</div>
+						<div class="form-group">
+							<h:outputLabel value="Confirmar Nova Senha" />
+							<br />
+							<h:inputSecret
+								value="#{clienteEditarBean.senha.confirmaSenha}"
+								required="true" id="confirmaSenhaNova" class="form-control">
+							</h:inputSecret>
+						</div>
+					</div>
+				</div>
+			</div>
+			<h:commandButton class="text-black" type="submit" action="#{clienteEditarBean.atualizaSenha}" styleClass="btn btn-success mt-5" value="Trocar"/>
+		</h:form>
+	</div>
 </body>
 </html>

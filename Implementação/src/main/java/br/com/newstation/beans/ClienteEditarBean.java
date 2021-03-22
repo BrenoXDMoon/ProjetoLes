@@ -21,6 +21,8 @@ public class ClienteEditarBean {
 	
 	private Integer id;
 	
+	private String senhaAtual;
+	
 	public void carregaDetalhe() {
 		ClienteDao dao = new ClienteDao();
 		Cliente cliente = new Cliente();
@@ -38,6 +40,19 @@ public class ClienteEditarBean {
 		return "/cliente/perfil.xhtml?faces-redirect=true";
 	}
 	
+	@Transactional
+	public String atualizaSenha(){
+		ClienteDao dao = new ClienteDao();
+
+		senhaAtual = crp.criptoSenha(senhaAtual);
+
+		if(cliente.getSenha().getSenha().equals(senhaAtual)){
+			
+			cliente.getSenha().setSenha(crp.criptoSenha(senha.getSenha()));
+		}
+		dao.editar(cliente);
+		return "/cliente/perfil.xhtml?faces-redirect=true";
+	}
 	
 	@Transactional
 	public String editar() {
@@ -97,5 +112,13 @@ public class ClienteEditarBean {
 	public TIPO_CLIENTE[] getTipoCliente(){
 		
 		return TIPO_CLIENTE.values();
+	}
+
+	public String getSenhaAtual() {
+		return senhaAtual;
+	}
+
+	public void setSenhaAtual(String senhaAtual) {
+		this.senhaAtual = senhaAtual;
 	}
 }

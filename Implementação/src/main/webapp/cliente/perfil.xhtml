@@ -51,12 +51,12 @@
 				<h1>Bem vindo, #{loginBean.cliente.nome}</h1> 
 				
 				<div class="my-5">
-					<a class="btn btn-primary" href="senha/form.xhtml">Alterar Senha</a>
-					<a class="btn btn-primary" href="edit-form.xhtml">Alterar Dados de Cliente</a>
+					<a class="btn btn-primary" href="senha/form.xhtml?id=#{loginBean.cliente.id}">Alterar Senha</a>
+					<a class="btn btn-primary" href="edit-form.xhtml?id=#{loginBean.cliente.id}">Alterar Dados de Cliente</a>
 				</div>
 				
 				<h2 class="text-white mt-5">Documentos</h2>
-				<a href="documento/form.xhtml" class="btn btn-success my-3">Adicionar Documentos</a>
+				<a href="documento/form.xhtml?id=#{loginBean.id}" class="btn btn-success my-3">Adicionar Documentos</a>
 				<h:dataTable var="doc" value="#{loginBean.documentos}" class="table table-bordered table-striped table-hover">
 					<h:column>
 						<f:facet name="header">Tipo</f:facet>
@@ -84,7 +84,7 @@
 						<f:facet name="header">Deletar</f:facet>
 						<h:form>
 							<h:commandButton value='Deletar'
-								action="#{loginBean.excluirDocumento}" />
+								action="#{loginBean.excluirDocumento(doc)}" />
 						</h:form>
 					</h:column>
 				</h:dataTable>
@@ -121,7 +121,7 @@
 				</h:dataTable>
 				
 				<h2 class='text-white'>Cartões</h2>
-				 <a href="cartao/form.xhtml" class="btn btn-success my-3">Adicionar Cartão</a>
+				 <a href="cartao/form.xhtml?id=#{loginBean.id}" class="btn btn-success my-3">Adicionar Cartão</a>
 				<h:dataTable var="card" value="#{loginBean.cartoes}" class="table table-bordered table-striped table-hover">
 					<h:column>
 						<f:facet name="header">Número</f:facet>

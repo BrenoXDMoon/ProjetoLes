@@ -13,7 +13,7 @@
 		rel="stylesheet" />
 	<link href="#{request.contextPath}/assets/css/custom.css"
 		rel="stylesheet" />
-	<title>Editar Endereï¿½o</title>
+	<title>Editar Endereço</title>
 </head>
 
 <body class="bg-dark text-white p-5">
@@ -48,7 +48,7 @@
 								itemLabel="#{doc}" itemValue="#{doc}" />
 						</h:selectOneListbox>
 						<br />
-						<h:outputLabel value="Cï¿½digo" />
+						<h:outputLabel value="Código" />
 						<br />
 						<h:inputText value="#{loginBean.doc.codigo}" class="form-control">
 						</h:inputText>
@@ -64,7 +64,7 @@
 				</div>
 			</div>
 			<h:commandButton class="text-black" type="submit"
-				action="#{loginBean.salvarDocumento}"
+				action="#{loginBean.editarDocumento}"
 				styleClass="btn btn-success mt-5" value="Atualizar" />
 		</h:form>
 	</div>
