@@ -33,28 +33,30 @@
             <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/carrinho.xhtml">Carrinho</a>
 		</nav>
     </header>
-	<div class="container">
-		<div class="row justify-content-center pedido">
-			<div class="col-10">
-				<h4 class="ml-8 mb-4">Detalhe do Pedido</h4>
-				<div class="row justify-content-center">
-					<div class="col-4 text-center">
-						<img src="assets/img/cartas/blue-eyes.png" width="50%"/>
-					</div>
-					<div class="col-4">
-						<p>Quantidade</p>
-						<p>1</p>
-					</div>
-					<div class="col-4">
-						<p>Valor</p>
-						<p>R$10,00</p>
+    
+    <h:form>
+		<div class="container">
+			<div class="row justify-content-center pedido">
+				<div class="col-10">
+					<h4 class="ml-8 mb-4">Detalhe do Pedido</h4>
+					<div class="row justify-content-center">
+						<div class="col-4 text-center">
+							<img src="assets/img/cartas/blue-eyes.png" width="50%"/>
+						</div>
+						<div class="col-4">
+							<p>Quantidade</p>
+							<p>1</p>
+						</div>
+						<div class="col-4">
+							<p>Valor</p>
+							<p>R$10,00</p>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="row justify-content-center dados mt-5 ml-13">
-			<div class="col-6">
-				<h4 class="mb-3">Cartão</h4>
+			<div class="row justify-content-center dados mt-5 ml-13">
+				<div class="col-6">
+					<h4 class="mb-3">Cartão</h4>
 					<h:selectOneMenu >
 						<f:selectItems />
 					</h:selectOneMenu>
@@ -63,7 +65,6 @@
 					</h:selectManyMenu>
 				</div>
 			</div>
-			<!-- -->
 			<div class="col-6">
 				<h4 class=" mb-4">Endereço</h4>
 				<div class="row justify-content-center">
@@ -79,50 +80,49 @@
 
 						<span>Cidade</span>
 						<p>mogi das cruzes</p>
-						<a href="trocarEnderecoChekout.html"><button>Trocar
-								Endereço</button></a> <a href="cliente/addEnderecoCheckout.html"><button>Adicionar
-								outro Endereço</button></a>
+						<a href="trocarEnderecoChekout.html"><button>Trocar Endereço</button></a>
+						<a href="cliente/addEnderecoCheckout.html"><button>Adicionar outro Endereço</button></a>
 					</div>
 				</div>
 			</div>
-		</div>
-
-	<div class="row justify-content-center my-5 ml-13">
-		<div class="col-12 text-start">
-			<h4 class="mb-3">Total</h4>
-			<div class="row justify-content-start">
-
-				<div class="col-3">
-					<span>Frete</span>
-					<p>R$ 2,50</p>
+			<div class="row justify-content-center my-5 ml-13">
+				<div class="col-12 text-start">
+					<h4 class="mb-3">Total</h4>
+					<div class="row justify-content-start">
+		
+						<div class="col-3">
+							<span>Frete</span>
+							<p>R$ 2,50</p>
+						</div>
+						<div class="col-3">
+							<span>Produto</span>
+							<p>R$10,00</p>
+						</div>
+						<div class="col-3">
+							<span>Total</span>
+							<p>R$12,50</p>
+						</div>
+		
+					</div>
 				</div>
-				<div class="col-3">
-					<span>Produto</span>
-					<p>R$10,00</p>
+			</div>
+		
+			<div class="row justify-content-center ml-13">
+				<div class="col-12 te">
+					<p>Cupom</p>
+						<input type="text"/>
+						<button>Validar</button>
 				</div>
-				<div class="col-3">
-					<span>Total</span>
-					<p>R$12,50</p>
-				</div>
-
+			</div>
+		
+		
+			
+			<div class="col-4 text-right">
+				<h:commandButton action="#{carrinho.finalizar}" />
 			</div>
 		</div>
-	</div>
+	</h:form>
 
-	<div class="row justify-content-center ml-13">
-		<div class="col-12 te">
-			<p>Cupom</p>
-				<input type="text"/>
-				<button>Validar</button>
-		</div>
-	</div>
-
-
-	<div class="row justify-content-center mb-5">
-		<div class="col-4 text-right">
-			<a href="confirmacaoPedido.html"><button>Confirma Pedido</button></a>
-		</div>
-	</div>
 
 
 </body>
