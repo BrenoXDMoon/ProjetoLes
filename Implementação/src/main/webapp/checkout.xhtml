@@ -15,6 +15,10 @@
 	<title>Checkout</title>
 </head>
 
+<f:metadata>
+	<f:viewAction action="#{loginBean.carregar()}" />
+</f:metadata>
+
 <body>
 	<header class="site-header  py-1">
         <nav class="container d-flex flex-column flex-md-row justify-content-between">
@@ -39,47 +43,55 @@
 			<div class="row justify-content-center pedido">
 				<div class="col-10">
 					<h4 class="ml-8 mb-4">Detalhe do Pedido</h4>
+					<ui:repeat value="#{carrinho.itens}" var="itens">
 					<div class="row justify-content-center">
-						<div class="col-4 text-center">
-							<img src="assets/img/cartas/blue-eyes.png" width="50%"/>
+						<div class="col-4 text-center py-1">
+							<img class="carta-imagem"
+									src="#{request.contextPath}/file/#{itens.carta.imagemPath}"
+									alt="#{itens.carta.nome}" title="#{itens.carta.nome}" 
+									width="40%"/>
 						</div>
 						<div class="col-4">
 							<p>Quantidade</p>
-							<p>1</p>
+							<p>#{itens.quantidadeAnterior}</p>
 						</div>
 						<div class="col-4">
 							<p>Valor</p>
-							<p>R$10,00</p>
+							<p>R$#{itens.carta.preco}</p>
 						</div>
 					</div>
+					</ui:repeat>
 				</div>
 			</div>
 			<div class="row justify-content-center dados mt-5 ml-13">
 				<div class="col-6">
 					<h4 class="mb-3">Cartão</h4>
+					<ui:repeat value="#{loginBean.cliente.cartoes}" var="card">
 					<h:selectOneMenu >
 						<f:selectItems />
 					</h:selectOneMenu>
 					<h:selectManyMenu >
 						<f:selectItems />
 					</h:selectManyMenu>
+					</ui:repeat>
 				</div>
 			</div>
 			<div class="col-6">
 				<h4 class=" mb-4">Endereço</h4>
 				<div class="row justify-content-center">
 					<div class="col-12">
-
+					<ui:repeat value="#{loginBean.cliente.enderecos}" var="end">
 						<span>Rua</span>
-						<p>Rua 1</p>
+						<p>#{end.logradouro}</p>
 
 
 						<span>CEP</span>
-						<p>0800200</p>
+						<p>#{end.cep}</p>
 
 
 						<span>Cidade</span>
-						<p>mogi das cruzes</p>
+						<p>#{end.cidade.cidade}</p>
+						</ui:repeat>
 						<a href="trocarEnderecoChekout.html"><button>Trocar Endereço</button></a>
 						<a href="cliente/addEnderecoCheckout.html"><button>Adicionar outro Endereço</button></a>
 					</div>
@@ -92,7 +104,7 @@
 		
 						<div class="col-3">
 							<span>Frete</span>
-							<p>R$ 2,50</p>
+							<p>R$ #{carrinho}</p>
 						</div>
 						<div class="col-3">
 							<span>Produto</span>
@@ -100,7 +112,7 @@
 						</div>
 						<div class="col-3">
 							<span>Total</span>
-							<p>R$12,50</p>
+							<p>R$#{carrinho.total}</p>
 						</div>
 		
 					</div>
@@ -110,16 +122,17 @@
 			<div class="row justify-content-center ml-13">
 				<div class="col-12 te">
 					<p>Cupom</p>
-						<input type="text"/>
-						<button>Validar</button>
+						<ui:repeat value="#{loginBean.cliente}" var="cupons">
+						</ui:repeat>
 				</div>
 			</div>
 		
 		
 			
 			<div class="col-4 text-right">
-				<h:commandButton action="#{carrinho.finalizar}" />
+				<h:commandButton action="#{carrinho.finalizar}" value="Finalizar"/>
 			</div>
+			
 		</div>
 	</h:form>
 

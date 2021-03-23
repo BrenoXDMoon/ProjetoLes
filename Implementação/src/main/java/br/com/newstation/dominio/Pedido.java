@@ -40,6 +40,7 @@ public class Pedido{
 	
 	@Temporal(TemporalType.DATE)
 	protected Calendar dataAtualizacao; 
+	
 	private BigDecimal total;
 	
 	@PrePersist

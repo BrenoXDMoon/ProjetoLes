@@ -31,7 +31,7 @@ public class CartaDao{
 	
 	public List<Carta> listar() {
 		
-		String jpql = "select C from Carta C where C.ativo=true";
+		String jpql = "select C from Carta C join fetch C.estoque where C.ativo=true and C.estoque.quantidade > 0";
 				
 		return manager.createQuery(jpql, Carta.class).getResultList();
 	}
@@ -67,7 +67,7 @@ public class CartaDao{
 	public List<Carta> filtro(String busca) {
 		
 		try {
-			return manager.createQuery("select c from Carta c where c.nome LIKE '%" + busca + "%' and c.ativo = 1", 
+			return manager.createQuery("select c from Carta c join fetch c.estoque where c.nome LIKE '%" + busca + "%' and c.ativo = 1 and c.estoque.quantidade > 0", 
 					Carta.class)
 					.getResultList();
 		} catch (Exception e) {

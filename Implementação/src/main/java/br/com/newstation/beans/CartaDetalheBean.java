@@ -15,6 +15,7 @@ public class CartaDetalheBean {
 	private Carta carta;
 	private int id;
 
+	
 	public void carregaDetalhe() {
 		this.setCarta(dao.buscarPorId(id));
 	}
@@ -34,4 +35,6 @@ public class CartaDetalheBean {
 	public void setId(int id) {
 		this.id = id;
 	}
+
+
 }
