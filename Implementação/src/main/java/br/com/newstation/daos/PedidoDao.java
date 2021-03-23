@@ -42,5 +42,4 @@ public class PedidoDao {
 		
 		return manager.createQuery(jpql, Pedido.class).setParameter("id", ped).getSingleResult();
 	}
-
 }

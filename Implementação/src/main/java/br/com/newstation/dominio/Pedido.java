@@ -1,6 +1,8 @@
 package br.com.newstation.dominio;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
@@ -8,26 +10,35 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Pedido{
-
 	
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Integer id;
+	
+	private String uuid;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Cliente cliente;
 	
-	@Lob
-	private String itens;
+	@ManyToOne
+	private Endereco endereco;
 	
-	protected String dataAtualizacao;
-	protected boolean ativo;
-	private String uuid;
+	@OneToMany
+	private Set<CartaoCredito> cartoes;
+	
+	@OneToMany
+	private Set<Carta> itens;
+	
+	@Temporal(TemporalType.DATE)
+	protected Calendar dataAtualizacao; 
 	private BigDecimal total;
 	
 	@PrePersist
@@ -51,14 +62,6 @@ public class Pedido{
 		this.cliente = cliente;
 	}
 
-	public String getItens() {
-		return itens;
-	}
-
-	public void setItens(String itens) {
-		this.itens = itens;
-	}
-
 	public String getUuid() {
 		return uuid;
 	}
@@ -75,21 +78,20 @@ public class Pedido{
 		this.total = total;
 	}
 	
-	public String getDataAtualizacao() {
+	public Calendar getDataAtualizacao() {
 		return dataAtualizacao;
 	}
 	
-	public void setDataAtualizacao(String dataAtualizacao) {
+	public void setDataAtualizacao(Calendar dataAtualizacao) {
 		this.dataAtualizacao = dataAtualizacao;
 	}
 
-	public boolean isAtivo() {
-		return ativo;
+	public Set<Carta> getItens() {
+		return itens;
 	}
 
-	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
+	public void setItens(Set<Carta> itens) {
+		this.itens = itens;
 	}
-
 
 }

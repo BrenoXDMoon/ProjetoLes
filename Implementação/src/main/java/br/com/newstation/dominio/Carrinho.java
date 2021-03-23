@@ -25,7 +25,7 @@ public class Carrinho implements Serializable {
 	private Set<CarrinhoItem> itens = new HashSet<>();
  
 	@Inject
-	private PedidoDao compraDao;
+	private PedidoDao pedidoDao;
 
 	CarrinhoBean cb = new CarrinhoBean();
 
@@ -61,22 +61,8 @@ public class Carrinho implements Serializable {
 		return itens.stream().mapToInt(item -> item.getQuantidade()).sum();
 	}
 
-	public void finalizar(Pedido compra) {
-		compra.setItens(toJson());
-		compra.setTotal(getTotal());
-		compraDao.salvar(compra);
-
-	}
-
-	private String toJson() {
-		JsonArrayBuilder builder = Json.createArrayBuilder();
-
-		for (CarrinhoItem item : itens) {
-			builder.add(Json.createObjectBuilder().add("Nome", item.getCarta().getNome())
-					.add("preco", item.getCarta().getPreco()).add("quantidade", item.getQuantidade())
-					.add("total", getTotal(item)));
-		}
-
-		return builder.build().toString();
+	public void finalizar(Pedido pedido) {
+		pedido.setTotal(getTotal());
+		pedidoDao.salvar(pedido);
 	}
 }
