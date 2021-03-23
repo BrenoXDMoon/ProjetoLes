@@ -2,6 +2,7 @@ package br.com.newstation.dominio;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -32,10 +33,10 @@ public class Pedido{
 	private Endereco endereco;
 	
 	@OneToMany
-	private Set<CartaoCredito> cartoes;
+	private Set<CartaoCredito> cartoes= new HashSet<CartaoCredito>();
 	
 	@OneToMany
-	private Set<Carta> itens;
+	private Set<Carta> itens= new HashSet<Carta>();
 	
 	@Temporal(TemporalType.DATE)
 	protected Calendar dataAtualizacao; 
