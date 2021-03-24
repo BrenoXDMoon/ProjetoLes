@@ -23,11 +23,18 @@ public class Carrinho implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Set<CarrinhoItem> itens = new HashSet<>();
+	
+	private Pedido pedido = new Pedido();
  
 	@Inject
 	private PedidoDao pedidoDao;
 
 	CarrinhoBean cb = new CarrinhoBean();
+	
+	public void finalizar(Pedido pedido) {
+		pedido.setTotal(getTotal());
+		pedidoDao.salvar(pedido);
+	}
 
 	public void add(CarrinhoItem item) {
 		item.setQuantidadeAnterior(item.getQuantidade());
@@ -61,8 +68,11 @@ public class Carrinho implements Serializable {
 		return itens.stream().mapToInt(item -> item.getQuantidade()).sum();
 	}
 
-	public void finalizar(Pedido pedido) {
-		pedido.setTotal(getTotal());
-		pedidoDao.salvar(pedido);
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
 	}
 }

@@ -13,9 +13,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.NamedStoredProcedureQuery;
 
 @Entity
 public class Pedido{
@@ -30,7 +32,7 @@ public class Pedido{
 	private Cliente cliente;
 	
 	@ManyToOne
-	private Endereco endereco;
+	private Endereco endereco = new Endereco();
 	
 	@OneToMany
 	private Set<CartaoCredito> cartoes= new HashSet<CartaoCredito>();
@@ -39,7 +41,13 @@ public class Pedido{
 	private Set<Carta> itens= new HashSet<Carta>();
 	
 	@Temporal(TemporalType.DATE)
-	protected Calendar dataAtualizacao; 
+	protected Calendar dataAtualizacao;
+	
+	@OneToOne
+	private Cupom cupomDesconto = new Cupom();
+	
+	@OneToMany
+	private Set<Cupom> cupomTroca = new HashSet<Cupom>(); 
 	
 	private BigDecimal total;
 	
@@ -94,6 +102,38 @@ public class Pedido{
 
 	public void setItens(Set<Carta> itens) {
 		this.itens = itens;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public Set<CartaoCredito> getCartoes() {
+		return cartoes;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public void setCartoes(Set<CartaoCredito> cartoes) {
+		this.cartoes = cartoes;
+	}
+
+	public Cupom getCupomDesconto() {
+		return cupomDesconto;
+	}
+
+	public void setCupomDesconto(Cupom cupomDesconto) {
+		this.cupomDesconto = cupomDesconto;
+	}
+
+	public Set<Cupom> getCupomTroca() {
+		return cupomTroca;
+	}
+
+	public void setCupomTroca(Set<Cupom> cupomTroca) {
+		this.cupomTroca = cupomTroca;
 	}
 
 }

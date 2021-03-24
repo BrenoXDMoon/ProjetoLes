@@ -81,7 +81,7 @@ public class LoginBean {
 	@Transactional
 	public String logout() {
 
-		cliente = new Cliente();
+		this.cliente = new Cliente();
 		setStatusSessao(false);
 		return "/cliente/login?faces-redirect=true";
 	}

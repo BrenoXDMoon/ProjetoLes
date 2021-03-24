@@ -4,7 +4,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
 <head>
 	<meta charset="UTF-8"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -66,35 +67,21 @@
 			<div class="row justify-content-center dados mt-5 ml-13">
 				<div class="col-6">
 					<h4 class="mb-3">Cartão</h4>
-					<ui:repeat value="#{loginBean.cliente.cartoes}" var="card">
-					<h:selectOneMenu >
-						<f:selectItems />
-					</h:selectOneMenu>
-					<h:selectManyMenu >
-						<f:selectItems />
-					</h:selectManyMenu>
-					</ui:repeat>
+					<h:selectManyListbox value="#{carrinho.pedido.cartoes}" class="form-select">
+						<f:selectItems value="#{loginBean.cliente.cartoes}" var="card" itemLabel="#{card.numeroCartao}"/>
+					</h:selectManyListbox>
+					
+					<br />
+					<a href="cliente/addEnderecoCheckout.html" class="btn btn-primary">Cadastrar Novo Cartão</a>
 				</div>
-			</div>
-			<div class="col-6">
-				<h4 class=" mb-4">Endereço</h4>
-				<div class="row justify-content-center">
-					<div class="col-12">
-					<ui:repeat value="#{loginBean.cliente.enderecos}" var="end">
-						<span>Rua</span>
-						<p>#{end.logradouro}</p>
-
-
-						<span>CEP</span>
-						<p>#{end.cep}</p>
-
-
-						<span>Cidade</span>
-						<p>#{end.cidade.cidade}</p>
-						</ui:repeat>
-						<a href="trocarEnderecoChekout.html"><button>Trocar Endereço</button></a>
-						<a href="cliente/addEnderecoCheckout.html"><button>Adicionar outro Endereço</button></a>
-					</div>
+				<div class="col-6">
+					<h4 class=" mb-4">Endereço</h4>
+					<h:selectOneMenu value="#{carrinho.pedido.endereco}" class="form-select">
+						<f:selectItem itemLabel="Selecione um endereço"/>
+						<f:selectItems value="#{loginBean.cliente.enderecos}" var="end" itemLabel="#{end.logradouro}"/>
+					</h:selectOneMenu>
+					<br />
+					<a href="cliente/addEnderecoCheckout.html" class="btn btn-primary">Cadastrar Novo Endereço</a>
 				</div>
 			</div>
 			<div class="row justify-content-center my-5 ml-13">
@@ -104,11 +91,7 @@
 		
 						<div class="col-3">
 							<span>Frete</span>
-							<p>R$ #{carrinho}</p>
-						</div>
-						<div class="col-3">
-							<span>Produto</span>
-							<p>R$10,00</p>
+							<p>R$ 2,50</p>
 						</div>
 						<div class="col-3">
 							<span>Total</span>
@@ -121,18 +104,14 @@
 		
 			<div class="row justify-content-center ml-13">
 				<div class="col-12 te">
-					<p>Cupom</p>
-						<ui:repeat value="#{loginBean.cliente}" var="cupons">
-						</ui:repeat>
+					<p>Cupom de Desconto disponíveis</p>
+					<h:selectOneRadio value="#{carrinho.pedido.cupomDesconto}">
+						<f:selectItems value="#{cupomListarBean.cupons}" var="cupom" itemLabel="#{cupom.codigo}" />
+					</h:selectOneRadio>
+					
 				</div>
 			</div>
-		
-		
-			
-			<div class="col-4 text-right">
-				<h:commandButton action="#{carrinho.finalizar}" value="Finalizar"/>
-			</div>
-			
+			<h:commandButton class="btn btn-success" action="#{carrinho.finalizar}" value="Finalizar"/>
 		</div>
 	</h:form>
 
