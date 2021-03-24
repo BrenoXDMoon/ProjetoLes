@@ -73,8 +73,8 @@
 				<div class="row justify-content-center dados mt-5 ml-13">
 					<div class="col-6">
 						<h4 class="mb-3">Cartão</h4>
-						<h:selectManyListbox value="#{carrinho.pedido.cartoes}" class="form-select">
-							<f:selectItems value="#{loginBean.cliente.cartoes}" var="card" itemLabel="#{card.numeroCartao}"/>
+						<h:selectManyListbox value="#{carrinho.pedido.cartoes}" class="form-select" required="true">
+							<f:selectItems value="#{loginBean.cliente.cartoes}" var="card" itemLabel="#{card.numeroCartao}" itemValue="#{card}"/>
 						</h:selectManyListbox>
 						
 						<br />
@@ -83,9 +83,9 @@
 						
 						<div class="col-6">
 							<h4 class=" mb-4">Endereço</h4>
-							<h:selectOneMenu value="#{carrinho.pedido.endereco}" class="form-select">
+							<h:selectOneMenu value="#{carrinho.pedido.endereco}" class="form-select" required="true">
 								<f:selectItem itemLabel="Selecione um endereço"/>
-								<f:selectItems value="#{loginBean.cliente.enderecos}" var="end" itemLabel="#{end.logradouro}"/>
+								<f:selectItems value="#{loginBean.cliente.enderecos}" var="end" itemLabel="#{end.logradouro}" itemValue="#{end}"/>
 							</h:selectOneMenu>
 							<br />
 							<h:link value = "Cadastrar Novo Endereço" outcome = "form-end" styleClass="btn btn-danger mt-3"/>
@@ -110,8 +110,8 @@
 					<div class="row justify-content-center ml-13">
 						<div class="col-12 text-left">
 							<p>Cupom de Desconto disponíveis</p>
-							<h:selectOneRadio value="#{carrinho.pedido.cupomDesconto}" styleClass="radio">
-								<f:selectItems value="#{cupomListarBean.cupons}" var="cupom" itemLabel="#{cupom.codigo}" />
+							<h:selectOneRadio value="#{carrinho.pedido.cupomDesconto}" styleClass="radio" >
+								<f:selectItems value="#{cupomListarBean.cupons}" var="cupom" itemLabel="#{cupom.codigo}" itemValue="#{cupom}"/>
 							</h:selectOneRadio>
 						</div>
 					</div>
