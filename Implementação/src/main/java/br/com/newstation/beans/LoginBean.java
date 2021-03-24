@@ -103,6 +103,26 @@ public class LoginBean {
 	}
 
 	@Transactional
+	public String salvarCartaoCheckout() {
+
+		try {
+
+			cliente.setId(getId());
+			cliente = dao.visualizar(cliente);
+			cliente.getCartoes().add(card);
+
+			cardDao.salvar(cliente, card);
+
+			return "/checkout/checkout?faces-redirect=true";
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+			return "/carrinho/form?faces-redirect=true";
+		}
+	}
+	
+	@Transactional
 	public String salvarCartao() {
 
 		try {
@@ -140,6 +160,8 @@ public class LoginBean {
 		}
 	}
 
+	
+	
 	@Transactional
 	public String salvarDocumento() {
 		ValidaCPF valcpf = new ValidaCPF();
@@ -184,6 +206,26 @@ public class LoginBean {
 		} catch (Exception e) {
 
 			return "/cliente/documento/form?faces-redirect=true";
+
+		}
+	}
+	
+	@Transactional
+	public String salvarEnderecoCheckout() {
+
+		try {
+
+			cliente.setId(getId());
+			cliente = dao.visualizar(cliente);
+			cliente.getEnderecos().add(endereco);
+
+			endDao.salvar(cliente, endereco);
+
+			return "/checkout/checkout?faces-redirect=true";
+
+		} catch (Exception e) {
+
+			return "carrinho?faces-redirect=true";
 
 		}
 	}

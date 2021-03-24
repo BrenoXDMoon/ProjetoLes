@@ -38,6 +38,13 @@ public class CarrinhoBean {
 	}
 	
 	@Transactional
+	public String redirCheckout(List<CarrinhoItem> itens) {
+		validaEstoque(itens);
+		return "/checkout/checkout?faces-redirect=true";
+		
+	}
+	
+	@Transactional
 	public void validaEstoque(List<CarrinhoItem> itens) {
 		System.out.println("itens:"+itens.size());
 		

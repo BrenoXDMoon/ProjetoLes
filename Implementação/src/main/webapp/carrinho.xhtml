@@ -85,11 +85,11 @@
 				</h:dataTable>
 			<tfoot class="formularioDoCarrinho-rodape">
 				<tr>
-					<td
-						class="formularioDoCarrinho-rodape-item formularioDoCarrinho-finalizar"
+					<td	class="formularioDoCarrinho-rodape-item formularioDoCarrinho-finalizar"
 						colspan="3">
-						<button class="formularioDoCarrinho-finalizar-botao btn btn-success" type="submit"
-							jsf:action="checkout?faces-redirect=true">
+
+						<button class="formularioDoCarrinho-finalizar-botao" type="submit"
+							jsf:action="#{carrinhoBean.redirCheckout(carrinho.itens)}">
 							Finalizar compra
 						</button>
 					</td>
