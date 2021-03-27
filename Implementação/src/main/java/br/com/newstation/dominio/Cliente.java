@@ -134,4 +134,6 @@ public class Cliente extends EntidadeDominio{
 	public void setCartoes(Set<CartaoCredito> cartoes) {
 		this.cartoes = cartoes;
 	}
+
+	
 }

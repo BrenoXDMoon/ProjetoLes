@@ -19,9 +19,9 @@ public class CupomListarBean {
 	private List<Cupom> cupons = new ArrayList<Cupom>();
 	
 	@Transactional
-	public String listar() {
+	public List<Cupom> listar() {
 		cupons = dao.listar();
-		return null;
+		return cupons;
 	}
 	
 	@Transactional

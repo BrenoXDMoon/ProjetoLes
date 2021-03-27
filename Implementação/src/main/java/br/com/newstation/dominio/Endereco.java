@@ -14,7 +14,7 @@ public class Endereco {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer Id;
-	
+
 	@Embedded
 	private Cidade cidade = new Cidade();
 	private String logradouro;
@@ -22,7 +22,7 @@ public class Endereco {
 	private String cep;
 	private String complemento;
 	private String bairro;
-	
+
 	@Enumerated(EnumType.STRING)
 	private TIPO_ENDERECO tipoEndereco;
 
@@ -93,4 +93,36 @@ public class Endereco {
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((Id == null) ? 0 : Id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Endereco other = (Endereco) obj;
+		if (Id == null) {
+			if (other.Id != null)
+				return false;
+		} else if (!Id.equals(other.Id))
+			return false;
+		
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return getId().toString();
+	}
+
 }

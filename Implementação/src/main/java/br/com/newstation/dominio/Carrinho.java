@@ -10,8 +10,6 @@ import java.util.Set;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.json.Json;
-import javax.json.JsonArrayBuilder;
 
 import br.com.newstation.beans.CarrinhoBean;
 import br.com.newstation.daos.PedidoDao;

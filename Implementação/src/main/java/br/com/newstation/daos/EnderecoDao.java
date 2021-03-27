@@ -44,7 +44,7 @@ public class EnderecoDao{
 
 	
 	public Endereco busca(int id) {
-		String jpql_e = "select c from endereco c where c.id = :id";
+		String jpql_e = "select c from Endereco c where c.id = :id";
 		return  manager.createQuery(jpql_e, Endereco.class)
 				.setParameter("id", id)
 				.getSingleResult();

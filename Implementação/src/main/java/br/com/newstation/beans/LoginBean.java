@@ -453,5 +453,7 @@ public class LoginBean {
 	public void setDocumentos(Set<Documento> docs) {
 		LoginBean.documentos = docs;
 	}
+	
+	
 
 }

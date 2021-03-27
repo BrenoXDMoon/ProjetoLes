@@ -22,10 +22,12 @@ import javax.persistence.NamedStoredProcedureQuery;
 @Entity
 public class Pedido{
 	
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Integer id;
-	
+
 	private String uuid;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
