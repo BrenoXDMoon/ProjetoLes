@@ -7,7 +7,10 @@ import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,15 +25,13 @@ import javax.persistence.NamedStoredProcedureQuery;
 @Entity
 public class Pedido{
 	
-	
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Integer id;
 
 	private String uuid;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne
 	private Cliente cliente;
 	
 	@ManyToOne
@@ -40,6 +41,7 @@ public class Pedido{
 	private Set<CartaoCredito> cartoes= new HashSet<CartaoCredito>();
 	
 	@OneToMany
+	@Column(unique = false)
 	private Set<Carta> itens= new HashSet<Carta>();
 	
 	@Temporal(TemporalType.DATE)
@@ -52,6 +54,9 @@ public class Pedido{
 	private Set<Cupom> cupomTroca = new HashSet<Cupom>(); 
 	
 	private BigDecimal total;
+	
+	@Enumerated(EnumType.STRING)
+	private STATUS_PEDIDO statusPedido;
 	
 	@PrePersist
 	public void createUUID() {
@@ -136,6 +141,14 @@ public class Pedido{
 
 	public void setCupomTroca(Set<Cupom> cupomTroca) {
 		this.cupomTroca = cupomTroca;
+	}
+
+	public STATUS_PEDIDO getStatusPedido() {
+		return statusPedido;
+	}
+
+	public void setStatusPedido(STATUS_PEDIDO statusPedido) {
+		this.statusPedido = statusPedido;
 	}
 
 }

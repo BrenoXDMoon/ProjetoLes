@@ -1,5 +1,7 @@
 package br.com.newstation.converters;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
@@ -10,8 +12,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.DateTimeConverter;
 import javax.faces.convert.FacesConverter;
 
-@FacesConverter(forClass = Calendar.class )
-public class CalendarConverter implements Converter {
+public class CalendarConverter{
 
 	private DateTimeConverter converter = new DateTimeConverter();
 	
@@ -20,30 +21,20 @@ public class CalendarConverter implements Converter {
 		converter.setPattern("dd/MM/yyyy");
 		converter.setTimeZone(TimeZone.getTimeZone("America/Sao_Paulo"));
 	}
-	//da tela pro backend
-	@Override
-	public Object getAsObject(FacesContext context, UIComponent component, String dataTxt) {
-		
-		Date data = (Date) converter.getAsObject(context, component, dataTxt);
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(data);
-		
-		return calendar;
-	}
 
-	
-	//do backend para a tela
-	@Override
-	public String getAsString(FacesContext context, UIComponent component, Object dataObj) {
+	public Calendar converte(String dataTxt) {
 		
-		
-		if(dataObj == null) {
-			return null;
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Date date = null;
+		try {
+			date = sdf.parse(dataTxt);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
 		
-		Calendar calendar = (Calendar) dataObj;
-		
-		return converter.getAsString(context, component, calendar.getTime());
+		return cal;
 	}
-
 }

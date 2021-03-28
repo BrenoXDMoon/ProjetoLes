@@ -15,7 +15,7 @@ public class PedidoDao {
 	private EntityManager manager;
 	
 	public void salvar(Pedido ped) {
-		
+		manager.merge(ped.getCliente());
 		manager.persist(ped);
 	}
 

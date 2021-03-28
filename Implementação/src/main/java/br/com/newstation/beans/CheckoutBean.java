@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 import br.com.newstation.daos.CartaoCreditoDao;
 import br.com.newstation.daos.ClienteDao;
@@ -19,6 +20,7 @@ import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.Cupom;
 import br.com.newstation.dominio.Endereco;
 import br.com.newstation.dominio.Pedido;
+import br.com.newstation.dominio.STATUS_PEDIDO;
 
 @Model
 public class CheckoutBean {
@@ -38,9 +40,11 @@ public class CheckoutBean {
 	@Inject
 	PedidoDao pDao;
 	
-	private Cupom cupom;
+	private Cupom cupom = new Cupom();
 
-	private Endereco end;
+	private Endereco end = new Endereco();
+	
+	private Integer idCli;
 	
 	
 	private Set<Endereco> enderecos = new HashSet<Endereco>();
@@ -75,8 +79,13 @@ public class CheckoutBean {
 		this.pedido = pedido;
 	}
 
-	public void salvar(Cliente cli, BigDecimal total, Carrinho carrinho) {
-		pedido.setCliente(cli);
+	public void salvar(Integer id, BigDecimal total, Carrinho carrinho) {
+		
+		Cliente cli = new Cliente(); 
+		
+		cli.setId(id);
+		
+		pedido.setCliente(dao.visualizar(cli));
 		pedido.setCupomDesconto(cDao.buscarById(cupom.getId()));
 		pedido.setEndereco(eDao.busca(end.getId()));
 		pedido.setCartoes(cartoes);
@@ -86,6 +95,8 @@ public class CheckoutBean {
 				pedido.getItens().add(c.getCarta());
 			}
 		}
+		
+		pedido.setStatusPedido(STATUS_PEDIDO.Pendente);
 		pDao.salvar(pedido);
 	}
 
@@ -111,6 +122,19 @@ public class CheckoutBean {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	public Integer getIdCli() {
+		return idCli;
+	}
+
+	public void setIdCli(Integer idCli) {
+		this.idCli = idCli;
+	}
+	
+	@Transactional
+	public void setIdCliente(Integer i) {
+		setIdCli(i);
 	}
 
 }

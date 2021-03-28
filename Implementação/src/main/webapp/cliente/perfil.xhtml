@@ -77,14 +77,13 @@
 					<h:column>
 						<f:facet name="header">Editar</f:facet>
 						<h:form>
-							<h:commandButton value='Editar' action="#{loginBean.redirDocumento(doc)}"/>
+							<h:commandButton value='Editar' action="#{loginBean.redirDocumento(doc)}" class="btn btn-primary"/>
 						</h:form>
 					</h:column>
 					<h:column>
 						<f:facet name="header">Deletar</f:facet>
 						<h:form>
-							<h:commandButton value='Deletar'
-								action="#{loginBean.excluirDocumento(doc)}" />
+							<h:commandButton value='Deletar' action="#{loginBean.excluirDocumento(doc)}" class="btn btn-danger"/>
 						</h:form>
 					</h:column>
 				</h:dataTable>
@@ -109,13 +108,13 @@
 					<h:column>
 						<f:facet name="header">Editar</f:facet>
 						<h:form>
-							<h:commandButton value='Editar' action='#{loginBean.redirEndereco(end)}' />   
+							<h:commandButton value='Editar' action='#{loginBean.redirEndereco(end)}' class="btn btn-primary"/>   
 						</h:form>
 					</h:column>
 					<h:column> 
 						<f:facet name="header">Deletar</f:facet> 
 							<h:form>
-							<h:commandButton action ="#{loginBean.excluirEndereco(end)}" value="Deletar"/> 
+							<h:commandButton action ="#{loginBean.excluirEndereco(end)}" value="Deletar" class="btn btn-danger"/> 
 						</h:form>   
 					</h:column>
 				</h:dataTable>
@@ -138,14 +137,13 @@
 					<h:column>
 						<f:facet name="header">Editar</f:facet>
 						<h:form>
-							<h:commandButton value='Editar' action='#{loginBean.redirCartao(card)}' />
+							<h:commandButton value='Editar' action='#{loginBean.redirCartao(card)}' class="btn btn-primary"/>
 						</h:form>
 					</h:column>
 					<h:column>
 						<f:facet name="header">Deletar</f:facet>
 						<h:form>
-							<h:commandButton value='deletar'
-								action='#{loginBean.excluirCartao(card)}' />
+							<h:commandButton value='deletar' action='#{loginBean.excluirCartao(card)}' class="btn btn-danger" />
 						</h:form>
 					</h:column>
 				</h:dataTable>

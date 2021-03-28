@@ -28,7 +28,7 @@ public class LoginBean {
 	private Cliente cliente;
 
 	private static Integer id;
-	private static boolean statusSessao;
+	private static boolean statusSessao = false;
 	private static Set<Endereco> enderecos = new HashSet<Endereco>();
 	private static Set<CartaoCredito> cartoes = new HashSet<CartaoCredito>();
 	private static Set<Documento> documentos = new HashSet<Documento>();
@@ -47,10 +47,6 @@ public class LoginBean {
 
 	@Inject
 	DocumentoDao docDao;
-
-	public LoginBean() {
-		setStatusSessao(false);
-	}
 
 	@Transactional
 	public String login() {
@@ -78,7 +74,6 @@ public class LoginBean {
 
 	}
 
-	@Transactional
 	public String logout() {
 
 		this.cliente = new Cliente();

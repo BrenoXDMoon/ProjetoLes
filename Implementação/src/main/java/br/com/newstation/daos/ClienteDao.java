@@ -181,6 +181,8 @@ public class ClienteDao extends AbstractDao {
 		factory.close();
 		return lista;
 	}
+	
+	
 	public Cliente salvar(Cliente cli, String str) {
 		
 		
