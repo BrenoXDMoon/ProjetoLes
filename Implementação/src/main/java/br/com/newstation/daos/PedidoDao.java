@@ -20,7 +20,6 @@ public class PedidoDao {
 	}
 
 	public void editar(Pedido ped) {
-		
 		manager.merge(ped);
 	}
 

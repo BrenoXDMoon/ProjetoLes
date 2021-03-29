@@ -58,6 +58,10 @@ public class Carrinho implements Serializable {
 		return total;
 	}
 
+	public void resete() {
+		this.itens = new HashSet<>();
+	}
+	
 	public void remover(CarrinhoItem item) {
 		this.itens.remove(item);
 	}

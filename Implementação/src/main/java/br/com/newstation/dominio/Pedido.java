@@ -12,6 +12,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,20 +39,19 @@ public class Pedido{
 	@ManyToOne
 	private Endereco endereco = new Endereco();
 
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER)
 	private Set<CartaoPedido> cartoes = new HashSet<CartaoPedido>();
 
-	@OneToMany
-	@Column(unique = false)
-	private Set<Carta> itens= new HashSet<Carta>();
+	@OneToMany(fetch = FetchType.EAGER)
+	private Set<CartaPedido> itens= new HashSet<CartaPedido>();
 
 	@Temporal(TemporalType.DATE)
 	protected Calendar dataAtualizacao;
 
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
 	private Cupom cupomDesconto = new Cupom();
 
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER)
 	private Set<Cupom> cupomTroca = new HashSet<Cupom>();
 
 	private BigDecimal total;
@@ -104,11 +104,11 @@ public class Pedido{
 		this.cartoes = cartoes;
 	}
 
-	public Set<Carta> getItens() {
+	public Set<CartaPedido> getItens() {
 		return itens;
 	}
 
-	public void setItens(Set<Carta> itens) {
+	public void setItens(Set<CartaPedido> itens) {
 		this.itens = itens;
 	}
 

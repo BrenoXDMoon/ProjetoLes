@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 import br.com.newstation.converters.CartaoPedidoConverter;
+import br.com.newstation.daos.CartaPedidoDao;
 import br.com.newstation.daos.CartaoCreditoDao;
 import br.com.newstation.daos.ClienteDao;
 import br.com.newstation.daos.CupomDao;
@@ -17,6 +18,8 @@ import br.com.newstation.daos.EnderecoDao;
 import br.com.newstation.daos.PedidoDao;
 import br.com.newstation.dominio.Carrinho;
 import br.com.newstation.dominio.CarrinhoItem;
+import br.com.newstation.dominio.Carta;
+import br.com.newstation.dominio.CartaPedido;
 import br.com.newstation.dominio.CartaoCredito;
 import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.Cupom;
@@ -41,6 +44,9 @@ public class CheckoutBean {
 
 	@Inject
 	PedidoDao pDao;
+	
+	@Inject
+	CartaPedidoDao cpedDao;
 
 	private Cupom cupom = new Cupom();
 
@@ -80,11 +86,12 @@ public class CheckoutBean {
 		this.pedido = pedido;
 	}
 
+	@Transactional
 	public String salvar(Integer id, BigDecimal total, Carrinho carrinho) {
 
 		Cliente cli = new Cliente();
 		Calendar cale = Calendar.getInstance();
-
+		
 		cli.setId(id);
 		cale.setTime(cale.getTime());
 
@@ -95,16 +102,18 @@ public class CheckoutBean {
 		pedido.setCartoes(CartaoPedidoConverter.converte(cartoes));
 		pedido.setTotal(total);
 		for (CarrinhoItem c : carrinho.getItens()) {
-			for (int i = c.getQuantidade(); i > 0; i--) {
-				pedido.getItens().add(c.getCarta());
-			}
+			CartaPedido crp = new CartaPedido();
+			crp.setCarta(c.getCarta());
+			crp.setQuantidade(c.getQuantidade());
+			cpedDao.salvar(crp);
+			pedido.getItens().add(crp);
+
 		}
-		System.out.println(pedido.getItens().size());
 
 		pedido.setStatusPedido(STATUS_PEDIDO.Pendente);
 		pDao.salvar(pedido);
 
-		carrinho = new Carrinho();
+		carrinho.resete();
 		
 		
 		return "/checkout/confirmaPedido?faces-redirect=true";

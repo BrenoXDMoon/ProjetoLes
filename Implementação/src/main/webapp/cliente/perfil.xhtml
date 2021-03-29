@@ -150,21 +150,32 @@
 				
 				
 				<h2 class='text-white'>Perdidos</h2>
-				<h:dataTable var="ped" value="#{loginBean.pedidos()}" class="table table-bordered table-striped table-hover">
+				<h:dataTable var="ped" value="#{pedidoBean.pedidos(loginBean.id)}" class="table table-bordered table-striped table-hover">
 					<h:column>
 						<f:facet name="header">codigo</f:facet>
-						#{ped.uuid}
+						<a class="decoration-none font-weight-bold text-white" href="#{request.contextPath}/cliente/pedido/detalhe-pedido.xhtml?id=#{ped.id}">#{ped.uuid}</a>
 					</h:column>
-					
+					<h:column>	
+						<f:facet name="header">Cartas</f:facet>
+						<ui:repeat value="#{ped.itens.toArray()}" var="itens">
+							#{itens.carta.nome} - 
+							#{itens.quantidade}  <p></p>
+						</ui:repeat>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Endereco Entrega</f:facet>
+						#{ped.endereco.logradouro}
+					</h:column>
+					<h:column>
+						<f:facet name="header">data</f:facet>
+						<h:outputText value="#{ped.dataAtualizacao.time}">]
+		        			<f:convertDateTime pattern="dd/MM/yyyy" />
+	        			</h:outputText>
+					</h:column>
 					<h:column>
 						<f:facet name="header">total</f:facet>
 						#{ped.total}
 					</h:column>
-					<h:column>
-						<f:facet name="header">istatus</f:facet>
-						#{ped.statusPedido}
-					</h:column>
-					
 				</h:dataTable>
 			</div>
 		</div>

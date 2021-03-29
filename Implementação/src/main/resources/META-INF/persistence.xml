@@ -16,6 +16,9 @@
 		<class>br.com.newstation.dominio.Carta</class>
 		<class>br.com.newstation.dominio.Cupom</class>
 		<class>br.com.newstation.dominio.Pedido</class>
+		<class>br.com.newstation.dominio.CartaoPedido</class>
+		<class>br.com.newstation.dominio.CartaPedido</class>
+		
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="true" />

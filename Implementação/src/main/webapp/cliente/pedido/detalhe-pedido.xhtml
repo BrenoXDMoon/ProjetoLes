@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="#{request.contextPath}/assets/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link href="#{request.contextPath}/assets/css/style.css"
+	rel="stylesheet" />
+<link href="#{request.contextPath}/assets/css/custom.css"
+	rel="stylesheet" />
+<title>Detalhe da Carta</title>
+</head>
+
+<f:metadata>
+	<f:viewParam id="id" name="id" value="#{pedidoBean.id}" />
+	<f:viewAction action="#{pedidoBean.carregar()}" />
+</f:metadata>
+
+<head>
+<title>#{cartaDetalheBean.carta.nome}</title>
+
+</head>
+<body class="bg-dark text-white">
+	<header>
+		<nav class="container d-flex flex-column flex-md-row justify-content-between">
+			 <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
+            <c:if test="#{!loginBean.statusSessao}">
+	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
+	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/addCliente.xhtml">Cadastre-se</a>
+            </c:if>
+            
+            <c:if test="#{loginBean.statusSessao}">
+            	<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/perfil.xhtml">Perfil</a>
+            	<h:form>
+	            	<h:commandButton value="Logout" action="#{loginBean.logout}" class="btn btn-danger"/>            	
+            	</h:form>
+            </c:if>
+            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/carrinho.xhtml">Carrinho</a>
+		</nav>
+	</header>
+
+
+	<section class="container perfil mt-5">
+		<div class="row">
+			<div class="col-10">
+				<h2 class='text-white'>Detalhe do Perdidos</h2>
+				<br />
+				<br />
+				<h:form enctype="multipart/form-data">
+					<div class="form-group">
+						<h:outputLabel value="#{pedidoBean.ped.uuid}" />
+					</div>
+					<div class="form-group">
+						<h:outputLabel value="#{pedidoBean.ped.endereco.logradouro}" />
+					</div>
+					<div class="form-group">
+						<h:outputLabel value="#{pedidoBean.ped.total}" />
+					</div>
+					<div class="form-group">
+						<h:outputLabel value="#{pedidoBean.ped.statusPedido}" /><br />
+					</div>
+				</h:form>
+			</div>
+		</div>
+	</section>
+
+
+
+</body>
+</html>

@@ -1,8 +1,8 @@
 package br.com.newstation.dominio;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
@@ -10,11 +10,10 @@ import javax.persistence.ManyToOne;
 public class CartaPedido {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@ManyToOne
-	@Column(unique = false)
 	private Carta carta;
 	
 	private Integer quantidade;

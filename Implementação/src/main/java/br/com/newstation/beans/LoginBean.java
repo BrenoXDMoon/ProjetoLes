@@ -82,15 +82,6 @@ public class LoginBean {
 
 	}
 
-	@Transactional
-	public List<Pedido> pedidos(){
-		return pDao.listar(getId());
-	}
-	
-	@Transactional
-	public List<Pedido> todasPedidos(){
-		return pDao.listarTudo();
-	}
 	
 	public String logout() {
 
