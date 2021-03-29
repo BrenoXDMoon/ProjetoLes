@@ -1,63 +1,63 @@
 package br.com.newstation.dominio;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.NamedStoredProcedureQuery;
 
 @Entity
 public class Pedido{
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Integer id;
 
 	private String uuid;
-	
+
 	@ManyToOne
 	private Cliente cliente;
-	
+
 	@ManyToOne
 	private Endereco endereco = new Endereco();
-	
+
 	@OneToMany
 	private Set<CartaoPedido> cartoes = new HashSet<CartaoPedido>();
-	
+
 	@OneToMany
 	@Column(unique = false)
 	private Set<CartaPedido> itens= new HashSet<CartaPedido>();
-	
+
 	@Temporal(TemporalType.DATE)
 	protected Calendar dataAtualizacao;
-	
+
 	@OneToOne
 	private Cupom cupomDesconto = new Cupom();
-	
+
 	@OneToMany
-	private Set<Cupom> cupomTroca = new HashSet<Cupom>(); 
-	
+	private Set<Cupom> cupomTroca = new HashSet<Cupom>();
+
 	private BigDecimal total;
-	
+
 	@Enumerated(EnumType.STRING)
 	private STATUS_PEDIDO statusPedido;
-	
+
 	@PrePersist
 	public void createUUID() {
 		this.uuid = UUID.randomUUID().toString();

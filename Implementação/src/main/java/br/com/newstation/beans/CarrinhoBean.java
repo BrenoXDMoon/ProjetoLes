@@ -17,7 +17,7 @@ public class CarrinhoBean {
 
 	@Inject
 	private CartaDao dao;
-	
+
 	@Inject
 	private EstoqueDao daoE;
 
@@ -32,34 +32,37 @@ public class CarrinhoBean {
 		return "index?faces-redirect=true";
 	}
 
-
 	public List<CarrinhoItem> getItens() {
 		return carrinho.getItens();
 	}
-	
+
 	@Transactional
-	public String redirCheckout(List<CarrinhoItem> itens) {
+	public String redirCheckout(List<CarrinhoItem> itens, boolean logado) {
+		if (logado == false) {
+			return "/cliente/login?faces-redirect=true";
+		}
+
 		validaEstoque(itens);
 		return "/checkout/checkout?faces-redirect=true";
-		
+
 	}
-	
+
 	@Transactional
 	public void validaEstoque(List<CarrinhoItem> itens) {
-		System.out.println("itens:"+itens.size());
-		
-		for(CarrinhoItem item: itens) {
+		System.out.println("itens:" + itens.size());
+
+		for (CarrinhoItem item : itens) {
 			if (item.getQuantidadeAnterior() < item.getQuantidade()) {
 				dropEstoque(item.getCarta(), item.getQuantidade());
-				
+
 			} else if ((item.getQuantidadeAnterior() > item.getQuantidade())) {
 				devolveEstoque(item.getCarta(), item.getQuantidadeAnterior());
-				
+
 			}
-		item.setQuantidadeAnterior(item.getQuantidade());
+			item.setQuantidadeAnterior(item.getQuantidade());
 		}
 	}
-	
+
 	@Transactional
 	public void dropEstoque(Carta carta, int quantidade) {
 		carta.getEstoque().setQuantidade(carta.getEstoque().getQuantidade() - quantidade);
@@ -71,7 +74,7 @@ public class CarrinhoBean {
 		carta.getEstoque().setQuantidade(carta.getEstoque().getQuantidade() + quantidade);
 		daoE.editar(carta.getEstoque());
 	}
-	
+
 	@Transactional
 	public void remover(CarrinhoItem item) {
 		devolveEstoque(item.getCarta(), item.getQuantidadeAnterior());

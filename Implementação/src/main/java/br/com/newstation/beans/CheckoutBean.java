@@ -1,6 +1,7 @@
 package br.com.newstation.beans;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,23 +31,22 @@ public class CheckoutBean {
 
 	@Inject
 	CupomDao cDao;
-	
+
 	@Inject
 	EnderecoDao eDao;
-	
+
 	@Inject
 	CartaoCreditoDao ccDao;
 
 	@Inject
 	PedidoDao pDao;
-	
+
 	private Cupom cupom = new Cupom();
 
 	private Endereco end = new Endereco();
-	
+
 	private Integer idCli;
-	
-	
+
 	private Set<Endereco> enderecos = new HashSet<Endereco>();
 
 	private Cliente cliente = new Cliente();
@@ -79,25 +79,34 @@ public class CheckoutBean {
 		this.pedido = pedido;
 	}
 
-	public void salvar(Integer id, BigDecimal total, Carrinho carrinho) {
-		
-		Cliente cli = new Cliente(); 
-		
+	public String salvar(Integer id, BigDecimal total, Carrinho carrinho) {
+
+		Cliente cli = new Cliente();
+		Calendar cale = Calendar.getInstance();
+
 		cli.setId(id);
-		
+		cale.setTime(cale.getTime());
+
+		pedido.setDataAtualizacao(cale);
 		pedido.setCliente(dao.visualizar(cli));
 		pedido.setCupomDesconto(cDao.buscarById(cupom.getId()));
 		pedido.setEndereco(eDao.busca(end.getId()));
 		pedido.setCartoes(cartoes);
 		pedido.setTotal(total);
-		for(CarrinhoItem c: carrinho.getItens()) {
-			for(int i = c.getQuantidade(); i > 0 ; i--) {
+		for (CarrinhoItem c : carrinho.getItens()) {
+			for (int i = c.getQuantidade(); i > 0; i--) {
 				pedido.getItens().add(c.getCarta());
 			}
 		}
-		
+		System.out.println(pedido.getItens().size());
+
 		pedido.setStatusPedido(STATUS_PEDIDO.Pendente);
 		pDao.salvar(pedido);
+
+		carrinho = new Carrinho();
+		
+		
+		return "/checkout/confirmaPedido?faces-redirect=true";
 	}
 
 	public Cupom getCupom() {
@@ -131,7 +140,7 @@ public class CheckoutBean {
 	public void setIdCli(Integer idCli) {
 		this.idCli = idCli;
 	}
-	
+
 	@Transactional
 	public void setIdCliente(Integer i) {
 		setIdCli(i);

@@ -1,6 +1,7 @@
 package br.com.newstation.beans;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.enterprise.inject.Model;
@@ -11,11 +12,13 @@ import br.com.newstation.daos.CartaoCreditoDao;
 import br.com.newstation.daos.ClienteDao;
 import br.com.newstation.daos.DocumentoDao;
 import br.com.newstation.daos.EnderecoDao;
+import br.com.newstation.daos.PedidoDao;
 import br.com.newstation.dominio.BANDEIRA;
 import br.com.newstation.dominio.CartaoCredito;
 import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.Documento;
 import br.com.newstation.dominio.Endereco;
+import br.com.newstation.dominio.Pedido;
 import br.com.newstation.dominio.TIPO_CLIENTE;
 import br.com.newstation.dominio.TIPO_DOCUMENTO;
 import br.com.newstation.dominio.TIPO_ENDERECO;
@@ -48,6 +51,9 @@ public class LoginBean {
 	@Inject
 	DocumentoDao docDao;
 
+	@Inject
+	PedidoDao pDao;
+	
 	@Transactional
 	public String login() {
 
@@ -59,6 +65,8 @@ public class LoginBean {
 			System.out.println(LoginBean.id);
 
 			setStatusSessao(true);
+
+			System.out.println("sessao: " + statusSessao);
 
 			if (cliente.getTipoCliente().equals(TIPO_CLIENTE.Admin)) {
 
@@ -74,10 +82,21 @@ public class LoginBean {
 
 	}
 
+	@Transactional
+	public List<Pedido> pedidos(){
+		return pDao.listar(getId());
+	}
+	
+	@Transactional
+	public List<Pedido> todasPedidos(){
+		return pDao.listarTudo();
+	}
+	
 	public String logout() {
 
 		this.cliente = new Cliente();
 		setStatusSessao(false);
+		setId(0);
 		return "/cliente/login?faces-redirect=true";
 	}
 
@@ -116,7 +135,7 @@ public class LoginBean {
 			return "/carrinho/form?faces-redirect=true";
 		}
 	}
-	
+
 	@Transactional
 	public String salvarCartao() {
 
@@ -155,8 +174,6 @@ public class LoginBean {
 		}
 	}
 
-	
-	
 	@Transactional
 	public String salvarDocumento() {
 		ValidaCPF valcpf = new ValidaCPF();
@@ -173,7 +190,7 @@ public class LoginBean {
 
 				return "/cliente/perfil?faces-redirect=true";
 			} else if (doc.getTipoDocumento().equals(TIPO_DOCUMENTO.RG)) {
-				
+
 				cliente.getDocumentos().add(doc);
 
 				docDao.salvar(cliente, doc);
@@ -204,7 +221,7 @@ public class LoginBean {
 
 		}
 	}
-	
+
 	@Transactional
 	public String salvarEnderecoCheckout() {
 
@@ -341,6 +358,7 @@ public class LoginBean {
 
 	public void carregar() {
 
+
 		cliente.setId(getId());
 
 		cliente = dao.visualizar(cliente);
@@ -448,7 +466,5 @@ public class LoginBean {
 	public void setDocumentos(Set<Documento> docs) {
 		LoginBean.documentos = docs;
 	}
-	
-	
 
 }
