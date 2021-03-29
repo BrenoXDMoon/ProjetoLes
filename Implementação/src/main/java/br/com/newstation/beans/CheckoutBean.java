@@ -9,6 +9,7 @@ import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
+import br.com.newstation.converters.CartaoPedidoConverter;
 import br.com.newstation.daos.CartaoCreditoDao;
 import br.com.newstation.daos.ClienteDao;
 import br.com.newstation.daos.CupomDao;
@@ -91,7 +92,7 @@ public class CheckoutBean {
 		pedido.setCliente(dao.visualizar(cli));
 		pedido.setCupomDesconto(cDao.buscarById(cupom.getId()));
 		pedido.setEndereco(eDao.busca(end.getId()));
-		pedido.setCartoes(cartoes);
+		pedido.setCartoes(CartaoPedidoConverter.converte(cartoes));
 		pedido.setTotal(total);
 		for (CarrinhoItem c : carrinho.getItens()) {
 			for (int i = c.getQuantidade(); i > 0; i--) {

@@ -8,17 +8,20 @@ import br.com.newstation.dominio.CartaoPedido;
 
 public class CartaoPedidoConverter {
 	
-	HashSet<CartaoPedido> converte(HashSet<CartaoCredito> cartoes){
+	public static HashSet<CartaoPedido> converte(Set<CartaoCredito> cartoes){
 		
 		HashSet<CartaoPedido> cards = new HashSet<CartaoPedido>();
 		
 		CartaoPedido cdPed = null;
 		
+		Integer qtd = 0;
+		
 		for(CartaoCredito cd : cartoes) {
 			cdPed = new CartaoPedido();
-			cdPed.setCartao(cd);		
-			
+			cdPed.setCartao(cd);
 		}
+		
+		
 		
 		return cards;
 	}

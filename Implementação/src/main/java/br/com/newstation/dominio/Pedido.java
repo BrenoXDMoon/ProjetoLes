@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -42,7 +43,7 @@ public class Pedido{
 
 	@OneToMany
 	@Column(unique = false)
-	private Set<CartaPedido> itens= new HashSet<CartaPedido>();
+	private Set<Carta> itens= new HashSet<Carta>();
 
 	@Temporal(TemporalType.DATE)
 	protected Calendar dataAtualizacao;
@@ -103,11 +104,11 @@ public class Pedido{
 		this.cartoes = cartoes;
 	}
 
-	public Set<CartaPedido> getItens() {
+	public Set<Carta> getItens() {
 		return itens;
 	}
 
-	public void setItens(Set<CartaPedido> itens) {
+	public void setItens(Set<Carta> itens) {
 		this.itens = itens;
 	}
 
