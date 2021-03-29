@@ -27,17 +27,17 @@
 <header>
 	<nav class="container d-flex flex-column flex-md-row justify-content-between">
 		 <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
-           <c:if test="#{loginBean.statusSessao}">
-            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
-            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/addCliente.xhtml">Cadastre-se</a>
-           </c:if>
-           
-           <c:if test="#{!loginBean.statusSessao}">
-           	<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/perfil.xhtml">Perfil</a>
-           	<h:form>
-            	<h:commandButton value="Logout" action="#{loginBean.logout}" class="btn btn-danger"/>            	
-           	</h:form>
-           </c:if>
+          <c:if test="#{!loginBean.statusSessao}">
+	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
+	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/addCliente.xhtml">Cadastre-se</a>
+            </c:if>
+            
+            <c:if test="#{loginBean.statusSessao}">
+            	<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/perfil.xhtml">Perfil</a>
+            	<h:form>
+	            	<h:commandButton value="Logout" action="#{loginBean.logout}" class="btn btn-danger"/>            	
+            	</h:form>
+            </c:if>
            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/carrinho.xhtml">Carrinho</a>
 	</nav>
 </header>
@@ -53,9 +53,9 @@
 							<br />
 							<h:inputSecret value="#{clienteEditarBean.senhaAtual}"
 								required="true" id="senhaAtual" class="form-control"
-								validatorMessage="Senha tem que ter 8 caracteres e Possuir numeros">
+								validatorMessage="Senha Atual tem que ter 8 caracteres e Possuir numeros">
 								<f:validateRegex pattern="(?=.*[a-zA-Z])(?=.*[0-9]).{8,13}" />
-								<h:message for="senha" style="color:red" />
+								<h:message for="senhaAtual" style="color:red" />
 							</h:inputSecret>
 
 						</div>
@@ -65,9 +65,9 @@
 							<br />
 							<h:inputSecret value="#{clienteEditarBean.senha.senha}"
 								required="true" id="senhaNova" class="form-control"
-								validatorMessage="Senha tem que ter 8 caracteres e Possuir numeros">
+								validatorMessage="Senha Nova tem que ter 8 caracteres e Possuir numeros">
 								<f:validateRegex pattern="(?=.*[a-zA-Z])(?=.*[0-9]).{8,13}" />
-								<h:message for="senha" style="color:red" />
+								<h:message for="senhaNova" style="color:red" />
 							</h:inputSecret>
 
 						</div>

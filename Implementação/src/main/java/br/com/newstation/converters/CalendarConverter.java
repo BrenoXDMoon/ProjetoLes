@@ -6,11 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.convert.Converter;
 import javax.faces.convert.DateTimeConverter;
-import javax.faces.convert.FacesConverter;
 
 public class CalendarConverter{
 

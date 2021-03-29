@@ -8,7 +8,7 @@ public class CarrinhoItem {
 	private Carta carta;
 	private Integer quantidade;
 	int max;
-	private int quantidadeAnterior;
+	private int quantidadeAnterior = 0;
 
 	public CarrinhoItem(Carta carta) {
 		this.carta = carta;

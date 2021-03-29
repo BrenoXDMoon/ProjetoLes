@@ -1,26 +1,26 @@
 package br.com.newstation.dominio;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.NamedStoredProcedureQuery;
 
 @Entity
 public class Pedido{
@@ -37,12 +37,11 @@ public class Pedido{
 	@ManyToOne
 	private Endereco endereco = new Endereco();
 	
-	@OneToMany
+	@ManyToMany
 	private Set<CartaoCredito> cartoes= new HashSet<CartaoCredito>();
 	
-	@OneToMany
-	@Column(unique = false)
-	private Set<Carta> itens= new HashSet<Carta>();
+	@ManyToMany
+	private List<Carta> itens= new ArrayList<Carta>();
 	
 	@Temporal(TemporalType.DATE)
 	protected Calendar dataAtualizacao;
@@ -103,11 +102,11 @@ public class Pedido{
 		this.dataAtualizacao = dataAtualizacao;
 	}
 
-	public Set<Carta> getItens() {
+	public List<Carta> getItens() {
 		return itens;
 	}
 
-	public void setItens(Set<Carta> itens) {
+	public void setItens(List<Carta> itens) {
 		this.itens = itens;
 	}
 

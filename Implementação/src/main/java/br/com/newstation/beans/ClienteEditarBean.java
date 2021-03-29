@@ -1,5 +1,7 @@
 package br.com.newstation.beans;
 
+import java.util.regex.Pattern;
+
 import javax.enterprise.inject.Model;
 import javax.transaction.Transactional;
 
@@ -15,72 +17,79 @@ public class ClienteEditarBean {
 
 	private Senha senha = new Senha();
 
+	private static boolean senhaErro = false;
+
 	private static Cliente cliente = new Cliente();
-	
+
 	CriptografaSenha crp = new CriptografaSenha();
-	
+
 	private Integer id;
-	
+
 	private String senhaAtual;
-	
+
 	public void carregaDetalhe() {
 		ClienteDao dao = new ClienteDao();
 		Cliente cliente = new Cliente();
 		cliente.setId(getId());
-		ClienteEditarBean.cliente =  dao.visualizar(cliente);
-			
+		ClienteEditarBean.cliente = dao.visualizar(cliente);
+
 	}
-	
+
 	@Transactional
 	public String editarCli() {
-		
+
 		EditarCommand cmd = new EditarCommand();
 		cmd.executar(ClienteEditarBean.cliente);
-		
+
 		return "/cliente/perfil.xhtml?faces-redirect=true";
 	}
-	
+
 	@Transactional
-	public String atualizaSenha(){
+	public String atualizaSenha() {
 		ClienteDao dao = new ClienteDao();
 
 		senhaAtual = crp.criptoSenha(senhaAtual);
 
-		if(cliente.getSenha().getSenha().equals(senhaAtual)){
-			
+		if (cliente.getSenha().getSenha().equals(senhaAtual)) {
+
 			cliente.getSenha().setSenha(crp.criptoSenha(senha.getSenha()));
 		}
 		dao.editar(cliente);
 		return "/cliente/perfil.xhtml?faces-redirect=true";
 	}
-	
+
 	@Transactional
 	public String editar() {
-		
-		if (senha != null) {
-			
-			senha.setSenha(crp.criptoSenha(senha.getSenha()));
-			cliente.setSenha(senha);
-			
-		}
 
+		if (!senha.getSenha().equals("")) {
+
+			if (Pattern.matches("[a-zA-Z0-9]{8,13}", senha.getSenha())) {
+
+				senha.setSenha(crp.criptoSenha(senha.getSenha()));
+				cliente.setSenha(senha);
+
+			} else {
+				senhaErro = true;
+				return "/admin/cliente/editar?faces-redirect=true";
+			}
+		}
 
 		EditarCommand cmd = new EditarCommand();
 		cmd.executar(cliente);
-		
+
 		return "/admin/cliente/lista?faces-redirect=true";
 	}
 
 	public String redir(Cliente cli) {
 		ClienteEditarBean.cliente = cli;
-		
+
 		return "/cliente/edit-form?faces-redirect=true";
 	}
-	
+
 	public String redirAdmin(Cliente cli) {
-		
+
 		ClienteEditarBean.cliente = cli;
-		
+
 		return "/admin/cliente/editar?faces-redirect=true";
 	}
 
@@ -108,9 +117,9 @@ public class ClienteEditarBean {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
-	public TIPO_CLIENTE[] getTipoCliente(){
-		
+
+	public TIPO_CLIENTE[] getTipoCliente() {
+
 		return TIPO_CLIENTE.values();
 	}
 
@@ -120,5 +129,13 @@ public class ClienteEditarBean {
 
 	public void setSenhaAtual(String senhaAtual) {
 		this.senhaAtual = senhaAtual;
+	}
+
+	public boolean isSenhaErro() {
+		return senhaErro;
+	}
+
+	public void setSenhaErro(boolean senhaErro) {
+		ClienteEditarBean.senhaErro = senhaErro;
 	}
 }

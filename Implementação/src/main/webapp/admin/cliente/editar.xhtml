@@ -63,7 +63,7 @@
 							<h:outputLabel value="Senha" />
 							<h:inputText value="#{clienteEditarBean.senha.senha}" id="senha"
 								styleClass="form-control" />
-							<h:message for="senha" />
+							<h:outputLabel value="A senha tem que ter 8 caracteres e Possuir numeros" rendered="#{clienteEditarBean.senhaErro}"/>  
 						</div>
 						
 						<h:outputLabel value="Tipo do Cliente" />

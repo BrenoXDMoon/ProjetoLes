@@ -28,12 +28,19 @@ public class PedidoDao {
 		manager.merge(ped);
 		
 	}
-
-	public List<Pedido> listar(Pedido ped) {
+	
+	public List<Pedido> listarTudo() {
 		
-		String jpql = "select p from Pedido p where p.ativo = true";
+		String jpql = "select p from Pedido p";
 		
 		return manager.createQuery(jpql, Pedido.class).getResultList();
+	}
+
+	public List<Pedido> listar(int cli) {
+		
+		String jpql = "select p from Pedido p where p.cliente.id = :id";
+		
+		return manager.createQuery(jpql, Pedido.class).setParameter("id", cli).getResultList();
 	}
 	
 	public Pedido buscarPorId(int ped) {

@@ -25,12 +25,12 @@
 	<header class="site-header  py-1">
         <nav class="container d-flex flex-column flex-md-row justify-content-between">
 			 <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
-            <c:if test="#{loginBean.statusSessao}">
+            <c:if test="#{!loginBean.statusSessao}">
 	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
 	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/addCliente.xhtml">Cadastre-se</a>
             </c:if>
             
-            <c:if test="#{!loginBean.statusSessao}">
+            <c:if test="#{loginBean.statusSessao}">
             	<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/perfil.xhtml">Perfil</a>
             	<h:form>
 	            	<h:commandButton value="Logout" action="#{loginBean.logout}" class="btn btn-danger"/>            	
@@ -65,7 +65,7 @@
 	        	
 	        	<h:column>
 					<f:facet name="header">Quantidade</f:facet>
-	        	 <h:selectOneMenu  value="#{item.quantidade}">
+	        	 <h:selectOneMenu  value="#{item.quantidade}" >
 	        		 <f:selectItems	value="#{item.estoqueMax()}" var="Quantidade" itemValue="#{Quantidade}" itemLabel="#{Quantidade}"/>
 	        	 </h:selectOneMenu >
 	        	</h:column>
@@ -88,7 +88,7 @@
 					<td	class="formularioDoCarrinho-rodape-item formularioDoCarrinho-finalizar"
 						colspan="3">
 
-						<button class="formularioDoCarrinho-finalizar-botao btn btn-success" type="submit" jsf:action="#{carrinhoBean.redirCheckout(carrinho.itens)}">
+						<button class="formularioDoCarrinho-finalizar-botao btn btn-success" type="submit" jsf:action="#{carrinhoBean.redirCheckout(carrinho.itens, loginBean.statusSessao)}">
 							Finalizar compra
 						</button>
 					</td>
