@@ -38,11 +38,11 @@ public class Pedido{
 	private Endereco endereco = new Endereco();
 	
 	@OneToMany
-	private Set<CartaoCredito> cartoes= new HashSet<CartaoCredito>();
+	private Set<CartaoPedido> cartoes = new HashSet<CartaoPedido>();
 	
 	@OneToMany
 	@Column(unique = false)
-	private Set<Carta> itens= new HashSet<Carta>();
+	private Set<CartaPedido> itens= new HashSet<CartaPedido>();
 	
 	@Temporal(TemporalType.DATE)
 	protected Calendar dataAtualizacao;
@@ -71,14 +71,6 @@ public class Pedido{
 		this.id = id;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
 	public String getUuid() {
 		return uuid;
 	}
@@ -87,44 +79,44 @@ public class Pedido{
 		this.uuid = uuid;
 	}
 
-	public BigDecimal getTotal() {
-		return total;
+	public Cliente getCliente() {
+		return cliente;
 	}
 
-	public void setTotal(BigDecimal total) {
-		this.total = total;
-	}
-	
-	public Calendar getDataAtualizacao() {
-		return dataAtualizacao;
-	}
-	
-	public void setDataAtualizacao(Calendar dataAtualizacao) {
-		this.dataAtualizacao = dataAtualizacao;
-	}
-
-	public Set<Carta> getItens() {
-		return itens;
-	}
-
-	public void setItens(Set<Carta> itens) {
-		this.itens = itens;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	public Endereco getEndereco() {
 		return endereco;
 	}
 
-	public Set<CartaoCredito> getCartoes() {
-		return cartoes;
-	}
-
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
 
-	public void setCartoes(Set<CartaoCredito> cartoes) {
+	public Set<CartaoPedido> getCartoes() {
+		return cartoes;
+	}
+
+	public void setCartoes(Set<CartaoPedido> cartoes) {
 		this.cartoes = cartoes;
+	}
+
+	public Set<CartaPedido> getItens() {
+		return itens;
+	}
+
+	public void setItens(Set<CartaPedido> itens) {
+		this.itens = itens;
+	}
+
+	public Calendar getDataAtualizacao() {
+		return dataAtualizacao;
+	}
+
+	public void setDataAtualizacao(Calendar dataAtualizacao) {
+		this.dataAtualizacao = dataAtualizacao;
 	}
 
 	public Cupom getCupomDesconto() {
@@ -141,6 +133,14 @@ public class Pedido{
 
 	public void setCupomTroca(Set<Cupom> cupomTroca) {
 		this.cupomTroca = cupomTroca;
+	}
+
+	public BigDecimal getTotal() {
+		return total;
+	}
+
+	public void setTotal(BigDecimal total) {
+		this.total = total;
 	}
 
 	public STATUS_PEDIDO getStatusPedido() {
