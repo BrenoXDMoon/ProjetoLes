@@ -44,7 +44,7 @@ public class CheckoutBean {
 
 	@Inject
 	PedidoDao pDao;
-	
+
 	@Inject
 	CartaPedidoDao cpedDao;
 
@@ -91,7 +91,7 @@ public class CheckoutBean {
 
 		Cliente cli = new Cliente();
 		Calendar cale = Calendar.getInstance();
-		
+
 		cli.setId(id);
 		cale.setTime(cale.getTime());
 
@@ -114,8 +114,7 @@ public class CheckoutBean {
 		pDao.salvar(pedido);
 
 		carrinho.resete();
-		
-		
+
 		return "/checkout/confirmaPedido?faces-redirect=true";
 	}
 
