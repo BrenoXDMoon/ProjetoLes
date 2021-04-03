@@ -43,7 +43,7 @@
     </header>
     
     <h:form enctype="multipart/form-data">
-		<div class="container mt-4">
+		<div class="container my-4">
 			<div class="row justify-content-center pedido">
 				<div class="col-10">
 					<div class="row justify-content-center pedido">
@@ -73,9 +73,25 @@
 				<div class="row justify-content-center dados mt-5 ml-13">
 					<div class="col-6">
 						<h4 class="mb-3">Cartão</h4>
-						<h:selectManyListbox value="#{checkoutBean.cartoes}" class="form-select" id="cartao">
-							<f:selectItems value="#{loginBean.cartoes}" var="card" itemLabel="#{card.numeroCartao}" itemValue="#{card}"/>
-						</h:selectManyListbox>
+						
+						<h:selectOneRadio value="#{chekoutBean}" onchange="trocarCartao()">
+						   <f:selectItem itemValue="1" itemLabel="1 Cartao"  />
+						   <f:selectItem itemValue="2" itemLabel="2 Cartoes" />
+						</h:selectOneRadio>
+						
+						<div id="a" >a</div>
+						<div id="b" class="d-none">b
+							<ui:repeat value="#{loginBean.cartoes}" var="cartao">
+								<div class="col-6">
+									<h4>Cartao</h4>
+									<p>#{cartao.numeroCartao}</p>
+									<p>#{cartao.bandeira}</p>
+								</div>
+							</ui:repeat>
+							<h:selectManyListbox value="#{checkoutBean.cartoes}" class="form-select" id="cartao">
+								<f:selectItems value="#{loginBean.cartoes}" var="card" itemLabel="#{card.numeroCartao}" itemValue="#{card}"/>
+							</h:selectManyListbox>
+						</div>
 						
 						<br />
 						<h:link value = "Cadastrar Novo Cartão" outcome = "form-cartao" styleClass="btn btn-danger  mt-3"/>
@@ -97,7 +113,7 @@
 							<div class="row justify-content-start">
 								<div class="col-3">
 									<span>Frete</span>
-									<p>R$ 2,50</p>
+									<p></p>
 								</div>
 								<div class="col-3">
 									<span>Total</span>
@@ -111,7 +127,7 @@
 						<div class="col-12 text-left">
 							<p>Cupom de Desconto disponíveis</p>
 							<h:selectOneRadio value="#{checkoutBean.cupom}" styleClass="radio" id="cupom" converter="CupomConverter">
-								<f:selectItems value="#{cupomListarBean.cupons}" var="cupom" itemLabel="#{cupom.codigo}" itemValue="#{cupom}"/>
+								<f:selectItems value="#{cupomListarBean.cupons}" var="cupom" itemLabel="#{cupom.show()}" itemValue="#{cupom}" />
 							</h:selectOneRadio>
 						</div>
 					</div>
@@ -124,4 +140,6 @@
 
 
 </body>
+	<script type="text/javascript" src="#{request.contextPath}/assets/js/cartoes.js">
+	</script>
 </html>

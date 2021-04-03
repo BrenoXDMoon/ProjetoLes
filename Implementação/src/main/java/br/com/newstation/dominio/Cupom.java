@@ -72,6 +72,10 @@ public class Cupom {
 		 return getId().toString();
 	}
 
+	public String show() {
+		return getCodigo() +" Valor: "+ getPreco().toString();
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
