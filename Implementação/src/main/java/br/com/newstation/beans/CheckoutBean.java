@@ -47,6 +47,10 @@ public class CheckoutBean {
 
 	@Inject
 	CartaPedidoDao cpedDao;
+	
+	BigDecimal valorCarTaoUm;
+	
+	BigDecimal valorCarTaoDois;
 
 	private Cupom cupom = new Cupom();
 
@@ -117,6 +121,37 @@ public class CheckoutBean {
 
 		return "/checkout/confirmaPedido?faces-redirect=true";
 	}
+	
+	@Transactional
+	public String salvarDoisCartoes(Integer id, BigDecimal total, Carrinho carrinho) {
+		Cliente cli = new Cliente();
+		Calendar cale = Calendar.getInstance();
+
+		cli.setId(id);
+		cale.setTime(cale.getTime());
+
+		pedido.setDataAtualizacao(cale);
+		pedido.setCliente(dao.visualizar(cli));
+		pedido.setCupomDesconto(cDao.buscarById(cupom.getId()));
+		pedido.setEndereco(eDao.busca(end.getId()));
+		pedido.setCartoes(CartaoPedidoConverter.converte(cartoes));
+		pedido.setTotal(total);
+		for (CarrinhoItem c : carrinho.getItens()) {
+			CartaPedido crp = new CartaPedido();
+			crp.setCarta(c.getCarta());
+			crp.setQuantidade(c.getQuantidade());
+			cpedDao.salvar(crp);
+			pedido.getItens().add(crp);
+
+		}
+
+		pedido.setStatusPedido(STATUS_PEDIDO.Pendente);
+		pDao.salvar(pedido);
+
+		carrinho.resete();
+
+		return "/checkout/confirmaPedido?faces-redirect=true";
+	}
 
 	public Cupom getCupom() {
 		return cupom;
@@ -153,6 +188,22 @@ public class CheckoutBean {
 	@Transactional
 	public void setIdCliente(Integer i) {
 		setIdCli(i);
+	}
+
+	public BigDecimal getValorCarTaoUm() {
+		return valorCarTaoUm;
+	}
+
+	public void setValorCarTaoUm(BigDecimal valorCarTaoUm) {
+		this.valorCarTaoUm = valorCarTaoUm;
+	}
+
+	public BigDecimal getValorCarTaoDois() {
+		return valorCarTaoDois;
+	}
+
+	public void setValorCarTaoDois(BigDecimal valorCarTaoDois) {
+		this.valorCarTaoDois = valorCarTaoDois;
 	}
 
 }
