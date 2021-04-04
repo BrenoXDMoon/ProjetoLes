@@ -75,19 +75,20 @@
 						<h4 class="mb-3">Cartão</h4>
 						
 						<div id="opcaoCartao">
-							<span id="botaoCartao" class="btn btn-primary mt-3">Usar 1 Cartão</span>
-							<h:link value = "Usar 2 Cartão" outcome = "checkout-dois-cartoes" styleClass="btn btn-warning	 mt-3"/>
+							<h:link value = "Usar 1 Cartão" outcome = "checkout" styleClass="btn btn-primary mt-3"/>
+							<span class="btn btn-warning mt-3">Usar 2 Cartão</span>
 							<h:link value = "Cadastrar Novo Cartão" outcome = "form-cartao" styleClass="btn btn-danger mt-3"/>
 						</div>
+						<h:selectManyCheckbox value="#{checkoutBean.cartoes}" class="form-select" id="cartao">
+							<f:selectItems class="d-block" value="#{loginBean.cartoes}" var="card" itemLabel="#{card.numeroCartao}" itemValue="#{card}"/>
+						</h:selectManyCheckbox>
+						<br />
 						
-						<div id="listaCartao" class=" d-none">
-							<h:selectOneMenu value="#{checkoutBean.cartoes}" class="form-select" id="cartao">
-								<f:selectItems value="#{loginBean.cartoes}" var="card" itemLabel="#{card.numeroCartao}" itemValue="#{card}"/>
-							</h:selectOneMenu>
-							<br />
-						</div>
+						<h:outputLabel value="Valor a Cobrar no Primeiro Cartão"/>
+						<h:inputText value="#{carrinho.total}" />
 						
-						
+						<h:outputLabel value="Valor a Cobrar no Primeiro Cartão"/>
+						<h:inputText value="0.50" />
 					</div>
 						
 					<div class="col-6">
@@ -106,11 +107,11 @@
 							<div class="row justify-content-start">
 								<div class="col-3">
 									<span>Frete</span>
-									<p>R$ #{carrinho.frete}</p>
+									<p></p>
 								</div>
 								<div class="col-3">
 									<span>Total</span>
-									<p>R$ #{carrinho.frete + carrinho.total}</p>
+									<p>R$#{carrinho.total}</p>
 								</div>
 							</div>
 						</div>
