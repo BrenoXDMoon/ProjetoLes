@@ -21,14 +21,16 @@ public class Carrinho implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Set<CarrinhoItem> itens = new HashSet<>();
-	
+
 	private Pedido pedido = new Pedido();
- 
+
+	private BigDecimal frete;
+
 	@Inject
 	private PedidoDao pedidoDao;
 
 	CarrinhoBean cb = new CarrinhoBean();
-	
+
 	public void finalizar(Pedido pedido) {
 		pedido.setTotal(getTotal());
 		pedidoDao.salvar(pedido);
@@ -61,7 +63,7 @@ public class Carrinho implements Serializable {
 	public void resete() {
 		this.itens = new HashSet<>();
 	}
-	
+
 	public void remover(CarrinhoItem item) {
 		this.itens.remove(item);
 	}
@@ -76,5 +78,13 @@ public class Carrinho implements Serializable {
 
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
+	}
+
+	public BigDecimal getFrete() {
+		return frete;
+	}
+
+	public void setFrete(BigDecimal frete) {
+		this.frete = frete;
 	}
 }

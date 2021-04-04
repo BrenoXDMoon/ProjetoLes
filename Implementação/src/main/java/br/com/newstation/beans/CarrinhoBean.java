@@ -23,7 +23,7 @@ public class CarrinhoBean {
 
 	@Inject
 	private Carrinho carrinho;
-
+	
 	public String add(Integer id) {
 		Carta carta = dao.buscarPorId(id);
 		CarrinhoItem item = new CarrinhoItem(carta);
@@ -80,5 +80,7 @@ public class CarrinhoBean {
 		devolveEstoque(item.getCarta(), item.getQuantidadeAnterior());
 		carrinho.remover(item);
 	}
+
+
 
 }

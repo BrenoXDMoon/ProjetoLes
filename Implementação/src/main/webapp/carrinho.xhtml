@@ -83,6 +83,16 @@
 						</a>
 				</h:column>
 				</h:dataTable>
+				
+		<div class="row justify-content-end">
+			<div class="col-4 text-right">
+				<span class="d-block pb-3 mr-5">Frete</span>
+				<h:selectOneRadio value = "#{carrinho.frete}" class="radio float-right"> 
+				   <f:selectItem itemValue = "5.00" itemLabel = "Correios - R$ 5.00" /> 
+				   <f:selectItem itemValue = "10.00" itemLabel = "Pac - R$ 10.00" />
+				</h:selectOneRadio>    
+			</div>
+		</div>
 			<tfoot class="formularioDoCarrinho-rodape">
 				<tr>
 					<td	class="formularioDoCarrinho-rodape-item formularioDoCarrinho-finalizar"
@@ -95,7 +105,10 @@
 					<h:commandButton value="Atualizar" action="#{carrinhoBean.validaEstoque(carrinho.itens)}" class="btn btn-primary" />
 					<td class="formularioDoCarrinho-rodape-item btn btn-">R$#{carrinho.getTotal()}</td>
 				</tr>
+				
+				
 			</tfoot>
+			
 		</table>
 		
 	</h:form>
