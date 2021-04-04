@@ -84,11 +84,11 @@
 						</h:selectManyCheckbox>
 						<br />
 						
-						<h:outputLabel value="Valor a Cobrar no Primeiro Cartão"/>
-						<h:inputText value="#{carrinho.total}" />
+						<h:outputLabel value="Valor a Cobrar no Primeiro Cartão:" />
+						<h:inputText value="#{carrinho.total}" styleClass="form-control" />
 						
-						<h:outputLabel value="Valor a Cobrar no Primeiro Cartão"/>
-						<h:inputText value="0.50" />
+						<h:outputLabel value="Valor a Cobrar no Primeiro Cartão:" />
+						<h:inputText value="0.50" styleClass="form-control" />
 					</div>
 						
 					<div class="col-6">
@@ -107,11 +107,11 @@
 							<div class="row justify-content-start">
 								<div class="col-3">
 									<span>Frete</span>
-									<p></p>
+									<p>R$ #{carrinho.frete}</p>
 								</div>
 								<div class="col-3">
 									<span>Total</span>
-									<p>R$#{carrinho.total}</p>
+									<p>R$ #{carrinho.frete + carrinho.total}</p>
 								</div>
 							</div>
 						</div>
