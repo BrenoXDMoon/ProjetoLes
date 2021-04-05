@@ -108,6 +108,8 @@ public class CartaoCredito {
 		return true;
 	}
 
-	
-	
+	@Override
+	public String toString() {
+		return getId().toString();
+	}
 }

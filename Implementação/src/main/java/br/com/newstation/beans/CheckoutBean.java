@@ -9,7 +9,6 @@ import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
-import br.com.newstation.converters.CartaoPedidoConverter;
 import br.com.newstation.daos.CartaPedidoDao;
 import br.com.newstation.daos.CartaoCreditoDao;
 import br.com.newstation.daos.ClienteDao;
@@ -18,9 +17,9 @@ import br.com.newstation.daos.EnderecoDao;
 import br.com.newstation.daos.PedidoDao;
 import br.com.newstation.dominio.Carrinho;
 import br.com.newstation.dominio.CarrinhoItem;
-import br.com.newstation.dominio.Carta;
 import br.com.newstation.dominio.CartaPedido;
 import br.com.newstation.dominio.CartaoCredito;
+import br.com.newstation.dominio.CartaoPedido;
 import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.Cupom;
 import br.com.newstation.dominio.Endereco;
@@ -65,31 +64,8 @@ public class CheckoutBean {
 	private Set<CartaoCredito> cartoes = new HashSet<CartaoCredito>();
 
 	private Pedido pedido = new Pedido();
-
-	public Set<CartaoCredito> getCartoes() {
-		return cartoes;
-	}
-
-	public Set<Endereco> getEnderecos() {
-		return enderecos;
-	}
-
-	public void setEnderecos(Set<Endereco> enderecos) {
-		this.enderecos = enderecos;
-	}
-
-	public void setCartoes(Set<CartaoCredito> cartoes) {
-		this.cartoes = cartoes;
-	}
-
-	public Pedido getPedido() {
-		return pedido;
-	}
-
-	public void setPedido(Pedido pedido) {
-		this.pedido = pedido;
-	}
-
+	
+	
 	@Transactional
 	public String salvar(Integer id, BigDecimal total, Carrinho carrinho) {
 
@@ -103,7 +79,13 @@ public class CheckoutBean {
 		pedido.setCliente(dao.visualizar(cli));
 		pedido.setCupomDesconto(cDao.buscarById(cupom.getId()));
 		pedido.setEndereco(eDao.busca(end.getId()));
-		pedido.setCartoes(CartaoPedidoConverter.converte(cartoes));
+		
+		Set<CartaoPedido> cardPed = new HashSet<CartaoPedido>(); 
+		CartaoPedido car = new CartaoPedido();
+		car.setCartao((CartaoCredito) cartoes.toArray()[0]);
+		cardPed.add(car);
+		
+		pedido.setCartoes(cardPed);
 		pedido.setTotal(total);
 		for (CarrinhoItem c : carrinho.getItens()) {
 			CartaPedido crp = new CartaPedido();
@@ -134,7 +116,15 @@ public class CheckoutBean {
 		pedido.setCliente(dao.visualizar(cli));
 		pedido.setCupomDesconto(cDao.buscarById(cupom.getId()));
 		pedido.setEndereco(eDao.busca(end.getId()));
-		pedido.setCartoes(CartaoPedidoConverter.converte(cartoes));
+		
+		Set<CartaoPedido> cardPed = new HashSet<CartaoPedido>();
+		for(CartaoCredito c : cartoes) {
+			CartaoPedido car = new CartaoPedido();
+			car.setCartao((CartaoCredito) cartoes.toArray()[0]);
+			cardPed.add(car);			
+		}
+		
+		pedido.setCartoes(cardPed);
 		pedido.setTotal(total);
 		for (CarrinhoItem c : carrinho.getItens()) {
 			CartaPedido crp = new CartaPedido();
@@ -204,6 +194,30 @@ public class CheckoutBean {
 
 	public void setValorCarTaoDois(BigDecimal valorCarTaoDois) {
 		this.valorCarTaoDois = valorCarTaoDois;
+	}
+	
+	public Set<CartaoCredito> getCartoes() {
+		return cartoes;
+	}
+
+	public Set<Endereco> getEnderecos() {
+		return enderecos;
+	}
+
+	public void setEnderecos(Set<Endereco> enderecos) {
+		this.enderecos = enderecos;
+	}
+
+	public void setCartoes(Set<CartaoCredito> cartoes) {
+		this.cartoes = cartoes;
+	}
+
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
 	}
 
 }

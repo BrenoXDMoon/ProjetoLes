@@ -22,8 +22,6 @@ public class EndConverter implements Converter {
 		
 		end.setId(Integer.valueOf(endereco));
 		
-		System.out.println("obj End: "+end.getId());
-		
 		return end;
 	}
 
@@ -36,8 +34,6 @@ public class EndConverter implements Converter {
 		}
 		
 		Endereco end = (Endereco) enderecoObject;
-		
-		System.out.println("string End: "+end.toString());
 		
 		return end.toString();
 	}
