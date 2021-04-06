@@ -6,6 +6,7 @@ import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import br.com.newstation.dominio.CartaoPedido;
 import br.com.newstation.dominio.Pedido;
 
 @Stateful
@@ -13,6 +14,10 @@ public class PedidoDao {
 
 	@PersistenceContext	
 	private EntityManager manager;
+	
+	public void salvar_cartao(CartaoPedido cp) {
+		manager.persist(cp);
+	}
 	
 	public void salvar(Pedido ped) {
 		manager.merge(ped.getCliente());

@@ -15,7 +15,7 @@ public class CartaoCredito {
 	private Integer Id;
 
 	private String numeroCartao;
-	
+
 	@Enumerated(EnumType.STRING)
 	private BANDEIRA bandeira;
 	private String nomeImpresso;
@@ -66,7 +66,7 @@ public class CartaoCredito {
 	public void setValidade(String validade) {
 		this.validade = validade;
 	}
-	
+
 	public Integer getId() {
 		return Id;
 	}

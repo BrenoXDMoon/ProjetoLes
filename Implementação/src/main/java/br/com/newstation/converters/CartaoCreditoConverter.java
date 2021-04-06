@@ -7,11 +7,11 @@ import javax.faces.convert.FacesConverter;
 
 import br.com.newstation.dominio.CartaoCredito;
 
-@FacesConverter("CartaoConverter")
-public class CartaoCreditoConverter implements Converter{
-	
+@FacesConverter("CartaoCreditoConverter")
+public class CartaoCreditoConverter implements Converter {
+
 	@Override
-	public CartaoCredito getAsObject(FacesContext context, UIComponent component, String cartao) {
+	public CartaoCredito  getAsObject(FacesContext context, UIComponent component, String cartao) {
 
 		if (cartao == null || cartao.trim().isEmpty()) {
 			return null;
@@ -35,5 +35,5 @@ public class CartaoCreditoConverter implements Converter{
 
 		return end.toString();
 	}
-	
+
 }

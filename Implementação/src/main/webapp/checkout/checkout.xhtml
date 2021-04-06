@@ -81,8 +81,8 @@
 						</div>
 						
 						<div id="listaCartao" class=" d-none">
-							<h:selectOneMenu value="#{checkoutBean.cartoes}" class="form-select" id="cartao" converter="CartaoConverter">
-								<f:selectItems value="#{loginBean.cartoes}" var="card" itemLabel="#{card.numeroCartao}" itemValue="#{card}"/>
+							<h:selectOneMenu value="#{checkoutBean.cd}" class="form-select" id="cartao" converter="CartaoCreditoConverter">
+								<f:selectItems value="#{loginBean.cartoes}" var="card" itemLabel="#{card.numeroCartao}" itemValue="#{card}"/> 
 							</h:selectOneMenu>
 							<br />
 						</div>
@@ -125,7 +125,7 @@
 						</div>
 					</div>
 					<h:messages style = "color:red;margin:8px;" /> 
-					<h:commandButton class="btn btn-success" action="#{checkoutBean.salvar(loginBean.id, carrinho.total, carrinho)}" value="Finalizar"/>
+					<h:commandButton class="btn btn-success" action="#{checkoutBean.salvar(loginBean.id, carrinho.frete + carrinho.total, carrinho)}" value="Finalizar"/>
 				</div>
 			</div>
 		</div>

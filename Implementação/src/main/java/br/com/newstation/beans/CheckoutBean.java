@@ -46,9 +46,9 @@ public class CheckoutBean {
 
 	@Inject
 	CartaPedidoDao cpedDao;
-	
+
 	BigDecimal valorCarTaoUm;
-	
+
 	BigDecimal valorCarTaoDois;
 
 	private Cupom cupom = new Cupom();
@@ -59,16 +59,18 @@ public class CheckoutBean {
 
 	private Set<Endereco> enderecos = new HashSet<Endereco>();
 
+	private Set<CartaoCredito> cartoes = new HashSet<CartaoCredito>();
+	
 	private Cliente cliente = new Cliente();
 
-	private Set<CartaoCredito> cartoes = new HashSet<CartaoCredito>();
+	private CartaoCredito cd = new CartaoCredito();
 
 	private Pedido pedido = new Pedido();
-	
-	
+
 	@Transactional
 	public String salvar(Integer id, BigDecimal total, Carrinho carrinho) {
-
+		System.out.println("chega");
+		
 		Cliente cli = new Cliente();
 		Calendar cale = Calendar.getInstance();
 
@@ -79,10 +81,25 @@ public class CheckoutBean {
 		pedido.setCliente(dao.visualizar(cli));
 		pedido.setCupomDesconto(cDao.buscarById(cupom.getId()));
 		pedido.setEndereco(eDao.busca(end.getId()));
-		
-		Set<CartaoPedido> cardPed = new HashSet<CartaoPedido>(); 
+
+		Set<CartaoPedido> cardPed = new HashSet<CartaoPedido>();
 		CartaoPedido car = new CartaoPedido();
-		car.setCartao((CartaoCredito) cartoes.toArray()[0]);
+		
+//		System.out.println("egrilo");
+//		car.setCartao((CartaoCredito) cartoes.toArray()[0]);
+//		cardPed.add(car);
+//
+//		System.out.println("porta 1");
+//
+//		pedido.getCartoes().add(car);
+//
+//		System.out.println("porta 2");
+		
+		
+		
+		car.setCartao(cd);
+		car.setValor(total);
+		pDao.salvar_cartao(car);
 		cardPed.add(car);
 		
 		pedido.setCartoes(cardPed);
@@ -103,7 +120,7 @@ public class CheckoutBean {
 
 		return "/checkout/confirmaPedido?faces-redirect=true";
 	}
-	
+
 	@Transactional
 	public String salvarDoisCartoes(Integer id, BigDecimal total, Carrinho carrinho) {
 		Cliente cli = new Cliente();
@@ -116,14 +133,14 @@ public class CheckoutBean {
 		pedido.setCliente(dao.visualizar(cli));
 		pedido.setCupomDesconto(cDao.buscarById(cupom.getId()));
 		pedido.setEndereco(eDao.busca(end.getId()));
-		
+
 		Set<CartaoPedido> cardPed = new HashSet<CartaoPedido>();
-		for(CartaoCredito c : cartoes) {
+		for (CartaoCredito c : cartoes) {
 			CartaoPedido car = new CartaoPedido();
 			car.setCartao((CartaoCredito) cartoes.toArray()[0]);
-			cardPed.add(car);			
+			cardPed.add(car);
 		}
-		
+
 		pedido.setCartoes(cardPed);
 		pedido.setTotal(total);
 		for (CarrinhoItem c : carrinho.getItens()) {
@@ -195,7 +212,7 @@ public class CheckoutBean {
 	public void setValorCarTaoDois(BigDecimal valorCarTaoDois) {
 		this.valorCarTaoDois = valorCarTaoDois;
 	}
-	
+
 	public Set<CartaoCredito> getCartoes() {
 		return cartoes;
 	}
@@ -218,6 +235,14 @@ public class CheckoutBean {
 
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
+	}
+
+	public CartaoCredito getCd() {
+		return cd;
+	}
+
+	public void setCd(CartaoCredito cd) {
+		this.cd = cd;
 	}
 
 }
