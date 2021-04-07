@@ -84,11 +84,14 @@
 						</h:selectManyCheckbox>
 						<br />
 						
-						<h:outputLabel value="Valor a Cobrar no Primeiro Cartão:" />
-						<h:inputText value="#{carrinho.total}" styleClass="form-control" />
+						<h:outputLabel value="Valor a Cobrar no Primeiro Cartão:"/>
 						
-						<h:outputLabel value="Valor a Cobrar no Primeiro Cartão:" />
-						<h:inputText value="0.50" styleClass="form-control" />
+						<h:outputLabel value="#{carrinho.total}" id="valorTotal" class="d-none" />
+						
+						<h:inputText value="#{checkoutBean.valorCartaoUm}" id="valorCartaoUm" styleClass="form-control" onchange="calculaValorOutroCartao()" />
+						
+						<h:outputLabel value="Valor a Cobrar no Segundo Cartão:" />
+						<h:inputText value="#{checkoutBean.valorCartaoDois}" id="valorCartaoDois" styleClass="form-control"/>
 					</div>
 						
 					<div class="col-6">
@@ -126,7 +129,7 @@
 						</div>
 					</div>
 					<h:messages style = "color:red;margin:8px;" /> 
-					<h:commandButton class="btn btn-success" action="#{checkoutBean.salvar(loginBean.id, carrinho.total, carrinho)}" value="Finalizar"/>
+					<h:commandButton class="btn btn-success" action="#{checkoutBean.salvarDoisCartoes(loginBean.id, carrinho.total, carrinho)}" value="Finalizar"/>
 				</div>
 			</div>
 		</div>
@@ -134,5 +137,5 @@
 
 
 </body>
-	<script type="text/javascript" src="#{request.contextPath}/assets/js/cartoes.js"></script>
+	<script type="text/javascript" src="#{request.contextPath}/assets/js/pagamentoDoisCartoes.js"></script>
 </html>

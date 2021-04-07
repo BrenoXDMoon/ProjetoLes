@@ -15,7 +15,7 @@ public class PedidoDao {
 	@PersistenceContext	
 	private EntityManager manager;
 	
-	public void salvar_cartao(CartaoPedido cp) {
+	public void salvarCartao(CartaoPedido cp) {
 		manager.persist(cp);
 	}
 	

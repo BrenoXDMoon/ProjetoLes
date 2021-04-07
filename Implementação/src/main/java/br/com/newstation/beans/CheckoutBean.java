@@ -47,9 +47,9 @@ public class CheckoutBean {
 	@Inject
 	CartaPedidoDao cpedDao;
 
-	BigDecimal valorCarTaoUm;
+	BigDecimal valorCartaoUm;
 
-	BigDecimal valorCarTaoDois;
+	BigDecimal valorCartaoDois;
 
 	private Cupom cupom = new Cupom();
 
@@ -85,21 +85,9 @@ public class CheckoutBean {
 		Set<CartaoPedido> cardPed = new HashSet<CartaoPedido>();
 		CartaoPedido car = new CartaoPedido();
 		
-//		System.out.println("egrilo");
-//		car.setCartao((CartaoCredito) cartoes.toArray()[0]);
-//		cardPed.add(car);
-//
-//		System.out.println("porta 1");
-//
-//		pedido.getCartoes().add(car);
-//
-//		System.out.println("porta 2");
-		
-		
-		
 		car.setCartao(cd);
 		car.setValor(total);
-		pDao.salvar_cartao(car);
+		pDao.salvarCartao(car);
 		cardPed.add(car);
 		
 		pedido.setCartoes(cardPed);
@@ -135,10 +123,20 @@ public class CheckoutBean {
 		pedido.setEndereco(eDao.busca(end.getId()));
 
 		Set<CartaoPedido> cardPed = new HashSet<CartaoPedido>();
+		
+		int a =0;
 		for (CartaoCredito c : cartoes) {
 			CartaoPedido car = new CartaoPedido();
-			car.setCartao((CartaoCredito) cartoes.toArray()[0]);
+			car.setCartao(c);
+			if(a == 0) {
+				car.setValor(getValorCartaoUm());
+				
+			}if(a == 1) {
+				car.setValor(getValorCartaoDois());
+			}
 			cardPed.add(car);
+			pDao.salvarCartao(car);
+			a++;
 		}
 
 		pedido.setCartoes(cardPed);
@@ -197,20 +195,20 @@ public class CheckoutBean {
 		setIdCli(i);
 	}
 
-	public BigDecimal getValorCarTaoUm() {
-		return valorCarTaoUm;
+	public BigDecimal getValorCartaoUm() {
+		return valorCartaoUm;
 	}
 
-	public void setValorCarTaoUm(BigDecimal valorCarTaoUm) {
-		this.valorCarTaoUm = valorCarTaoUm;
+	public void setValorCartaoUm(BigDecimal valorCarTaoUm) {
+		this.valorCartaoUm = valorCarTaoUm;
 	}
 
-	public BigDecimal getValorCarTaoDois() {
-		return valorCarTaoDois;
+	public BigDecimal getValorCartaoDois() {
+		return valorCartaoDois;
 	}
 
-	public void setValorCarTaoDois(BigDecimal valorCarTaoDois) {
-		this.valorCarTaoDois = valorCarTaoDois;
+	public void setValorCartaoDois(BigDecimal valorCarTaoDois) {
+		this.valorCartaoDois = valorCarTaoDois;
 	}
 
 	public Set<CartaoCredito> getCartoes() {
