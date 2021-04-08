@@ -25,12 +25,16 @@ public class CupomListarBean {
 	}
 	
 	@Transactional
-	public List<Cupom> getCupons() {
-		return dao.listar();
+	public List<Cupom> getCuponsDesconto() {
+		return dao.listarCuponsDesconto();
+	}
+	
+	@Transactional
+	public List<Cupom> getCuponsTroca() {
+		return dao.listarCuponsTroca();
 	}
 
 	public void setCupons(List<Cupom> cupons) {
 		this.cupons = cupons;
 	}
-	
 }

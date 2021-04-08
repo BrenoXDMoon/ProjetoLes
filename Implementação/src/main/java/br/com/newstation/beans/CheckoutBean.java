@@ -79,7 +79,11 @@ public class CheckoutBean {
 
 		pedido.setDataAtualizacao(cale);
 		pedido.setCliente(dao.visualizar(cli));
-		pedido.setCupomDesconto(cDao.buscarById(cupom.getId()));
+		if(cupom != null) {
+			pedido.setCupomDesconto(cDao.buscarById(cupom.getId()));			
+		}else {
+			cupom = null;
+		}
 		pedido.setEndereco(eDao.busca(end.getId()));
 
 		Set<CartaoPedido> cardPed = new HashSet<CartaoPedido>();
@@ -103,7 +107,6 @@ public class CheckoutBean {
 
 		pedido.setStatusPedido(STATUS_PEDIDO.Pendente);
 		pDao.salvar(pedido);
-
 		carrinho.resete();
 
 		return "/checkout/confirmaPedido?faces-redirect=true";

@@ -120,9 +120,15 @@
 						<div class="col-12 text-left">
 							<p>Cupom de Desconto disponíveis</p>
 							<h:selectOneRadio value="#{checkoutBean.cupom}" styleClass="radio" id="cupom" converter="CupomConverter">
-								<f:selectItems value="#{cupomListarBean.cupons}" var="cupom" itemLabel="#{cupom.show()}" itemValue="#{cupom}" />
+								<f:selectItems value="#{cupomListarBean.cuponsDesconto}" var="cupom" itemLabel="#{cupom.show()}" itemValue="#{cupom}" />
 							</h:selectOneRadio>
 						</div>
+						<div class="col-12 text-left">
+							<p>Cupom de Troca disponíveis</p>
+							<h:selectOneRadio value="#{checkoutBean.cupom}" styleClass="radio" id="cupomTroca" converter="CupomConverter">
+								<f:selectItems value="#{cupomListarBean.cuponsTroca}" var="cupom" itemLabel="#{cupom.show()}" itemValue="#{cupom}" />
+							</h:selectOneRadio>
+						</div>						
 					</div>
 					<h:messages style = "color:red;margin:8px;" /> 
 					<h:commandButton class="btn btn-success" action="#{checkoutBean.salvar(loginBean.id, carrinho.frete + carrinho.total, carrinho)}" value="Finalizar"/>
@@ -130,7 +136,6 @@
 			</div>
 		</div>
 	</h:form>
-
 
 </body>
 	<script type="text/javascript" src="#{request.contextPath}/assets/js/cartoes.js"></script>

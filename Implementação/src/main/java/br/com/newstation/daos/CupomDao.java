@@ -31,6 +31,18 @@ public class CupomDao {
 		
 		return manager.createQuery(jpql, Cupom.class).getResultList();
 	}
+	
+	public List<Cupom> listarCuponsDesconto(){
+		String jpql = "select C from Cupom C where C.tipoCupom = 'Desconto'";
+		
+		return manager.createQuery(jpql, Cupom.class).getResultList();
+	}
+	
+	public List<Cupom> listarCuponsTroca(){
+		String jpql = "select C from Cupom C where C.tipoCupom = 'Troca'";
+		
+		return manager.createQuery(jpql, Cupom.class).getResultList();
+	}
 
 	public Cupom buscarById(Integer id) {
 		
