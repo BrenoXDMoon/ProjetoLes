@@ -125,10 +125,10 @@
 						</div>
 						<div class="col-12 text-left">
 							<p>Cupom de Troca disponíveis</p>
-							<h:selectOneRadio value="#{checkoutBean.cupom}" styleClass="radio" id="cupomTroca" converter="CupomConverter">
-								<f:selectItems value="#{cupomListarBean.cuponsTroca}" var="cupom" itemLabel="#{cupom.show()}" itemValue="#{cupom}" />
-							</h:selectOneRadio>
-						</div>						
+							<h:selectManyCheckbox value="#{checkoutBean.cupons}" id="cupomTroca" converter="CupomConverter">
+								<f:selectItems value="#{cupomListarBean.cuponsTroca}" styleClass="form-check-input" var="cupom" itemLabel="#{cupom.show()}" itemValue="#{cupom}" />
+							</h:selectManyCheckbox>
+						</div>
 					</div>
 					<h:messages style = "color:red;margin:8px;" /> 
 					<h:commandButton class="btn btn-success" action="#{checkoutBean.salvar(loginBean.id, carrinho.frete + carrinho.total, carrinho)}" value="Finalizar"/>

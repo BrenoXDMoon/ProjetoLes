@@ -52,6 +52,8 @@ public class CheckoutBean {
 	BigDecimal valorCartaoDois;
 
 	private Cupom cupom = new Cupom();
+	
+	private Set<Cupom> cupons = new HashSet<Cupom>();
 
 	private Endereco end = new Endereco();
 
@@ -246,4 +248,11 @@ public class CheckoutBean {
 		this.cd = cd;
 	}
 
+	public Set<Cupom> getCupons() {
+		return cupons;
+	}
+
+	public void setCupons(Set<Cupom> cupons) {
+		this.cupons = cupons;
+	}
 }
