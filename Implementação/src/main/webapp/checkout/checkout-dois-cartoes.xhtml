@@ -79,7 +79,7 @@
 							<span class="btn btn-warning mt-3">Usar 2 Cartão</span>
 							<h:link value = "Cadastrar Novo Cartão" outcome = "form-cartao" styleClass="btn btn-danger mt-3"/>
 						</div>
-						<h:selectManyCheckbox value="#{checkoutBean.cartoes}" class="form-select" id="cartao">
+						<h:selectManyCheckbox value="#{checkoutBean.cartoes}" class="form-select" id="cartao" onchange="doisCartoes()">
 							<f:selectItems class="d-block" value="#{loginBean.cartoes}" var="card" itemLabel="#{card.numeroCartao}" itemValue="#{card}"/>
 						</h:selectManyCheckbox>
 						<br />
@@ -114,18 +114,24 @@
 								</div>
 								<div class="col-3">
 									<span>Total</span>
-									<p>R$ #{carrinho.frete + carrinho.total}</p>
+									<p>R$ <span id="totalFrete">#{carrinho.frete + carrinho.total}</span></p>
 								</div>
 							</div>
 						</div>
 					</div>
 			
-					<div class="row justify-content-center ml-13">
-						<div class="col-12 text-left">
+					<div class="row justify-content-left ml-13">
+						<div class="col-4 text-left">
 							<p>Cupom de Desconto disponíveis</p>
 							<h:selectOneRadio value="#{checkoutBean.cupom}" styleClass="radio" id="cupom" converter="CupomConverter">
-								<f:selectItems value="#{cupomListarBean.cupons}" var="cupom" itemLabel="#{cupom.show()}" itemValue="#{cupom}" />
+								<f:selectItems value="#{cupomListarBean.cuponsDesconto}" var="cupom" itemLabel="#{cupom.show()}" itemValue="#{cupom}" />
 							</h:selectOneRadio>
+						</div>
+						<div class="col-4 text-left">
+							<p>Cupom de Troca disponíveis</p>
+							<h:selectManyCheckbox value="#{checkoutBean.cupons}" id="cupomTroca" converter="CupomConverter" onchange="getCheckedBoxes()">
+								<f:selectItems value="#{cupomListarBean.cuponsTroca}" styleClass="form-check-input" var="cupom" itemLabel="#{cupom.show()}" itemValue="#{cupom}" itemDescription="#{cupom.preco}" />
+							</h:selectManyCheckbox>
 						</div>
 					</div>
 					<h:messages style = "color:red;margin:8px;" /> 
@@ -138,4 +144,5 @@
 
 </body>
 	<script type="text/javascript" src="#{request.contextPath}/assets/js/pagamentoDoisCartoes.js"></script>
+	<script type="text/javascript" src="#{request.contextPath}/assets/js/cartoes.js"></script>
 </html>

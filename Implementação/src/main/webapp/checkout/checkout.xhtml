@@ -76,7 +76,7 @@
 						
 						<div id="opcaoCartao">
 							<span id="botaoCartao" class="btn btn-primary mt-3">Usar 1 Cartão</span>
-							<h:link value = "Usar 2 Cartão" outcome = "checkout-dois-cartoes" styleClass="btn btn-warning	 mt-3"/>
+							<h:link value = "Usar 2 Cartão" outcome = "checkout-dois-cartoes" styleClass="btn btn-warning	 mt-3" rendered="#{(carrinho.frete + carrinho.total) > 10}"/>
 							<h:link value = "Cadastrar Novo Cartão" outcome = "form-cartao" styleClass="btn btn-danger mt-3"/>
 						</div>
 						
