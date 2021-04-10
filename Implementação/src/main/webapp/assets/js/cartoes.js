@@ -45,14 +45,15 @@ function getCheckedBoxes() {
      // And stick the checked ones onto an array...
      if (checkboxes[i].checked) {
      		console.log(checkboxes[i].id);
- 			soma =+ document.getElementById('j_idt8:cupomTroca:0').nextSibling.innerHTML.split(":")[1];
-         
+ 			soma =+ document.getElementById(checkboxes[i].id).nextSibling.innerHTML.split(":")[1];
+         if(soma > (total*1.2)){
+		  	alert("Os Valores dos cupons ultrapassam muito o valor da compra ");
+		  	document.getElementById(checkboxes[i].id).checked = false;
+		  }
      }
   }
   
-  if(soma > (total*1.2)){
-  	alert("Os Valores dos cupons ultrapassam muito o valor da compra ");
-  }
+  
   return soma;
 }
 

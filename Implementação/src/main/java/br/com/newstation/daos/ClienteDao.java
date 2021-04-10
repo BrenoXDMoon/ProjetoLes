@@ -149,7 +149,7 @@ public class ClienteDao extends AbstractDao {
 
 		abrirConexao();
 		
-		String jpql = "select distinct(c) from Cliente c  where c.email = :email and c.senha= :senha";
+		String jpql = "select distinct(c) from Cliente c  where c.email = :email and c.senha= :senha and c.ativo = 1";
 		Cliente cliente = (Cliente) ent;
 		
 		CriptografaSenha crp = new CriptografaSenha();

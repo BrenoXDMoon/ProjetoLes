@@ -120,7 +120,14 @@
 					<h:form>
 						<h:commandButton value='Deletar' action='#{clienteExcluirBean.excluir(cli)}' class="btn btn-danger"/>
 					</h:form>
-				</h:column>
+				</h:column><h:column>
+						<f:facet name="header">Reativar Cliente</f:facet>
+			         	<h:form>
+								<h:commandButton value='Ativar'
+									action="#{clienteEditarBean.ativaCliente(cli)}"  
+									rendered="#{!cli.ativo}"/>
+							</h:form>
+			        </h:column>
 			</h:dataTable>
 		</div>
 	</div>

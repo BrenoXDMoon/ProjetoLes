@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import br.com.newstation.command.EditarCommand;
 import br.com.newstation.daos.ClienteDao;
+import br.com.newstation.dominio.Carta;
 import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.Senha;
 import br.com.newstation.dominio.TIPO_CLIENTE;
@@ -35,6 +36,12 @@ public class ClienteEditarBean {
 
 	}
 
+	public void ativaCliente(Cliente cli) {
+		cli.setAtivo(true);
+		EditarCommand cmd = new EditarCommand();
+		cmd.executar(cli);
+	}
+	
 	@Transactional
 	public String editarCli() {
 
