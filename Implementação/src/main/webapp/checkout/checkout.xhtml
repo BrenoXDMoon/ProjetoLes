@@ -110,28 +110,29 @@
 								</div>
 								<div class="col-3">
 									<span>Total</span>
-									<p>R$ #{carrinho.frete + carrinho.total}</p>
+									<p>R$ <span id="totalFrete">#{carrinho.frete + carrinho.total}</span></p>
 								</div>
 							</div>
 						</div>
 					</div>
 			
-					<div class="row justify-content-center ml-13">
-						<div class="col-12 text-left">
+					<div class="row justify-content-left ml-13">
+						<div class="col-4 text-left">
 							<p>Cupom de Desconto disponíveis</p>
-							<h:selectOneRadio value="#{checkoutBean.cupom}" styleClass="radio" id="cupom" converter="CupomConverter">
+							<h:inputText value="#{checkoutBean.somaCupom}" id="somaCupom" styleClass="d-none"/>
+							<h:selectOneRadio value="#{checkoutBean.cupom}" styleClass="radio" id="cupomDesconto" converter="CupomConverter" onchange="somaCupom()">
 								<f:selectItems value="#{cupomListarBean.cuponsDesconto}" var="cupom" itemLabel="#{cupom.show()}" itemValue="#{cupom}" />
 							</h:selectOneRadio>
 						</div>
-						<div class="col-12 text-left">
+						<div class="col-4 text-left">
 							<p>Cupom de Troca disponíveis</p>
-							<h:selectManyCheckbox value="#{checkoutBean.cupons}" id="cupomTroca" converter="CupomConverter">
+							<h:selectManyCheckbox value="#{checkoutBean.cupons}" id="cupomTroca" converter="CupomConverter" onchange="somaCupom()">
 								<f:selectItems value="#{cupomListarBean.cuponsTroca}" styleClass="form-check-input" var="cupom" itemLabel="#{cupom.show()}" itemValue="#{cupom}" />
 							</h:selectManyCheckbox>
 						</div>
 					</div>
 					<h:messages style = "color:red;margin:8px;" /> 
-					<h:commandButton class="btn btn-success" action="#{checkoutBean.salvar(loginBean.id, carrinho.frete + carrinho.total, carrinho)}" value="Finalizar"/>
+					<h:commandButton class="btn btn-success" action="#{checkoutBean.salvar(loginBean.id, (carrinho.frete + carrinho.total), carrinho)}" value="Finalizar"/>
 				</div>
 			</div>
 		</div>

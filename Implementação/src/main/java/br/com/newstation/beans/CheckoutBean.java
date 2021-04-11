@@ -25,6 +25,7 @@ import br.com.newstation.dominio.Cupom;
 import br.com.newstation.dominio.Endereco;
 import br.com.newstation.dominio.Pedido;
 import br.com.newstation.dominio.STATUS_PEDIDO;
+import br.com.newstation.strategies.GeraCupomTroca;
 
 @Model
 public class CheckoutBean {
@@ -52,7 +53,7 @@ public class CheckoutBean {
 	BigDecimal valorCartaoDois;
 
 	private Cupom cupom = new Cupom();
-	
+
 	private Set<Cupom> cupons = new HashSet<Cupom>();
 
 	private Endereco end = new Endereco();
@@ -62,46 +63,54 @@ public class CheckoutBean {
 	private Set<Endereco> enderecos = new HashSet<Endereco>();
 
 	private Set<CartaoCredito> cartoes = new HashSet<CartaoCredito>();
-	
+
 	private Cliente cliente = new Cliente();
 
 	private CartaoCredito cd = new CartaoCredito();
 
 	private Pedido pedido = new Pedido();
 
+	private double somaCupom = 0.0;
+
 	@Transactional
 	public String salvar(Integer id, BigDecimal total, Carrinho carrinho) {
-		System.out.println("chega");
-		
+
 		Cliente cli = new Cliente();
 		Calendar cale = Calendar.getInstance();
+		BigDecimal valor = new BigDecimal(Math.abs(total.doubleValue() - somaCupom));
 
 		cli.setId(id);
 		cale.setTime(cale.getTime());
 
 		pedido.setDataAtualizacao(cale);
 		pedido.setCliente(dao.visualizar(cli));
-		if(cupom != null) {
-			pedido.setCupomDesconto(cDao.buscarById(cupom.getId()));			
-		}else {
+		if (cupom != null) {
+			pedido.setCupomDesconto(cDao.buscarById(cupom.getId()));
+
+		} else {
 			cupom = null;
 		}
-		
-		if(!cupons.isEmpty()) {
+
+		if (!cupons.isEmpty()) {
 			pedido.setCupomTroca(cupons);
-		}else {
+		} else {
 			pedido.setCupomTroca(null);
+		}
+		
+		if(somaCupom > total.doubleValue()) {
+			System.out.println(GeraCupomTroca.gerarCupom(valor).getClass());
+			cDao.salvar(GeraCupomTroca.gerarCupom(valor));
 		}
 		pedido.setEndereco(eDao.busca(end.getId()));
 
 		Set<CartaoPedido> cardPed = new HashSet<CartaoPedido>();
 		CartaoPedido car = new CartaoPedido();
-		
+
 		car.setCartao(cd);
-		car.setValor(total);
+		car.setValor(valor);
 		pDao.salvarCartao(car);
 		cardPed.add(car);
-		
+
 		pedido.setCartoes(cardPed);
 		pedido.setTotal(total);
 		for (CarrinhoItem c : carrinho.getItens()) {
@@ -130,31 +139,32 @@ public class CheckoutBean {
 
 		pedido.setDataAtualizacao(cale);
 		pedido.setCliente(dao.visualizar(cli));
-		
-		if(cupom != null) {
-			pedido.setCupomDesconto(cDao.buscarById(cupom.getId()));			
-		}else {
+
+		if (cupom != null) {
+			pedido.setCupomDesconto(cDao.buscarById(cupom.getId()));
+		} else {
 			cupom = null;
 		}
-		
-		if(!cupons.isEmpty()) {
+
+		if (!cupons.isEmpty()) {
 			pedido.setCupomTroca(cupons);
-		}else {
+		} else {
 			pedido.setCupomTroca(null);
 		}
-		
+
 		pedido.setEndereco(eDao.busca(end.getId()));
 
 		Set<CartaoPedido> cardPed = new HashSet<CartaoPedido>();
-		
-		int a =0;
+
+		int a = 0;
 		for (CartaoCredito c : cartoes) {
 			CartaoPedido car = new CartaoPedido();
 			car.setCartao(c);
-			if(a == 0) {
+			if (a == 0) {
 				car.setValor(getValorCartaoUm());
-				
-			}if(a == 1) {
+
+			}
+			if (a == 1) {
 				car.setValor(getValorCartaoDois());
 			}
 			cardPed.add(car);
@@ -273,4 +283,13 @@ public class CheckoutBean {
 	public void setCupons(Set<Cupom> cupons) {
 		this.cupons = cupons;
 	}
+
+	public double getSomaCupom() {
+		return somaCupom;
+	}
+
+	public void setSomaCupom(double somaCupom) {
+		this.somaCupom = somaCupom;
+	}
+
 }

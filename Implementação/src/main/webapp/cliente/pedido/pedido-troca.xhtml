@@ -63,17 +63,21 @@
 					<div class="form-group">
 						<h:outputLabel value="#{pedidoBean.ped.uuid}" />
 					</div>
-					<div class="form-group">
-						<h:outputLabel value="#{pedidoBean.ped.endereco.logradouro}" />
-					</div>
-					<div class="form-group">
-						<h:outputLabel value="#{pedidoBean.ped.total}" />
-					</div>
-					<div class="form-group">
-						<h:outputLabel value="#{pedidoBean.ped.statusPedido}" /><br />
+					<div class="col-7"> 	
+						<ui:repeat value="#{pedidoBean.ped.itens.toArray()}" var="itens">
+							<img class="carta-imagem"
+									src="#{request.contextPath}/file/#{itens.carta.imagemPath}"
+									alt="#{itens.carta.nome}" title="#{itens.carta.nome}" 
+									width="20%"/>
+							#{itens.carta.nome} - 
+							<h:selectOneMenu  value="#{pedidoBean.qtdeTrocada}" id="qtdeCarta">
+				        		 <f:selectItems	value="#{pedidoBean.estoqueMax(itens.quantidade)}" var="Quantidade" itemValue="#{Quantidade}" itemLabel="#{Quantidade}"/>
+				        	 </h:selectOneMenu >
+							<p></p>
+						</ui:repeat>
 					</div>
 					<div>
-						<h:link value = "Fazer Pedido de troca"  outcome = "pedido-troca?id=#{pedidoBean.id}" styleClass="btn btn-danger mt-3" rendered="#{pedidoBean.entregue()}"/>
+						<h:commandButton value = "Confirmar Pedido de troca" action="#{pedidoBean.nan}"  outcome = "" styleClass="btn btn-danger mt-3" rendered="#{pedidoBean.entregue()}"/>
 					</div>
 				</h:form>
 			</div>

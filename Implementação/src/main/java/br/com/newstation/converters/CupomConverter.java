@@ -16,9 +16,9 @@ public class CupomConverter implements Converter {
 		if (cupom == null || cupom.trim().isEmpty()) {
 			return null;
 		}
-
+		System.out.println("conv:"+cupom);
 		Cupom end = new Cupom();
-
+		
 		end.setId(Integer.valueOf(cupom));
 
 		return end;
