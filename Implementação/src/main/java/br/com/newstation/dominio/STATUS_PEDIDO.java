@@ -10,6 +10,8 @@ public enum STATUS_PEDIDO {
 	Transporte,
 	Entregue,
 	Troca,
+	Troca_negada,
+	Em_Troca,
 	Trocado,
 	
 }

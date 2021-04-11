@@ -74,6 +74,8 @@ function somaCupom() {
   
   if((soma_desc + soma_troca) > (total * 0.8)){
   	
+  }else{
+  
   }
   return soma_desc + soma_troca
 }

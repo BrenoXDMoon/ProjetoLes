@@ -70,14 +70,15 @@
 									alt="#{itens.carta.nome}" title="#{itens.carta.nome}" 
 									width="20%"/>
 							#{itens.carta.nome} - 
-							<h:selectOneMenu  value="#{pedidoBean.qtdeTrocada}" id="qtdeCarta">
-				        		 <f:selectItems	value="#{pedidoBean.estoqueMax(itens.quantidade)}" var="Quantidade" itemValue="#{Quantidade}" itemLabel="#{Quantidade}"/>
+							<h:selectOneMenu  value="#{pedidoBean.carped[pedidoBean.getIndex(itens)].quantidade}" id="qtdeCarta">
+								<f:selectItem	value="#{null}"  itemLabel="Nenhum"/>	 
+			        		 	<f:selectItems	value="#{pedidoBean.estoqueMax(itens.quantidade)}" var="Quantidade" itemValue="#{Quantidade}" itemLabel="#{Quantidade}"/>
 				        	 </h:selectOneMenu >
 							<p></p>
 						</ui:repeat>
 					</div>
 					<div>
-						<h:commandButton value = "Confirmar Pedido de troca" action="#{pedidoBean.nan}"  outcome = "" styleClass="btn btn-danger mt-3" rendered="#{pedidoBean.entregue()}"/>
+						<h:commandButton value = "Confirmar Pedido de troca" action="#{pedidoBean.nan}"  outcome = "" styleClass="btn btn-danger mt-3"/>
 					</div>
 				</h:form>
 			</div>
