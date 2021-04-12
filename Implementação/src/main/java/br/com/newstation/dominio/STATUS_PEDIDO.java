@@ -4,7 +4,7 @@ public enum STATUS_PEDIDO {
 
 	
 	Pendente,
-	Aprovado,
+	Aceito,
 	Recusado,
 	Separacao,
 	Transporte,

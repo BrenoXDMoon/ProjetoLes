@@ -52,6 +52,7 @@ public class Pedido{
 	private Cupom cupomDesconto = new Cupom();
 
 	@OneToMany(fetch = FetchType.EAGER)
+	@Column(unique = false)
 	private Set<Cupom> cupomTroca = new HashSet<Cupom>();
 
 	private BigDecimal total;
