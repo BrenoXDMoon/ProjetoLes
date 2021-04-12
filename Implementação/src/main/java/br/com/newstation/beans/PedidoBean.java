@@ -23,27 +23,19 @@ public class PedidoBean {
 
 	@Inject
 	private EstoqueDao daoE;
-	
+
 	@Inject
 	CartaPedidoDao cpedDao;
-	
+
 	private int id;
 
 	private static Pedido ped = new Pedido();
-	
-	private static Pedido repasse = new Pedido();
-	
-	LoginBean lb = new LoginBean();
-	
-	public static Pedido getRepasse() {
-		return repasse;
-	}
 
-	public static void setRepasse(Pedido repasse) {
-		PedidoBean.repasse = repasse;
-	}
+	private static List<CartaPedido> repasse = new ArrayList<CartaPedido>();
 
 	private static List<CartaPedido> carped = new ArrayList<CartaPedido>();
+
+	LoginBean lb = new LoginBean();
 
 	@Inject
 	PedidoDao pDao;
@@ -51,17 +43,12 @@ public class PedidoBean {
 	@Inject
 	EnderecoDao eDao;
 
-	public PedidoBean() {
-		carped = new ArrayList<>(ped.getItens());
+	public void carpedido() {
+		carped = new ArrayList<CartaPedido>(ped.getItens());
 	}
 
 	public boolean isTroca() {
 		return ped.getStatusPedido() == STATUS_PEDIDO.Em_Troca;
-	}
-
-	public void aSerTrocado() {
-		repasse = ped;
-		repasse.setItens(new HashSet<CartaPedido>(carped));
 	}
 
 	@Transactional
@@ -73,14 +60,13 @@ public class PedidoBean {
 		for (CartaPedido c : carped) {
 			if (c.getQuantidade() == null) {
 				c.setQuantidade(0);
+
 			}
-			System.out.println("ce:" + c.getCarta().getNome());
-			System.out.println("ce:" + c.getQuantidade());
 		}
 		ped.setStatusPedido(STATUS_PEDIDO.Em_Troca);
 		pDao.editar(ped);
-		
-		return "/cliente/perfil?faces-redirect=trueid="+lb.getId();
+
+		return "/cliente/perfil?faces-redirect=trueid=" + lb.getId();
 	}
 
 	@Transactional
@@ -97,26 +83,34 @@ public class PedidoBean {
 		pDao.editar(ped);
 		return "/admin/pedido/lista?faces-redirect=true";
 	}
-	
+
 	@Transactional
 	public String editarTrocaAceita() {
 		ped.setStatusPedido(STATUS_PEDIDO.Trocado);
 		for (CartaPedido crp : carped) {
-			devolveEstoque(crp.getCarta(),crp.getQuantidade());
-			cpedDao.editar(crp);
+			for (CartaPedido cartaEstoque : ped.getItens()) {
+
+				if (crp.getCarta().getId() == cartaEstoque.getCarta().getId()) {
+
+					crp.setQuantidade(Math.abs(crp.getQuantidade() - cartaEstoque.getQuantidade()));
+					cpedDao.editar(crp);
+				}
+
+				devolveEstoque(crp.getCarta(), crp.getQuantidade());
+			}
 		}
-		
+
 		pDao.editar(ped);
 		return "/admin/pedido/lista?faces-redirect=true";
 	}
-	
+
 	@Transactional
 	public void devolveEstoque(Carta carta, int quantidade) {
 		carta.getEstoque().setQuantidade(carta.getEstoque().getQuantidade() + quantidade);
-		System.out.println("CARTAOZAO ESOSQUESKE"+ carta.getEstoque().getQuantidade()+"id"+carta.getId());
+//		System.out.println("CARTAOZAO ESOSQUESKE: "+ "nome"+carta.getNome()+" qtde: "+carta.getEstoque().getQuantidade());
 		daoE.editar(carta.getEstoque());
 	}
-	
+
 	@Transactional
 	public String editarTrocaNegada() {
 		ped.setStatusPedido(STATUS_PEDIDO.Troca_negada);
@@ -178,6 +172,14 @@ public class PedidoBean {
 
 	public void setCarped(List<CartaPedido> carped) {
 		this.carped = carped;
+	}
+
+	public static List<CartaPedido> getRepasse() {
+		return repasse;
+	}
+
+	public static void setRepasse(List<CartaPedido> repasse) {
+		PedidoBean.repasse = repasse;
 	}
 
 }

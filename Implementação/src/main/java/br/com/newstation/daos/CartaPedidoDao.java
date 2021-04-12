@@ -6,7 +6,7 @@ import javax.persistence.PersistenceContext;
 import br.com.newstation.dominio.CartaPedido;
 
 public class CartaPedidoDao {
-	
+
 	@PersistenceContext
 	private EntityManager manager;
 
@@ -21,7 +21,5 @@ public class CartaPedidoDao {
 
 		manager.merge(carta);
 	}
-
-	
 
 }

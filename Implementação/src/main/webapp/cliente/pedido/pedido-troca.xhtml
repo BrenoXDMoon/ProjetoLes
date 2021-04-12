@@ -21,12 +21,13 @@
 	rel="stylesheet" />
 <link href="#{request.contextPath}/assets/css/custom.css"
 	rel="stylesheet" />
-<title>Detalhe da Carta</title>
+<title>Troca Pedido</title>
 </head>
 
 <f:metadata>
 	<f:viewParam id="id" name="id" value="#{pedidoBean.id}" />
 	<f:viewAction action="#{pedidoBean.carregar()}" />
+	<f:viewAction action="#{pedidoBean.carpedido()}" />
 </f:metadata>
 
 <head>
