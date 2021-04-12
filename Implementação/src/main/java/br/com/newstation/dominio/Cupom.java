@@ -9,6 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+
+import org.wildfly.common.annotation.Nullable;
 
 @Entity
 public class Cupom {
@@ -22,6 +25,10 @@ public class Cupom {
 
 	@Lob
 	private String descricao;
+	
+	@ManyToOne
+	@Nullable
+	private Cliente cliente;
 
 	@Enumerated(EnumType.STRING)
 	private TIPO_CUPOM tipoCupom;
@@ -64,6 +71,14 @@ public class Cupom {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	@Override
