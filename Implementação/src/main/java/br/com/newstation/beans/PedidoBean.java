@@ -33,6 +33,8 @@ public class PedidoBean {
 	
 	private static Pedido repasse = new Pedido();
 	
+	LoginBean lb = new LoginBean();
+	
 	public static Pedido getRepasse() {
 		return repasse;
 	}
@@ -78,7 +80,7 @@ public class PedidoBean {
 		ped.setStatusPedido(STATUS_PEDIDO.Em_Troca);
 		pDao.editar(ped);
 		
-		return "/cliente/perfil?faces-redirect=trueid="+id;
+		return "/cliente/perfil?faces-redirect=trueid="+lb.getId();
 	}
 
 	@Transactional
@@ -111,7 +113,7 @@ public class PedidoBean {
 	@Transactional
 	public void devolveEstoque(Carta carta, int quantidade) {
 		carta.getEstoque().setQuantidade(carta.getEstoque().getQuantidade() + quantidade);
-		System.out.println("CARTAOZAO ESOSQUESKE"+ carta.getEstoque().getQuantidade());
+		System.out.println("CARTAOZAO ESOSQUESKE"+ carta.getEstoque().getQuantidade()+"id"+carta.getId());
 		daoE.editar(carta.getEstoque());
 	}
 	
