@@ -1,12 +1,13 @@
 package br.com.newstation.beans;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
-import javax.transaction.Transactional;
+import javax.transaction.Transactional; 
 
 import br.com.newstation.daos.CartaPedidoDao;
 import br.com.newstation.daos.EnderecoDao;
@@ -17,6 +18,7 @@ import br.com.newstation.dominio.CartaPedido;
 import br.com.newstation.dominio.Endereco;
 import br.com.newstation.dominio.Pedido;
 import br.com.newstation.dominio.STATUS_PEDIDO;
+import br.com.newstation.strategies.GeraCupomTroca;
 
 @Model
 public class PedidoBean {
@@ -87,6 +89,7 @@ public class PedidoBean {
 	@Transactional
 	public String editarTrocaAceita() {
 		ped.setStatusPedido(STATUS_PEDIDO.Trocado);
+		BigDecimal totalTrocados = new BigDecimal(0);
 		for (CartaPedido crp : carped) {
 			for (CartaPedido cartaEstoque : ped.getItens()) {
 
@@ -98,9 +101,13 @@ public class PedidoBean {
 
 				devolveEstoque(crp.getCarta(), crp.getQuantidade());
 			}
+
+			totalTrocados.add(crp.getCarta().getPreco());
 		}
 
 		pDao.editar(ped);
+		
+		GeraCupomTroca.gerarCupom(totalTrocados);		
 		return "/admin/pedido/lista?faces-redirect=true";
 	}
 

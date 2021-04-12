@@ -1,8 +1,10 @@
 package br.com.newstation.beans;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.enterprise.inject.Model;
@@ -54,7 +56,7 @@ public class CheckoutBean {
 
 	private Cupom cupom = new Cupom();
 
-	private Set<Cupom> cupons = new HashSet<Cupom>();
+	private List<Cupom> cupons = new ArrayList<Cupom>();
 
 	private Endereco end = new Endereco();
 
@@ -276,11 +278,11 @@ public class CheckoutBean {
 		this.cd = cd;
 	}
 
-	public Set<Cupom> getCupons() {
+	public List<Cupom> getCupons() {
 		return cupons;
 	}
 
-	public void setCupons(Set<Cupom> cupons) {
+	public void setCupons(List<Cupom> cupons) {
 		this.cupons = cupons;
 	}
 

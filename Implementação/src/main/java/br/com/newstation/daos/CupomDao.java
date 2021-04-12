@@ -6,6 +6,7 @@ import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.Cupom;
 
 @Stateful
@@ -42,6 +43,14 @@ public class CupomDao {
 		String jpql = "select C from Cupom C where C.tipoCupom = 'Troca'";
 		
 		return manager.createQuery(jpql, Cupom.class).getResultList();
+	}
+	
+	public List<Cupom> listarCuponsByCliente(Integer cliente){
+		String jpql = "select c from Cupom c where c.cliente.id = :cliente";
+		
+		return manager.createQuery(jpql, Cupom.class).
+				setParameter("cliente", cliente).
+				getResultList();
 	}
 
 	public Cupom buscarById(Integer id) {

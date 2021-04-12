@@ -52,7 +52,7 @@ public class Pedido{
 	private Cupom cupomDesconto = new Cupom();
 
 	@OneToMany(fetch = FetchType.EAGER)
-	private Set<Cupom> cupomTroca = new HashSet<Cupom>();
+	private List<Cupom> cupomTroca = new ArrayList<Cupom>();
 
 	private BigDecimal total;
 
@@ -128,11 +128,11 @@ public class Pedido{
 		this.cupomDesconto = cupomDesconto;
 	}
 
-	public Set<Cupom> getCupomTroca() {
+	public List<Cupom> getCupomTroca() {
 		return cupomTroca;
 	}
 
-	public void setCupomTroca(Set<Cupom> cupomTroca) {
+	public void setCupomTroca(List<Cupom> cupomTroca) {
 		this.cupomTroca = cupomTroca;
 	}
 

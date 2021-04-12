@@ -16,6 +16,13 @@ public class GeraCupomTroca {
 	
 	private static Cupom cupom = new Cupom();
 	
+	public static  Cupom gerarCupom(BigDecimal valor) {
+		cupom.setCodigo(UUID.randomUUID().toString().split("-")[0]);
+		cupom.setPreco(valor);
+		cupom.setTipoCupom(TIPO_CUPOM.Troca);
+		return cupom;
+	}
+	
 	public static Cupom getCupom() {
 		return cupom;
 	}
@@ -24,10 +31,4 @@ public class GeraCupomTroca {
 		GeraCupomTroca.cupom = cupom;
 	}
 
-	public static  Cupom gerarCupom(BigDecimal valor) {
-		cupom.setCodigo(UUID.randomUUID().toString().split("-")[0]);
-		cupom.setPreco(valor);
-		cupom.setTipoCupom(TIPO_CUPOM.Troca);
-		return cupom;
-	}
 }
