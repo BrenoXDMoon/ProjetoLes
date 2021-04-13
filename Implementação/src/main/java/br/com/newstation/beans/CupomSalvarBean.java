@@ -22,6 +22,7 @@ public class CupomSalvarBean {
 	public String salvar() {
 		cupom.setCodigo(UUID.randomUUID().toString().split("-")[0]);
 //		System.out.println(UUID.randomUUID().toString().split("-")[0]);
+		cupom.setAtivo(true);
 		dao.salvar(cupom);
 		return null;
 	}

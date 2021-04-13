@@ -25,6 +25,12 @@ public class CupomListarBean {
 	}
 	
 	@Transactional
+	public List<Cupom> getCupomByCliente(){
+		LoginBean lb = new LoginBean();
+		return dao.listarCuponsByCliente(lb.getId());
+	}
+	
+	@Transactional
 	public List<Cupom> getCuponsDesconto() {
 		return dao.listarCuponsDesconto();
 	}

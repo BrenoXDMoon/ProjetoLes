@@ -127,7 +127,7 @@
 						<div class="col-4 text-left">
 							<p>Cupom de Troca disponíveis</p>
 							<h:selectManyCheckbox value="#{checkoutBean.cupons}" id="cupomTroca" converter="CupomConverter" onchange="somaCupom()">
-								<f:selectItems value="#{cupomListarBean.cuponsTroca}" styleClass="form-check-input" var="cupom" itemLabel="#{cupom.show()}" itemValue="#{cupom}" />
+								<f:selectItems value="#{cupomListarBean.cupomByCliente}" styleClass="form-check-input" var="cupom" itemLabel="#{cupom.show()}" itemValue="#{cupom}" />
 							</h:selectManyCheckbox>
 						</div>
 					</div>

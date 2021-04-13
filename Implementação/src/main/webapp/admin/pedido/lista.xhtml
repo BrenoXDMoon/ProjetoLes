@@ -18,6 +18,8 @@
 </head>
 
 
+
+
 <body class="bg-dark text-white overflow-hidden">
 	<header class="site-header py-1"> 
 		<nav class="container d-flex flex-column flex-md-row justify-content-between">
@@ -104,19 +106,13 @@
 							#{itens.quantidade}
 						</ui:repeat>
 					</h:column>
-					<c:if test="#{pedidoBean.isTroca()}">
-						<h:column>
-							<f:facet name="header">Status</f:facet>
-							#{ped.statusPedido}
-						</h:column>
-					</c:if>
+					<h:column>
+						<f:facet name="header">Status </f:facet>
+						#{pedidoBean.status(ped)}
+						<h:link outcome="aceitaTroca?id=#{ped.id}" rendered="#{pedidoBean.troca}">#{ped.statusPedido}</h:link>
+						<h:outputLabel value="#{ped.statusPedido}" rendered="#{!pedidoBean.troca}"/> 
+					</h:column>
 					
-					<c:if test="#{pedidoBean.isTroca()}">
-						<h:column>
-							<f:facet name="header">Status</f:facet>
-							<h:link outcome="aceitaTroca?id=#{ped.id}">#{ped.statusPedido}</h:link>
-						</h:column>
-					</c:if>
 				</h:dataTable>
 				
 		</div>

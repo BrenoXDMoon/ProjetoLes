@@ -21,6 +21,8 @@ public class Cupom {
 	private Integer id;
 	private String codigo;
 
+	private boolean ativo;
+	
 	private BigDecimal preco;
 
 	@Lob
@@ -114,5 +116,13 @@ public class Cupom {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
 	}
 }

@@ -100,8 +100,8 @@ public class CheckoutBean {
 		}
 		
 		if(somaCupom > total.doubleValue()) {
-			System.out.println(GeraCupomTroca.gerarCupom(valor).getClass());
-			cDao.salvar(GeraCupomTroca.gerarCupom(valor));
+			System.out.println(GeraCupomTroca.gerarCupom(valor, pedido.getCliente()).getClass());
+			cDao.salvar(GeraCupomTroca.gerarCupom(valor, pedido.getCliente()));
 		}
 		pedido.setEndereco(eDao.busca(end.getId()));
 
@@ -127,7 +127,12 @@ public class CheckoutBean {
 		pedido.setStatusPedido(STATUS_PEDIDO.Pendente);
 		pDao.salvar(pedido);
 		carrinho.resete();
-
+		
+		if(!cupons.isEmpty()) {
+			for(Cupom cupom: pedido.getCupomTroca()) {
+				cDao.excluir(cupom);
+			}
+		}
 		return "/checkout/confirmaPedido?faces-redirect=true";
 	}
 

@@ -1,15 +1,16 @@
 package br.com.newstation.beans;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
-import javax.transaction.Transactional; 
+import javax.transaction.Transactional;
 
 import br.com.newstation.daos.CartaPedidoDao;
+import br.com.newstation.daos.CupomDao;
 import br.com.newstation.daos.EnderecoDao;
 import br.com.newstation.daos.EstoqueDao;
 import br.com.newstation.daos.PedidoDao;
@@ -24,12 +25,23 @@ import br.com.newstation.strategies.GeraCupomTroca;
 public class PedidoBean {
 
 	@Inject
-	private EstoqueDao daoE;
+	EstoqueDao daoE;
 
 	@Inject
 	CartaPedidoDao cpedDao;
 
+	@Inject
+	CupomDao cDao;
+
+	@Inject
+	PedidoDao pDao;
+
+	@Inject
+	EnderecoDao eDao;
+
 	private int id;
+
+	private boolean troca = false;
 
 	private static Pedido ped = new Pedido();
 
@@ -39,18 +51,8 @@ public class PedidoBean {
 
 	LoginBean lb = new LoginBean();
 
-	@Inject
-	PedidoDao pDao;
-
-	@Inject
-	EnderecoDao eDao;
-
 	public void carpedido() {
 		carped = new ArrayList<CartaPedido>(ped.getItens());
-	}
-
-	public boolean isTroca() {
-		return ped.getStatusPedido() == STATUS_PEDIDO.Em_Troca;
 	}
 
 	@Transactional
@@ -66,9 +68,17 @@ public class PedidoBean {
 			}
 		}
 		ped.setStatusPedido(STATUS_PEDIDO.Em_Troca);
+		troca = true;
 		pDao.editar(ped);
 
 		return "/cliente/perfil?faces-redirect=trueid=" + lb.getId();
+	}
+
+	public void status(Pedido p) {
+		troca = false;
+		if (p.getStatusPedido() == STATUS_PEDIDO.Em_Troca) {
+			troca = true;
+		}
 	}
 
 	@Transactional
@@ -88,9 +98,14 @@ public class PedidoBean {
 
 	@Transactional
 	public String editarTrocaAceita() {
-		ped.setStatusPedido(STATUS_PEDIDO.Trocado);
-		BigDecimal totalTrocados = new BigDecimal(0);
+//		ped.setStatusPedido(STATUS_PEDIDO.Trocado);
+		
+
+		Double totalTrocados = 0.;
 		for (CartaPedido crp : carped) {
+			
+			totalTrocados += crp.getCarta().getPreco().doubleValue() * crp.getQuantidade();
+			
 			for (CartaPedido cartaEstoque : ped.getItens()) {
 
 				if (crp.getCarta().getId() == cartaEstoque.getCarta().getId()) {
@@ -101,13 +116,11 @@ public class PedidoBean {
 
 				devolveEstoque(crp.getCarta(), crp.getQuantidade());
 			}
-
-			totalTrocados.add(crp.getCarta().getPreco());
+			
 		}
-
+		BigDecimal valorCupom =  new BigDecimal(totalTrocados).setScale(2,RoundingMode.DOWN);
 		pDao.editar(ped);
-		
-		GeraCupomTroca.gerarCupom(totalTrocados);		
+		cDao.salvar(GeraCupomTroca.gerarCupom(valorCupom, ped.getCliente()));
 		return "/admin/pedido/lista?faces-redirect=true";
 	}
 
@@ -189,4 +202,11 @@ public class PedidoBean {
 		PedidoBean.repasse = repasse;
 	}
 
+	public void setTroca(boolean troca) {
+		this.troca = troca;
+	}
+
+	public boolean isTroca() {
+		return troca;
+	}
 }

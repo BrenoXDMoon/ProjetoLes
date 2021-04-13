@@ -24,7 +24,8 @@ public class CupomDao {
 	}
 	
 	public void excluir(Cupom cupom) {
-		manager.remove(manager.getReference(Cupom.class, cupom.getId()));
+		Cupom cupomDelete = manager.getReference(Cupom.class, cupom.getId());
+		cupomDelete.setAtivo(false);
 	}
 	
 	public List<Cupom> listar(){
@@ -46,7 +47,7 @@ public class CupomDao {
 	}
 	
 	public List<Cupom> listarCuponsByCliente(Integer cliente){
-		String jpql = "select c from Cupom c where c.cliente.id = :cliente";
+		String jpql = "select c from Cupom c where c.cliente.id = :cliente and c.ativo = true";
 		
 		return manager.createQuery(jpql, Cupom.class).
 				setParameter("cliente", cliente).
