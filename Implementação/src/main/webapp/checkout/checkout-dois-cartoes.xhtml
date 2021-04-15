@@ -88,15 +88,15 @@
 						
 						<h:outputLabel value="#{carrinho.total}" id="valorTotal" class="d-none" />
 						
-						<h:inputText value="#{checkoutBean.valorCartaoUm}" id="valorCartaoUm" styleClass="form-control" onchange="calculaValorOutroCartao()" />
+						<h:inputText value="#{checkoutBean.valorCartaoUm}" id="valorCartaoUm" styleClass="form-control" onchange="calculaValorOutroCartao()" required="true"/>
 						
 						<h:outputLabel value="Valor a Cobrar no Segundo Cartão:" />
-						<h:inputText value="#{checkoutBean.valorCartaoDois}" id="valorCartaoDois" styleClass="form-control"/>
+						<h:inputText value="#{checkoutBean.valorCartaoDois}" id="valorCartaoDois" styleClass="form-control disable" disabled="true"/>
 					</div>
 						
 					<div class="col-6">
 						<h4 class=" mb-4">Endereço</h4>
-						<h:selectOneMenu value="#{checkoutBean.end}" class="form-select" converter="EndConverter"  id="endereco">
+						<h:selectOneMenu value="#{checkoutBean.end}" class="form-select" converter="EndConverter"  id="endereco" required="true">
 							<f:selectItem itemLabel="Selecione um endereço" value="#{null}"/>
 							<f:selectItems value="#{loginBean.enderecos}" var="end" itemLabel="#{end.logradouro}" itemValue="#{end}"/>
 						</h:selectOneMenu>
@@ -123,13 +123,14 @@
 					<div class="row justify-content-left ml-13">
 						<div class="col-4 text-left">
 							<p>Cupom de Desconto disponíveis</p>
-							<h:selectOneRadio value="#{checkoutBean.cupom}" styleClass="radio" id="cupom" converter="CupomConverter">
+							<h:inputText value="#{checkoutBean.somaCupom}" id="somaCupom" styleClass="d-none"/>
+							<h:selectOneRadio value="#{checkoutBean.cupom}" styleClass="radio" id="cupomDesconto" converter="CupomConverter" onchange="somaCupom()">
 								<f:selectItems value="#{cupomListarBean.cuponsDesconto}" var="cupom" itemLabel="#{cupom.show()}" itemValue="#{cupom}" />
 							</h:selectOneRadio>
 						</div>
 						<div class="col-4 text-left">
 							<p>Cupom de Troca disponíveis</p>
-							<h:selectManyCheckbox value="#{checkoutBean.cupons}" id="cupomTroca" converter="CupomConverter" onchange="getCheckedBoxes()">
+							<h:selectManyCheckbox value="#{checkoutBean.cupons}" id="cupomTroca" converter="CupomConverter" onchange="somaCupom()">
 								<f:selectItems value="#{cupomListarBean.cuponsTroca}" styleClass="form-check-input" var="cupom" itemLabel="#{cupom.show()}" itemValue="#{cupom}" itemDescription="#{cupom.preco}" />
 							</h:selectManyCheckbox>
 						</div>
@@ -143,6 +144,6 @@
 
 
 </body>
-	<script type="text/javascript" src="#{request.contextPath}/assets/js/pagamentoDoisCartoes.js"></script>
 	<script type="text/javascript" src="#{request.contextPath}/assets/js/cartoes.js"></script>
+	<script type="text/javascript" src="#{request.contextPath}/assets/js/pagamentoDoisCartoes.js"></script>
 </html>

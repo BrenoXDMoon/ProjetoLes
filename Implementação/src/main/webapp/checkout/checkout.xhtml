@@ -81,7 +81,7 @@
 						</div>
 						
 						<div id="listaCartao" class=" d-none">
-							<h:selectOneMenu value="#{checkoutBean.cd}" class="form-select" id="cartao" converter="CartaoCreditoConverter">
+							<h:selectOneMenu value="#{checkoutBean.cd}" class="form-select" id="cartao" converter="CartaoCreditoConverter" required="true">
 								<f:selectItems value="#{loginBean.cartoes}" var="card" itemLabel="#{card.numeroCartao}" itemValue="#{card}"/> 
 							</h:selectOneMenu>
 							<br />
@@ -92,7 +92,7 @@
 						
 					<div class="col-6">
 						<h4 class=" mb-4">Endereço</h4>
-						<h:selectOneMenu value="#{checkoutBean.end}" class="form-select" converter="EndConverter"  id="endereco">
+						<h:selectOneMenu value="#{checkoutBean.end}" class="form-select" converter="EndConverter"  id="endereco" required="true">
 							<f:selectItem itemLabel="Selecione um endereço" value="#{null}"/>
 							<f:selectItems value="#{loginBean.enderecos}" var="end" itemLabel="#{end.logradouro}" itemValue="#{end}"/>
 						</h:selectOneMenu>
