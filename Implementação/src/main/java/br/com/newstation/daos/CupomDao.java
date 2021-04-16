@@ -28,6 +28,12 @@ public class CupomDao {
 		cupomDelete.setAtivo(false);
 	}
 	
+	public List<Cupom> listarAtivos(){
+		String jpql = "select C from Cupom C where C.ativo = 1";
+		
+		return manager.createQuery(jpql, Cupom.class).getResultList();
+	}
+	
 	public List<Cupom> listar(){
 		String jpql = "select C from Cupom C ";
 		
@@ -35,13 +41,13 @@ public class CupomDao {
 	}
 	
 	public List<Cupom> listarCuponsDesconto(){
-		String jpql = "select C from Cupom C where C.tipoCupom = 'Desconto'";
+		String jpql = "select C from Cupom C where C.tipoCupom = 'Desconto' and C.ativo = 1";
 		
 		return manager.createQuery(jpql, Cupom.class).getResultList();
 	}
 	
 	public List<Cupom> listarCuponsTroca(){
-		String jpql = "select C from Cupom C where C.tipoCupom = 'Troca'";
+		String jpql = "select C from Cupom C where C.tipoCupom = 'Troca' and C.ativo = 1";
 		
 		return manager.createQuery(jpql, Cupom.class).getResultList();
 	}

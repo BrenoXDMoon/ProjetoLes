@@ -76,7 +76,11 @@ public class CheckoutBean {
 
 	@Transactional
 	public String salvar(Integer id, BigDecimal total, Carrinho carrinho) {
-
+		if(!cupons.isEmpty()) {
+			System.out.println("tem ou nao cupom: "+!cupons.isEmpty());
+		
+		}
+		
 		Cliente cli = new Cliente();
 		Calendar cale = Calendar.getInstance();
 		BigDecimal valor = new BigDecimal(Math.abs(total.doubleValue() - somaCupom));
@@ -127,6 +131,7 @@ public class CheckoutBean {
 		pedido.setStatusPedido(STATUS_PEDIDO.Pendente);
 		pDao.salvar(pedido);
 		carrinho.resete();
+		
 		
 		if(!cupons.isEmpty()) {
 			for(Cupom cupom: pedido.getCupomTroca()) {
@@ -194,6 +199,11 @@ public class CheckoutBean {
 		pDao.salvar(pedido);
 
 		carrinho.resete();
+		if(!cupons.isEmpty()) {
+			for(Cupom cupom: pedido.getCupomTroca()) {
+				cDao.excluir(cupom);
+			}
+		}
 
 		return "/checkout/confirmaPedido?faces-redirect=true";
 	}
