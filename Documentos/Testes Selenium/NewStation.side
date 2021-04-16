@@ -489,13 +489,6 @@
         ["xpath=//a[contains(.,'fb85e216-129b-4237-955a-d7b3f91744a3')]", "xpath:innerText"]
       ],
       "value": ""
-    }, {
-      "id": "73ac071b-8519-475b-aa75-232048f8ec1c",
-      "comment": "",
-      "command": "close",
-      "target": "",
-      "targets": [],
-      "value": ""
     }]
   }, {
     "id": "ca2bff30-c5bc-40a7-a119-e0bfc83a4ce7",
@@ -624,13 +617,6 @@
         ["xpath=//td/a", "xpath:position"],
         ["xpath=//a[contains(.,'fb85e216-129b-4237-955a-d7b3f91744a3')]", "xpath:innerText"]
       ],
-      "value": ""
-    }, {
-      "id": "40bf8edd-2e34-46dd-a4f8-2926003ff54d",
-      "comment": "",
-      "command": "close",
-      "target": "",
-      "targets": [],
       "value": ""
     }]
   }, {
@@ -761,13 +747,6 @@
         ["xpath=//a[contains(.,'fb85e216-129b-4237-955a-d7b3f91744a3')]", "xpath:innerText"]
       ],
       "value": ""
-    }, {
-      "id": "b51fac2e-d508-4f4d-ac17-ea3bbfaf057a",
-      "comment": "",
-      "command": "close",
-      "target": "",
-      "targets": [],
-      "value": ""
     }]
   }],
   "suites": [{
@@ -778,6 +757,6 @@
     "timeout": 300,
     "tests": []
   }],
-  "urls": ["http://localhost:8080/"],
+  "urls": ["http://localhost:8080/", "http://localhost:8080/NewStation/"],
   "plugins": []
 }
