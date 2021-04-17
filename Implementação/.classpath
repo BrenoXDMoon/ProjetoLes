@@ -43,5 +43,6 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/hibernate-jpa-2.1-api-1.0.0.Draft-16.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/jakarta.persistence-api-2.2.3.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/eclipselink.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/primefaces-10.0.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

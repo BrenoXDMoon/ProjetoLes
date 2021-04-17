@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-	<head>
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+	<h:head>
 	    <meta charset="UTF-8"/>
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	    <link href="#{request.contextPath}/assets/css/style.css" rel="stylesheet"/>
 	    <link href="#{request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet"/>
 	    <title>Admin</title>
-	</head>
+	</h:head>
 	
 	<body class="bg-dark text-white">
 	    <header class="site-header  py-1">
@@ -27,7 +28,14 @@
 	                <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/admin/cliente/lista.xhtml"><button class="btn btn-info">Lista de Clientes</button></a>
 	            </div>
 	        </div>
-	
+		<h:form>
+
+          <p:chart type="line" model="#{grafico.areaModel}"
+                style="height:300px" />
+
+     </h:form>
+		
+		
 	    </section>
 	</body>
 </html>

@@ -53,4 +53,11 @@ public class PedidoDao {
 		
 		return manager.createQuery(jpql, Pedido.class).setParameter("id", ped).getSingleResult();
 	}
+	
+	public List<Pedido> grafico() {
+		String jpql = "select p from Pedido p order by p.dataAtualizacao";
+		
+		return manager.createQuery(jpql, Pedido.class).getResultList();
+	}
+	
 }

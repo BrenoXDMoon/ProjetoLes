@@ -47,6 +47,7 @@ public class Pedido{
 
 	@Temporal(TemporalType.DATE)
 	protected Calendar dataAtualizacao;
+	
 
 	@OneToOne(fetch = FetchType.EAGER)
 	private Cupom cupomDesconto = new Cupom();
