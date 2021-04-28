@@ -6,7 +6,6 @@ import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.Cupom;
 
 @Stateful
@@ -16,6 +15,7 @@ public class CupomDao {
 	EntityManager manager;
 	
 	public void salvar(Cupom cupom) {
+		System.out.println("dbg cupom:"+ cupom.getPreco());
 		manager.persist(cupom);
 	}
 	

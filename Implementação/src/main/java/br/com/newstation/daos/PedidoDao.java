@@ -25,6 +25,7 @@ public class PedidoDao {
 	}
 
 	public void editar(Pedido ped) {
+		System.out.println("dbg ped:"+ ped.getCupomTroca());
 		manager.merge(ped);
 	}
 

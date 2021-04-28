@@ -16,6 +16,7 @@ import br.com.newstation.daos.EstoqueDao;
 import br.com.newstation.daos.PedidoDao;
 import br.com.newstation.dominio.Carta;
 import br.com.newstation.dominio.CartaPedido;
+import br.com.newstation.dominio.Cupom;
 import br.com.newstation.dominio.Endereco;
 import br.com.newstation.dominio.Pedido;
 import br.com.newstation.dominio.STATUS_PEDIDO;
@@ -118,8 +119,10 @@ public class PedidoBean {
 			}
 			
 		}
-		BigDecimal valorCupom =  new BigDecimal(totalTrocados).setScale(2,RoundingMode.DOWN);
+		ped.setStatusPedido(STATUS_PEDIDO.Trocado);
 		pDao.editar(ped);
+		
+		BigDecimal valorCupom =  new BigDecimal(totalTrocados).setScale(2,RoundingMode.DOWN);
 		cDao.salvar(GeraCupomTroca.gerarCupom(valorCupom, ped.getCliente()));
 		return "/admin/pedido/lista?faces-redirect=true";
 	}
