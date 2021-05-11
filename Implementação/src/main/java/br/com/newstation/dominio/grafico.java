@@ -70,7 +70,7 @@ public class grafico implements Serializable {
 		Axis xAxis = new CategoryAxis("Meses");
 		areaModel.getAxes().put(AxisType.X, xAxis);
 		Axis yAxis = areaModel.getAxis(AxisType.Y);
-		yAxis.setLabel("Quantidade");
+		yAxis.setLabel("Quantidade em R$");
 
 	}
 
