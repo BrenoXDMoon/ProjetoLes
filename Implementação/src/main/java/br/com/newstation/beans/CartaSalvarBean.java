@@ -14,6 +14,7 @@ import br.com.newstation.dominio.Carta;
 import br.com.newstation.dominio.Estoque;
 import br.com.newstation.dominio.RARIDADE;
 import br.com.newstation.infra.FileSaver;
+import br.com.newstation.infra.Log;
 
 @Model
 public class CartaSalvarBean {
@@ -37,6 +38,8 @@ public class CartaSalvarBean {
 		daoE.salvar(estoque);
 		carta.setAtivo(true);
 		carta.setEstoque(estoque);
+		
+		Log.salvar("Inserção","admin");
 		dao.salvar(carta);
 
 		FileSaver fileSaver = new FileSaver();

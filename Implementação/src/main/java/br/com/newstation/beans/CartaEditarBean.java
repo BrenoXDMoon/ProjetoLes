@@ -1,5 +1,7 @@
 package br.com.newstation.beans;
 
+import java.io.IOException;
+
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.servlet.http.Part;
@@ -11,6 +13,7 @@ import br.com.newstation.dominio.Carta;
 import br.com.newstation.dominio.Estoque;
 import br.com.newstation.dominio.RARIDADE;
 import br.com.newstation.infra.FileSaver;
+import br.com.newstation.infra.Log;
 
 @Model
 public class CartaEditarBean {
@@ -27,8 +30,8 @@ public class CartaEditarBean {
 	private Part imagemCarta;
 
 	@Transactional
-	public String salvar() {
-
+	public String salvar(){
+		
 		carta.setEstoque(daoE.update(estoque));
 
 		if (imagemCarta != null) {
@@ -37,6 +40,7 @@ public class CartaEditarBean {
 		}
 
 		carta.setAtivo(true);
+		Log.salvar("Alteração","admin");
 		dao.editar(carta);
 
 		return "/admin/cartas/lista?faces-redirect=true";

@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 
 import br.com.newstation.dominio.Carta;
 
+import br.com.newstation.infra.Log;
 @Stateful
 public class CartaDao{
 
@@ -19,7 +20,6 @@ public class CartaDao{
 	}
 
 	public void editar(Carta carta) {
-
 		manager.merge(carta);
 	}
 	

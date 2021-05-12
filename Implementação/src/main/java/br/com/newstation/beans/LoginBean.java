@@ -22,6 +22,7 @@ import br.com.newstation.dominio.Pedido;
 import br.com.newstation.dominio.TIPO_CLIENTE;
 import br.com.newstation.dominio.TIPO_DOCUMENTO;
 import br.com.newstation.dominio.TIPO_ENDERECO;
+import br.com.newstation.infra.Log;
 import br.com.newstation.strategies.ValidaCPF;
 
 @Model
@@ -115,7 +116,7 @@ public class LoginBean {
 			cliente.setId(getId());
 			cliente = dao.visualizar(cliente);
 			cliente.getCartoes().add(card);
-
+			Log.salvar("Inserção","admin");
 			cardDao.salvar(cliente, card);
 
 			return "/checkout/checkout?faces-redirect=true";
@@ -135,7 +136,7 @@ public class LoginBean {
 			cliente.setId(getId());
 			cliente = dao.visualizar(cliente);
 			cliente.getCartoes().add(card);
-
+			Log.salvar("Inserção","admin");
 			cardDao.salvar(cliente, card);
 
 			return "/cliente/perfil?faces-redirect=true";
@@ -153,7 +154,7 @@ public class LoginBean {
 		try {
 
 			System.out.println("- ENTROU");
-
+			Log.salvar("Alterar","admin");
 			cardDao.editar(card);
 
 			return "/cliente/perfil?faces-redirect=true";
@@ -176,14 +177,14 @@ public class LoginBean {
 
 			if (doc.getTipoDocumento().equals(TIPO_DOCUMENTO.CPF) && valcpf.cpfValido(doc.getCodigo())) {
 				cliente.getDocumentos().add(doc);
-
+				Log.salvar("Inserção","admin");
 				docDao.salvar(cliente, doc);
 
 				return "/cliente/perfil?faces-redirect=true";
 			} else if (doc.getTipoDocumento().equals(TIPO_DOCUMENTO.RG)) {
 
 				cliente.getDocumentos().add(doc);
-
+				Log.salvar("Inserção","admin");
 				docDao.salvar(cliente, doc);
 				return "/cliente/perfil?faces-redirect=true";
 
@@ -202,7 +203,7 @@ public class LoginBean {
 	public String editarDocumento() {
 
 		try {
-
+			Log.salvar("Alterar","admin");
 			docDao.editar(doc);
 
 			return "/cliente/perfil?faces-redirect=true";
@@ -221,7 +222,7 @@ public class LoginBean {
 			cliente.setId(getId());
 			cliente = dao.visualizar(cliente);
 			cliente.getEnderecos().add(endereco);
-
+			Log.salvar("Inserção","admin");
 			endDao.salvar(cliente, endereco);
 
 			return "/checkout/checkout?faces-redirect=true";
@@ -241,7 +242,7 @@ public class LoginBean {
 			cliente.setId(getId());
 			cliente = dao.visualizar(cliente);
 			cliente.getEnderecos().add(endereco);
-
+			Log.salvar("Inserção","admin");
 			endDao.salvar(cliente, endereco);
 
 			return "/cliente/perfil?faces-redirect=true";
@@ -279,6 +280,7 @@ public class LoginBean {
 	public String editarEndereco() {
 
 		try {
+			Log.salvar("Alteração","admin");
 			endDao.editar(endereco);
 			return "/cliente/perfil?faces-redirect=true";
 
@@ -301,7 +303,7 @@ public class LoginBean {
 				break;
 			}
 		}
-
+		Log.salvar("Alteração","admin");
 		cardDao.excluir(cliente, card);
 
 		return "/cliente/perfil?faces-redirect=true";
@@ -320,7 +322,7 @@ public class LoginBean {
 			}
 
 		}
-
+		Log.salvar("Alteração","admin");
 		docDao.excluir(cliente, doc);
 
 		return "/cliente/perfil?faces-redirect=true";
@@ -340,7 +342,7 @@ public class LoginBean {
 			}
 
 		}
-
+		Log.salvar("Alteração","admin");
 		endDao.excluir(cliente, end);
 
 		return "/cliente/perfil?faces-redirect=true";

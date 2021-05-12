@@ -11,6 +11,7 @@ import br.com.newstation.dominio.Carta;
 import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.Senha;
 import br.com.newstation.dominio.TIPO_CLIENTE;
+import br.com.newstation.infra.Log;
 import br.com.newstation.seguranca.CriptografaSenha;
 
 @Model
@@ -39,6 +40,7 @@ public class ClienteEditarBean {
 	public void ativaCliente(Cliente cli) {
 		cli.setAtivo(true);
 		EditarCommand cmd = new EditarCommand();
+		Log.salvar("Alteração","admin");
 		cmd.executar(cli);
 	}
 	
@@ -46,6 +48,7 @@ public class ClienteEditarBean {
 	public String editarCli() {
 
 		EditarCommand cmd = new EditarCommand();
+		Log.salvar("Alteração","admin");
 		cmd.executar(ClienteEditarBean.cliente);
 
 		return "/cliente/perfil.xhtml?faces-redirect=true";
@@ -61,6 +64,7 @@ public class ClienteEditarBean {
 
 			cliente.getSenha().setSenha(crp.criptoSenha(senha.getSenha()));
 		}
+		Log.salvar("Alteração","admin");
 		dao.editar(cliente);
 		return "/cliente/perfil.xhtml?faces-redirect=true";
 	}
@@ -82,6 +86,7 @@ public class ClienteEditarBean {
 		}
 
 		EditarCommand cmd = new EditarCommand();
+		Log.salvar("Alteração","admin");
 		cmd.executar(cliente);
 
 		return "/admin/cliente/lista?faces-redirect=true";
