@@ -27,7 +27,6 @@ import br.com.newstation.dominio.Cupom;
 import br.com.newstation.dominio.Endereco;
 import br.com.newstation.dominio.Pedido;
 import br.com.newstation.dominio.STATUS_PEDIDO;
-import br.com.newstation.infra.Log;
 import br.com.newstation.strategies.GeraCupomTroca;
 
 @Model
@@ -130,7 +129,6 @@ public class CheckoutBean {
 		}
 
 		pedido.setStatusPedido(STATUS_PEDIDO.Pendente);
-		Log.salvar("Inserção","admin");
 		pDao.salvar(pedido);
 		carrinho.resete();
 		
@@ -138,7 +136,6 @@ public class CheckoutBean {
 		if(!cupons.isEmpty()) {
 			for(Cupom cupom: pedido.getCupomTroca()) {
 				cDao.excluir(cupom);
-				Log.salvar("Alteração","admin");
 			}
 		}
 		return "/checkout/confirmaPedido?faces-redirect=true";
@@ -194,20 +191,17 @@ public class CheckoutBean {
 			crp.setCarta(c.getCarta());
 			crp.setQuantidade(c.getQuantidade());
 			cpedDao.salvar(crp);
-			Log.salvar("Inserção","admin");
 			pedido.getItens().add(crp);
 
 		}
 
 		pedido.setStatusPedido(STATUS_PEDIDO.Pendente);
-		Log.salvar("Inserção","admin");
 		pDao.salvar(pedido);
 
 		carrinho.resete();
 		if(!cupons.isEmpty()) {
 			for(Cupom cupom: pedido.getCupomTroca()) {
 				cDao.excluir(cupom);
-				Log.salvar("Alteração","admin");
 			}
 		}
 

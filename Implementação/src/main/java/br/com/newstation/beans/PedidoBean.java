@@ -16,11 +16,9 @@ import br.com.newstation.daos.EstoqueDao;
 import br.com.newstation.daos.PedidoDao;
 import br.com.newstation.dominio.Carta;
 import br.com.newstation.dominio.CartaPedido;
-import br.com.newstation.dominio.Cupom;
 import br.com.newstation.dominio.Endereco;
 import br.com.newstation.dominio.Pedido;
 import br.com.newstation.dominio.STATUS_PEDIDO;
-import br.com.newstation.infra.Log;
 import br.com.newstation.strategies.GeraCupomTroca;
 
 @Model
@@ -71,7 +69,6 @@ public class PedidoBean {
 		}
 		ped.setStatusPedido(STATUS_PEDIDO.Em_Troca);
 		troca = true;
-		Log.salvar("Alteração","admin");
 		pDao.editar(ped);
 
 		return "/cliente/perfil?faces-redirect=trueid=" + lb.getId();
@@ -95,7 +92,6 @@ public class PedidoBean {
 
 	@Transactional
 	public String editar() {
-		Log.salvar("Alteração","admin");
 		pDao.editar(ped);
 		return "/admin/pedido/lista?faces-redirect=true";
 	}
@@ -123,7 +119,6 @@ public class PedidoBean {
 			
 		}
 		ped.setStatusPedido(STATUS_PEDIDO.Trocado);
-		Log.salvar("Alteração","admin");
 		pDao.editar(ped);
 		
 		BigDecimal valorCupom =  new BigDecimal(totalTrocados).setScale(2,RoundingMode.DOWN);
@@ -141,7 +136,6 @@ public class PedidoBean {
 	@Transactional
 	public String editarTrocaNegada() {
 		ped.setStatusPedido(STATUS_PEDIDO.Troca_negada);
-		Log.salvar("Alteração","admin");
 		pDao.editar(ped);
 		return "/admin/pedido/lista?faces-redirect=true";
 	}

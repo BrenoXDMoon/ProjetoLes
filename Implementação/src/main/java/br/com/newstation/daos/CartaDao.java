@@ -7,8 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import br.com.newstation.dominio.Carta;
-
-import br.com.newstation.infra.Log;
 @Stateful
 public class CartaDao{
 

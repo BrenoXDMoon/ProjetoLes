@@ -7,7 +7,6 @@ import javax.transaction.Transactional;
 import br.com.newstation.daos.CupomDao;
 import br.com.newstation.dominio.Cupom;
 import br.com.newstation.dominio.TIPO_CUPOM;
-import br.com.newstation.infra.Log;
 
 @Model
 public class CupomEditarBean {
@@ -22,7 +21,6 @@ public class CupomEditarBean {
 	@Transactional
 	public String editar() {
 		cupom.setId(id);
-		Log.salvar("Alteração","admin");
 		dao.editar(cupom);
 		return "/admin/cupom/lista?faces-redirect=true";
 	}
