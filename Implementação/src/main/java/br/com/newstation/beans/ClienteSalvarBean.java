@@ -15,9 +15,8 @@ import br.com.newstation.dominio.Resultado;
 import br.com.newstation.dominio.TIPO_CLIENTE;
 import br.com.newstation.dominio.TIPO_DOCUMENTO;
 import br.com.newstation.dominio.TIPO_ENDERECO;
+import br.com.newstation.infra.Log;
 import br.com.newstation.seguranca.CriptografaSenha;
-import br.com.newstation.strategies.ValidaCPF;
-import br.com.newstation.strategies.ValidaExistenciaPorEmail;
 
 @Model
 public class ClienteSalvarBean {
@@ -61,7 +60,7 @@ public class ClienteSalvarBean {
 			SalvarCommand cmd = new SalvarCommand();
 //			System.out.println("Entra command");
 			Resultado resultado = cmd.executar(cliente);
-			
+			Log.salvar("Inserção","admin");
 			this.cliente = (Cliente) resultado.getEntidade();
 			
 			if(resultado.getMensagem() == null) {
@@ -79,6 +78,7 @@ public class ClienteSalvarBean {
 			return "/cliente/form?faces-redirect=true";
 
 		}
+		
 	}
 
 	public Cliente getCliente() {

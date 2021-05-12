@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 
 import br.com.newstation.daos.CartaDao;
 import br.com.newstation.dominio.Carta;
+import br.com.newstation.infra.Log;
 
 @Model
 public class CartaExcluirBean{
@@ -15,6 +16,7 @@ public class CartaExcluirBean{
 
 	@Transactional
 	public String delete(Carta carta) {
+		Log.salvar("Alteração","admin");
 		dao.delete(carta);
 		return "/admin/cartas/lista?faces-redirect=true";
 	}

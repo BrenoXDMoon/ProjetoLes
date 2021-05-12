@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import br.com.newstation.daos.CupomDao;
 import br.com.newstation.dominio.Cupom;
 import br.com.newstation.dominio.TIPO_CUPOM;
+import br.com.newstation.infra.Log;
 
 @Model
 public class CupomSalvarBean {
@@ -23,6 +24,7 @@ public class CupomSalvarBean {
 		cupom.setCodigo(UUID.randomUUID().toString().split("-")[0]);
 //		System.out.println(UUID.randomUUID().toString().split("-")[0]);
 		cupom.setAtivo(true);
+		Log.salvar("Inserção","admin");
 		dao.salvar(cupom);
 		return null;
 	}

@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 
 import br.com.newstation.daos.CupomDao;
 import br.com.newstation.dominio.Cupom;
+import br.com.newstation.infra.Log;
 
 @Model
 public class CupomExcluirBean {
@@ -17,7 +18,7 @@ public class CupomExcluirBean {
 	
 	@Transactional
 	public String excluir(Cupom cup) {
-		
+		Log.salvar("Alteração","admin");
 		dao.excluir(cup);
 		
 		return "/admin/cupom/lista?faces-redirect=true";
