@@ -30,7 +30,7 @@ public class Cupom {
 	
 	@ManyToOne
 	@Nullable
-	private Cliente cliente;
+	private Cliente cliente; 
 
 	@Enumerated(EnumType.STRING)
 	private TIPO_CUPOM tipoCupom;

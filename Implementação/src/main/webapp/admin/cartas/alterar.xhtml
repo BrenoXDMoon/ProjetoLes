@@ -47,6 +47,18 @@
 						<h:message for='descricao' />
 					</div>
 					<div class="form-group">
+						<h:outputLabel value="Fornecedor" />
+						<h:inputText value='#{cartaEditarBean.carta.fornecedor}'
+							required="true" id="fornecedor" styleClass="form-control" />
+						<h:message for='fornecedor' />
+					</div>
+					<div class="form-group">
+						<h:outputLabel value="Valor de Custo" />
+						<h:inputText value='#{cartaEditarBean.carta.valorCusto}'
+							required="true" id="valorCusto" styleClass="form-control" />
+						<h:message for='valorCusto' />
+					</div>
+					<div class="form-group">
 						<h:outputLabel value="Preço" />
 						<h:inputText value='#{cartaEditarBean.carta.preco}'
 							required="true" id='preco' styleClass="form-control" />

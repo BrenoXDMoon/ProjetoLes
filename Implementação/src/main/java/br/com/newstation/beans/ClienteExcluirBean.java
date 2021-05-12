@@ -15,5 +15,5 @@ public class ClienteExcluirBean {
 		return "/admin/lista?faces-redirect=true";
 		
 	}
-	
+	 
 }

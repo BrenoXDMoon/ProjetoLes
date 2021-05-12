@@ -14,7 +14,7 @@ import br.com.newstation.dominio.TIPO_CUPOM;
 public class CupomSalvarBean {
 
 	@Inject
-	CupomDao dao;
+	CupomDao dao; 
 	
 	private Cupom cupom = new Cupom();
 	

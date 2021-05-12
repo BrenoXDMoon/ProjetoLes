@@ -32,7 +32,7 @@ public class Cliente extends EntidadeDominio{
 	
 	@Column
 	private String nome;
-	
+	 
 	@Column
 	@Email
 	private String email;
@@ -41,7 +41,7 @@ public class Cliente extends EntidadeDominio{
 	private Calendar dataNascimento;
 
 	@Embedded
-	private Senha senha = new Senha();
+	private Senha senha = new Senha(); 
 
 	@Column
 	private boolean ativo;

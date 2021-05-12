@@ -1,6 +1,7 @@
 package br.com.newstation.dominio;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Carta extends EntidadeDominio {
@@ -18,17 +21,24 @@ public class Carta extends EntidadeDominio {
 	private Integer id;
 	private String nome;
 	private String descricao;
-	
+
 	@Enumerated(EnumType.STRING)
 	private RARIDADE raridade;
-	
+
 	private BigDecimal preco;
 	private boolean ativo;
 
 	@OneToOne
 	private Estoque estoque;
-	
+
 	private String imagemPath;
+
+	private BigDecimal valorCusto;
+
+	private String fornecedor;
+
+	@Temporal(TemporalType.DATE)
+	private Calendar dataEntrada;
 
 	public String getNome() {
 		return nome;
@@ -94,7 +104,7 @@ public class Carta extends EntidadeDominio {
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -118,5 +128,29 @@ public class Carta extends EntidadeDominio {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public String getFornecedor() {
+		return fornecedor;
+	}
+
+	public void setFornecedor(String fornecedor) {
+		this.fornecedor = fornecedor;
+	}
+
+	public BigDecimal getValorCusto() {
+		return valorCusto;
+	}
+
+	public void setValorCusto(BigDecimal valorCusto) {
+		this.valorCusto = valorCusto;
+	}
+
+	public Calendar getDataEntrada() {
+		return dataEntrada;
+	}
+
+	public void setDataEntrada(Calendar dataEntrada) {
+		this.dataEntrada = dataEntrada;
 	}
 }

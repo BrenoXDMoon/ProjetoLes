@@ -1,5 +1,12 @@
 package br.com.newstation.beans;
 
+import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.servlet.http.Part;
@@ -26,16 +33,20 @@ public class CartaEditarBean {
 	private Integer id;
 	private Part imagemCarta;
 
+
 	@Transactional
-	public String salvar(){
+	public String salvar() throws ParseException{
 		
-		carta.setEstoque(daoE.update(estoque));
+		carta.setEstoque(daoE.update(estoque)); 
 
 		if (imagemCarta != null) {
 			FileSaver fileSaver = new FileSaver();
 			carta.setImagemPath(fileSaver.write(imagemCarta, "cartas"));
 		}
 
+		
+
+		
 		carta.setAtivo(true);
 		dao.editar(carta);
 
@@ -89,4 +100,5 @@ public class CartaEditarBean {
 	public RARIDADE[] getRaridade() {
 		return RARIDADE.values();
 	}
+
 }

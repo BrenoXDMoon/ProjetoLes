@@ -163,7 +163,7 @@ public class LoginBean {
 	@Transactional
 	public String salvarDocumento() {
 		ValidaCPF valcpf = new ValidaCPF();
-
+ 
 		try {
 
 			cliente.setId(getId());

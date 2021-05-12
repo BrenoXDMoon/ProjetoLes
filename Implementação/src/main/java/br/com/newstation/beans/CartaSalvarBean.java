@@ -1,6 +1,12 @@
 package br.com.newstation.beans;
 
+import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.enterprise.inject.Model;
@@ -29,15 +35,24 @@ public class CartaSalvarBean {
 	private Part imagemCarta;
 	private Integer quantidade;
 	private Integer id;
+	private BigDecimal valorCusto;
+	private String fornecedor;
+	private Calendar dataEntrada = Calendar.getInstance();
+	
 
 	private List<Carta> cartas = new ArrayList<>();
 
 	@Transactional
-	public String salvar() {
+	public String salvar() throws ParseException {
 		daoE.salvar(estoque);
 		carta.setAtivo(true);
 		carta.setEstoque(estoque);
 		
+        DateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy hh:mm:ss");  
+        Date data = dateFormat.parse(dateFormat.format(Calendar.getInstance().getTime()));
+        dataEntrada.setTime(data);
+        carta.setDataEntrada(dataEntrada);
+        
 		dao.salvar(carta);
 
 		FileSaver fileSaver = new FileSaver();
@@ -99,6 +114,22 @@ public class CartaSalvarBean {
 	
 	public RARIDADE[] getRaridade() {
 		return RARIDADE.values();
+	}
+
+	public BigDecimal getValorCusto() {
+		return valorCusto;
+	}
+
+	public void setValorCusto(BigDecimal valorCusto) {
+		this.valorCusto = valorCusto;
+	}
+
+	public String getFornecedor() {
+		return fornecedor;
+	}
+
+	public void setFornecedor(String fornecedor) {
+		this.fornecedor = fornecedor;
 	}
 
 }

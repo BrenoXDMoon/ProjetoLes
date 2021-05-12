@@ -8,7 +8,7 @@ import javax.persistence.PersistenceContext;
 
 import br.com.newstation.dominio.Carta;
 @Stateful
-public class CartaDao{
+public class CartaDao{ 
 
 	@PersistenceContext
 	private EntityManager manager;

@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
 
 @Entity
 public class Estoque extends EntidadeDominio {
@@ -11,11 +12,12 @@ public class Estoque extends EntidadeDominio {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Min(value = 1)
 	private Integer quantidade;
 
 	public Integer getQuantidade() {
 		return quantidade;
-	}
+	}  
 
 	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
