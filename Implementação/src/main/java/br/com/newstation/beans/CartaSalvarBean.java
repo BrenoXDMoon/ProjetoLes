@@ -1,12 +1,10 @@
 package br.com.newstation.beans;
 
 import java.math.BigDecimal;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.enterprise.inject.Model;
@@ -37,7 +35,6 @@ public class CartaSalvarBean {
 	private Integer id;
 	private BigDecimal valorCusto;
 	private String fornecedor;
-	private Calendar dataEntrada = Calendar.getInstance();
 	
 
 	private List<Carta> cartas = new ArrayList<>();
@@ -48,10 +45,12 @@ public class CartaSalvarBean {
 		carta.setAtivo(true);
 		carta.setEstoque(estoque);
 		
-        DateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy hh:mm:ss");  
-        Date data = dateFormat.parse(dateFormat.format(Calendar.getInstance().getTime()));
-        dataEntrada.setTime(data);
-        carta.setDataEntrada(dataEntrada);
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");  
+	    LocalDateTime now = LocalDateTime.now();  
+	    System.out.println(dtf.format(now));
+        
+	    carta.setDataEntrada(dtf.format(now));
+        
         
 		dao.salvar(carta);
 

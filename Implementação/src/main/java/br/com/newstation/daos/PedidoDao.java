@@ -6,6 +6,7 @@ import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import br.com.newstation.dominio.Carta;
 import br.com.newstation.dominio.CartaoPedido;
 import br.com.newstation.dominio.Pedido;
 
@@ -56,8 +57,13 @@ public class PedidoDao {
 	}
 	
 	public List<Pedido> grafico() {
-		String jpql = "select p from Pedido p order by p.dataAtualizacao";
-		
+		String jpql = "select p from Pedido p order by p.dataAtualizacao desc";
+//		String jpql = select c.nome, sum(cp.quantidade) as valorCusto from Carta c 
+//		join  CartaPedido cp on c.id = cp.carta_id 
+//		join Pedido on Carta
+//		group by c.nome 
+//		order by valorCusto desc ;
+//		
 		return manager.createQuery(jpql, Pedido.class).getResultList();
 	}
 	

@@ -12,6 +12,7 @@ public class Estoque extends EntidadeDominio {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
 	@Min(value = 1)
 	private Integer quantidade;
 

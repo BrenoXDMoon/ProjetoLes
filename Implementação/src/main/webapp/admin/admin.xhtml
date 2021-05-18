@@ -26,14 +26,25 @@
 	                <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/admin/cartas/lista.xhtml"><button class="btn btn-info">Lista de Cartas</button></a>
 	                <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/admin/pedido/lista.xhtml"><button class="btn btn-info">Lista de Pedidos</button></a>
 	                <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/admin/cliente/lista.xhtml"><button class="btn btn-info">Lista de Clientes</button></a>
+          	    <h:form enctype="multipart/form-data">
+			  		<h:outputLabel value="Primeira data" />
+						<h:inputText value='#{grafico.min}'
+						id="min" styleClass="form-control" />
+					<h:outputLabel value="Segunda data" />
+						<h:inputText value='#{grafico.max}'
+						id="max" styleClass="form-control" />
+					<h:commandButton value='Filtrar'
+						action='#{grafico.setData}'
+						styleClass="btn btn-primary my-3" />
+				</h:form>
 	            </div>
 	        </div>
-		<h:form>
+	      
+			
 
           <p:chart type="line" model="#{grafico.areaModel}"
                 style="height:300px" />
 
-     	</h:form>
 		
 		
 	    </section>

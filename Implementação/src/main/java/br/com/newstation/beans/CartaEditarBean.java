@@ -33,32 +33,27 @@ public class CartaEditarBean {
 	private Integer id;
 	private Part imagemCarta;
 
-
 	@Transactional
-	public String salvar() throws ParseException{
-		
-		carta.setEstoque(daoE.update(estoque)); 
+	public String salvar() throws ParseException {
+
+		carta.setEstoque(daoE.update(estoque));
 
 		if (imagemCarta != null) {
 			FileSaver fileSaver = new FileSaver();
 			carta.setImagemPath(fileSaver.write(imagemCarta, "cartas"));
 		}
 
-		
-
-		
 		carta.setAtivo(true);
 		dao.editar(carta);
 
 		return "/admin/cartas/lista?faces-redirect=true";
 	}
-	
+
 	public void ativaCarta(Integer id) {
 		Carta cardRef = dao.buscarPorId(id);
 		cardRef.setAtivo(true);
 		dao.editar(cardRef);
 	}
-	
 
 	public void carregaDetalhe() {
 		this.setCarta(dao.buscarPorId(getId()));

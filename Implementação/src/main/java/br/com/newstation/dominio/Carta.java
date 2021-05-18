@@ -1,7 +1,6 @@
 package br.com.newstation.dominio;
 
 import java.math.BigDecimal;
-import java.util.Calendar;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -10,8 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
 
 @Entity
 public class Carta extends EntidadeDominio {
@@ -25,7 +23,9 @@ public class Carta extends EntidadeDominio {
 	@Enumerated(EnumType.STRING)
 	private RARIDADE raridade;
 
+	@Min(value = 1)
 	private BigDecimal preco;
+
 	private boolean ativo;
 
 	@OneToOne
@@ -33,12 +33,12 @@ public class Carta extends EntidadeDominio {
 
 	private String imagemPath;
 
+	@Min(value = 1)
 	private BigDecimal valorCusto;
 
 	private String fornecedor;
 
-	@Temporal(TemporalType.DATE)
-	private Calendar dataEntrada;
+	private String dataEntrada;
 
 	public String getNome() {
 		return nome;
@@ -146,11 +146,11 @@ public class Carta extends EntidadeDominio {
 		this.valorCusto = valorCusto;
 	}
 
-	public Calendar getDataEntrada() {
+	public String getDataEntrada() {
 		return dataEntrada;
 	}
 
-	public void setDataEntrada(Calendar dataEntrada) {
-		this.dataEntrada = dataEntrada;
+	public void setDataEntrada(String string) {
+		this.dataEntrada = string;
 	}
 }
