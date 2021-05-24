@@ -37,13 +37,15 @@
 						action='#{grafico.setData}'
 						styleClass="btn btn-primary my-3" />
 				</h:form>
+					<p:chart type="bar" model="#{grafico.model}" 
+					style="height:500px"/>
 	            </div>
 	        </div>
 	      
 			
 
-          <p:chart type="line" model="#{grafico.areaModel}"
-                style="height:300px" />
+<!--           <p:chart type="line" model="#{grafico.areaModel}" -->
+<!--                 style="height:300px" /> -->
 
 		
 		

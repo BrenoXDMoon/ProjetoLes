@@ -14,8 +14,8 @@ import javax.inject.Inject;
 
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
-import org.primefaces.model.chart.CategoryAxis;
 import org.primefaces.model.chart.ChartSeries;
+import org.primefaces.model.chart.HorizontalBarChartModel;
 import org.primefaces.model.chart.LineChartModel;
 
 import br.com.newstation.daos.PedidoDao;
@@ -29,6 +29,7 @@ public class grafico implements Serializable {
 	private Map<String, Integer> cartas = new HashMap<String, Integer>();
 	private static final long serialVersionUID = 1L;
 	private LineChartModel areaModel;
+	private HorizontalBarChartModel model;
 	private static String min = null;
 	private static String max = null;
 
@@ -39,6 +40,10 @@ public class grafico implements Serializable {
 
 	public LineChartModel getAreaModel() {
 		return areaModel;
+	}
+
+	public HorizontalBarChartModel getModel() {
+		return model;
 	}
 
 	private void createAreaModel() {
@@ -115,25 +120,44 @@ public class grafico implements Serializable {
 	}
 
 	private void geraGrafico() {
-		areaModel = new LineChartModel();
-		ChartSeries vendas = new ChartSeries();
+//		areaModel = new LineChartModel();
+//		ChartSeries vendas = new ChartSeries();
+
+		model = new HorizontalBarChartModel();
+		ChartSeries uriage = new ChartSeries();
+
+		uriage.setLabel("cartas");
+		model.addSeries(uriage);
+		model.setStacked(false);
+		model.setShadow(false);
+//		model.setSeriesColors("2FF8AB");
+		model.setTitle("Vendas de Cartas");
+		
 
 		for (Map.Entry<String, Integer> pair : cartas.entrySet()) {
-			vendas.set(pair.getKey(), pair.getValue());
+			uriage.set(pair.getKey(), pair.getValue());
 		}
-
-		areaModel.addSeries(vendas);
-
-		areaModel.setTitle("Quantidade Cartas");
-		areaModel.setLegendPosition("ne");
-		areaModel.setStacked(true);
-		areaModel.setShowPointLabels(true);
-
-		Axis xAxis = new CategoryAxis("Cartas");
-		xAxis.setTickAngle(15);
-		areaModel.getAxes().put(AxisType.X, xAxis);
-		Axis yAxis = areaModel.getAxis(AxisType.Y);
-		yAxis.setLabel("Quantidade Total");
+		Axis xAxis = model.getAxis(AxisType.X);
+		xAxis.setLabel("Quantidade");
+		xAxis.setMin(0);
+		Axis yAxis = model.getAxis(AxisType.Y);
+//        
+//		for (Map.Entry<String, Integer> pair : cartas.entrySet()) {
+//			vendas.set(pair.getKey(), pair.getValue());
+//		}
+//
+//		areaModel.addSeries(vendas);
+//
+//		areaModel.setTitle("Quantidade Cartas");
+//		areaModel.setLegendPosition("ne");
+//		areaModel.setStacked(true);
+//		areaModel.setShowPointLabels(true);
+//
+//		Axis xAxis = new CategoryAxis("Cartas");
+//		xAxis.setTickAngle(15);
+//		areaModel.getAxes().put(AxisType.X, xAxis);
+//		Axis yAxis = areaModel.getAxis(AxisType.Y);
+//		yAxis.setLabel("Quantidade Total");
 	}
 
 	public void setData() {
