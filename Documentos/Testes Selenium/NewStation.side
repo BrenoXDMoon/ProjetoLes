@@ -748,6 +748,79 @@
       ],
       "value": ""
     }]
+  }, {
+    "id": "10d8ac5c-dd09-4ce9-ad28-48471ba55c44",
+    "name": "9 - Consulta gráfico",
+    "commands": [{
+      "id": "efe5f06c-38e9-47f2-9a65-153598d5caeb",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8080/NewStation/admin/admin.xhtml",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "334206d0-202f-41d5-84fe-1b1cf464a642",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "870x685",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "342c89aa-4b2f-4a55-ab66-bbfceed88977",
+      "comment": "",
+      "command": "click",
+      "target": "id=j_idt5:min",
+      "targets": [
+        ["id=j_idt5:min", "id"],
+        ["name=j_idt5:min", "name"],
+        ["css=#j_idt5\\3Amin", "css:finder"],
+        ["xpath=//input[@id='j_idt5:min']", "xpath:attributes"],
+        ["xpath=//form[@id='j_idt5']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "293e9835-ebab-46a8-94df-f0749d6db54f",
+      "comment": "",
+      "command": "type",
+      "target": "id=j_idt5:min",
+      "targets": [
+        ["id=j_idt5:min", "id"],
+        ["name=j_idt5:min", "name"],
+        ["css=#j_idt5\\3Amin", "css:finder"],
+        ["xpath=//input[@id='j_idt5:min']", "xpath:attributes"],
+        ["xpath=//form[@id='j_idt5']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "01/04/2021"
+    }, {
+      "id": "59affaf5-d5fc-4c89-80f5-99b3426a34f9",
+      "comment": "",
+      "command": "type",
+      "target": "id=j_idt5:max",
+      "targets": [
+        ["id=j_idt5:max", "id"],
+        ["name=j_idt5:max", "name"],
+        ["css=#j_idt5\\3Amax", "css:finder"],
+        ["xpath=//input[@id='j_idt5:max']", "xpath:attributes"],
+        ["xpath=//form[@id='j_idt5']/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "31/04/2021"
+    }, {
+      "id": "71feb763-47df-4e46-a527-e504aa33fd14",
+      "comment": "",
+      "command": "click",
+      "target": "name=j_idt5:j_idt8",
+      "targets": [
+        ["name=j_idt5:j_idt8", "name"],
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//input[@name='j_idt5:j_idt8']", "xpath:attributes"],
+        ["xpath=//form[@id='j_idt5']/input[4]", "xpath:idRelative"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": ""
+    }]
   }],
   "suites": [{
     "id": "690b7ac5-9784-423f-88b3-ca93010fdad6",
