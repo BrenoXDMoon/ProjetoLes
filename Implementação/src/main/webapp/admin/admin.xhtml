@@ -28,23 +28,23 @@
 	                <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/admin/cliente/lista.xhtml"><button class="btn btn-info">Lista de Clientes</button></a>
           	    <h:form enctype="multipart/form-data">
 			  		<h:outputLabel value="Primeira data" />
-						<h:inputText value='#{grafico.min}'
+						<h:inputText value='#{Grafico.min}'
 						id="min" styleClass="form-control" />
 					<h:outputLabel value="Segunda data" />
-						<h:inputText value='#{grafico.max}'
+						<h:inputText value='#{Grafico.max}'
 						id="max" styleClass="form-control" />
 					<h:commandButton value='Filtrar'
-						action='#{grafico.setData}'
+						action='#{Grafico.setData}'
 						styleClass="btn btn-primary my-3" />
 				</h:form>
-					<p:chart type="bar" model="#{grafico.model}" 
+					<p:chart type="bar" model="#{Grafico.model}" 
 					style="height:500px"/>
 	            </div>
 	        </div>
 	      
 			
 
-<!--           <p:chart type="line" model="#{grafico.areaModel}" -->
+<!--           <p:chart type="line" model="#{Grafico.areaModel}" -->
 <!--                 style="height:300px" /> -->
 
 		
