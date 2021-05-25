@@ -21,7 +21,7 @@ import org.primefaces.model.chart.LineChartModel;
 import br.com.newstation.daos.PedidoDao;
 
 @Model
-public class Grafico implements Serializable {
+public class grafico implements Serializable {
 
 	@Inject
 	private PedidoDao dao;
@@ -29,21 +29,14 @@ public class Grafico implements Serializable {
 	private Map<String, Integer> cartas = new HashMap<String, Integer>();
 	private static final long serialVersionUID = 1L;
 	private LineChartModel areaModel;
-	private HorizontalBarChartModel model;
+	private HorizontalBarChartModel model = new HorizontalBarChartModel();
 	private static String min = null;
 	private static String max = null;
 
 	@PostConstruct
 	public void init() {
+		System.out.println("---------------------Criando Gráfico");
 		createAreaModel();
-	}
-
-	public LineChartModel getAreaModel() {
-		return areaModel;
-	}
-
-	public HorizontalBarChartModel getModel() {
-		return model;
 	}
 
 	private void createAreaModel() {
@@ -123,24 +116,24 @@ public class Grafico implements Serializable {
 //		areaModel = new LineChartModel();
 //		ChartSeries vendas = new ChartSeries();
 
-		model = new HorizontalBarChartModel();
+		setModel(new HorizontalBarChartModel());
 		ChartSeries uriage = new ChartSeries();
 
 		uriage.setLabel("cartas");
-		model.addSeries(uriage);
-		model.setStacked(false);
-		model.setShadow(false);
+		getModel().addSeries(uriage);
+		getModel().setStacked(false);
+		getModel().setShadow(false);
 //		model.setSeriesColors("2FF8AB");
-		model.setTitle("Vendas de Cartas");
+		getModel().setTitle("Vendas de Cartas");
 		
 
 		for (Map.Entry<String, Integer> pair : cartas.entrySet()) {
 			uriage.set(pair.getKey(), pair.getValue());
 		}
-		Axis xAxis = model.getAxis(AxisType.X);
+		Axis xAxis = getModel().getAxis(AxisType.X);
 		xAxis.setLabel("Quantidade");
 		xAxis.setMin(0);
-		Axis yAxis = model.getAxis(AxisType.Y);
+		Axis yAxis = getModel().getAxis(AxisType.Y);
 //        
 //		for (Map.Entry<String, Integer> pair : cartas.entrySet()) {
 //			vendas.set(pair.getKey(), pair.getValue());
@@ -174,7 +167,7 @@ public class Grafico implements Serializable {
 	}
 
 	public void setMin(String min) {
-		Grafico.min = min;
+		grafico.min = min;
 	}
 
 	public String getMax() {
@@ -182,7 +175,19 @@ public class Grafico implements Serializable {
 	}
 
 	public void setMax(String max) {
-		Grafico.max = max;
+		grafico.max = max;
+	}
+	
+	public LineChartModel getAreaModel() {
+		return areaModel;
+	}
+
+	public HorizontalBarChartModel getModel() {
+		return model;
+	}
+
+	public void setModel(HorizontalBarChartModel model) {
+		this.model = model;
 	}
 
 }
