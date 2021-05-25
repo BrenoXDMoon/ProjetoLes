@@ -49,29 +49,17 @@ public class CheckoutBean {
 
 	@Inject
 	CartaPedidoDao cpedDao;
-
 	BigDecimal valorCartaoUm;
-
 	BigDecimal valorCartaoDois;
-
 	private Cupom cupom = new Cupom();
-
 	private List<Cupom> cupons = new ArrayList<Cupom>();
-
 	private Endereco end = new Endereco();
-
 	private Integer idCli;
-
 	private Set<Endereco> enderecos = new HashSet<Endereco>();
-
 	private Set<CartaoCredito> cartoes = new HashSet<CartaoCredito>();
-
 	private Cliente cliente = new Cliente();
-
 	private CartaoCredito cd = new CartaoCredito();
-
 	private Pedido pedido = new Pedido();
-
 	private double somaCupom = 0.0;
 
 	@Transactional
