@@ -1,6 +1,5 @@
 package br.com.newstation.beans;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +9,6 @@ import javax.inject.Inject;
 import br.com.newstation.daos.CartaDao;
 import br.com.newstation.dominio.Carta;
 import br.com.newstation.dominio.RARIDADE;
-import br.com.newstation.dominio.grafico;
 
 @Model
 public class HomeBean {
