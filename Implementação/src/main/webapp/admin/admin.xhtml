@@ -33,10 +33,16 @@
 					<h:outputLabel value="Segunda data" />
 						<h:inputText value='#{grafico.max}'
 						id="max" styleClass="form-control" />
+
+					<h:selectOneMenu value="#{grafico.filtro}" class="form-select"> 
+						<f:selectItem itemValue = "cartas" itemLabel = "Carta" /> 
+           				<f:selectItem itemValue = "raridade" itemLabel = "Raridade" /> 
+					</h:selectOneMenu>
 					<h:commandButton value='Filtrar'
 						action='#{grafico.setData}'
-						styleClass="btn btn-primary my-3" />
+						styleClass="btn btn-primary my-3" /> 
 				</h:form>
+					
 
 					 <p:chart type="line" model="#{grafico.areaModel}"
                 	style="height:500px" />

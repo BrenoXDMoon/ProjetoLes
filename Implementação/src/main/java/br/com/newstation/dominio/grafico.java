@@ -33,6 +33,7 @@ public class grafico implements Serializable {
 //	private HorizontalBarChartModel model;
 	private static String min = null;
 	private static String max = null;
+	private static String filtro = "cartas";
 
 	@PostConstruct
 	public void init() {
@@ -50,12 +51,24 @@ public class grafico implements Serializable {
 	private void createAreaModel() {
 		cartas = new HashMap<String, Integer>();
 		List<Pedido> itens = dao.grafico();
-		for (Pedido i : itens) {
-			for (CartaPedido c : i.getItens()) {
-				if (cartas.containsKey(c.getCarta().getNome()))
-					cartas.put(c.getCarta().getNome(), (c.getQuantidade() + cartas.get(c.getCarta().getNome())));
-				else
-					cartas.put(c.getCarta().getNome(), c.getQuantidade());
+		if (filtro.equals("cartas")) {
+			for (Pedido i : itens) {
+				for (CartaPedido c : i.getItens()) {
+					if (cartas.containsKey(c.getCarta().getNome()))
+						cartas.put(c.getCarta().getNome(), (c.getQuantidade() + cartas.get(c.getCarta().getNome())));
+					else
+						cartas.put(c.getCarta().getNome(), c.getQuantidade());
+				}
+			}
+		} else {
+			for (Pedido i : itens) {
+				for (CartaPedido c : i.getItens()) {
+					if (cartas.containsKey(c.getCarta().getRaridade().toString()))
+						cartas.put(c.getCarta().getRaridade().toString(),
+								(c.getQuantidade() + cartas.get(c.getCarta().getRaridade().toString())));
+					else
+						cartas.put(c.getCarta().getRaridade().toString(), c.getQuantidade());
+				}
 			}
 		}
 		geraGrafico();
@@ -64,6 +77,7 @@ public class grafico implements Serializable {
 	public void createAreaModel_2() throws ParseException {
 		List<Pedido> itens = dao.grafico();
 		cartas = new HashMap<String, Integer>();
+
 		if (max.isEmpty() || max == null) {
 			max = "31/12/2100";
 		}
@@ -78,14 +92,23 @@ public class grafico implements Serializable {
 		for (Pedido i : itens) {
 			Date cal = i.getDataAtualizacao().getTime();
 			if (data_min.before(cal) && data_max.after(cal)) {
-				for (CartaPedido c : i.getItens()) {
-					if (cartas.containsKey(c.getCarta().getNome()))
-						cartas.put(c.getCarta().getNome(), (c.getQuantidade() + cartas.get(c.getCarta().getNome())));
-					else
-						cartas.put(c.getCarta().getNome(), c.getQuantidade());
+				if (filtro.equals("cartas")) {
+					for (CartaPedido c : i.getItens()) {
+						if (cartas.containsKey(c.getCarta().getNome()))
+							cartas.put(c.getCarta().getNome(),
+									(c.getQuantidade() + cartas.get(c.getCarta().getNome())));
+						else
+							cartas.put(c.getCarta().getNome(), c.getQuantidade());
 
-//				System.out.println( c.getCarta().getNome());
-//				System.out.println(c.getQuantidade());
+					}
+				} else {
+					for (CartaPedido c : i.getItens()) {
+						if (cartas.containsKey(c.getCarta().getRaridade().toString()))
+							cartas.put(c.getCarta().getRaridade().toString(),
+									(c.getQuantidade() + cartas.get(c.getCarta().getRaridade().toString())));
+						else
+							cartas.put(c.getCarta().getRaridade().toString(), c.getQuantidade());
+					}
 				}
 			}
 		}
@@ -120,14 +143,13 @@ public class grafico implements Serializable {
 
 	private void geraGrafico() {
 		areaModel = new LineChartModel();
-		LineChartSeries  vendas = new LineChartSeries();
+		LineChartSeries vendas = new LineChartSeries();
 		vendas.setFill(true);
 		vendas.setFillAlpha(0.5);
-		
+
 //		model = new HorizontalBarChartModel();
 //		ChartSeries uriage = new ChartSeries();
 
-		
 //		uriage.setLabel("cartas");
 //		model.addSeries(uriage);
 //		model.setStacked(false);
@@ -149,20 +171,24 @@ public class grafico implements Serializable {
 		}
 
 		areaModel.addSeries(vendas);
-		System.out.println("max- "+max);
-		if ((max == null) && (min == null)){
-			areaModel.setTitle("Quantidade Cartas Geral");
+//		System.out.println("max- " + max);
+		if ((max == null || max == "31/12/2100") && (min == null || min == "31/12/1980")) {
+			if(filtro.equals("raridade"))
+				areaModel.setTitle("Quantidade Geral de Cartas por Raridade");
+			else
+				areaModel.setTitle("Quantidade Cartas Geral");
+		} else {
+			if(filtro.equals("raridade"))
+				areaModel.setTitle("Quantidade Geral de Cartas por Raridade entre: " + min + " e " + max );
+			else
+				areaModel.setTitle("Quantidade cartas vendidas entre: " + min + " e " + max);
 		}
-		else {
-			areaModel.setTitle("Quantidade cartas vendidas entre: "+min+" e "+max);
-			max = null;
-			min = null;
-		}
-
+		max = null;
+		min = null;
 		areaModel.setStacked(true);
 		areaModel.setShowPointLabels(true);
 
-		Axis xAxis = new CategoryAxis("Cartas");
+		Axis xAxis = new CategoryAxis(filtro);
 		xAxis.setTickAngle(15);
 		areaModel.getAxes().put(AxisType.X, xAxis);
 		Axis yAxis = areaModel.getAxis(AxisType.Y);
@@ -174,6 +200,7 @@ public class grafico implements Serializable {
 			createAreaModel_2();
 		} catch (ParseException e) {
 			e.printStackTrace();
+			System.out.println("erro");
 		}
 	}
 
@@ -191,6 +218,14 @@ public class grafico implements Serializable {
 
 	public void setMax(String max) {
 		grafico.max = max;
+	}
+
+	public String getFiltro() {
+		return filtro;
+	}
+
+	public void setFiltro(String filtro) {
+		grafico.filtro = filtro;
 	}
 
 }

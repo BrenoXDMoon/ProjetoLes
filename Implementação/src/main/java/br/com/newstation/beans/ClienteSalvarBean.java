@@ -64,6 +64,7 @@ public class ClienteSalvarBean {
 			if(resultado.getMensagem() == null) {
 				
 				LoginBean lb = new LoginBean();
+				lb.setStatusSessao(true);
 				lb.setId(this.cliente.getId());
 				
 				return "/cliente/perfil?faces-redirect=true";
