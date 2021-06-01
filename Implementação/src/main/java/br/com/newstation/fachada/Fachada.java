@@ -95,7 +95,6 @@ public class Fachada implements IFachada {
         executarRegras(entidade, rnsEntidade);
 
         if (sb.length() == 0) {
-        	System.out.println("Fala fi");
             IDao dao = daos.get(nmClasse);
             dao.editar(entidade);
             resultado.add(entidade);

@@ -22,7 +22,7 @@ import org.primefaces.model.chart.LineChartSeries;
 import br.com.newstation.daos.PedidoDao;
 
 @Model
-public class Grafico implements Serializable {
+public class grafico implements Serializable {
 
 	@Inject
 	private PedidoDao dao;
@@ -182,7 +182,7 @@ public class Grafico implements Serializable {
 	}
 
 	public void setMin(String min) {
-		Grafico.min = min;
+		grafico.min = min;
 	}
 
 	public String getMax() {
@@ -190,7 +190,7 @@ public class Grafico implements Serializable {
 	}
 
 	public void setMax(String max) {
-		Grafico.max = max;
+		grafico.max = max;
 	}
 
 }

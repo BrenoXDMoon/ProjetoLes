@@ -30,14 +30,17 @@ public class ValidaCPF implements IStrategy {
 			}
 		}
 		
-//		System.out.println(cpfValido(doc.getCodigo()));
 		
-		if(cpfValido(doc.getCodigo())) {
+		if(isCPF) {
+			if(cpfValido(doc.getCodigo())) {
+				return null;
+			}else
+			{
+				return "CPF INVÁLIDO";
+			}			
+		}else {
+			System.out.println("- NEM ERA CPF, RELAXA VAGABOUNDS");
 			return null;
-		}else
-		{
-//			System.out.println("CPF INVÁLIDO");
-			return "CPF INVÁLIDO";
 		}
 	}
 	

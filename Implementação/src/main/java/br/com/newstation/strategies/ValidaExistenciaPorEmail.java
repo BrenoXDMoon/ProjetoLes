@@ -3,8 +3,8 @@ package br.com.newstation.strategies;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import br.com.newstation.beans.ClienteListarBean;
 import br.com.newstation.beans.ClienteSalvarBean;
+import br.com.newstation.daos.ClienteDao;
 import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.EntidadeDominio;
 
@@ -16,11 +16,11 @@ public class ValidaExistenciaPorEmail implements IStrategy {
 	@Override
 	public String processar(EntidadeDominio ent) {
 		
-		ClienteListarBean clb = new ClienteListarBean();
+		ClienteDao dao = new ClienteDao();
 		ClienteSalvarBean csb = new ClienteSalvarBean();
 		Cliente cliente = (Cliente) ent;
 		
-		for(Cliente cli: clb.getClientes()) {
+		for(Cliente cli: dao.listarSemCao()) {
 			if(cliente.getEmail().equals(cli.getEmail())) {
 				csb.setEmailError(true);
 				System.out.println("Email já Cadastrado");
