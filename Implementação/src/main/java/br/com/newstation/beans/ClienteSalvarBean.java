@@ -69,6 +69,7 @@ public class ClienteSalvarBean {
 				
 				return "/cliente/perfil?faces-redirect=true";
 			}else {
+//				System.out.println(resultado.getMensagem());
 				return "/cliente/form?faces-redirect=true";
 			}
 			
