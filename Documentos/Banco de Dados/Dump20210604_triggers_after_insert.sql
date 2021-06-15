@@ -976,7 +976,7 @@ DROP TABLE IF EXISTS `endereco_log`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `endereco_log` (
-  `Id` int(11) NOT NULL,
+  `Id` int(11) DEFAULT NULL,
   `bairro` varchar(255) DEFAULT NULL,
   `cep` varchar(255) DEFAULT NULL,
   `cidade` varchar(255) DEFAULT NULL,
