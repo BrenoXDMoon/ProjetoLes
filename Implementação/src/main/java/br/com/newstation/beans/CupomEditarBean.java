@@ -21,6 +21,7 @@ public class CupomEditarBean {
 	@Transactional
 	public String editar() {
 		cupom.setId(id);
+		cupom.setAtivo(true);
 		dao.editar(cupom);
 		return "/admin/cupom/lista?faces-redirect=true";
 	}
