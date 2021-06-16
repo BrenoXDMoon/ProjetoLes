@@ -25,7 +25,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Pedido extends EntidadeDominio{
+public class Pedido{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
