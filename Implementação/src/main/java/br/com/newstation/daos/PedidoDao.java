@@ -57,10 +57,10 @@ public class PedidoDao {
 	}
 	
 	public List<Pedido> grafico() {
-		String jpql = "select p from Pedido p order by p.dataAtualizacao desc";
-//		String jpql = select c.nome, sum(cp.quantidade) as valorCusto from Carta c 
-//		join  CartaPedido cp on c.id = cp.carta_id 
-//		join Pedido on Carta
+		String jpql = "select p from Pedido p order by p.dataAtualizacao asc";
+//		String jpql = select c.nome, sum(cp.quantidade) as valorCusto from carta c 
+//		join  cartapedido cp on c.id = cp.carta_id 
+//		join pedido on carta
 //		group by c.nome 
 //		order by valorCusto desc ;
 //		

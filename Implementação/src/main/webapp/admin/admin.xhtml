@@ -26,6 +26,8 @@
 	                <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/admin/cartas/lista.xhtml"><button class="btn btn-info">Lista de Cartas</button></a>
 	                <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/admin/pedido/lista.xhtml"><button class="btn btn-info">Lista de Pedidos</button></a>
 	                <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/admin/cliente/lista.xhtml"><button class="btn btn-info">Lista de Clientes</button></a>
+	                <div class="col-3">
+	                
           	    <h:form enctype="multipart/form-data">
 			  		<h:outputLabel value="Primeira data" />
 						<h:inputText value='#{grafico.min}'
@@ -40,17 +42,47 @@
 					</h:selectOneMenu>
 					<h:commandButton value='Filtrar'
 						action='#{grafico.setData}'
-						styleClass="btn btn-primary my-3" /> 
+						styleClass="btn btn-primary my-3 ml-3" /> 
 				</h:form>
-					
-
-					 <p:chart type="line" model="#{grafico.areaModel}"
-                	style="height:500px" />
+				</div>
+					<div>
+						<canvas id="myChart" style = "width:500px height:500px"></canvas>
+					</div>
+<!-- 					 <p:chart type="line" model="#{grafico.areaModel}" -->
+<!--                 	style="height:500px" /> -->
 					
 	            </div>
+	            
 	        </div>
 	      
 		
 	    </section>
+	   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+	    <script>
+	    const c = #{grafico.json};
+	    const teste = {
+	    		datas:['January','February','March','April','May','June'],
+		    	cartas:[{label: 'My First dataset', data: [0, 10, 5, 2, 20, 30, 45]},
+			    	{label: 'My Second dataset',data: [02, 14, 55, 22, 30, 70, 15]},
+			    	{label: 'My Third dataset',data: [10, 14, 35, 12, 40, 66, 25]}]
+	    }
+	    
+	    const labels = teste["datas"];
+	    	const data = {
+	    	  labels: labels,
+	    	  datasets: teste["cartas"],
+	    	  
+	    	};
+    	const config = {
+    			  type: 'line',
+    			  data,
+    			  options: {borderColor:'#4BC0C0'}
+    			};
+    	var myChart = new Chart(
+    		    document.getElementById('myChart'),
+    		    config
+    		  );
+		</script>
 	</body>
 </html>
