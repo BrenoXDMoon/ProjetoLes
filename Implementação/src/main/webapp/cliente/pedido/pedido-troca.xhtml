@@ -62,9 +62,11 @@
 				<br />
 				<h:form enctype="multipart/form-data">
 					<div class="form-group">
+						<h6>ID de Pedido:</h6>
 						<h:outputLabel value="#{pedidoBean.ped.uuid}" />
 					</div>
-					<div class="col-7"> 	
+					<div class="col-7">
+						<h6>Produtos do Pedido:</h6>
 						<ui:repeat value="#{pedidoBean.ped.itens.toArray()}" var="itens">
 							<img class="carta-imagem"
 									src="#{request.contextPath}/file/#{itens.carta.imagemPath}"

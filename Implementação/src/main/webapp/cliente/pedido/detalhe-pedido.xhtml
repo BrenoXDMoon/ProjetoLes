@@ -56,21 +56,23 @@
 	<section class="container perfil mt-5">
 		<div class="row">
 			<div class="col-10">
-				<h2 class='text-white'>Detalhe do Pedidos</h2>
-				<br />
-				<br />
+				<h2 class='text-white mb-5'>Detalhe do Pedidos</h2>
 				<h:form enctype="multipart/form-data">
 					<div class="form-group">
-						<h:outputLabel value="#{pedidoBean.ped.uuid}" />
+						<h6>ID de Pedido:</h6>
+						<h:outputLabel value="#{pedidoBean.ped.uuid}"/>
 					</div>
 					<div class="form-group">
-						<h:outputLabel value="#{pedidoBean.ped.endereco.logradouro}" />
+						<h6>Logradouro de Entrega:</h6>
+						<h:outputLabel value="#{pedidoBean.ped.endereco.logradouro}"/>
 					</div>
 					<div class="form-group">
-						<h:outputLabel value="#{pedidoBean.ped.total}" />
+						<h6>Total do Pedido:</h6>
+						<h:outputLabel value="R$#{pedidoBean.ped.total}"/>
 					</div>
 					<div class="form-group">
-						<h:outputLabel value="#{pedidoBean.ped.statusPedido}" /><br />
+						<h6>Status do Pedido:</h6>
+						<h:outputLabel value="#{pedidoBean.ped.statusPedido}" /><br/>
 					</div>
 					<div>
 						<h:link value = "Fazer Pedido de troca"  outcome = "pedido-troca?id=#{pedidoBean.id}" styleClass="btn btn-danger mt-3" rendered="#{pedidoBean.entregue()}"/>

@@ -30,7 +30,6 @@ public class grafico implements Serializable {
 	private Map<String, Integer> cartas = new HashMap<String, Integer>();
 	private static final long serialVersionUID = 1L;
 	private LineChartModel areaModel;
-//	private HorizontalBarChartModel model;
 	private static String min = null;
 	private static String max = null;
 	private static String filtro = "cartas";
@@ -113,31 +112,7 @@ public class grafico implements Serializable {
 			}
 		}
 		geraGrafico();
-//		List<Carta> cartas = dao.grafico();
-//		for(Carta c: cartas) {
-//			System.out.println(c.getValorCusto());
-//		}
-//		int antes = dao.grafico().get(0).getDataAtualizacao().getTime().getMonth();
-//		double soma[] = new double[12];
-//		int data[] = new int[12];
-//		int index = 0;
-//		for (Carta p : dao.grafico()) {
-//
-//			if (p.getDataAtualizacao().getTime().getMonth() != antes) {
-//				index++;
-//				data[index] = p.getDataAtualizacao().getTime().getMonth();
-//				soma[index] += p.getTotal().doubleValue();
-//
-//				antes = p.getDataAtualizacao().getTime().getMonth();
-//
-//			} else {
-//				data[index] = p.getDataAtualizacao().getTime().getMonth();
-//				soma[index] += p.getTotal().doubleValue();
-//			}
-//		}
-//		for (int j = 0; j <= index; j++) {
-//		vendas.set((data[j] + 1), soma[j]);
-//	}
+
 
 	}
 
@@ -146,32 +121,13 @@ public class grafico implements Serializable {
 		LineChartSeries vendas = new LineChartSeries();
 		vendas.setFill(true);
 		vendas.setFillAlpha(0.5);
-
-//		model = new HorizontalBarChartModel();
-//		ChartSeries uriage = new ChartSeries();
-
-//		uriage.setLabel("cartas");
-//		model.addSeries(uriage);
-//		model.setStacked(false);
-//		model.setShadow(false);
-//		model.setSeriesColors("2FF8AB");
-//		model.setTitle("Vendas de Cartas");
-//		
-//
-//		for (Map.Entry<String, Integer> pair : cartas.entrySet()) {
-//			uriage.set(pair.getKey(), pair.getValue());
-//		}
-//		Axis xAxis = model.getAxis(AxisType.X);
-//		xAxis.setLabel("Quantidade");
-//		xAxis.setMin(0);
-//		Axis yAxis = model.getAxis(AxisType.Y);
 //        
 		for (Map.Entry<String, Integer> pair : cartas.entrySet()) {
 			vendas.set(pair.getKey(), pair.getValue());
 		}
 
 		areaModel.addSeries(vendas);
-//		System.out.println("max- " + max);
+
 		if ((max == null || max == "31/12/2100") && (min == null || min == "31/12/1980")) {
 			if(filtro.equals("raridade"))
 				areaModel.setTitle("Quantidade Geral de Cartas por Raridade");

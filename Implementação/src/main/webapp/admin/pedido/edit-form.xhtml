@@ -88,14 +88,15 @@
 	<section class="container perfil mt-5">
 		<div class="row">
 			<div class="col-10">
-				<h2 class='text-white'>Perdidos</h2>
+				<h2 class='text-white'>Pedido</h2>
 				<br />
 				<h:form enctype="multipart/form-data">
 					<div class="form-group">
+						<h:outputLabel value="ID de Pedido:" class="d-block bolder"/>
 						<h:outputLabel value="#{pedidoBean.ped.uuid}" />
 					</div>
 					<div class="form-group">
-						<h:outputLabel value="Status" /><br />
+						<h:outputLabel value="Status de Pedido: " class="d-block bolder"/>
 						<h:selectOneMenu value="#{pedidoBean.ped.statusPedido}" styleClass="form-select">
 		                       	<f:selectItems value="#{pedidoBean.statusPedido}" var="tipo" itemLabel="#{tipo}" itemValue="#{tipo}"/>
 		                      </h:selectOneMenu>	

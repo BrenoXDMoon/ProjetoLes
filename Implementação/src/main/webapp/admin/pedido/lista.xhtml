@@ -9,10 +9,8 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link href="#{request.contextPath}/assets/css/style.css"
-	rel="stylesheet" />
-<link href="#{request.contextPath}/assets/css/bootstrap.min.css"
-	rel="stylesheet" />
+<link href="#{request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet" />
+<link href="#{request.contextPath}/assets/css/style.css" rel="stylesheet" />
 
 <title>Lista Pedidos</title>
 </head>
@@ -84,16 +82,16 @@
 		<h2 class='text-white'>Pedidos</h2>
 				<h:dataTable var="ped" value="#{pedidoBean.todosPedidos()}" class="table table-bordered table-striped table-hover">
 					<h:column>
-						<f:facet name="header">codigo</f:facet>
-						<a class="decoration-none font-weight-bold text-white" href="#{request.contextPath}/admin/pedido/edit-form.xhtml?id=#{ped.id}">#{ped.uuid}</a>       
+						<f:facet name="header">Código</f:facet>
+						<a class="decoration-none font-weight-bold text-blue" href="#{request.contextPath}/admin/pedido/edit-form.xhtml?id=#{ped.id}">#{ped.uuid}</a>       
 					</h:column>
 					
 					<h:column>
-						<f:facet name="header">total</f:facet>
+						<f:facet name="header">Total</f:facet>
 						#{ped.total}
 					</h:column>
 					<h:column>
-						<f:facet name="header">teste</f:facet>
+						<f:facet name="header">Nome do Produto</f:facet>
 						<ui:repeat value="#{ped.itens.toArray()}" var="itens">
 							#{itens.carta.nome} - 
 						</ui:repeat>
@@ -103,7 +101,7 @@
 						<ui:repeat value="#{ped.itens.toArray()}" var="itens">
 							<img src="#{request.contextPath}/file/#{itens.carta.imagemPath}"
 							width="40%" alt="#{itens.carta.nome}" />
-							#{itens.quantidade}
+							Quantidade: #{itens.quantidade}
 						</ui:repeat>
 					</h:column>
 					<h:column>

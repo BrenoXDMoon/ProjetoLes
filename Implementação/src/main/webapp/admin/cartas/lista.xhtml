@@ -87,7 +87,7 @@
 					class="table table-bordered table-striped">
 					<h:column >
 						<f:facet name="header">Nome</f:facet>
-						<a class="decoration-none font-weight-bold text-white" href="#{request.contextPath}/admin/cartas/alterar.xhtml?id=#{carta.id}">#{carta.nome}</a>        	 
+						<a class="decoration-none font-weight-bold text-blue" href="#{request.contextPath}/admin/cartas/alterar.xhtml?id=#{carta.id}">#{carta.nome}</a>        	 
 			        </h:column>
 					<h:column>
 						<f:facet name="header">Descrição</f:facet>
@@ -119,7 +119,7 @@
 			        </h:column>
 					<h:column styleClass="w-min">
 						<f:facet name="header">Imagem</f:facet>
-						<img src="#{request.contextPath}/file/#{carta.imagemPath}"
+						<img src="#{request.contextPath}/file/#{carta.imagemPath}" class="img-tabela"
 							width="40%" alt="#{carta.nome}" />
 					</h:column>
 					<h:column>
