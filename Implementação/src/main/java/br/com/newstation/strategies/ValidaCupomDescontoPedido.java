@@ -6,7 +6,7 @@ public class ValidaCupomDescontoPedido implements IStrategy {
 
 	@Override
 	public String processar(EntidadeDominio ent) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

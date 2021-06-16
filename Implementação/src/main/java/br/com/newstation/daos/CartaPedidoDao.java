@@ -15,9 +15,6 @@ public class CartaPedidoDao implements IDao{
 	@Override
 	public Resultado salvar(EntidadeDominio ent) {
 		CartaPedido carta = (CartaPedido) ent;
-		System.out.println(carta.getCarta().getNome());
-		System.out.println(carta.getQuantidade());
-		System.out.println(carta.getId());
 		manager.persist(carta);
 		return null;
 	}

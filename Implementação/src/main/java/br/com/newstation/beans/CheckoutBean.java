@@ -80,7 +80,7 @@ public class CheckoutBean {
 		pedido.setDataAtualizacao(cale);
 		pedido.setCliente(dao.visualizar(cli));
 		
-		ValidaCupomDescontoPedido validaDesconto = new ValidaCupomDescontoPedido()
+		ValidaCupomDescontoPedido validaDesconto = new ValidaCupomDescontoPedido();
 		if (validaDesconto.processar(cupom).equals(null)) {
 			pedido.setCupomDesconto(cDao.buscarById(cupom.getId()));
 

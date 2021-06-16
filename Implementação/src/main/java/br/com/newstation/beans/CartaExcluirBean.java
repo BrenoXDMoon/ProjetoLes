@@ -15,7 +15,7 @@ public class CartaExcluirBean{
 
 	@Transactional
 	public String delete(Carta carta) {
-		dao.delete(carta);
+		dao.excluir(carta);
 		return "/admin/cartas/lista?faces-redirect=true";
 	}
 	

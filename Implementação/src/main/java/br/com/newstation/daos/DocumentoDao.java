@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import br.com.newstation.dominio.Cliente;
+import br.com.newstation.dominio.ClienteAux;
 import br.com.newstation.dominio.Documento;
 import br.com.newstation.dominio.EntidadeDominio;
 import br.com.newstation.dominio.Resultado;
@@ -17,16 +18,38 @@ public class DocumentoDao implements IDao{
 	@PersistenceContext
 	private EntityManager manager;
 	
-	public void salvar(Cliente cliente, Documento doc) {
+	@Override
+	public Resultado salvar(EntidadeDominio ent) {
 		
-		manager.persist(doc);
-		manager.merge(cliente);
+		ClienteAux cliAux = (ClienteAux)ent;
+		
+		Documento doc = (Documento) cliAux.getEnt();
+		manager.persist(doc );
+		manager.merge(cliAux.getCliente());
+		return null;
 	}
-
-	public void editar(Documento doc) {
+	
+	@Override
+	public Resultado editar(EntidadeDominio ent) {
+		
+		Documento doc = (Documento) ent;
 		
 		manager.merge(manager.contains(doc) ? doc : manager.merge(doc));
 		
+		return null;
+	}
+	
+	@Override
+	public Resultado excluir(EntidadeDominio ent) {
+
+		ClienteAux cliAux = (ClienteAux)ent;
+		
+		Cliente cli = cliAux.getCliente();
+		Documento doc = (Documento) cliAux.getEnt();
+		
+		manager.merge(manager.contains(cli) ? cli : manager.merge(cli));
+		manager.remove(manager.contains(doc) ? doc : manager.merge(doc));
+		return null;
 	}
 
 	public void excluir(Cliente cli,Documento doc) {
@@ -35,14 +58,19 @@ public class DocumentoDao implements IDao{
 		manager.remove(manager.contains(doc) ? doc : manager.merge(doc));
 		
 	}
-
-	public List<Documento> listar(Cliente cli) {
+	
+	@Override
+	public Resultado listar(EntidadeDominio ent) {
 		
+		Resultado res = new Resultado();
 		String jpql = "select d from Documento d where d.ativo = true";
+		List<Documento> lista = manager.createQuery(jpql, Documento.class).getResultList();
 		
-		return manager.createQuery(jpql, Documento.class).getResultList();
+		for(Documento d : lista) {
+			res.add(d);
+		}
+		return res;
 	}
-
 	
 	public Documento busca(int id) {
 		String jpql_e = "select c from Documento c where c.id = :id";
@@ -51,32 +79,9 @@ public class DocumentoDao implements IDao{
 				.getSingleResult();
 	}
 
-	@Override
-	@Deprecated
-	public Resultado salvar(EntidadeDominio ent) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
-	@Override
-	@Deprecated
-	public Resultado editar(EntidadeDominio ent) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
-	@Override
-	@Deprecated
-	public Resultado excluir(EntidadeDominio ent) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	@Deprecated
-	public Resultado listar(EntidadeDominio ent) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 }

@@ -7,30 +7,16 @@ import javax.persistence.PersistenceContext;
 
 import br.com.newstation.dominio.CartaoCredito;
 import br.com.newstation.dominio.Cliente;
+import br.com.newstation.dominio.ClienteAux;
+import br.com.newstation.dominio.EntidadeDominio;
+import br.com.newstation.dominio.Resultado;
 
-public class CartaoCreditoDao{
+public class CartaoCreditoDao implements IDao{
 
 	@PersistenceContext
 	private EntityManager manager;
+
 	
-	public void salvar(Cliente cliente, CartaoCredito card) {
-		
-		manager.persist(card);
-		manager.merge(cliente);
-	}
-
-	public void editar(CartaoCredito card) {
-		
-		manager.merge(manager.contains(card) ? card : manager.merge(card));
-		
-	}
-
-	public void excluir(Cliente cli,CartaoCredito card) {
-		
-		manager.merge(manager.contains(cli) ? cli : manager.merge(cli));
-		manager.remove(manager.contains(card) ? card : manager.merge(card));
-		
-	}
 
 	public List<CartaoCredito> listar(Cliente cli) {
 		
@@ -45,6 +31,48 @@ public class CartaoCreditoDao{
 		return  manager.createQuery(jpql_e, CartaoCredito.class)
 				.setParameter("id", id)
 				.getSingleResult();
+	}
+
+	@Override
+	public Resultado salvar(EntidadeDominio ent) {
+		
+		ClienteAux cliAux = (ClienteAux) ent;
+		CartaoCredito card = (CartaoCredito) cliAux.getEnt();
+		manager.persist(card);
+		manager.merge(cliAux.getCliente());
+		
+		return null;
+	}
+
+	@Override
+	public Resultado editar(EntidadeDominio ent) {
+		
+		CartaoCredito card = (CartaoCredito) ent;
+		manager.merge(manager.contains(card) ? card : manager.merge(card));
+		return null;
+	}
+	
+	@Override
+	public Resultado excluir(EntidadeDominio ent) {
+		
+		ClienteAux cliAux = (ClienteAux) ent;
+		CartaoCredito card = (CartaoCredito) cliAux.getEnt();
+		Cliente cli = cliAux.getCliente();
+		manager.merge(manager.contains(cli ) ? cli : manager.merge(cli));
+		manager.remove(manager.contains(card) ? card : manager.merge(card));
+		return null;
+	}
+
+	@Override
+	public Resultado listar(EntidadeDominio ent) {
+		String jpql = "select d from CartaoCredito d where d.ativo = true";
+		List<CartaoCredito> lista = manager.createQuery(jpql, CartaoCredito.class).getResultList();
+		Resultado resultado=new Resultado();
+		
+		for (CartaoCredito c : lista) {
+			resultado.add(c);
+		}
+		return resultado;
 	}
 
 }

@@ -15,6 +15,7 @@ import br.com.newstation.daos.PedidoDao;
 import br.com.newstation.dominio.BANDEIRA;
 import br.com.newstation.dominio.CartaoCredito;
 import br.com.newstation.dominio.Cliente;
+import br.com.newstation.dominio.ClienteAux;
 import br.com.newstation.dominio.Documento;
 import br.com.newstation.dominio.Endereco;
 import br.com.newstation.dominio.TIPO_CLIENTE;
@@ -110,10 +111,15 @@ public class LoginBean {
 
 		try {
 
+			ClienteAux aux = new ClienteAux();
 			cliente.setId(getId());
 			cliente = dao.visualizar(cliente);
 			cliente.getCartoes().add(card);
-			cardDao.salvar(cliente, card);
+			
+			aux.setCliente(cliente);
+			aux.setEnt(card);
+			
+			cardDao.salvar(aux);
 
 			return "/checkout/checkout?faces-redirect=true";
 		} catch (Exception e) {
@@ -129,10 +135,14 @@ public class LoginBean {
 
 		try {
 
+			ClienteAux aux = new ClienteAux();
 			cliente.setId(getId());
 			cliente = dao.visualizar(cliente);
 			cliente.getCartoes().add(card);
-			cardDao.salvar(cliente, card);
+			aux.setCliente(cliente);
+			aux.setEnt(card);
+			
+			cardDao.salvar(aux);
 
 			return "/cliente/perfil?faces-redirect=true";
 		} catch (Exception e) {
@@ -166,18 +176,23 @@ public class LoginBean {
  
 		try {
 
+			ClienteAux aux = new ClienteAux();
 			cliente.setId(getId());
 			cliente = dao.visualizar(cliente);
 
 			if (doc.getTipoDocumento().equals(TIPO_DOCUMENTO.CPF) && valcpf.cpfValido(doc.getCodigo())) {
 				cliente.getDocumentos().add(doc);
-				docDao.salvar(cliente, doc);
+				aux.setCliente(cliente);
+				aux.setEnt(card);
+				docDao.salvar(aux);
 
 				return "/cliente/perfil?faces-redirect=true";
 			} else if (doc.getTipoDocumento().equals(TIPO_DOCUMENTO.RG)) {
 
 				cliente.getDocumentos().add(doc);
-				docDao.salvar(cliente, doc);
+				aux.setCliente(cliente);
+				aux.setEnt(card);
+				docDao.salvar(aux);
 				return "/cliente/perfil?faces-redirect=true";
 
 			} else {
@@ -282,6 +297,7 @@ public class LoginBean {
 	@Transactional
 	public String excluirCartao(CartaoCredito card) {
 
+		ClienteAux aux = new ClienteAux();
 		cliente.setId(getId());
 		cliente = dao.visualizar(cliente);
 
@@ -291,7 +307,10 @@ public class LoginBean {
 				break;
 			}
 		}
-		cardDao.excluir(cliente, card);
+		
+		aux.setCliente(cliente);
+		aux.setEnt(card);
+		cardDao.excluir(aux);
 
 		return "/cliente/perfil?faces-redirect=true";
 	}

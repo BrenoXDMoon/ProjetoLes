@@ -15,8 +15,10 @@ import javax.transaction.Transactional;
 import br.com.newstation.daos.CartaDao;
 import br.com.newstation.daos.EstoqueDao;
 import br.com.newstation.dominio.Carta;
+import br.com.newstation.dominio.EntidadeDominio;
 import br.com.newstation.dominio.Estoque;
 import br.com.newstation.dominio.RARIDADE;
+import br.com.newstation.dominio.Resultado;
 import br.com.newstation.infra.FileSaver;
 
 @Model
@@ -62,9 +64,22 @@ public class CartaSalvarBean {
 
 	@Transactional
 	public List<Carta> listar() {
-		this.cartas = dao.listar();
+		
+		this.cartas = converteLista(dao.listar(this.carta));
 
 		return cartas;
+	}
+
+	private List<Carta> converteLista(Resultado listar) {
+		
+		List<Carta> lista = new ArrayList<Carta>();
+		
+		for(EntidadeDominio e : listar.getEntidades()) {
+			Carta c = (Carta) e;
+			lista.add(c);
+		}
+		
+		return lista;
 	}
 
 	public void carregaDetalhe() {
