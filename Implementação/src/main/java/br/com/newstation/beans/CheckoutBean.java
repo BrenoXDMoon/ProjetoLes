@@ -28,6 +28,7 @@ import br.com.newstation.dominio.Endereco;
 import br.com.newstation.dominio.Pedido;
 import br.com.newstation.dominio.STATUS_PEDIDO;
 import br.com.newstation.strategies.GeraCupomTroca;
+import br.com.newstation.strategies.ValidaCupomDescontoPedido;
 
 @Model
 public class CheckoutBean {
@@ -78,7 +79,9 @@ public class CheckoutBean {
 
 		pedido.setDataAtualizacao(cale);
 		pedido.setCliente(dao.visualizar(cli));
-		if (cupom != null) {
+		
+		ValidaCupomDescontoPedido validaDesconto = new ValidaCupomDescontoPedido()
+		if (validaDesconto.processar(cupom).equals(null)) {
 			pedido.setCupomDesconto(cDao.buscarById(cupom.getId()));
 
 		} else {
