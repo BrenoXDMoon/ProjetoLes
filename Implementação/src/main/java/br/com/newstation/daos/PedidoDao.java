@@ -1,5 +1,6 @@
 package br.com.newstation.daos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateful;
@@ -8,10 +9,14 @@ import javax.persistence.PersistenceContext;
 
 import br.com.newstation.dominio.Carta;
 import br.com.newstation.dominio.CartaoPedido;
+import br.com.newstation.dominio.Cliente;
+import br.com.newstation.dominio.EntidadeDominio;
+import br.com.newstation.dominio.Estoque;
 import br.com.newstation.dominio.Pedido;
+import br.com.newstation.dominio.Resultado;
 
 @Stateful
-public class PedidoDao {
+public class PedidoDao implements IDao {
 
 	@PersistenceContext	
 	private EntityManager manager;
@@ -20,19 +25,48 @@ public class PedidoDao {
 		manager.persist(cp);
 	}
 	
-	public void salvar(Pedido ped) {
+	@Override
+	public Resultado salvar(EntidadeDominio ent) {
+		Pedido ped = (Pedido) ent;
+		Resultado res = new Resultado();
 		manager.merge(ped.getCliente());
 		manager.persist(ped);
+		return res;
 	}
 
-	public void editar(Pedido ped) {
-		System.out.println("dbg ped:"+ ped.getCupomTroca());
+	@Override
+	public Resultado editar(EntidadeDominio ent) {
+		Resultado res = new Resultado();
+		Pedido ped = (Pedido) ent;
 		manager.merge(ped);
+		return res;
 	}
 
-	public void excluir(Pedido ped) {
-		manager.merge(ped);
+	@Override
+	public Resultado excluir(EntidadeDominio ent) {
+		Resultado res = new Resultado();
+		Pedido ped = (Pedido) ent;
+		manager.remove(ped);
+		return res;
+	}
+	
+	@Override
+	public Resultado listar(EntidadeDominio ent) {
+		Cliente cliente = (Cliente) ent;
+		int id = cliente.getId();
+		String jpql = "select p from Pedido p where p.cliente.id = :id"; 
 		
+		Resultado resultado = new Resultado();
+
+		List<Pedido> lista = new ArrayList<Pedido>();
+		
+		lista = manager.createQuery(jpql, Pedido.class).setParameter("id", id).getResultList();
+		
+		for (Pedido p : lista) {
+			resultado.add(p);
+		}
+		
+		return resultado;
 	}
 	
 	public List<Pedido> listarTudo() {
@@ -66,5 +100,7 @@ public class PedidoDao {
 //		
 		return manager.createQuery(jpql, Pedido.class).getResultList();
 	}
+
+	
 	
 }
