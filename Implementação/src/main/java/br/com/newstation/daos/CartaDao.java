@@ -7,31 +7,50 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import br.com.newstation.dominio.Carta;
+import br.com.newstation.dominio.EntidadeDominio;
+import br.com.newstation.dominio.Resultado;
 @Stateful
-public class CartaDao{ 
+public class CartaDao implements IDao{ 
 
 	@PersistenceContext
 	private EntityManager manager;
 
-	public void salvar(Carta carta) {
+	@Override
+	public Resultado salvar(EntidadeDominio ent) {
+		Carta carta = (Carta) ent;
+		Resultado res = new Resultado();
 		manager.persist(carta);
-	}
-
-	public void editar(Carta carta) {
-		manager.merge(carta);
+		return res;
 	}
 	
-	public void delete(Carta carta) {
+	@Override
+	public Resultado editar(EntidadeDominio ent) {
+		Resultado res = new Resultado();
+		Carta carta = (Carta) ent;
+		manager.merge(carta);
+		return res;
+	}
+	
+	@Override
+	public Resultado excluir(EntidadeDominio ent) {
+		Resultado res = new Resultado();
+		Carta carta = (Carta) ent;
 		Carta cartaDelete = manager.getReference(Carta.class, carta.getId());
 		cartaDelete.setAtivo(false);
+		return res;
 	}
 	
-	
-	public List<Carta> listar() {
+	@Override
+	public Resultado listar(EntidadeDominio ent) {
 		
 		String jpql = "select C from Carta C join fetch C.estoque where C.ativo=true and C.estoque.quantidade > 0";
-				
-		return manager.createQuery(jpql, Carta.class).getResultList();
+		Resultado res = new Resultado();
+		
+		for(Carta c : manager.createQuery(jpql, Carta.class).getResultList()) {
+			res.add(c);
+		}
+		
+		return res;
 	}
 	
 	public List<Carta> listarAll() {

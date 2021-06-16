@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 
 import br.com.newstation.daos.CupomDao;
 import br.com.newstation.dominio.Cupom;
+import br.com.newstation.dominio.EntidadeDominio;
 
 @Model
 public class CupomListarBean {
@@ -20,7 +21,8 @@ public class CupomListarBean {
 	
 	@Transactional
 	public List<Cupom> listar() {
-		cupons = dao.listar();
+		
+		cupons = converteListaEntidade(dao.listar(new EntidadeDominio()).getEntidades());
 		return cupons;
 	}
 	
@@ -47,5 +49,15 @@ public class CupomListarBean {
 
 	public void setCupons(List<Cupom> cupons) {
 		this.cupons = cupons;
+	}
+	
+	private List<Cupom>converteListaEntidade(List<EntidadeDominio> lst){
+		List<Cupom> cupons = new ArrayList<Cupom>();
+		for(EntidadeDominio e : lst) {
+			Cupom c = (Cupom) e;
+			cupons.add(c);
+		}
+		
+		return cupons;
 	}
 }

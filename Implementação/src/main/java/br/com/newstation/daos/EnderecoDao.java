@@ -8,18 +8,18 @@ import javax.persistence.PersistenceContext;
 
 import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.Endereco;
+import br.com.newstation.dominio.EntidadeDominio;
+import br.com.newstation.dominio.Resultado;
 
 @Stateful
-public class EnderecoDao{
+public class EnderecoDao implements IDao{
 
-	@PersistenceContext	
+	@PersistenceContext
 	private EntityManager manager;
 	
 	public void salvar(Cliente cli, Endereco end) {
-		
 		manager.persist(end);
 		manager.merge(cli);
-		
 	}
 
 	public void editar(Endereco end) {
@@ -48,6 +48,30 @@ public class EnderecoDao{
 		return  manager.createQuery(jpql_e, Endereco.class)
 				.setParameter("id", id)
 				.getSingleResult();
+	}
+
+	@Override
+	public Resultado salvar(EntidadeDominio ent) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Resultado editar(EntidadeDominio ent) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Resultado excluir(EntidadeDominio ent) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Resultado listar(EntidadeDominio ent) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

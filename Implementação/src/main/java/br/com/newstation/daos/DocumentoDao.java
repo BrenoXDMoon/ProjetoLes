@@ -8,9 +8,11 @@ import javax.persistence.PersistenceContext;
 
 import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.Documento;
+import br.com.newstation.dominio.EntidadeDominio;
+import br.com.newstation.dominio.Resultado;
 
 @Stateful
-public class DocumentoDao{
+public class DocumentoDao implements IDao{
 
 	@PersistenceContext
 	private EntityManager manager;
@@ -47,6 +49,34 @@ public class DocumentoDao{
 		return  manager.createQuery(jpql_e, Documento.class)
 				.setParameter("id", id)
 				.getSingleResult();
+	}
+
+	@Override
+	@Deprecated
+	public Resultado salvar(EntidadeDominio ent) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	@Deprecated
+	public Resultado editar(EntidadeDominio ent) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	@Deprecated
+	public Resultado excluir(EntidadeDominio ent) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	@Deprecated
+	public Resultado listar(EntidadeDominio ent) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 import org.wildfly.common.annotation.Nullable;
 
 @Entity
-public class Cupom {
+public class Cupom extends EntidadeDominio{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
