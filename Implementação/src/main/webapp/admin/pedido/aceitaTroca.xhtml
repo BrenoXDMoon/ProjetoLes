@@ -92,6 +92,7 @@
 				<br />
 				<h:form enctype="multipart/form-data">
 					<div class="form-group">
+						<h:outputLabel value="ID de Pedido:"/>
 						<h:outputLabel value="#{pedidoBean.ped.uuid}" />
 					</div>
 					<ui:repeat value="#{pedidoBean.carped}" var="itens">
