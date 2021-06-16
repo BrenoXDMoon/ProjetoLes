@@ -1,4 +1,4 @@
-package br.com.newstation.daos;
+	package br.com.newstation.daos;
 
 import java.util.List;
 

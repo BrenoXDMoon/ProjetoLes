@@ -85,7 +85,4 @@ public class CupomDao implements IDao{
 		
 		return manager.createQuery(jpql, Cupom.class).setParameter("id", id).getSingleResult();
 	}
-
-	
-	
 }

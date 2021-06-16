@@ -60,20 +60,6 @@ public class CartaDao implements IDao{
 		return manager.createQuery(jpql, Carta.class).getResultList();
 	}
 
-	public List<Carta> demaisCartas() {
-		String jpql = "select c from Carta c order by c.id desc";
-		return manager.createQuery(jpql, Carta.class)
-				.setFirstResult(5)
-				.getResultList();
-	}
-
-	public List<Carta> ultimosLancamentos() {
-		String jpql = "select c from Carta c order by c.id desc";
-		return manager.createQuery(jpql, Carta.class)
-				.setMaxResults(5)
-				.getResultList();
-	}
-
 	public Carta buscarPorId(Integer id) {
 		String jpql = "select c from Carta c where c.id = :id";
 		return manager.createQuery(jpql, Carta.class)
