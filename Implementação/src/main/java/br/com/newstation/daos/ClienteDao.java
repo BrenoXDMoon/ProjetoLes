@@ -181,18 +181,4 @@ public class ClienteDao extends AbstractDao {
 		factory.close();
 		return lista;
 	}
-	
-	
-	public Cliente salvar(Cliente cli, String str) {
-		
-		
-		mngr.persist(cli);
-		mngr.persist(cli.getCartoes().toArray()[0]);
-		mngr.persist(cli.getEnderecos().toArray()[0]);
-		mngr.persist(cli.getDocumentos().toArray()[0]);
-		
-		System.out.println(str);
-		
-		return cli;
-	}
 }
