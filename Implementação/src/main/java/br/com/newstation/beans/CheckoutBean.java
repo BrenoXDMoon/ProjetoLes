@@ -29,6 +29,7 @@ import br.com.newstation.dominio.Pedido;
 import br.com.newstation.dominio.STATUS_PEDIDO;
 import br.com.newstation.strategies.GeraCupomTroca;
 import br.com.newstation.strategies.ValidaCupomDescontoPedido;
+import br.com.newstation.strategies.ValidaValoresPagamento;
 
 @Model
 public class CheckoutBean {
@@ -62,14 +63,23 @@ public class CheckoutBean {
 	private CartaoCredito cd = new CartaoCredito();
 	private Pedido pedido = new Pedido();
 	private double somaCupom = 0.0;
+	ValidaValoresPagamento validapagamento = new ValidaValoresPagamento();
+	ValidaCupomDescontoPedido validaDesconto = new ValidaCupomDescontoPedido();
+
 
 	@Transactional
 	public String salvar(Integer id, BigDecimal total, Carrinho carrinho) {
-		if(!cupons.isEmpty()) {
-			System.out.println("tem ou nao cupom: "+!cupons.isEmpty());
-		
+		if (!cupons.isEmpty()) {
+			System.out.println("tem ou nao cupom: " + !cupons.isEmpty());
 		}
-		
+
+		if (validapagamento.total(cupons, total, valorCartaoUm, cupom))
+			return "/checkout/checkout?faces-redirect=true";
+
+		if (validapagamento.valorCataoUm(valorCartaoUm, valorCartaoDois, total)) {
+			return "/checkout/checkout?faces-redirect=true";
+		}
+
 		Cliente cli = new Cliente();
 		Calendar cale = Calendar.getInstance();
 		BigDecimal valor = new BigDecimal(Math.abs(total.doubleValue() - somaCupom));
@@ -79,8 +89,7 @@ public class CheckoutBean {
 
 		pedido.setDataAtualizacao(cale);
 		pedido.setCliente(dao.visualizar(cli));
-		
-		ValidaCupomDescontoPedido validaDesconto = new ValidaCupomDescontoPedido();
+
 		if (validaDesconto.processar(cupom).equals(null)) {
 			pedido.setCupomDesconto(cDao.buscarById(cupom.getId()));
 
@@ -93,9 +102,9 @@ public class CheckoutBean {
 		} else {
 			pedido.setCupomTroca(null);
 		}
-		
-		if(somaCupom > total.doubleValue()) {
-			System.out.println(GeraCupomTroca.gerarCupom(valor, pedido.getCliente()).getClass());
+
+		if (somaCupom > total.doubleValue()) {
+//			System.out.println(GeraCupomTroca.gerarCupom(valor, pedido.getCliente()).getClass());
 			cDao.salvar(GeraCupomTroca.gerarCupom(valor, pedido.getCliente()));
 		}
 		pedido.setEndereco(eDao.busca(end.getId()));
@@ -122,10 +131,9 @@ public class CheckoutBean {
 		pedido.setStatusPedido(STATUS_PEDIDO.Pendente);
 		pDao.salvar(pedido);
 		carrinho.resete();
-		
-		
-		if(!cupons.isEmpty()) {
-			for(Cupom cupom: pedido.getCupomTroca()) {
+
+		if (!cupons.isEmpty()) {
+			for (Cupom cupom : pedido.getCupomTroca()) {
 				cDao.excluir(cupom);
 			}
 		}
@@ -134,6 +142,14 @@ public class CheckoutBean {
 
 	@Transactional
 	public String salvarDoisCartoes(Integer id, BigDecimal total, Carrinho carrinho) {
+		
+		if (validapagamento.total(cupons, total, valorCartaoUm, cupom))
+			return "/checkout/checkout?faces-redirect=true";
+
+		if (validapagamento.valorCataoUm(valorCartaoUm, valorCartaoDois, total)) {
+			return "/checkout/checkout?faces-redirect=true";
+		}
+		
 		Cliente cli = new Cliente();
 		Calendar cale = Calendar.getInstance();
 
@@ -143,10 +159,10 @@ public class CheckoutBean {
 		pedido.setDataAtualizacao(cale);
 		pedido.setCliente(dao.visualizar(cli));
 
-		if (cupom != null) {
-			pedido.setCupomDesconto(cDao.buscarById(cupom.getId()));
-		} else {
+		if (validaDesconto.processar(cupom).equals(null)) {
 			cupom = null;
+		} else {
+			pedido.setCupomDesconto(cDao.buscarById(cupom.getId()));
 		}
 
 		if (!cupons.isEmpty()) {
@@ -190,8 +206,8 @@ public class CheckoutBean {
 		pDao.salvar(pedido);
 
 		carrinho.resete();
-		if(!cupons.isEmpty()) {
-			for(Cupom cupom: pedido.getCupomTroca()) {
+		if (!cupons.isEmpty()) {
+			for (Cupom cupom : pedido.getCupomTroca()) {
 				cDao.excluir(cupom);
 			}
 		}
