@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.servlet.http.Part;
 import javax.transaction.Transactional;
 
+import br.com.newstation.command.EditarCommand;
 import br.com.newstation.daos.CartaDao;
 import br.com.newstation.daos.EstoqueDao;
 import br.com.newstation.dominio.Carta;
@@ -39,7 +40,9 @@ public class CartaEditarBean {
 		}
 
 		carta.setAtivo(true);
-		dao.editar(carta);
+		EditarCommand cmd = new EditarCommand();
+		cmd.executar(carta);
+//		dao.editar(carta);
 
 		return "/admin/cartas/lista?faces-redirect=true";
 	}

@@ -1,29 +1,58 @@
 package br.com.newstation.daos;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import br.com.newstation.dominio.CartaPedido;
 import br.com.newstation.dominio.EntidadeDominio;
 import br.com.newstation.dominio.Resultado;
 
-public class CartaPedidoDao implements IDao{
-
-	@PersistenceContext
-	private EntityManager manager;
+public class CartaPedidoDao extends AbstractDao {
 
 	@Override
 	public Resultado salvar(EntidadeDominio ent) {
+
+		abrirConexao();
+
+		Resultado resultado = new Resultado();
 		CartaPedido carta = (CartaPedido) ent;
-		manager.persist(carta);
-		return null;
+
+		try {
+			manager.getTransaction().begin();
+			manager.persist(carta);
+
+			manager.flush();
+			manager.getTransaction().commit();
+			fechaConexao();
+
+			resultado.setEntidade(carta);
+
+			return resultado;
+
+		} catch (Exception e) {
+
+			System.out.println("- ERRO AO SALVAR!!!");
+
+			return null;
+		}
+
 	}
 
 	@Override
 	public Resultado editar(EntidadeDominio ent) {
+		abrirConexao();
+
+		Resultado resultado = new Resultado();
 		CartaPedido carta = (CartaPedido) ent;
+
+		manager.getTransaction().begin();
+
 		manager.merge(carta);
-		return null;
+
+		manager.getTransaction().commit();
+		fechaConexao();
+
+		resultado.setEntidade(carta);
+
+		return resultado;
+
 	}
 
 	@Override
