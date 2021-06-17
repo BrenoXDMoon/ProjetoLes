@@ -35,7 +35,7 @@
 </head>
 <body class="bg-dark text-white">
 	<header>
-		<nav class="container d-flex flex-column flex-md-row justify-content-between">
+		<nav class="container d-flex flex-column flex-md-row justify-content-between mt-2">
 			 <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
             <c:if test="#{!loginBean.statusSessao}">
 	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
@@ -57,14 +57,17 @@
 	<div class="container">
 		<div class="row">
 			<div class='col-6 '>
-
-				<p>#{cartaDetalheBean.carta.nome}</p>
-
-				<p>#{cartaDetalheBean.carta.raridade} -
+				<h:outputLabel  value="Nome:"/><br/>
+				<p class="f-16">#{cartaDetalheBean.carta.nome}</p>
+				
+				<h:outputLabel  value="Raridade - Pacote:"/><br/>
+				<p class="f-16">#{cartaDetalheBean.carta.raridade} -
 					#{cartaDetalheBean.carta.descricao}</p>
 
-				<p>R$ #{cartaDetalheBean.carta.preco}</p>
-
+				<h:outputLabel  value="Preço:"/><br/>
+				<p class="f-16">R$ #{cartaDetalheBean.carta.preco}</p>
+				
+				<a href="#{request.contextPath}/index.xhtml" class="btn position-absolute bt-0" style="background-color: cornsilk;">Retornar</a>
 			</div>
 		
 			<div class='col-6'>
@@ -84,7 +87,7 @@
 					</form>
 			</div>
 				
-		<a href="#{request.contextPath}/index.xhtml" class="btn" style="background-color: cornsilk;">Retornar</a>
+		
 		</div>
 
 	</div>

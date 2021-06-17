@@ -87,7 +87,7 @@
 			
 	<section class="container perfil mt-5">
 		<div class="row">
-			<div class="col-10">
+			<div class="col-6">
 				<h2 class='text-white'>Pedido</h2>
 				<br />
 				<h:form enctype="multipart/form-data">
@@ -101,8 +101,29 @@
 		                       	<f:selectItems value="#{pedidoBean.statusPedido}" var="tipo" itemLabel="#{tipo}" itemValue="#{tipo}"/>
 		                      </h:selectOneMenu>	
 					</div>
-					
+					<div class="form-group">
+						<h:outputLabel value="Total:" class="d-block bolder"/>
+						<h:outputLabel value="#{pedidoBean.ped.total}" />
+					</div>
 					<h:commandButton value='Atualizar' action='#{pedidoBean.editar}' styleClass="btn btn-primary my-3" />
+				</h:form>
+			</div>
+			<div class="col-6">
+				<h2 class='text-white'>Cliente</h2>
+				<br />
+				<h:form enctype="multipart/form-data">
+					<div class="form-group">
+						<h:outputLabel value="Nome do CLiente:" class="d-block bolder"/>
+						<h:outputLabel value="#{pedidoBean.ped.cliente.nome}" />
+					</div>
+					<div class="form-group">
+					<h:outputLabel value="Endereço do Cliente:" class="d-block bolder"/>
+						<h:outputLabel value="#{pedidoBean.ped.endereco.cidade.estado.estado}
+						 #{pedidoBean.ped.endereco.cidade.cidade}
+						 #{pedidoBean.ped.endereco.logradouro} 
+						 " /> 
+					</div>
+					
 				</h:form>
 			</div>
 		</div>
