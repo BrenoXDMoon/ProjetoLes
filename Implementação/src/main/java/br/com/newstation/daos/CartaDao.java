@@ -89,7 +89,7 @@ public class CartaDao extends AbstractDao {
 	public Resultado listar(EntidadeDominio ent) {
 		abrirConexao();
 
-		String jpql = "select distinct(c) from Carta c ";
+		String jpql = "select distinct(c) from Carta c";
 
 		Resultado resultado = new Resultado();
 
