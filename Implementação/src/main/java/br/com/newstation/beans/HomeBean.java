@@ -8,7 +8,9 @@ import javax.inject.Inject;
 
 import br.com.newstation.daos.CartaDao;
 import br.com.newstation.dominio.Carta;
+import br.com.newstation.dominio.EntidadeDominio;
 import br.com.newstation.dominio.RARIDADE;
+import br.com.newstation.dominio.Resultado;
 
 @Model
 public class HomeBean {
@@ -22,7 +24,8 @@ public class HomeBean {
 
 	public List<Carta> getCartas() {
 		if (busca.equals(""))
-			this.cartas = dao.listar();
+			
+			this.cartas = converteLista(dao.listar(new EntidadeDominio()));
 		return cartas;
 	}
 
@@ -30,11 +33,22 @@ public class HomeBean {
 
 		this.cartas = dao.filtro(busca);
 		if (this.cartas == null)
-			this.cartas = dao.listar();
+			this.cartas = converteLista(dao.listar(new EntidadeDominio()));
 	}
 
 	public String getBusca() {
 		return busca;
+	}
+	
+	private List<Carta> converteLista(Resultado listar) {
+		
+		List<Carta> lista = new ArrayList<Carta>();
+		
+		for(EntidadeDominio e : listar.getEntidades()) {
+			Carta c = (Carta) e;
+		}
+		
+		return lista;
 	}
 
 	public void setBusca(String busca) {

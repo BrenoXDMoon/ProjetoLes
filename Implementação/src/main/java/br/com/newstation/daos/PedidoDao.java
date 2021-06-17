@@ -7,7 +7,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import br.com.newstation.dominio.CartaoPedido;
+import br.com.newstation.dominio.EntidadeDominio;
 import br.com.newstation.dominio.Pedido;
+import br.com.newstation.dominio.Resultado;
 
 @Stateful
 public class PedidoDao implements IDao{
@@ -64,6 +66,30 @@ public class PedidoDao implements IDao{
 //		order by valorCusto desc ;
 //		
 		return manager.createQuery(jpql, Pedido.class).getResultList();
+	}
+
+	@Override
+	public Resultado salvar(EntidadeDominio ent) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Resultado editar(EntidadeDominio ent) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Resultado excluir(EntidadeDominio ent) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Resultado listar(EntidadeDominio ent) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

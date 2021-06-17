@@ -10,7 +10,7 @@ import br.com.newstation.dominio.Carta;
 import br.com.newstation.dominio.EntidadeDominio;
 import br.com.newstation.dominio.Resultado;
 @Stateful
-public class CartaDao implements IDao{ 
+public class CartaDao extends AbstractDao{ 
 
 	@PersistenceContext
 	private EntityManager manager;
