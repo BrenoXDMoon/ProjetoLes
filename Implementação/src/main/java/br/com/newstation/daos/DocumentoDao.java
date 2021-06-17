@@ -13,7 +13,7 @@ import br.com.newstation.dominio.EntidadeDominio;
 import br.com.newstation.dominio.Resultado;
 
 @Stateful
-public class DocumentoDao implements IDao{
+public class DocumentoDao extends AbstractDao{
 
 	@PersistenceContext
 	private EntityManager manager;
