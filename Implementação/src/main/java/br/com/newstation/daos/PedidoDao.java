@@ -12,84 +12,111 @@ import br.com.newstation.dominio.Pedido;
 import br.com.newstation.dominio.Resultado;
 
 @Stateful
-public class PedidoDao implements IDao{
-
-	@PersistenceContext	
-	private EntityManager manager;
+public class PedidoDao extends AbstractDao{
 	
-	public void salvarCartao(CartaoPedido cp) {
-		manager.persist(cp);
-	}
-	
-	public void salvar(Pedido ped) {
-		manager.merge(ped.getCliente());
-		manager.persist(ped);
-	}
-
-	public void editar(Pedido ped) {
-		System.out.println("dbg ped:"+ ped.getCupomTroca());
-		manager.merge(ped);
-	}
-
-	public void excluir(Pedido ped) {
-		manager.merge(ped);
-		
-	}
-	
-	public List<Pedido> listarTudo() {
-		
-		String jpql = "select p from Pedido p";
-		
-		return manager.createQuery(jpql, Pedido.class).getResultList();
-	}
-
-	public List<Pedido> listar(int cli) {
-		
-		String jpql = "select p from Pedido p where p.cliente.id = :id";
-		
-		return manager.createQuery(jpql, Pedido.class).setParameter("id", cli).getResultList();
-	}
-	
-	public Pedido buscarPorId(int ped) {
-		
-		String jpql = "select p from Pedido p where p.id = :id";
-		
-		return manager.createQuery(jpql, Pedido.class).setParameter("id", ped).getSingleResult();
-	}
-	
-	public List<Pedido> grafico() {
-		String jpql = "select p from Pedido p order by p.dataAtualizacao desc";
-//		String jpql = select c.nome, sum(cp.quantidade) as valorCusto from Carta c 
-//		join  CartaPedido cp on c.id = cp.carta_id 
-//		join Pedido on Carta
-//		group by c.nome 
-//		order by valorCusto desc ;
-//		
-		return manager.createQuery(jpql, Pedido.class).getResultList();
-	}
-
 	@Override
 	public Resultado salvar(EntidadeDominio ent) {
-		// TODO Auto-generated method stub
-		return null;
+		abrirConexao();
+		Resultado resultado = new Resultado();
+		Pedido ped = (Pedido) ent;
+		manager.getTransaction().begin();
+		manager.merge(ped.getCliente());
+		manager.persist(ped);
+		manager.getTransaction().commit();
+		
+		fechaConexao();
+		return resultado;
 	}
 
 	@Override
 	public Resultado editar(EntidadeDominio ent) {
-		// TODO Auto-generated method stub
-		return null;
+
+		abrirConexao();
+		Resultado resultado = new Resultado();
+		Pedido ped = (Pedido) ent;
+		manager.getTransaction().begin();
+		manager.merge(ped);
+		manager.getTransaction().commit();
+		
+		fechaConexao();
+		
+		return resultado;
 	}
 
 	@Override
 	public Resultado excluir(EntidadeDominio ent) {
-		// TODO Auto-generated method stub
-		return null;
+		abrirConexao();
+		Resultado resultado = new Resultado();
+		Pedido ped = (Pedido) ent;
+		manager.getTransaction().begin();
+		manager.merge(ped);
+		manager.getTransaction().commit();
+		
+		fechaConexao();
+		
+		return resultado;
 	}
 
 	@Override
 	public Resultado listar(EntidadeDominio ent) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		abrirConexao();
+		Resultado resultado = new Resultado();
+		String jpql = "select p from Pedido p";
+		
+		manager.getTransaction().begin();
+		List<Pedido> lista = manager.createQuery(jpql, Pedido.class).getResultList();
+		manager.getTransaction().commit();
+		
+		fechaConexao();
+		for(Pedido p : lista) {
+			resultado.add(ent);
+		}
+	
+		return resultado;
 	}
 	
+	public void salvarCartao(CartaoPedido cp) {
+		
+		abrirConexao();
+		
+		manager.getTransaction().begin();
+		manager.persist(cp);
+		manager.getTransaction().commit();
+		fechaConexao();
+	}
+
+	public List<Pedido> listarByCliente(int cli) {
+		abrirConexao();
+		String jpql = "select p from Pedido p where p.cliente.id = :id";
+		manager.getTransaction().begin();
+		List<Pedido> lista = manager.createQuery(jpql, Pedido.class).setParameter("id", cli).getResultList();
+		manager.getTransaction().commit();
+		fechaConexao();
+		return lista;
+	}
+	
+	public Pedido buscarPorId(int ped) {
+		abrirConexao();
+		String jpql = "select p from Pedido p where p.id = :id";
+		
+		manager.getTransaction().begin();
+		Pedido pedido = manager.createQuery(jpql, Pedido.class).setParameter("id", ped).getSingleResult();
+		manager.getTransaction().commit();
+		
+		fechaConexao();
+		return pedido; 
+	}
+	
+	public List<Pedido> grafico() {
+		abrirConexao();
+		String jpql = "select p from Pedido p order by p.dataAtualizacao desc";
+		
+		manager.getTransaction().begin();
+		List<Pedido> lista = manager.createQuery(jpql, Pedido.class).getResultList();
+		manager.getTransaction().commit();
+		
+		fechaConexao();
+		return lista ;
+	}	
 }
