@@ -36,21 +36,20 @@ public class ClienteDao extends AbstractDao {
 			
 			manager.flush();
 			manager.getTransaction().commit();
-			manager.close();
-			factory.close();
+			fechaConexao();
 			
 			resultado.setEntidade(cliente);
-			
-			System.out.println("- CLIENTE SALVO COM SUCESSO!!!");
-			return resultado;
 			
 		}catch(Exception e) {
 			
 			System.out.println("- ERRO AO SALVAR!!!");
+			resultado.setMensagem("- ERRO AO SALVAR!!!");
 			
-			return null;
+		}finally {
+			fechaConexao();
 		}
 
+		return resultado;
 	}
 
 	@Override

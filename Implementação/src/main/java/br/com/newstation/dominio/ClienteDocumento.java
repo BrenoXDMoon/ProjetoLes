@@ -1,19 +1,20 @@
 package br.com.newstation.dominio;
 
-public class ClienteAux extends EntidadeDominio{
+public class ClienteDocumento extends EntidadeDominio{
 
 	private Cliente cliente;
-	private EntidadeDominio ent;
+	private Documento doc;
+	
 	public Cliente getCliente() {
 		return cliente;
 	}
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	public EntidadeDominio getEnt() {
-		return ent;
+	public Documento getDoc() {
+		return doc;
 	}
-	public void setEnt(EntidadeDominio ent) {
-		this.ent = ent;
+	public void setDoc(Documento doc) {
+		this.doc = doc;
 	}
 }
