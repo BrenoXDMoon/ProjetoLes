@@ -10,6 +10,7 @@ import br.com.newstation.daos.ClienteDao;
 import br.com.newstation.daos.DocumentoDao;
 import br.com.newstation.daos.EnderecoDao;
 import br.com.newstation.daos.IDao;
+import br.com.newstation.daos.PedidoDao;
 import br.com.newstation.dominio.CartaoCredito;
 import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.ClienteCartao;
@@ -18,6 +19,7 @@ import br.com.newstation.dominio.ClienteEndereco;
 import br.com.newstation.dominio.Documento;
 import br.com.newstation.dominio.Endereco;
 import br.com.newstation.dominio.EntidadeDominio;
+import br.com.newstation.dominio.Pedido;
 import br.com.newstation.dominio.Resultado;
 import br.com.newstation.strategies.IStrategy;
 import br.com.newstation.strategies.ValidaCPF;
@@ -45,6 +47,7 @@ public class Fachada implements IFachada {
         daos.put(Documento.class.getName(), new DocumentoDao());
         daos.put(Endereco.class.getName(), new EnderecoDao());
         daos.put(CartaoCredito.class.getName(),  new CartaoCreditoDao());
+        daos.put(Pedido.class.getName(),  new PedidoDao());
         
         regrasNegocio = new HashMap<String, Map<String, List<IStrategy>>>();
         

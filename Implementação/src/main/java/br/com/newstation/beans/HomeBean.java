@@ -45,7 +45,7 @@ public class HomeBean {
 		List<Carta> lista = new ArrayList<Carta>();
 		
 		for(EntidadeDominio e : listar.getEntidades()) {
-			Carta c = (Carta) e;
+			lista.add((Carta) e);
 		}
 		
 		return lista;

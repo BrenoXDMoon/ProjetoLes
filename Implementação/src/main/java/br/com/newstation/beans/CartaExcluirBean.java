@@ -3,7 +3,7 @@ package br.com.newstation.beans;
 import javax.enterprise.inject.Model;
 import javax.transaction.Transactional;
 
-import br.com.newstation.command.DeleteCommand;
+import br.com.newstation.command.ExcluirCommand;
 import br.com.newstation.daos.CartaDao;
 import br.com.newstation.dominio.Carta;
 
@@ -14,7 +14,7 @@ public class CartaExcluirBean{
 
 	@Transactional
 	public String delete(Carta carta) {
-		DeleteCommand cmd = new DeleteCommand();
+		ExcluirCommand cmd = new ExcluirCommand();
 		cmd.executar(carta).getEntidade();
 //		dao.excluir(carta);
 		return "/admin/cartas/lista?faces-redirect=true";

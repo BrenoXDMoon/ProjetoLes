@@ -70,7 +70,7 @@ public class PedidoDao extends AbstractDao{
 		
 		fechaConexao();
 		for(Pedido p : lista) {
-			resultado.add(ent);
+			resultado.add(p);
 		}
 	
 		return resultado;
