@@ -1,11 +1,6 @@
 package br.com.newstation.beans;
 
-import java.math.BigDecimal;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
