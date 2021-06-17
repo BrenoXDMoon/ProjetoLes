@@ -3,10 +3,14 @@ package br.com.newstation.dominio;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
@@ -15,9 +19,11 @@ import javax.inject.Inject;
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.CategoryAxis;
-import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.LineChartModel;
 import org.primefaces.model.chart.LineChartSeries;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import br.com.newstation.daos.PedidoDao;
 
@@ -27,128 +33,145 @@ public class grafico implements Serializable {
 	@Inject
 	private PedidoDao dao;
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-	private Map<String, Integer> cartas = new HashMap<String, Integer>();
 	private static final long serialVersionUID = 1L;
 	private LineChartModel areaModel;
 	private static String min = null;
 	private static String max = null;
 	private static String filtro = "cartas";
+	private LinkedHashSet<String> datas = new LinkedHashSet<String>();
+	private Set<String> nomes = new HashSet<String>();
+	private Map<String, List<Integer>> label = new HashMap<String, List<Integer>>();
+	private List<Integer> data = new ArrayList<Integer>();
+	GraficoItem gi = new GraficoItem();
 
 	@PostConstruct
 	public void init() {
 		createAreaModel();
 	}
 
-	public LineChartModel getAreaModel() {
-		return areaModel;
-	}
-
-//	public HorizontalBarChartModel getModel() {
-//		return model;
-//	}
-
 	private void createAreaModel() {
-		cartas = new HashMap<String, Integer>();
 		List<Pedido> itens = dao.grafico();
-		if (filtro.equals("cartas")) {
-			for (Pedido i : itens) {
-				for (CartaPedido c : i.getItens()) {
-					if (cartas.containsKey(c.getCarta().getNome()))
-						cartas.put(c.getCarta().getNome(), (c.getQuantidade() + cartas.get(c.getCarta().getNome())));
-					else
-						cartas.put(c.getCarta().getNome(), c.getQuantidade());
-				}
+
+		for (Pedido i : itens) {
+			datas.add(dateFormat.format(i.getDataAtualizacao().getTime()).toString());
+			for (CartaPedido c : i.getItens()) {
+				if (filtro.equals("cartas"))
+					nomes.add(c.getCarta().getNome());
+				else
+					nomes.add(c.getCarta().getRaridade().toString());
 			}
-		} else {
-			for (Pedido i : itens) {
-				for (CartaPedido c : i.getItens()) {
-					if (cartas.containsKey(c.getCarta().getRaridade().toString()))
-						cartas.put(c.getCarta().getRaridade().toString(),
-								(c.getQuantidade() + cartas.get(c.getCarta().getRaridade().toString())));
-					else
-						cartas.put(c.getCarta().getRaridade().toString(), c.getQuantidade());
+		}
+
+		for (int i = 0; i < datas.size(); i++) {
+			data.add(0);
+		}
+		for (String n : nomes) {
+			List<Integer> copy = new ArrayList<>(data);
+			label.put(n, copy);
+		}
+
+		for (int i = 0; i < datas.size(); i++) {
+			for (Pedido p : itens) {
+				String datas_texto = dateFormat.format(p.getDataAtualizacao().getTime()).toString();
+				if (datas.toArray()[i].equals(datas_texto)) {
+					for (CartaPedido c : p.getItens()) {
+						if (filtro.equals("cartas")) {
+							int prev = label.get(c.getCarta().getNome()).get(i);
+							int soma = prev + c.getQuantidade();
+							label.get(c.getCarta().getNome()).set(i, soma);
+							soma = 0;
+							prev = 0;
+						} else {
+							int prev = label.get(c.getCarta().getRaridade().toString()).get(i);
+							int soma = prev + c.getQuantidade();
+							label.get(c.getCarta().getRaridade().toString()).set(i, soma);
+							soma = 0;
+							prev = 0;
+						}
+
+					}
 				}
 			}
 		}
-		geraGrafico();
+		for (String s : nomes)
+//			System.out.println(label.get(s).size());
+			gi.setLabel(label);
+		gi.setDatas(datas);
+
 	}
 
 	public void createAreaModel_2() throws ParseException {
-		List<Pedido> itens = dao.grafico();
-		cartas = new HashMap<String, Integer>();
+		nomes = new HashSet<String>();
+		datas = new LinkedHashSet<String>();
+		label = new HashMap<String, List<Integer>>();
+		data = new ArrayList<Integer>();
 
+		List<Pedido> itens = dao.grafico();
 		if (max.isEmpty() || max == null) {
 			max = "31/12/2100";
 		}
 		if (min.isEmpty() || min == null) {
 			min = "31/12/1980";
 		}
+
 		Date data_min = dateFormat.parse(min);
 		Date data_max = dateFormat.parse(max);
-
-//		Date cal = itens.get(0).getDataAtualizacao().getTime();
 
 		for (Pedido i : itens) {
 			Date cal = i.getDataAtualizacao().getTime();
 			if (data_min.before(cal) && data_max.after(cal)) {
-				if (filtro.equals("cartas")) {
-					for (CartaPedido c : i.getItens()) {
-						if (cartas.containsKey(c.getCarta().getNome()))
-							cartas.put(c.getCarta().getNome(),
-									(c.getQuantidade() + cartas.get(c.getCarta().getNome())));
-						else
-							cartas.put(c.getCarta().getNome(), c.getQuantidade());
+				datas.add(dateFormat.format(i.getDataAtualizacao().getTime()).toString());
+				for (CartaPedido c : i.getItens()) {
+					if (filtro.equals("cartas"))
+						nomes.add(c.getCarta().getNome());
+					else
+						nomes.add(c.getCarta().getRaridade().toString());
+				}
+			}
+		}
 
-					}
-				} else {
-					for (CartaPedido c : i.getItens()) {
-						if (cartas.containsKey(c.getCarta().getRaridade().toString()))
-							cartas.put(c.getCarta().getRaridade().toString(),
-									(c.getQuantidade() + cartas.get(c.getCarta().getRaridade().toString())));
-						else
-							cartas.put(c.getCarta().getRaridade().toString(), c.getQuantidade());
+		for (int i = 0; i < datas.size(); i++) {
+			data.add(0);
+		}
+		for (String n : nomes) {
+			List<Integer> copy = new ArrayList<>(data);
+			label.put(n, copy);
+		}
+
+//		System.out.println(datas.size());
+
+		for (int i = 0; i < datas.size(); i++) {
+			for (Pedido p : itens) {
+				String datas_texto = dateFormat.format(p.getDataAtualizacao().getTime()).toString();
+				if (datas.toArray()[i].equals(datas_texto)) {
+					for (CartaPedido c : p.getItens()) {
+						if (filtro.equals("cartas")) {
+							int prev = label.get(c.getCarta().getNome()).get(i);
+							int soma = prev + c.getQuantidade();
+							label.get(c.getCarta().getNome()).set(i, soma);
+							soma = 0;
+							prev = 0;
+						} else {
+							int prev = label.get(c.getCarta().getRaridade().toString()).get(i);
+							int soma = prev + c.getQuantidade();
+							label.get(c.getCarta().getRaridade().toString()).set(i, soma);
+							soma = 0;
+							prev = 0;
+						}
+
 					}
 				}
 			}
 		}
-		geraGrafico();
+		for (String s : nomes)
+//			System.out.println(s + " " + label.get(s).size());
+			gi.setLabel(label);
+		gi.setDatas(datas);
+		if (max == "31/12/2100")
+			max = "";
+		if (min == "31/12/1980")
+			min = "";
 
-
-	}
-
-	private void geraGrafico() {
-		areaModel = new LineChartModel();
-		LineChartSeries vendas = new LineChartSeries();
-		vendas.setFill(true);
-		vendas.setFillAlpha(0.5);
-//        
-		for (Map.Entry<String, Integer> pair : cartas.entrySet()) {
-			vendas.set(pair.getKey(), pair.getValue());
-		}
-
-		areaModel.addSeries(vendas);
-
-		if ((max == null || max == "31/12/2100") && (min == null || min == "31/12/1980")) {
-			if(filtro.equals("raridade"))
-				areaModel.setTitle("Quantidade Geral de Cartas por Raridade");
-			else
-				areaModel.setTitle("Quantidade Cartas Geral");
-		} else {
-			if(filtro.equals("raridade"))
-				areaModel.setTitle("Quantidade Geral de Cartas por Raridade entre: " + min + " e " + max );
-			else
-				areaModel.setTitle("Quantidade cartas vendidas entre: " + min + " e " + max);
-		}
-		max = null;
-		min = null;
-		areaModel.setStacked(true);
-		areaModel.setShowPointLabels(true);
-
-		Axis xAxis = new CategoryAxis(filtro);
-		xAxis.setTickAngle(15);
-		areaModel.getAxes().put(AxisType.X, xAxis);
-		Axis yAxis = areaModel.getAxis(AxisType.Y);
-		yAxis.setLabel("Quantidade Total");
 	}
 
 	public void setData() {
@@ -158,6 +181,11 @@ public class grafico implements Serializable {
 			e.printStackTrace();
 			System.out.println("erro");
 		}
+	}
+
+	public String getJson() {
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		return gson.toJson(gi);
 	}
 
 	public String getMin() {

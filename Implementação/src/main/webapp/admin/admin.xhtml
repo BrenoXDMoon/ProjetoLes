@@ -48,8 +48,6 @@
 					<div>
 						<canvas id="myChart" style = "width:500px height:500px"></canvas>
 					</div>
-<!-- 					 <p:chart type="line" model="#{grafico.areaModel}" -->
-<!--                 	style="height:500px" /> -->
 					
 	            </div>
 	            
@@ -60,7 +58,8 @@
 	   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 	    <script>
-	    const c = #{grafico.json};
+		const c = #{grafico.json};
+		var lista = [];
 	    const teste = {
 	    		datas:['January','February','March','April','May','June'],
 		    	cartas:[{label: 'My First dataset', data: [0, 10, 5, 2, 20, 30, 45]},
@@ -68,10 +67,29 @@
 			    	{label: 'My Third dataset',data: [10, 14, 35, 12, 40, 66, 25]}]
 	    }
 	    
-	    const labels = teste["datas"];
+	    myFunction(Object.keys(c.label),Object.values(c.label));
+	    
+	    function myFunction(label, data) {
+	    	for (i = 0; i &lt; label.length; i++){
+	    		var cor = getRandomColor();
+	    		var cartas = {"label":label[i], "data":data[i], "backgroundColor":cor ,"borderColor":cor};
+	    		lista.push(cartas);
+	    	}
+	    }
+	    
+	    function getRandomColor() {
+            var letters = '0123456789ABCDEF'.split('');
+            var color = '#';
+            for (var i = 0; i &lt; 6; i++ ) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+	    
+	    const labels = c["datas"];
 	    	const data = {
 	    	  labels: labels,
-	    	  datasets: teste["cartas"],
+	    	  datasets: lista
 	    	  
 	    	};
     	const config = {
