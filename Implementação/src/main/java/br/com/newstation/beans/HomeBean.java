@@ -17,6 +17,7 @@ public class HomeBean {
 
 	@Inject
 	private CartaDao dao;
+	
 	private String busca = "";
 
 	private List<Carta> cartas = new ArrayList<>();
