@@ -6,12 +6,11 @@ import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import br.com.newstation.dominio.Carta;
 import br.com.newstation.dominio.CartaoPedido;
 import br.com.newstation.dominio.Pedido;
 
 @Stateful
-public class PedidoDao {
+public class PedidoDao implements IDao{
 
 	@PersistenceContext	
 	private EntityManager manager;
