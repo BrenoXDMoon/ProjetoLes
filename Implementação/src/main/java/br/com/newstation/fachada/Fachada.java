@@ -24,11 +24,8 @@ import br.com.newstation.dominio.Cupom;
 import br.com.newstation.dominio.Documento;
 import br.com.newstation.dominio.Endereco;
 import br.com.newstation.dominio.EntidadeDominio;
-<<<<<<< HEAD
 import br.com.newstation.dominio.Estoque;
-=======
 import br.com.newstation.dominio.Pedido;
->>>>>>> 23ba4c53790b08f91ea60ee74208dcdf9ad95aab
 import br.com.newstation.dominio.Resultado;
 import br.com.newstation.strategies.IStrategy;
 import br.com.newstation.strategies.ValidaCPF;
