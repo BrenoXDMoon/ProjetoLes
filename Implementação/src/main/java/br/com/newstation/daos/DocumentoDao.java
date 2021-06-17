@@ -21,7 +21,7 @@ public class DocumentoDao extends AbstractDao{
 		abrirConexao();
 		
 		ClienteDocumento cliAux = (ClienteDocumento)ent;
-		Documento doc = (Documento) cliAux.getEnt();
+		Documento doc = (Documento) cliAux.getDoc();
 		Resultado resultado = new Resultado();
 		
 		
@@ -60,15 +60,15 @@ public class DocumentoDao extends AbstractDao{
 		manager.merge(manager.contains(doc) ? doc : manager.merge(doc));
 		manager.flush();
 		manager.getTransaction().commit();
-		}catch(Exception e) {
+		
+		resultado.setEntidade(doc);
+		} catch(Exception e) {
 		
 		System.out.println("- ERRO AO SALVAR!!!");
-		resultado.setMensagem("- ERRO AO SALVAR!!!");
 		
 		}finally {
 			fechaConexao();
 		}
-	
 		return resultado;
 	}
 	
@@ -79,7 +79,7 @@ public class DocumentoDao extends AbstractDao{
 		
 		ClienteDocumento cliAux = (ClienteDocumento)ent;
 		Cliente cli = cliAux.getCliente();
-		Documento doc = (Documento) cliAux.getEnt();
+		Documento doc = (Documento) cliAux.getDoc();
 		
 		try {
 			manager.getTransaction().begin();
