@@ -9,6 +9,8 @@ import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
+import br.com.newstation.command.EditarCommand;
+import br.com.newstation.command.ListarCommand;
 import br.com.newstation.daos.CartaPedidoDao;
 import br.com.newstation.daos.CupomDao;
 import br.com.newstation.daos.EnderecoDao;
@@ -17,6 +19,7 @@ import br.com.newstation.daos.PedidoDao;
 import br.com.newstation.dominio.Carta;
 import br.com.newstation.dominio.CartaPedido;
 import br.com.newstation.dominio.Endereco;
+import br.com.newstation.dominio.EntidadeDominio;
 import br.com.newstation.dominio.Pedido;
 import br.com.newstation.dominio.STATUS_PEDIDO;
 import br.com.newstation.strategies.GeraCupomTroca;
@@ -36,9 +39,6 @@ public class PedidoBean {
 	@Inject
 	PedidoDao pDao;
 
-	@Inject
-	EnderecoDao eDao;
-
 	private int id;
 
 	private boolean troca = false;
@@ -57,7 +57,7 @@ public class PedidoBean {
 
 	@Transactional
 	public List<Pedido> pedidos(int cli_id) {
-		return pDao.listar(cli_id);
+		return pDao.listarByCliente(cli_id);
 	}
 
 	public String trocaPedido() {
@@ -68,8 +68,8 @@ public class PedidoBean {
 			}
 		}
 		ped.setStatusPedido(STATUS_PEDIDO.Em_Troca);
-		troca = true;
-		pDao.editar(ped);
+		EditarCommand cmd = new EditarCommand();
+		cmd.executar(ped);
 
 		return "/cliente/perfil?faces-redirect=trueid=" + lb.getId();
 	}
@@ -83,7 +83,16 @@ public class PedidoBean {
 
 	@Transactional
 	public List<Pedido> todosPedidos() {
-		return pDao.listarTudo();
+		
+		List<Pedido> lista = new ArrayList<Pedido>();
+		ListarCommand cmd = new ListarCommand();
+		
+		
+		for(EntidadeDominio e : cmd.executar(new Pedido()).getEntidades()) {
+			Pedido ped = (Pedido) e;
+			lista.add(ped);
+		}
+		return lista;
 	}
 
 	public int getIndex(CartaPedido item) {
@@ -92,7 +101,8 @@ public class PedidoBean {
 
 	@Transactional
 	public String editar() {
-		pDao.editar(ped);
+		EditarCommand cmd = new EditarCommand();
+		cmd.executar(ped);
 		return "/admin/pedido/lista?faces-redirect=true";
 	}
 
@@ -119,7 +129,8 @@ public class PedidoBean {
 			
 		}
 		ped.setStatusPedido(STATUS_PEDIDO.Trocado);
-		pDao.editar(ped);
+		EditarCommand cmd = new EditarCommand();
+		cmd.executar(ped);
 		
 		BigDecimal valorCupom =  new BigDecimal(totalTrocados).setScale(2,RoundingMode.DOWN);
 		cDao.salvar(GeraCupomTroca.gerarCupom(valorCupom, ped.getCliente()));
@@ -136,7 +147,8 @@ public class PedidoBean {
 	@Transactional
 	public String editarTrocaNegada() {
 		ped.setStatusPedido(STATUS_PEDIDO.Troca_negada);
-		pDao.editar(ped);
+		EditarCommand cmd = new EditarCommand();
+		cmd.executar(ped);
 		return "/admin/pedido/lista?faces-redirect=true";
 	}
 
