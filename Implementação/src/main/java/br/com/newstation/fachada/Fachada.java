@@ -5,9 +5,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import br.com.newstation.daos.CartaoCreditoDao;
 import br.com.newstation.daos.ClienteDao;
+import br.com.newstation.daos.DocumentoDao;
+import br.com.newstation.daos.EnderecoDao;
 import br.com.newstation.daos.IDao;
+import br.com.newstation.dominio.CartaoCredito;
 import br.com.newstation.dominio.Cliente;
+import br.com.newstation.dominio.ClienteCartao;
+import br.com.newstation.dominio.ClienteDocumento;
+import br.com.newstation.dominio.ClienteEndereco;
+import br.com.newstation.dominio.Documento;
+import br.com.newstation.dominio.Endereco;
 import br.com.newstation.dominio.EntidadeDominio;
 import br.com.newstation.dominio.Resultado;
 import br.com.newstation.strategies.IStrategy;
@@ -30,10 +39,15 @@ public class Fachada implements IFachada {
         daos = new HashMap<String, IDao>();
         
         daos.put(Cliente.class.getName(), new ClienteDao());
+        daos.put(ClienteDocumento.class.getName(), new DocumentoDao());
+        daos.put(ClienteEndereco.class.getName(), new EnderecoDao());
+        daos.put(ClienteCartao.class.getName(), new CartaoCreditoDao());
+        daos.put(Documento.class.getName(), new DocumentoDao());
+        daos.put(Endereco.class.getName(), new EnderecoDao());
+        daos.put(CartaoCredito.class.getName(),  new CartaoCreditoDao());
         
         regrasNegocio = new HashMap<String, Map<String, List<IStrategy>>>();
         
-
         // --------------------- Hash Cliente ------------------------------//
         
         // Criando lista de RNs do Cliente Salvar
