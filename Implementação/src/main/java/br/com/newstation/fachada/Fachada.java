@@ -31,11 +31,12 @@ import br.com.newstation.dominio.Estoque;
 import br.com.newstation.dominio.Pedido;
 import br.com.newstation.dominio.Resultado;
 import br.com.newstation.strategies.IStrategy;
-import br.com.newstation.strategies.PasseLivre;
 import br.com.newstation.strategies.ValidaCPF;
 import br.com.newstation.strategies.ValidaEstoque;
 import br.com.newstation.strategies.ValidaExistenciaClientePorCPF;
 import br.com.newstation.strategies.ValidaExistenciaPorEmail;
+import br.com.newstation.strategies.ValidaQuantidadeProdutos;
+import br.com.newstation.strategies.ValidacaoEntidadeNula;
 
 public class Fachada implements IFachada {
 
@@ -92,7 +93,7 @@ public class Fachada implements IFachada {
 		// Criando lista de RNs do Estoque Salvar
 		List<IStrategy> rnsEstoqueSalvar = new ArrayList<IStrategy>();
 
-		rnsEstoqueSalvar.add(new PasseLivre());
+		rnsEstoqueSalvar.add(new ValidacaoEntidadeNula());
 
 		// Criando lista de RNs do Estoque Alterar
 		List<IStrategy> rnsEstoqueEditar = new ArrayList<IStrategy>();
@@ -111,12 +112,12 @@ public class Fachada implements IFachada {
 		// Criando lista de RNs do ClienteDocumento Salvar
 		List<IStrategy> rnsClienteDocumentoSalvar = new ArrayList<IStrategy>();
 
-		rnsClienteDocumentoSalvar.add(new PasseLivre());
+		rnsClienteDocumentoSalvar.add(new ValidacaoEntidadeNula());
 
 		// Criando lista de RNs do ClienteDocumento Alterar
 		List<IStrategy> rnsClienteDocumentoEditar = new ArrayList<IStrategy>();
 
-		rnsClienteDocumentoEditar.add(new PasseLivre());
+		rnsClienteDocumentoEditar.add(new ValidacaoEntidadeNula());
 
 		// mapa de Operacoes Cliente, RNs da operacao de ClienteDocumento.
 		Map<String, List<IStrategy>> mapaClienteDocumento = new HashMap<String, List<IStrategy>>();
@@ -129,7 +130,7 @@ public class Fachada implements IFachada {
 		// Criando lista de RNs do Carta Salvar
 		List<IStrategy> rnsCartaSalvar = new ArrayList<IStrategy>();
 
-		rnsCartaSalvar.add(new PasseLivre());
+		rnsCartaSalvar.add(new ValidacaoEntidadeNula());
 
 		// Criando lista de RNs do Carta Alterar
 		List<IStrategy> rnsCartaEditar = new ArrayList<IStrategy>();
@@ -147,12 +148,12 @@ public class Fachada implements IFachada {
 		// Criando lista de RNs do Cupom Salvar
 		List<IStrategy> rnsCupomSalvar = new ArrayList<IStrategy>();
 
-		rnsCupomSalvar.add(new PasseLivre());
+		rnsCupomSalvar.add(new ValidacaoEntidadeNula());
 
 		// Criando lista de RNs do Cupom Alterar
 		List<IStrategy> rnsCupomEditar = new ArrayList<IStrategy>();
 
-		rnsCupomEditar.add(new PasseLivre());
+		rnsCupomEditar.add(new ValidacaoEntidadeNula());
 
 		// mapa de Operacoes Cliente, RNs da operacao de Cupom.
 		Map<String, List<IStrategy>> mapaCupom = new HashMap<String, List<IStrategy>>();
@@ -165,7 +166,7 @@ public class Fachada implements IFachada {
 		// Criando lista de RNs do ClienteCartao Salvar
 		List<IStrategy> rnsClienteCartaoSalvar = new ArrayList<IStrategy>();
 
-		rnsClienteCartaoSalvar.add(new PasseLivre());
+		rnsClienteCartaoSalvar.add(new ValidacaoEntidadeNula());
 
 		// Criando lista de RNs do ClienteCartao Alterar
 		List<IStrategy> rnsClienteCartaoEditar = new ArrayList<IStrategy>();
@@ -183,12 +184,12 @@ public class Fachada implements IFachada {
 		// Criando lista de RNs do Documento Salvar
 		List<IStrategy> rnsDocumentoSalvar = new ArrayList<IStrategy>();
 
-		rnsDocumentoSalvar.add(new PasseLivre());
+		rnsDocumentoSalvar.add(new ValidacaoEntidadeNula());
 
 		// Criando lista de RNs do Documento Alterar
 		List<IStrategy> rnsDocumentoEditar = new ArrayList<IStrategy>();
 
-		rnsDocumentoEditar.add(new PasseLivre());
+		rnsDocumentoEditar.add(new ValidacaoEntidadeNula());
 
 		// mapa de Operacoes Cliente, RNs da operacao de Documento.
 		Map<String, List<IStrategy>> mapaDocumento = new HashMap<String, List<IStrategy>>();
@@ -201,12 +202,12 @@ public class Fachada implements IFachada {
 		// Criando lista de RNs do Endereco Salvar
 		List<IStrategy> rnsEnderecoSalvar = new ArrayList<IStrategy>();
 
-		rnsEnderecoSalvar.add(new PasseLivre());
+		rnsEnderecoSalvar.add(new ValidacaoEntidadeNula());
 
 		// Criando lista de RNs do Endereco Alterar
 		List<IStrategy> rnsEnderecoEditar = new ArrayList<IStrategy>();
 
-		rnsEnderecoEditar.add(new PasseLivre());
+		rnsEnderecoEditar.add(new ValidacaoEntidadeNula());
 
 		// mapa de Operacoes Cliente, RNs da operacao de Endereco.
 		Map<String, List<IStrategy>> mapaEndereco = new HashMap<String, List<IStrategy>>();
@@ -219,12 +220,12 @@ public class Fachada implements IFachada {
 		// Criando lista de RNs do CartaoCredito Salvar
 		List<IStrategy> rnsCartaoCreditoSalvar = new ArrayList<IStrategy>();
 
-		rnsCartaoCreditoSalvar.add(new PasseLivre());
+		rnsCartaoCreditoSalvar.add(new ValidacaoEntidadeNula());
 
 		// Criando lista de RNs do CartaoCredito Alterar
 		List<IStrategy> rnsCartaoCreditoEditar = new ArrayList<IStrategy>();
 
-		rnsCartaoCreditoEditar.add(new PasseLivre());
+		rnsCartaoCreditoEditar.add(new ValidacaoEntidadeNula());
 
 		// mapa de Operacoes Cliente, RNs da operacao de CartaoCredito.
 		Map<String, List<IStrategy>> mapaCartaoCredito = new HashMap<String, List<IStrategy>>();
@@ -237,12 +238,12 @@ public class Fachada implements IFachada {
 		// Criando lista de RNs do CartaoPedido Salvar
 		List<IStrategy> rnsCartaoPedidoSalvar = new ArrayList<IStrategy>();
 
-		rnsCartaoPedidoSalvar.add(new PasseLivre());
+		rnsCartaoPedidoSalvar.add(new ValidacaoEntidadeNula());
 
 		// Criando lista de RNs do CartaoPedido Alterar
 		List<IStrategy> rnsCartaoPedidoEditar = new ArrayList<IStrategy>();
 
-		rnsCartaoPedidoEditar.add(new PasseLivre());
+		rnsCartaoPedidoEditar.add(new ValidacaoEntidadeNula());
 
 		// mapa de Operacoes Cliente, RNs da operacao de CartaoPedido.
 		Map<String, List<IStrategy>> mapaCartaoPedido = new HashMap<String, List<IStrategy>>();
@@ -255,12 +256,13 @@ public class Fachada implements IFachada {
 		// Criando lista de RNs do Pedido Salvar
 		List<IStrategy> rnsPedidoSalvar = new ArrayList<IStrategy>();
 
-		rnsPedidoSalvar.add(new PasseLivre());
+		rnsPedidoSalvar.add(new ValidacaoEntidadeNula());
+		rnsPedidoSalvar.add(new ValidaQuantidadeProdutos());
 
 		// Criando lista de RNs do Pedido Alterar
 		List<IStrategy> rnsPedidoEditar = new ArrayList<IStrategy>();
 
-		rnsPedidoEditar.add(new PasseLivre());
+		rnsPedidoEditar.add(new ValidacaoEntidadeNula());
 
 		// mapa de Operacoes Cliente, RNs da operacao de Pedido.
 		Map<String, List<IStrategy>> mapaPedido = new HashMap<String, List<IStrategy>>();
@@ -273,12 +275,12 @@ public class Fachada implements IFachada {
 			// Criando lista de RNs do CartaPedido Salvar
 			List<IStrategy> rnsCartaPedidoSalvar = new ArrayList<IStrategy>();
 
-			rnsCartaPedidoSalvar.add(new PasseLivre());
+			rnsCartaPedidoSalvar.add(new ValidacaoEntidadeNula());
 
 			// Criando lista de RNs do CartaPedido Alterar
 			List<IStrategy> rnsCartaPedidoEditar = new ArrayList<IStrategy>();
 
-			rnsCartaPedidoEditar.add(new PasseLivre());
+			rnsCartaPedidoEditar.add(new ValidacaoEntidadeNula());
 
 			// mapa de Operacoes Cliente, RNs da operacao de CartaPedido.
 			Map<String, List<IStrategy>> mapaCartaPedido = new HashMap<String, List<IStrategy>>();
@@ -318,7 +320,6 @@ public class Fachada implements IFachada {
 		executarRegras(entidade, rnsEntidade);
 
 		if (sb.length() == 0) {
-
 			IDao dao = daos.get(nmClasse);
 			resultado = dao.salvar(entidade);
 

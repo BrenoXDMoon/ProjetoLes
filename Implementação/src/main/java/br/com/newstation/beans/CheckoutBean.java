@@ -71,9 +71,7 @@ public class CheckoutBean {
 
 	@Transactional
 	public String salvar(Integer id, BigDecimal total, Carrinho carrinho) {
-		if (!cupons.isEmpty()) {
-			System.out.println("tem ou nao cupom: " + !cupons.isEmpty());
-		}
+
 		SalvarCommand cmd = new SalvarCommand();
 		Cliente cli = new Cliente();
 		Calendar cale = Calendar.getInstance();
@@ -86,6 +84,7 @@ public class CheckoutBean {
 		pedido.setCliente(dao.visualizar(cli));
 
 		if (validaDesconto.processar(cupom).equals(null)) {
+			System.out.println("Buscando Cupom de desconto na " + this.getClass().getName());
 			pedido.setCupomDesconto(cDao.buscarById(cupom.getId()));
 
 		} else {
@@ -103,7 +102,6 @@ public class CheckoutBean {
 
 		if (somaCupom > total.doubleValue()) {
 			Resultado resultado = cmd.executar(GeraCupomTroca.gerarCupom(valor, pedido.getCliente()));
-//			cDao.salvar(GeraCupomTroca.gerarCupom(valor, pedido.getCliente()));
 		}
 		pedido.setEndereco(eDao.busca(end.getId()));
 
