@@ -137,8 +137,10 @@ public class CupomDao extends AbstractDao {
 		abrirConexao();
 
 		String jpql = "select distinct(c) from Cupom c where c.id = :id";
+		manager.getTransaction().begin();
 		Cupom cupom = manager.createQuery(jpql, Cupom.class).setParameter("id", id).getSingleResult();
-
+		manager.getTransaction().commit();
+		
 		fechaConexao();
 		return cupom;
 	}

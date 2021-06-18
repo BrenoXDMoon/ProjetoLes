@@ -9,11 +9,11 @@ public class ValidaCupomDescontoPedido implements IStrategy {
 	public String processar(EntidadeDominio ent) {
 
 		Cupom cupom = (Cupom) ent;
-		if(cupom == null)
-			return null;
-		else
-			return "";
-
+		if(cupom == null) {
+			return "";			
+		}
+		else {
+			return null;			
+		}
 	}
-	
 }

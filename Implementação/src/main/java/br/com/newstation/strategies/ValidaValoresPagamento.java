@@ -21,11 +21,11 @@ public class ValidaValoresPagamento implements IStrategy {
 		return false;
 	}
 
-	public boolean total(List<Cupom> cupons, BigDecimal total, Cupom soma_desc) {
+	public boolean total(List<Cupom> cupons, BigDecimal total, Cupom somaDesc) {
 		int soma_troca=0;
-		if(soma_desc == null) {
-				soma_desc = new Cupom();
-				soma_desc.setPreco(new BigDecimal(0.0));
+		if(somaDesc == null) {
+			somaDesc = new Cupom();
+			somaDesc.setPreco(new BigDecimal(0.0));
 		}
 		try {
 			for(Cupom c:cupons) {
@@ -35,7 +35,7 @@ public class ValidaValoresPagamento implements IStrategy {
 			soma_troca = 0;
 		}
 		
-		if((soma_desc.getPreco().doubleValue() + soma_troca) > (total.doubleValue() * 1.2)){
+		if((somaDesc.getPreco().doubleValue() + soma_troca) > (total.doubleValue() * 1.2)){
 		  	String alert = "Os Valores dos cupons ultrapassam  o valor máximo de "+(total.doubleValue() * 1.2)+" remova algum cupom";
 		  	return true;
 		  }

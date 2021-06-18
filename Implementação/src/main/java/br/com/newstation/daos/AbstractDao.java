@@ -10,8 +10,9 @@ public abstract class AbstractDao implements IDao{
 	protected EntityManager manager;
 	
 	void abrirConexao(){
-		if(!this.factory.isOpen())
-			factory = Persistence.createEntityManagerFactory("newstation");
+		if(!this.factory.isOpen()) {
+			factory = Persistence.createEntityManagerFactory("newstation");			
+		}
 		this.manager = this.factory.createEntityManager();
 	}
 	

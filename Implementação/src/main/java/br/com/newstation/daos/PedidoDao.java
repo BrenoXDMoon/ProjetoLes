@@ -111,6 +111,8 @@ public class PedidoDao extends AbstractDao{
 	}
 	
 	public List<Pedido> grafico() {
+		
+		abrirConexao();
 		String jpql = "select p from Pedido p order by p.dataAtualizacao asc";
 		
 		manager.getTransaction().begin();

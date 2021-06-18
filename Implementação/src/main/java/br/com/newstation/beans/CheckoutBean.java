@@ -83,16 +83,15 @@ public class CheckoutBean {
 		pedido.setDataAtualizacao(cale);
 		pedido.setCliente(dao.visualizar(cli));
 
-		if (validaDesconto.processar(cupom).equals(null)) {
-			System.out.println("Buscando Cupom de desconto na " + this.getClass().getName());
+		if (validaDesconto.processar(cupom) == null) {
 			pedido.setCupomDesconto(cDao.buscarById(cupom.getId()));
 
 		} else {
 			cupom = null;
 		}
 
-		if (validapagamento.total(cupons, total, cupom))
-			return "/checkout/checkout?faces-redirect=true";
+//		if (validapagamento.total(cupons, total, cupom))
+//			return "/checkout/checkout?faces-redirect=true";
 
 		if (!cupons.isEmpty()) {
 			pedido.setCupomTroca(cupons);
