@@ -23,7 +23,7 @@
 
 <body class="bg-dark text-white">
 	<header class="site-header  py-1">
-        <nav class="container d-flex flex-column flex-md-row justify-content-between">
+        <nav class="container d-flex flex-column flex-md-row justify-content-between mt-2">
 			 <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
             <c:if test="#{!loginBean.statusSessao}">
 	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
@@ -87,9 +87,9 @@
 		<div class="row justify-content-end">
 			<div class="col-4 text-right">
 				<span class="d-block pb-3 mr-5">Frete</span>
-				<h:selectOneRadio value = "#{carrinho.frete}" class="radio float-right" required="true"> 
-				   <f:selectItem itemValue = "5.00" itemLabel = "Correios - R$ 5.00" /> 
-				   <f:selectItem itemValue = "10.00" itemLabel = "Pac - R$ 10.00" />
+				<h:selectOneRadio value = "#{carrinho.frete}" class="radio float-right pl-3" required="true"> 
+				   <f:selectItem itemValue = "5.00" itemLabel = " Correios - R$ 5.00" /> 
+				   <f:selectItem itemValue = "10.00" itemLabel = " Pac - R$ 10.00" />
 				</h:selectOneRadio>    
 			</div>
 		</div>
@@ -102,7 +102,8 @@
 							Finalizar compra
 						</button>
 					</td>
-					<h:commandButton value="Atualizar" action="#{carrinhoBean.validaEstoque(carrinho.itens)}" class="btn btn-primary" />
+					<h:commandButton value="Atualizar" action="#{carrinhoBean.carrinhoCheck(carrinho.itens)}" class="btn btn-primary" />
+					<h:outputLabel value="Total"/>
 					<td class="formularioDoCarrinho-rodape-item btn btn-">R$#{carrinho.getTotal()}</td>
 				</tr>
 				

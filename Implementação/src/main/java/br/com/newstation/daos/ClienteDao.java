@@ -36,21 +36,20 @@ public class ClienteDao extends AbstractDao {
 			
 			manager.flush();
 			manager.getTransaction().commit();
-			manager.close();
-			factory.close();
+			fechaConexao();
 			
 			resultado.setEntidade(cliente);
-			
-			System.out.println("- CLIENTE SALVO COM SUCESSO!!!");
-			return resultado;
 			
 		}catch(Exception e) {
 			
 			System.out.println("- ERRO AO SALVAR!!!");
+			resultado.setMensagem("- ERRO AO SALVAR!!!");
 			
-			return null;
+		}finally {
+			fechaConexao();
 		}
 
+		return resultado;
 	}
 
 	@Override
@@ -180,19 +179,5 @@ public class ClienteDao extends AbstractDao {
 		manager.close();
 		factory.close();
 		return lista;
-	}
-	
-	
-	public Cliente salvar(Cliente cli, String str) {
-		
-		
-		mngr.persist(cli);
-		mngr.persist(cli.getCartoes().toArray()[0]);
-		mngr.persist(cli.getEnderecos().toArray()[0]);
-		mngr.persist(cli.getDocumentos().toArray()[0]);
-		
-		System.out.println(str);
-		
-		return cli;
 	}
 }

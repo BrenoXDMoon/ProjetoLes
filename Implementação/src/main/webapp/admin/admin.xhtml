@@ -29,12 +29,15 @@
 	                <div class="col-3">
 	                
           	    <h:form enctype="multipart/form-data">
+          	    <div class="col-3 pl-0">
+          	    
 			  		<h:outputLabel value="Primeira data" />
 						<h:inputText value='#{grafico.min}'
 						id="min" styleClass="form-control" />
 					<h:outputLabel value="Segunda data" />
 						<h:inputText value='#{grafico.max}'
 						id="max" styleClass="form-control" />
+				</div>
 
 					<h:selectOneMenu value="#{grafico.filtro}" class="form-select"> 
 						<f:selectItem itemValue = "cartas" itemLabel = "Carta" /> 

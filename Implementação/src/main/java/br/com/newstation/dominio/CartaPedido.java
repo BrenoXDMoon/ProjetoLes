@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class CartaPedido {
+public class CartaPedido extends EntidadeDominio{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

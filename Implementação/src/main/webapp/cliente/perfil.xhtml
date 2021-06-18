@@ -27,7 +27,7 @@
 
 <body class="text-white bg-dark">
 	<header class="site-header  py-1">
-		<nav class="container d-flex flex-column flex-md-row justify-content-between">
+		<nav class="container d-flex flex-column flex-md-row justify-content-between mt-2">
 			 <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
             <c:if test="#{!loginBean.statusSessao}">
 	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
@@ -167,7 +167,7 @@
 						#{ped.endereco.logradouro}
 					</h:column>
 					<h:column>
-						<f:facet name="header">data</f:facet>
+						<f:facet name="header">Data do Pedido</f:facet>
 						<h:outputText value="#{ped.dataAtualizacao.time}">]
 		        			<f:convertDateTime pattern="dd/MM/yyyy" />
 	        			</h:outputText>

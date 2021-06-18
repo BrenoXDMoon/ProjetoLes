@@ -7,6 +7,9 @@ import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
+import br.com.newstation.command.EditarCommand;
+import br.com.newstation.command.ExcluirCommand;
+import br.com.newstation.command.SalvarCommand;
 import br.com.newstation.daos.CartaoCreditoDao;
 import br.com.newstation.daos.ClienteDao;
 import br.com.newstation.daos.DocumentoDao;
@@ -15,6 +18,9 @@ import br.com.newstation.daos.PedidoDao;
 import br.com.newstation.dominio.BANDEIRA;
 import br.com.newstation.dominio.CartaoCredito;
 import br.com.newstation.dominio.Cliente;
+import br.com.newstation.dominio.ClienteCartao;
+import br.com.newstation.dominio.ClienteDocumento;
+import br.com.newstation.dominio.ClienteEndereco;
 import br.com.newstation.dominio.Documento;
 import br.com.newstation.dominio.Endereco;
 import br.com.newstation.dominio.TIPO_CLIENTE;
@@ -39,15 +45,6 @@ public class LoginBean {
 
 	@Inject
 	ClienteDao dao;
-
-	@Inject
-	EnderecoDao endDao;
-
-	@Inject
-	CartaoCreditoDao cardDao;
-
-	@Inject
-	DocumentoDao docDao;
 
 	@Inject
 	PedidoDao pDao;
@@ -110,10 +107,16 @@ public class LoginBean {
 
 		try {
 
+			ClienteCartao cliAux = new ClienteCartao();
 			cliente.setId(getId());
 			cliente = dao.visualizar(cliente);
 			cliente.getCartoes().add(card);
-			cardDao.salvar(cliente, card);
+			
+			cliAux.setCliente(cliente);
+			cliAux.setCard(card);
+			
+			SalvarCommand cmd = new SalvarCommand();
+			cmd.executar(cliAux);
 
 			return "/checkout/checkout?faces-redirect=true";
 		} catch (Exception e) {
@@ -129,10 +132,15 @@ public class LoginBean {
 
 		try {
 
+			ClienteCartao cliAux = new ClienteCartao();
 			cliente.setId(getId());
 			cliente = dao.visualizar(cliente);
 			cliente.getCartoes().add(card);
-			cardDao.salvar(cliente, card);
+			cliAux.setCliente(cliente);
+			cliAux.setCard(card);
+			
+			SalvarCommand cmd = new SalvarCommand();
+			cmd.executar(cliAux);
 
 			return "/cliente/perfil?faces-redirect=true";
 		} catch (Exception e) {
@@ -149,7 +157,8 @@ public class LoginBean {
 		try {
 
 			System.out.println("- ENTROU");
-			cardDao.editar(card);
+			EditarCommand cmd = new EditarCommand();
+			cmd.executar(card);
 
 			return "/cliente/perfil?faces-redirect=true";
 
@@ -166,18 +175,24 @@ public class LoginBean {
  
 		try {
 
+			ClienteDocumento cliAux = new ClienteDocumento();
+			SalvarCommand cmd = new SalvarCommand();
 			cliente.setId(getId());
 			cliente = dao.visualizar(cliente);
 
 			if (doc.getTipoDocumento().equals(TIPO_DOCUMENTO.CPF) && valcpf.cpfValido(doc.getCodigo())) {
 				cliente.getDocumentos().add(doc);
-				docDao.salvar(cliente, doc);
+				cliAux.setCliente(cliente);
+				cliAux.setDoc(doc);
+				cmd.executar(cliAux);
 
 				return "/cliente/perfil?faces-redirect=true";
 			} else if (doc.getTipoDocumento().equals(TIPO_DOCUMENTO.RG)) {
 
 				cliente.getDocumentos().add(doc);
-				docDao.salvar(cliente, doc);
+				cliAux.setCliente(cliente);
+				cliAux.setDoc(doc);
+				cmd.executar(cliAux);
 				return "/cliente/perfil?faces-redirect=true";
 
 			} else {
@@ -193,9 +208,11 @@ public class LoginBean {
 
 	@Transactional
 	public String editarDocumento() {
-
+		
+		EditarCommand cmd = new EditarCommand();
+		
 		try {
-			docDao.editar(doc);
+			cmd.executar(doc);
 
 			return "/cliente/perfil?faces-redirect=true";
 		} catch (Exception e) {
@@ -208,12 +225,17 @@ public class LoginBean {
 	@Transactional
 	public String salvarEnderecoCheckout() {
 
+		SalvarCommand cmd = new SalvarCommand();
+		ClienteEndereco cliAux = new ClienteEndereco();
 		try {
 
 			cliente.setId(getId());
 			cliente = dao.visualizar(cliente);
 			cliente.getEnderecos().add(endereco);
-			endDao.salvar(cliente, endereco);
+			cliAux.setCliente(cliente);
+			cliAux.setEndereco(endereco);
+
+			cmd.executar(cliAux);
 
 			return "/checkout/checkout?faces-redirect=true";
 
@@ -227,12 +249,18 @@ public class LoginBean {
 	@Transactional
 	public String salvarEndereco() {
 
+		SalvarCommand cmd = new SalvarCommand();
+		ClienteEndereco cliAux = new ClienteEndereco();
+		
 		try {
 
 			cliente.setId(getId());
 			cliente = dao.visualizar(cliente);
 			cliente.getEnderecos().add(endereco);
-			endDao.salvar(cliente, endereco);
+			cliAux.setCliente(cliente);
+			cliAux.setEndereco(endereco);
+
+			cmd.executar(cliAux);
 
 			return "/cliente/perfil?faces-redirect=true";
 
@@ -268,8 +296,11 @@ public class LoginBean {
 	@Transactional
 	public String editarEndereco() {
 
+		EditarCommand cmd = new EditarCommand();
+		
 		try {
-			endDao.editar(endereco);
+			
+			cmd.executar(endereco);
 			return "/cliente/perfil?faces-redirect=true";
 
 		} catch (Exception e) {
@@ -282,6 +313,8 @@ public class LoginBean {
 	@Transactional
 	public String excluirCartao(CartaoCredito card) {
 
+		ClienteCartao cliAux = new ClienteCartao();
+		ExcluirCommand cmd = new ExcluirCommand();
 		cliente.setId(getId());
 		cliente = dao.visualizar(cliente);
 
@@ -291,7 +324,10 @@ public class LoginBean {
 				break;
 			}
 		}
-		cardDao.excluir(cliente, card);
+		
+		cliAux.setCliente(cliente);
+		cliAux.setCard(card);
+		cmd.executar(cliAux);
 
 		return "/cliente/perfil?faces-redirect=true";
 	}
@@ -309,7 +345,13 @@ public class LoginBean {
 			}
 
 		}
-		docDao.excluir(cliente, doc);
+		
+		ExcluirCommand cmd = new ExcluirCommand();
+		ClienteDocumento cliAux = new ClienteDocumento();
+		cliAux.setCliente(cliente);
+		cliAux.setDoc(doc);
+		
+		cmd.executar(cliAux);
 
 		return "/cliente/perfil?faces-redirect=true";
 
@@ -318,6 +360,9 @@ public class LoginBean {
 	@Transactional
 	public String excluirEndereco(Endereco end) {
 
+		ExcluirCommand cmd = new ExcluirCommand();
+		ClienteEndereco cliAux = new ClienteEndereco();
+		
 		cliente.setId(getId());
 		cliente = dao.visualizar(cliente);
 
@@ -328,7 +373,9 @@ public class LoginBean {
 			}
 
 		}
-		endDao.excluir(cliente, end);
+		cliAux.setCliente(cliente);
+		cliAux.setEndereco(end);
+		cmd.executar(cliAux);
 
 		return "/cliente/perfil?faces-redirect=true";
 

@@ -1,24 +1,21 @@
 package br.com.newstation.beans;
 
 import javax.enterprise.inject.Model;
-import javax.inject.Inject;
 import javax.transaction.Transactional;
 
-import br.com.newstation.daos.CupomDao;
+import br.com.newstation.command.ExcluirCommand;
 import br.com.newstation.dominio.Cupom;
 
 @Model
 public class CupomExcluirBean {
 
-	@Inject
-	CupomDao dao;
-	
 	private Cupom cupom = new Cupom();
-	
+
 	@Transactional
 	public String excluir(Cupom cup) {
-		dao.excluir(cup);
-		
+		ExcluirCommand cmd = new ExcluirCommand();
+		cmd.executar(cup);
+
 		return "/admin/cupom/lista?faces-redirect=true";
 	}
 
@@ -29,5 +26,5 @@ public class CupomExcluirBean {
 	public void setCupom(Cupom cupom) {
 		this.cupom = cupom;
 	}
-	
+
 }

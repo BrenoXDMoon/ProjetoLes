@@ -18,7 +18,7 @@
 
 <body class="bg-dark text-white p-5">
 	<header class="site-header py-1">
-		<nav class="container d-flex flex-column flex-md-row justify-content-between">
+		<nav class="container d-flex flex-column flex-md-row justify-content-between mt-2">
 			 <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
             <c:if test="#{!loginBean.statusSessao}">
 	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
@@ -40,14 +40,14 @@
 			<h4 class="py-4">Editar Documento do Cliente</h4>
 			<div class="border">
 				<div class="row justify-content-center">
-					<div class="col-10">
+					<div class="col-10 p-1">
 						<h:outputLabel value="Documento" />
 						<br />
-						<h:selectOneListbox value="#{loginBean.doc.tipoDocumento}"
+						<h:selectOneMenu value="#{loginBean.doc.tipoDocumento}"
 							styleClass="form-select">
 							<f:selectItems value="#{loginBean.tipoDocumento}" var="doc"
 								itemLabel="#{doc}" itemValue="#{doc}" />
-						</h:selectOneListbox>
+						</h:selectOneMenu>
 						<br />
 						<h:outputLabel value="Código" />
 						<br />
@@ -59,7 +59,7 @@
 						<br />
 						<h:outputLabel value="Validade" />
 						<br />
-						<h:inputText value="#{loginBean.doc.validade}" class="form-control" />
+						<h:inputText value="#{loginBean.doc.validade}" class="form-control mb-3" />
 					</div>
 
 				</div>

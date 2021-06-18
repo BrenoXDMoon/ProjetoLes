@@ -1,31 +1,72 @@
 package br.com.newstation.daos;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
+import br.com.newstation.dominio.EntidadeDominio;
 import br.com.newstation.dominio.Estoque;
+import br.com.newstation.dominio.Resultado;
 
+public class EstoqueDao extends AbstractDao {
 
-public class EstoqueDao {
+	@Override
+	public Resultado salvar(EntidadeDominio ent) {
 
-	@PersistenceContext
-	private EntityManager manager;
-	
-	public void salvar(Estoque estoque) {
-		manager.persist(estoque);
+		Resultado resultado = new Resultado();
+		Estoque estoque = (Estoque) ent;
+		abrirConexao();
+		try {
+			manager.getTransaction().begin();
+			manager.persist(estoque);
+			manager.flush();
+			manager.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		fechaConexao();
+		return resultado;
 	}
 
-	public void editar(Estoque estoque) {
-		manager.merge(estoque);
+	@Override
+	public Resultado editar(EntidadeDominio ent) {
+		Resultado resultado = new Resultado();
+		Estoque estoque = (Estoque) ent;
+		System.out.println("estoque qtde" + estoque.getQuantidade());
+		abrirConexao();
+		try {
+			manager.getTransaction().begin();
+			manager.merge(estoque);
+			manager.flush();
+			manager.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		fechaConexao();
+		return resultado;
 	}
-	
-	public void excluir(Estoque estoque) {
+
+	@Override
+	public Resultado excluir(EntidadeDominio ent) {
+		Resultado resultado = new Resultado();
+		Estoque estoque = (Estoque) ent;
+		abrirConexao();
 		manager.remove(estoque);
+		fechaConexao();
+		return resultado;
 	}
-	
+
 	public Estoque update(Estoque estoque) {
+		abrirConexao();
+		manager.getTransaction().begin();
 		Estoque estoqueFind = manager.getReference(Estoque.class, estoque.getId());
 		estoqueFind.setQuantidade(estoque.getQuantidade());
+		manager.merge(estoque);
+		manager.getTransaction().commit();
+		fechaConexao();
 		return estoqueFind;
+	}
+
+	@Override
+	@Deprecated
+	public Resultado listar(EntidadeDominio ent) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -34,9 +34,6 @@ public class ClienteSalvarBean {
 
 	private static boolean cpfError = false;
 
-	@Inject
-	private ClienteDao dao;
-
 	@Transactional
 	public String salvar() {
 

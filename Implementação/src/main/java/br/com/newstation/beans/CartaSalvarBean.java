@@ -12,11 +12,15 @@ import javax.inject.Inject;
 import javax.servlet.http.Part;
 import javax.transaction.Transactional;
 
+import br.com.newstation.command.SalvarCommand;
 import br.com.newstation.daos.CartaDao;
 import br.com.newstation.daos.EstoqueDao;
 import br.com.newstation.dominio.Carta;
+import br.com.newstation.dominio.Cliente;
+import br.com.newstation.dominio.EntidadeDominio;
 import br.com.newstation.dominio.Estoque;
 import br.com.newstation.dominio.RARIDADE;
+import br.com.newstation.dominio.Resultado;
 import br.com.newstation.infra.FileSaver;
 
 @Model
@@ -51,20 +55,37 @@ public class CartaSalvarBean {
         
 	    carta.setDataEntrada(dtf.format(now));
         
-        
-		dao.salvar(carta);
+
+//		dao.salvar(carta);
 
 		FileSaver fileSaver = new FileSaver();
 		carta.setImagemPath(fileSaver.write(imagemCarta, "cartas"));
 
+		SalvarCommand cmd = new SalvarCommand();
+		Resultado resultado = cmd.executar(carta);
+		this.carta = (Carta) resultado.getEntidade();
+		
 		return "/admin/cartas/lista?faces-redirect=true";
 	}
 
 	@Transactional
 	public List<Carta> listar() {
-		this.cartas = dao.listar();
+		
+		this.cartas = converteLista(dao.listar(this.carta));
 
 		return cartas;
+	}
+
+	private List<Carta> converteLista(Resultado listar) {
+		
+		List<Carta> lista = new ArrayList<Carta>();
+		
+		for(EntidadeDominio e : listar.getEntidades()) {
+			Carta c = (Carta) e;
+			lista.add(c);
+		}
+		
+		return lista;
 	}
 
 	public void carregaDetalhe() {

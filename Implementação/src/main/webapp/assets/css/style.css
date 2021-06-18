@@ -33,6 +33,10 @@ a{
 	
 }
 
+.bt-0{
+	bottom:0;
+}
+
 .w180 a:hover{
 	color:#2DACF8;
 }

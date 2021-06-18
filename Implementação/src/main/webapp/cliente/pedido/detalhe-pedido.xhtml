@@ -35,7 +35,7 @@
 </head>
 <body class="bg-dark text-white">
 	<header>
-		<nav class="container d-flex flex-column flex-md-row justify-content-between">
+		<nav class="container d-flex flex-column flex-md-row justify-content-between mt-2">
 			 <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
             <c:if test="#{!loginBean.statusSessao}">
 	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
@@ -73,6 +73,10 @@
 					<div class="form-group">
 						<h6>Status do Pedido:</h6>
 						<h:outputLabel value="#{pedidoBean.ped.statusPedido}" /><br/>
+					</div>
+					<div class="form-group">
+						<h6>Data do Pedido:</h6>
+						<h:outputLabel value="#{pedidoBean.ped.dataAtualizacao}" /><br/>
 					</div>
 					<div>
 						<h:link value = "Fazer Pedido de troca"  outcome = "pedido-troca?id=#{pedidoBean.id}" styleClass="btn btn-danger mt-3" rendered="#{pedidoBean.entregue()}"/>

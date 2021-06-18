@@ -4,6 +4,7 @@ import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
+import br.com.newstation.command.EditarCommand;
 import br.com.newstation.daos.CupomDao;
 import br.com.newstation.dominio.Cupom;
 import br.com.newstation.dominio.TIPO_CUPOM;
@@ -22,7 +23,8 @@ public class CupomEditarBean {
 	public String editar() {
 		cupom.setId(id);
 		cupom.setAtivo(true);
-		dao.editar(cupom);
+		EditarCommand cmd = new EditarCommand();
+		cmd.executar(cupom);
 		return "/admin/cupom/lista?faces-redirect=true";
 	}
 	

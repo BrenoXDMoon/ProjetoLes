@@ -79,8 +79,8 @@
 				</div>
 			</nav>
 		<div class="col-10">
-		<h2 class='text-white'>Pedidos</h2>
-				<h:dataTable var="ped" value="#{pedidoBean.todosPedidos()}" class="table table-bordered table-striped table-hover">
+		<h2 class='text-white'>Pedidos</h2>#{pedidoBean.paginacao}
+				<h:dataTable var="ped" value="#{pedidoBean.todosPedidos()}" class="table table-bordered table-striped table-hover" first="#{pedidoBean.paginacao}" rows="5">
 					<h:column>
 						<f:facet name="header">Código</f:facet>
 						<a class="decoration-none font-weight-bold text-blue" href="#{request.contextPath}/admin/pedido/edit-form.xhtml?id=#{ped.id}">#{ped.uuid}</a>       
@@ -100,7 +100,7 @@
 						<f:facet name="header">Imagem</f:facet>
 						<ui:repeat value="#{ped.itens.toArray()}" var="itens">
 							<img src="#{request.contextPath}/file/#{itens.carta.imagemPath}"
-							width="40%" alt="#{itens.carta.nome}" />
+							width="30%" height="30%" alt="#{itens.carta.nome}" />
 							Quantidade: #{itens.quantidade}
 						</ui:repeat>
 					</h:column>
@@ -112,6 +112,10 @@
 					</h:column>
 					
 				</h:dataTable>
+				<h:form>
+					<h:commandButton value="Voltar" action="#{pedidoBean.paginacaoRetorna}" class="btn btn-info"/>
+					<h:commandButton value="Avançar" action="#{pedidoBean.paginacaoAvanca}" class="btn btn-info ml-4"/>            	
+				</h:form>
 				
 		</div>
 	</div>

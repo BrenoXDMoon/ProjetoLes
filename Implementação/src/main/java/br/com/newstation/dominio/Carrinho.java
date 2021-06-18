@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.newstation.beans.CarrinhoBean;
+import br.com.newstation.command.SalvarCommand;
 import br.com.newstation.daos.PedidoDao;
 
 @Named
@@ -26,14 +27,13 @@ public class Carrinho implements Serializable {
 
 	private BigDecimal frete;
 
-	@Inject
-	private PedidoDao pedidoDao;
-
 	CarrinhoBean cb = new CarrinhoBean();
 
 	public void finalizar(Pedido pedido) {
+		
+		SalvarCommand cmd = new SalvarCommand();
 		pedido.setTotal(getTotal());
-		pedidoDao.salvar(pedido);
+		cmd.executar(pedido);
 	}
 
 	public void add(CarrinhoItem item) {
