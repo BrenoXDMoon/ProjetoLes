@@ -102,7 +102,7 @@
 							Finalizar compra
 						</button>
 					</td>
-					<h:commandButton value="Atualizar" action="#{carrinhoBean.validaEstoque(carrinho.itens)}" class="btn btn-primary" />
+					<h:commandButton value="Atualizar" action="#{carrinhoBean.carrinhoCheck(carrinho.itens)}" class="btn btn-primary" />
 					<h:outputLabel value="Total"/>
 					<td class="formularioDoCarrinho-rodape-item btn btn-">R$#{carrinho.getTotal()}</td>
 				</tr>

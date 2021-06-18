@@ -50,6 +50,7 @@ public class CartaDao extends AbstractDao {
 
 		manager.getTransaction().begin();
 
+		System.out.println("valor estoque pre merge "+carta.getEstoque().getQuantidade());
 		manager.merge(carta);
 
 		manager.getTransaction().commit();
@@ -99,13 +100,13 @@ public class CartaDao extends AbstractDao {
 		lista = manager.createQuery(jpql, Carta.class).getResultList();
 
 		manager.getTransaction().commit();
-		fechaConexao();
+		this.manager.close();
+		this.factory.close();
 
 		for (Carta c : lista) {
 			resultado.add(c);
 		}
 
-		fechaConexao();
 		return resultado;
 	}
 

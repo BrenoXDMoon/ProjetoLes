@@ -19,9 +19,11 @@ public class PedidoDao extends AbstractDao{
 		abrirConexao();
 		Resultado resultado = new Resultado();
 		Pedido ped = (Pedido) ent;
+		System.out.println(ped.getCupomDesconto().getPreco());
 		manager.getTransaction().begin();
 		manager.merge(ped.getCliente());
 		manager.persist(ped);
+		manager.flush();
 		manager.getTransaction().commit();
 		
 		fechaConexao();

@@ -11,6 +11,8 @@ import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
+import br.com.newstation.command.ExcluirCommand;
+import br.com.newstation.command.SalvarCommand;
 import br.com.newstation.daos.CartaPedidoDao;
 import br.com.newstation.daos.CartaoCreditoDao;
 import br.com.newstation.daos.ClienteDao;
@@ -26,6 +28,7 @@ import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.Cupom;
 import br.com.newstation.dominio.Endereco;
 import br.com.newstation.dominio.Pedido;
+import br.com.newstation.dominio.Resultado;
 import br.com.newstation.dominio.STATUS_PEDIDO;
 import br.com.newstation.strategies.GeraCupomTroca;
 import br.com.newstation.strategies.ValidaCupomDescontoPedido;
@@ -66,20 +69,12 @@ public class CheckoutBean {
 	ValidaValoresPagamento validapagamento = new ValidaValoresPagamento();
 	ValidaCupomDescontoPedido validaDesconto = new ValidaCupomDescontoPedido();
 
-
 	@Transactional
 	public String salvar(Integer id, BigDecimal total, Carrinho carrinho) {
 		if (!cupons.isEmpty()) {
 			System.out.println("tem ou nao cupom: " + !cupons.isEmpty());
 		}
-
-		if (validapagamento.total(cupons, total, valorCartaoUm, cupom))
-			return "/checkout/checkout?faces-redirect=true";
-
-		if (validapagamento.valorCataoUm(valorCartaoUm, valorCartaoDois, total)) {
-			return "/checkout/checkout?faces-redirect=true";
-		}
-
+		SalvarCommand cmd = new SalvarCommand();
 		Cliente cli = new Cliente();
 		Calendar cale = Calendar.getInstance();
 		BigDecimal valor = new BigDecimal(Math.abs(total.doubleValue() - somaCupom));
@@ -97,6 +92,9 @@ public class CheckoutBean {
 			cupom = null;
 		}
 
+		if (validapagamento.total(cupons, total, cupom))
+			return "/checkout/checkout?faces-redirect=true";
+
 		if (!cupons.isEmpty()) {
 			pedido.setCupomTroca(cupons);
 		} else {
@@ -104,8 +102,8 @@ public class CheckoutBean {
 		}
 
 		if (somaCupom > total.doubleValue()) {
-//			System.out.println(GeraCupomTroca.gerarCupom(valor, pedido.getCliente()).getClass());
-			cDao.salvar(GeraCupomTroca.gerarCupom(valor, pedido.getCliente()));
+			Resultado resultado = cmd.executar(GeraCupomTroca.gerarCupom(valor, pedido.getCliente()));
+//			cDao.salvar(GeraCupomTroca.gerarCupom(valor, pedido.getCliente()));
 		}
 		pedido.setEndereco(eDao.busca(end.getId()));
 
@@ -114,6 +112,7 @@ public class CheckoutBean {
 
 		car.setCartao(cd);
 		car.setValor(valor);
+
 		pDao.salvarCartao(car);
 		cardPed.add(car);
 
@@ -123,18 +122,23 @@ public class CheckoutBean {
 			CartaPedido crp = new CartaPedido();
 			crp.setCarta(c.getCarta());
 			crp.setQuantidade(c.getQuantidade());
-			cpedDao.salvar(crp);
+			cmd.executar(crp);
+//			cpedDao.salvar(crp);
 			pedido.getItens().add(crp);
 
 		}
 
 		pedido.setStatusPedido(STATUS_PEDIDO.Pendente);
-		pDao.salvar(pedido);
+		
+		cmd.executar(pedido);
+//		pDao.salvar(pedido);
 		carrinho.resete();
 
 		if (!cupons.isEmpty()) {
 			for (Cupom cupom : pedido.getCupomTroca()) {
-				cDao.excluir(cupom);
+				ExcluirCommand cmdE = new ExcluirCommand();
+				cmdE.executar(cupom);
+//				cDao.excluir(cupom);
 			}
 		}
 		return "/checkout/confirmaPedido?faces-redirect=true";
@@ -142,14 +146,14 @@ public class CheckoutBean {
 
 	@Transactional
 	public String salvarDoisCartoes(Integer id, BigDecimal total, Carrinho carrinho) {
-		
-		if (validapagamento.total(cupons, total, valorCartaoUm, cupom))
-			return "/checkout/checkout?faces-redirect=true";
 
-		if (validapagamento.valorCataoUm(valorCartaoUm, valorCartaoDois, total)) {
-			return "/checkout/checkout?faces-redirect=true";
-		}
-		
+//		if (validapagamento.total(cupons, total, valorCartaoUm, cupom))
+//			return "/checkout/checkout?faces-redirect=true";
+
+//		if (validapagamento.valorCataoUm(valorCartaoUm, valorCartaoDois, total)) {
+//			return "/checkout/checkout?faces-redirect=true";
+//		}
+
 		Cliente cli = new Cliente();
 		Calendar cale = Calendar.getInstance();
 

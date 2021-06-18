@@ -21,8 +21,7 @@ public class CartaEditarBean {
 	@Inject
 	private CartaDao dao;
 
-	@Inject
-	private EstoqueDao daoE;
+	private EstoqueDao daoE = new EstoqueDao();
 
 	private Carta carta = new Carta();
 	private Estoque estoque = new Estoque();
@@ -31,18 +30,19 @@ public class CartaEditarBean {
 
 	@Transactional
 	public String salvar() throws ParseException {
-
+		EditarCommand cmd = new EditarCommand();
 		carta.setEstoque(daoE.update(estoque));
-
+		
 		if (imagemCarta != null) {
 			FileSaver fileSaver = new FileSaver();
 			carta.setImagemPath(fileSaver.write(imagemCarta, "cartas"));
 		}
 
 		carta.setAtivo(true);
-		EditarCommand cmd = new EditarCommand();
+		
+		System.out.println(carta.getEstoque());
+
 		cmd.executar(carta);
-//		dao.editar(carta);
 
 		return "/admin/cartas/lista?faces-redirect=true";
 	}

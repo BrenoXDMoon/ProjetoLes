@@ -50,21 +50,23 @@ public class PedidoBean {
 	private static List<CartaPedido> carped = new ArrayList<CartaPedido>();
 
 	private int pagina = 0;
-	
+
 	LoginBean lb = new LoginBean();
 
 	public int getPaginacao() {
+		if (pagina < 0)
+			pagina = 0;
 		return pagina;
 	}
-	
+
 	public void paginacaoAvanca() {
 		pagina += 5;
 	}
-	
+
 	public void paginacaoRetorna() {
-		pagina -= 5;
+		pagina = pagina - 5;
 	}
-	
+
 	public void carpedido() {
 		carped = new ArrayList<CartaPedido>(ped.getItens());
 	}
@@ -97,12 +99,11 @@ public class PedidoBean {
 
 	@Transactional
 	public List<Pedido> todosPedidos() {
-		
+
 		List<Pedido> lista = new ArrayList<Pedido>();
 		ListarCommand cmd = new ListarCommand();
-		
-		
-		for(EntidadeDominio e : cmd.executar(new Pedido()).getEntidades()) {
+
+		for (EntidadeDominio e : cmd.executar(new Pedido()).getEntidades()) {
 			Pedido ped = (Pedido) e;
 			lista.add(ped);
 		}
@@ -123,13 +124,12 @@ public class PedidoBean {
 	@Transactional
 	public String editarTrocaAceita() {
 //		ped.setStatusPedido(STATUS_PEDIDO.Trocado);
-		
 
 		Double totalTrocados = 0.;
 		for (CartaPedido crp : carped) {
-			
+
 			totalTrocados += crp.getCarta().getPreco().doubleValue() * crp.getQuantidade();
-			
+
 			for (CartaPedido cartaEstoque : ped.getItens()) {
 
 				if (crp.getCarta().getId() == cartaEstoque.getCarta().getId()) {
@@ -140,13 +140,13 @@ public class PedidoBean {
 
 				devolveEstoque(crp.getCarta(), crp.getQuantidade());
 			}
-			
+
 		}
 		ped.setStatusPedido(STATUS_PEDIDO.Trocado);
 		EditarCommand cmd = new EditarCommand();
 		cmd.executar(ped);
-		
-		BigDecimal valorCupom =  new BigDecimal(totalTrocados).setScale(2,RoundingMode.DOWN);
+
+		BigDecimal valorCupom = new BigDecimal(totalTrocados).setScale(2, RoundingMode.DOWN);
 		cDao.salvar(GeraCupomTroca.gerarCupom(valorCupom, ped.getCliente()));
 		return "/admin/pedido/lista?faces-redirect=true";
 	}

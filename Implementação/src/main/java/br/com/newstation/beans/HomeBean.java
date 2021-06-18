@@ -24,8 +24,8 @@ public class HomeBean {
 
 	public List<Carta> getCartas() {
 		if (busca.equals(""))
-			
 			this.cartas = converteLista(dao.listar(new EntidadeDominio()));
+		
 		return cartas;
 	}
 

@@ -14,8 +14,8 @@ import br.com.newstation.dominio.EntidadeDominio;
 @Model
 public class CupomListarBean {
 
-	@Inject
-	CupomDao dao;
+//	@Inject
+	CupomDao dao = new CupomDao();
 	
 	private List<Cupom> cupons = new ArrayList<Cupom>();
 	

@@ -327,7 +327,7 @@ public class LoginBean {
 		
 		cliAux.setCliente(cliente);
 		cliAux.setCard(card);
-		cmd.equals(cliAux);
+		cmd.executar(cliAux);
 
 		return "/cliente/perfil?faces-redirect=true";
 	}
@@ -375,7 +375,7 @@ public class LoginBean {
 		}
 		cliAux.setCliente(cliente);
 		cliAux.setEndereco(end);
-		cmd.equals(cliAux);
+		cmd.executar(cliAux);
 
 		return "/cliente/perfil?faces-redirect=true";
 

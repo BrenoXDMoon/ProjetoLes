@@ -81,9 +81,9 @@
 
 						<div class="form-group">
 	                        <h:outputLabel value="Tipo de Endereço"/> <br />
-	                        <h:selectOneListbox value="#{loginBean.endereco.tipoEndereco}" class="form-select">
+	                        <h:selectOneMenu value="#{loginBean.endereco.tipoEndereco}" class="form-select">
 	                        	<f:selectItems value="#{loginBean.tipoEndereco}" var="tipo" itemLabel="#{tipo}" itemValue="#{tipo}"/>
-	                        </h:selectOneListbox>
+	                        </h:selectOneMenu>
 						</div>
 					</div>
 				</div>

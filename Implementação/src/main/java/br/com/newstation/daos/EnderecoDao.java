@@ -16,7 +16,8 @@ public class EnderecoDao extends AbstractDao{
 		abrirConexao();
 		
 		Resultado resultado = new Resultado();
-		ClienteEndereco aux = new ClienteEndereco();
+//		ClienteEndereco aux = new ClienteEndereco();
+		ClienteEndereco aux = (ClienteEndereco) ent;
 		Cliente cli = aux.getCliente();
 		Endereco end = aux.getEndereco();
 		
@@ -28,7 +29,6 @@ public class EnderecoDao extends AbstractDao{
 		manager.getTransaction().commit();
 		
 		fechaConexao();
-		
 		return resultado;
 	}
 
@@ -52,7 +52,8 @@ public class EnderecoDao extends AbstractDao{
 		
 		abrirConexao();
 		Resultado resultado = new Resultado();
-		ClienteEndereco aux = new ClienteEndereco();
+//		ClienteEndereco aux = new ClienteEndereco();
+		ClienteEndereco aux = (ClienteEndereco) ent;
 		Cliente cli = aux.getCliente();
 		Endereco end = aux.getEndereco();
 		

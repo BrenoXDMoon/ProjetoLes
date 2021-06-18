@@ -22,13 +22,14 @@ public class CarrinhoBean {
 	@Inject
 	private Carrinho carrinho;
 
+
 	ValidaEstoque validaestoque = new ValidaEstoque();
 
 	public String add(Integer id) {
 		Carta carta = dao.buscarPorId(id);
 		CarrinhoItem item = new CarrinhoItem(carta);
 		carrinho.add(item);
-
+		
 		return "index?faces-redirect=true";
 	}
 
@@ -45,6 +46,11 @@ public class CarrinhoBean {
 		validaestoque.validaEstoque(itens);
 		return "/checkout/checkout?faces-redirect=true";
 
+	}
+
+	public void carrinhoCheck(List<CarrinhoItem> itens) {
+		System.out.println(itens.get(0).getQuantidade());
+		validaestoque.validaEstoque(itens);
 	}
 
 	@Transactional

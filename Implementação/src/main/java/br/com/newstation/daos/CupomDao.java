@@ -21,7 +21,6 @@ public class CupomDao extends AbstractDao {
 
 		try {
 			manager.getTransaction().begin();
-			System.out.println("dbg cupom:" + cupom.getPreco());
 			manager.persist(cupom);
 
 			manager.flush();
@@ -104,41 +103,42 @@ public class CupomDao extends AbstractDao {
 	}
 
 	public List<Cupom> listarCuponsDesconto() {
-		abrirConexao();
-		
 		String jpql = "select C from Cupom C where C.tipoCupom = 'Desconto' and C.ativo = 1";
+
+		abrirConexao();
+
 		List<Cupom> cupom = manager.createQuery(jpql, Cupom.class).getResultList();
-		
+
 		fechaConexao();
 		return cupom;
 	}
 
 	public List<Cupom> listarCuponsTroca() {
 		abrirConexao();
-		
+
 		String jpql = "select C from Cupom C where C.tipoCupom = 'Troca' and C.ativo = 1";
 		List<Cupom> cupom = manager.createQuery(jpql, Cupom.class).getResultList();
-		
+
 		fechaConexao();
 		return cupom;
 	}
 
 	public List<Cupom> listarCuponsByCliente(Integer cliente) {
 		abrirConexao();
-		
+
 		String jpql = "select c from Cupom c where c.cliente.id = :cliente and c.ativo = true";
 		List<Cupom> cupom = manager.createQuery(jpql, Cupom.class).setParameter("cliente", cliente).getResultList();
-		
+
 		fechaConexao();
 		return cupom;
 	}
 
 	public Cupom buscarById(Integer id) {
 		abrirConexao();
-		
+
 		String jpql = "select distinct(c) from Cupom c where c.id = :id";
 		Cupom cupom = manager.createQuery(jpql, Cupom.class).setParameter("id", id).getSingleResult();
-		
+
 		fechaConexao();
 		return cupom;
 	}
