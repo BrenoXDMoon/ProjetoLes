@@ -11,9 +11,9 @@ import javax.transaction.Transactional;
 
 import br.com.newstation.command.EditarCommand;
 import br.com.newstation.command.ListarCommand;
+import br.com.newstation.command.SalvarCommand;
 import br.com.newstation.daos.CartaPedidoDao;
 import br.com.newstation.daos.CupomDao;
-import br.com.newstation.daos.EnderecoDao;
 import br.com.newstation.daos.EstoqueDao;
 import br.com.newstation.daos.PedidoDao;
 import br.com.newstation.dominio.Carta;
@@ -23,6 +23,7 @@ import br.com.newstation.dominio.EntidadeDominio;
 import br.com.newstation.dominio.Pedido;
 import br.com.newstation.dominio.STATUS_PEDIDO;
 import br.com.newstation.strategies.GeraCupomTroca;
+import br.com.newstation.strategies.ValidaEstoque;
 
 @Model
 public class PedidoBean {
@@ -48,8 +49,10 @@ public class PedidoBean {
 	private static List<CartaPedido> repasse = new ArrayList<CartaPedido>();
 
 	private static List<CartaPedido> carped = new ArrayList<CartaPedido>();
+	ValidaEstoque validaEstoque = new ValidaEstoque();
 
 	private int pagina = 0;
+	private int index_pagina = 5;
 
 	LoginBean lb = new LoginBean();
 
@@ -60,11 +63,11 @@ public class PedidoBean {
 	}
 
 	public void paginacaoAvanca() {
-		pagina += 5;
+		pagina += getIndex_pagina();
 	}
 
 	public void paginacaoRetorna() {
-		pagina = pagina - 5;
+		pagina = pagina - getIndex_pagina();
 	}
 
 	public void carpedido() {
@@ -124,6 +127,8 @@ public class PedidoBean {
 	@Transactional
 	public String editarTrocaAceita() {
 //		ped.setStatusPedido(STATUS_PEDIDO.Trocado);
+		EditarCommand cmd = new EditarCommand();
+		SalvarCommand scmd = new SalvarCommand();
 
 		Double totalTrocados = 0.;
 		for (CartaPedido crp : carped) {
@@ -135,27 +140,19 @@ public class PedidoBean {
 				if (crp.getCarta().getId() == cartaEstoque.getCarta().getId()) {
 
 					crp.setQuantidade(Math.abs(crp.getQuantidade() - cartaEstoque.getQuantidade()));
-					cpedDao.editar(crp);
+					cmd.executar(crp);
 				}
 
-				devolveEstoque(crp.getCarta(), crp.getQuantidade());
+				validaEstoque.devolveEstoque(crp.getCarta(), crp.getQuantidade());
 			}
 
 		}
 		ped.setStatusPedido(STATUS_PEDIDO.Trocado);
-		EditarCommand cmd = new EditarCommand();
 		cmd.executar(ped);
 
 		BigDecimal valorCupom = new BigDecimal(totalTrocados).setScale(2, RoundingMode.DOWN);
-		cDao.salvar(GeraCupomTroca.gerarCupom(valorCupom, ped.getCliente()));
+		scmd.executar(GeraCupomTroca.gerarCupom(valorCupom, ped.getCliente()));
 		return "/admin/pedido/lista?faces-redirect=true";
-	}
-
-	@Transactional
-	public void devolveEstoque(Carta carta, int quantidade) {
-		carta.getEstoque().setQuantidade(carta.getEstoque().getQuantidade() + quantidade);
-//		System.out.println("CARTAOZAO ESOSQUESKE: "+ "nome"+carta.getNome()+" qtde: "+carta.getEstoque().getQuantidade());
-		daoE.editar(carta.getEstoque());
 	}
 
 	@Transactional
@@ -236,5 +233,13 @@ public class PedidoBean {
 
 	public boolean isTroca() {
 		return troca;
+	}
+
+	public int getIndex_pagina() {
+		return index_pagina;
+	}
+
+	public void setIndex_pagina(int index_pagina) {
+		this.index_pagina = index_pagina;
 	}
 }

@@ -79,8 +79,15 @@
 				</div>
 			</nav>
 		<div class="col-10">
-		<h2 class='text-white'>Pedidos</h2>#{pedidoBean.paginacao}
-				<h:dataTable var="ped" value="#{pedidoBean.todosPedidos()}" class="table table-bordered table-striped table-hover" first="#{pedidoBean.paginacao}" rows="5">
+		<h2 class='text-white'>Pedidos</h2>#{pedidoBean.paginacao}-#{pedidoBean.index_pagina}
+				<h:form>
+					<h:selectOneMenu  value="#{pedidoBean.index_pagina}" onchange="#{pedidoBean.index_pagina}">
+		        		 <f:selectItem	itemValue="5" itemLabel="5"/>
+		        		 <f:selectItem	itemValue="10" itemLabel="10"/>
+		        		 <f:selectItem	itemValue="15" itemLabel="15"/>
+		        	 </h:selectOneMenu >
+	        	 </h:form>
+				<h:dataTable var="ped" value="#{pedidoBean.todosPedidos()}" class="table table-bordered table-striped table-hover" first="#{pedidoBean.paginacao}" rows="#{pedidoBean.index_pagina}">
 					<h:column>
 						<f:facet name="header">Código</f:facet>
 						<a class="decoration-none font-weight-bold text-blue" href="#{request.contextPath}/admin/pedido/edit-form.xhtml?id=#{ped.id}">#{ped.uuid}</a>       
