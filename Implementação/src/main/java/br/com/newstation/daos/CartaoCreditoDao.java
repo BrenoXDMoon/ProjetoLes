@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.newstation.dominio.CartaoCredito;
 import br.com.newstation.dominio.Cliente;
-import br.com.newstation.dominio.ClienteAux;
+import br.com.newstation.dominio.ClienteCartao;
 import br.com.newstation.dominio.EntidadeDominio;
 import br.com.newstation.dominio.Resultado;
 
@@ -16,8 +16,8 @@ public class CartaoCreditoDao extends AbstractDao {
 		abrirConexao();
 
 		Resultado resultado = new Resultado();
-		ClienteAux cliAux = (ClienteAux) ent;
-		CartaoCredito card = (CartaoCredito) cliAux.getEnt();
+		ClienteCartao cliAux = (ClienteCartao) ent;
+		CartaoCredito card = (CartaoCredito) cliAux.getCard();
 
 		try {
 			manager.getTransaction().begin();
@@ -66,8 +66,8 @@ public class CartaoCreditoDao extends AbstractDao {
 		abrirConexao();
 
 		Resultado resultado = new Resultado();
-		ClienteAux cliAux = (ClienteAux) ent;
-		CartaoCredito card = (CartaoCredito) cliAux.getEnt();
+		ClienteCartao cliAux = (ClienteCartao) ent;
+		CartaoCredito card = (CartaoCredito) cliAux.getCard();
 		Cliente cli = cliAux.getCliente();
 
 		manager.getTransaction().begin();

@@ -79,8 +79,8 @@
 				</div>
 			</nav>
 		<div class="col-10">
-		<h2 class='text-white'>Pedidos</h2>
-				<h:dataTable var="ped" value="#{pedidoBean.todosPedidos()}" class="table table-bordered table-striped table-hover" rows="5">
+		<h2 class='text-white'>Pedidos</h2>#{pedidoBean.paginacao}
+				<h:dataTable var="ped" value="#{pedidoBean.todosPedidos()}" class="table table-bordered table-striped table-hover" first="#{pedidoBean.paginacao}" rows="5">
 					<h:column>
 						<f:facet name="header">Código</f:facet>
 						<a class="decoration-none font-weight-bold text-blue" href="#{request.contextPath}/admin/pedido/edit-form.xhtml?id=#{ped.id}">#{ped.uuid}</a>       
@@ -112,6 +112,10 @@
 					</h:column>
 					
 				</h:dataTable>
+				<h:form>
+					<h:commandButton value="Avançar" action="#{pedidoBean.paginacaoAvanca()}" class="btn"/>            	
+					<h:commandButton value="Voltar" action="#{pedidoBean.paginacaoRetorna()}" class="btn"/>
+				</h:form>
 				
 		</div>
 	</div>

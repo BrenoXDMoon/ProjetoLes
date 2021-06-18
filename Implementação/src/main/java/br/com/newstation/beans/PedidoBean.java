@@ -49,8 +49,22 @@ public class PedidoBean {
 
 	private static List<CartaPedido> carped = new ArrayList<CartaPedido>();
 
+	private int pagina = 0;
+	
 	LoginBean lb = new LoginBean();
 
+	public int getPaginacao() {
+		return pagina;
+	}
+	
+	public void paginacaoAvanca() {
+		pagina += 5;
+	}
+	
+	public void paginacaoRetorna() {
+		pagina -= 5;
+	}
+	
 	public void carpedido() {
 		carped = new ArrayList<CartaPedido>(ped.getItens());
 	}
