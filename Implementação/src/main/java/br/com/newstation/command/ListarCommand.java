@@ -7,6 +7,7 @@ public class ListarCommand extends AbstractCommand {
 
 	@Override
 	public Resultado executar(EntidadeDominio ent) {
+		fachada = this.getFachada(ent);
 		return fachada.listar(ent);
 	}
 

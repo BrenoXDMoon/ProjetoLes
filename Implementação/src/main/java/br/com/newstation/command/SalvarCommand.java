@@ -7,7 +7,7 @@ public class SalvarCommand extends AbstractCommand{
 
 	@Override
 	public Resultado executar(EntidadeDominio ent) {
-		
+		fachada = this.getFachada(ent);
 		return fachada.salvar(ent);
 	}
 

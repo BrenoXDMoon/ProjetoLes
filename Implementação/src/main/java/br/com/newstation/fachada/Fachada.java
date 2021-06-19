@@ -45,14 +45,13 @@ public class Fachada implements IFachada {
 	// Mapa Macro, com TODAS as regras de negocio
 	private Map<String, Map<String, List<IStrategy>>> regrasNegocio;
 
-	private StringBuilder sb = new StringBuilder();
+	
 	private Resultado resultado;
 
 	public Fachada() {
 
 		daos = new HashMap<String, IDao>();
-
-		daos.put(Cliente.class.getName(), new ClienteDao());
+		
 		daos.put(ClienteDocumento.class.getName(), new DocumentoDao());
 		daos.put(ClienteEndereco.class.getName(), new EnderecoDao());
 		daos.put(ClienteCartao.class.getName(), new CartaoCreditoDao());
@@ -70,13 +69,6 @@ public class Fachada implements IFachada {
 
 	// --------------------- Hash Cliente ------------------------------//
 
-		// Criando lista de RNs do Cliente Salvar
-		List<IStrategy> rnsClienteSalvar = new ArrayList<IStrategy>();
-
-		rnsClienteSalvar.add(new ValidaCPF());
-		rnsClienteSalvar.add(new ValidaExistenciaClientePorCPF());
-		rnsClienteSalvar.add(new ValidaExistenciaPorEmail());
-
 		// Criando lista de RNs do Cliente Alterar
 		List<IStrategy> rnsClienteEditar = new ArrayList<IStrategy>();
 		rnsClienteEditar.add(new ValidaCPF());
@@ -85,7 +77,6 @@ public class Fachada implements IFachada {
 		Map<String, List<IStrategy>> mapaCliente = new HashMap<String, List<IStrategy>>();
 
 		// Adiconando lista de RNs para cada operacao de cliente
-		mapaCliente.put("SALVAR", rnsClienteSalvar);
 		mapaCliente.put("EDITAR", rnsClienteEditar);
 
 	// --------------------- Hash Estoque ------------------------------//
@@ -107,7 +98,7 @@ public class Fachada implements IFachada {
 		mapaEstoque.put("SALVAR", rnsEstoqueSalvar);
 		mapaEstoque.put("EDITAR", rnsEstoqueEditar);
 
-	// --------------------- Hash ClienteDocumento ------------------------------//
+	// --------------------- Hash Documento ------------------------------//
 
 		// Criando lista de RNs do ClienteDocumento Salvar
 		List<IStrategy> rnsClienteDocumentoSalvar = new ArrayList<IStrategy>();
@@ -125,24 +116,7 @@ public class Fachada implements IFachada {
 		// Adiconando lista de RNs para cada operacao de ClienteDocumento
 		mapaClienteDocumento.put("SALVAR", rnsClienteDocumentoSalvar);
 		mapaClienteDocumento.put("EDITAR", rnsClienteDocumentoEditar);
-	// --------------------- Hash Carta ------------------------------//
-
-		// Criando lista de RNs do Carta Salvar
-		List<IStrategy> rnsCartaSalvar = new ArrayList<IStrategy>();
-
-		rnsCartaSalvar.add(new ValidacaoEntidadeNula());
-
-		// Criando lista de RNs do Carta Alterar
-		List<IStrategy> rnsCartaEditar = new ArrayList<IStrategy>();
-
-		rnsCartaEditar.add(new ValidaEstoque());
-
-		// mapa de Operacoes Cliente, RNs da operacao de Carta.
-		Map<String, List<IStrategy>> mapaCarta = new HashMap<String, List<IStrategy>>();
-
-		// Adiconando lista de RNs para cada operacao de Carta
-		mapaCarta.put("SALVAR", rnsCartaSalvar);
-		mapaCarta.put("EDITAR", rnsCartaEditar);
+	
 	// --------------------- Hash Cupom ------------------------------//
 
 		// Criando lista de RNs do Cupom Salvar
@@ -302,7 +276,6 @@ public class Fachada implements IFachada {
 		regrasNegocio.put(Cupom.class.getName(), mapaCupom);
 		regrasNegocio.put(Estoque.class.getName(), mapaEstoque);
 		regrasNegocio.put(Pedido.class.getName(), mapaPedido);
-		regrasNegocio.put(Carta.class.getName(), mapaCarta);
 		regrasNegocio.put(CartaPedido.class.getName(), mapaCartaPedido);
 
 	}
@@ -311,22 +284,22 @@ public class Fachada implements IFachada {
 	public Resultado salvar(EntidadeDominio entidade) {
 
 		resultado = new Resultado();
-		sb.setLength(0);
+		//sb.setLength(0);
 		String nmClasse = entidade.getClass().getName();
 
 		Map<String, List<IStrategy>> mapaEntidade = regrasNegocio.get(nmClasse);
 		List<IStrategy> rnsEntidade = mapaEntidade.get("SALVAR");
 
-		executarRegras(entidade, rnsEntidade);
+		//executarRegras(entidade, rnsEntidade);
 
-		if (sb.length() == 0) {
-			IDao dao = daos.get(nmClasse);
-			resultado = dao.salvar(entidade);
-
-		} else {
-			resultado.add(entidade);
-			resultado.setMensagem((sb.toString()));
-		}
+//		if (sb.length() == 0) {
+//			IDao dao = daos.get(nmClasse);
+//			resultado = dao.salvar(entidade);
+//
+//		} else {
+//			resultado.add(entidade);
+//			resultado.setMensagem((sb.toString()));
+//		}
 		return resultado;
 	}
 
@@ -334,22 +307,22 @@ public class Fachada implements IFachada {
 	public Resultado editar(EntidadeDominio entidade) {
 
 		resultado = new Resultado();
-		sb.setLength(0);
-		String nmClasse = entidade.getClass().getName();
-
-		Map<String, List<IStrategy>> mapaEntidade = regrasNegocio.get(nmClasse);
-		List<IStrategy> rnsEntidade = mapaEntidade.get("EDITAR");
-
-		executarRegras(entidade, rnsEntidade);
-
-		if (sb.length() == 0) {
-			IDao dao = daos.get(nmClasse);
-			dao.editar(entidade);
-			resultado.add(entidade);
-		} else {
-			resultado.add(entidade);
-			resultado.setMensagem((sb.toString()));
-		}
+//		sb.setLength(0);
+//		String nmClasse = entidade.getClass().getName();
+//
+//		Map<String, List<IStrategy>> mapaEntidade = regrasNegocio.get(nmClasse);
+//		List<IStrategy> rnsEntidade = mapaEntidade.get("EDITAR");
+//
+//		
+//
+//		if (sb.length() == 0) {
+//			IDao dao = daos.get(nmClasse);
+//			dao.editar(entidade);
+//			resultado.add(entidade);
+//		} else {
+//			resultado.add(entidade);
+//			resultado.setMensagem((sb.toString()));
+//		}
 
 		return resultado;
 	}
@@ -358,11 +331,11 @@ public class Fachada implements IFachada {
 	public Resultado excluir(EntidadeDominio entidade) {
 //    	System.out.println("- Fachada Excluir");
 		resultado = new Resultado();
-		String nmClasse = entidade.getClass().getName();
-
-		IDao dao = daos.get(nmClasse);
-		resultado.add(entidade);
-		dao.excluir(entidade);
+//		String nmClasse = entidade.getClass().getName();
+//
+//		IDao dao = daos.get(nmClasse);
+//		resultado.add(entidade);
+//		dao.excluir(entidade);
 
 		return resultado;
 	}
@@ -371,21 +344,12 @@ public class Fachada implements IFachada {
 	public Resultado listar(EntidadeDominio entidade) {
 
 		resultado = new Resultado();
-		String nmClasse = entidade.getClass().getName();
-
-		IDao dao = daos.get(nmClasse);
-		resultado = dao.listar(entidade);
+//		String nmClasse = entidade.getClass().getName();
+//
+//		IDao dao = daos.get(nmClasse);
+//		resultado = dao.listar(entidade);
 
 		return resultado;
-	}
-
-	private void executarRegras(EntidadeDominio entidade, List<IStrategy> rnsEntidade) {
-		for (IStrategy rn : rnsEntidade) {
-			String msg = rn.processar(entidade);
-			if (msg != null) {
-				sb.append(msg);
-			}
-		}
 	}
 
 }
