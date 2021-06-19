@@ -78,7 +78,7 @@
 					</ul>
 					</div>
 				</nav>
-			<div class="col-10">
+			<div class="col-9">
 				<h2>Lista de Cartas</h2>
 			
 				<h:button styleClass="my-3 btn btn-primary" value="Cadastrar Cartas" outcome="form" />
@@ -120,7 +120,7 @@
 					<h:column styleClass="w-min">
 						<f:facet name="header">Imagem</f:facet>
 						<img src="#{request.contextPath}/file/#{carta.imagemPath}" class="img-tabela"
-							width="40%" alt="#{carta.nome}" />
+							width="100%" alt="#{carta.nome}" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">Ativar Carta</f:facet>

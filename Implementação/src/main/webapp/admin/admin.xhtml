@@ -38,14 +38,20 @@
 						<h:inputText value='#{grafico.max}'
 						id="max" styleClass="form-control" />
 				</div>
-
+				<div class="mt-3">
 					<h:selectOneMenu value="#{grafico.filtro}" class="form-select"> 
 						<f:selectItem itemValue = "cartas" itemLabel = "Carta" /> 
            				<f:selectItem itemValue = "raridade" itemLabel = "Raridade" /> 
 					</h:selectOneMenu>
+					<h:selectOneMenu  value = "#{grafico.limitador}" class="ml-3" rendered="false"> 
+						   <f:selectItem itemValue = "0" itemLabel = "Todos" /> 
+						   <f:selectItem itemValue = "5" itemLabel = "5" /> 
+						   <f:selectItem itemValue = "10" itemLabel = "10" />
+						</h:selectOneMenu >
+					</div>
 					<h:commandButton value='Filtrar'
 						action='#{grafico.setData}'
-						styleClass="btn btn-primary my-3 ml-3" /> 
+						styleClass="btn btn-primary my-3" /> 
 				</h:form>
 				</div>
 					<div>
@@ -70,10 +76,14 @@
 			    	{label: 'My Third dataset',data: [10, 14, 35, 12, 40, 66, 25]}]
 	    }
 	    
-	    myFunction(Object.keys(c.label),Object.values(c.label));
+// 	    myFunction(Object.keys(c.label),Object.values(c.label))
+	    myFunction(c.limitador ,Object.keys(c.label),Object.values(c.label));
 	    
-	    function myFunction(label, data) {
-	    	for (i = 0; i &lt; label.length; i++){
+	    function myFunction(limitador, label, data) {
+	    	if(limitador == 0){
+	    		limitador = label.length;
+	    	}
+	    	for (i = 0; i &lt; limitador ; i++){
 	    		var cor = getRandomColor();
 	    		var cartas = {"label":label[i], "data":data[i], "backgroundColor":cor ,"borderColor":cor};
 	    		lista.push(cartas);

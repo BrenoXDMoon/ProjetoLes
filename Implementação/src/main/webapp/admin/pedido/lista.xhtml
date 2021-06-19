@@ -78,22 +78,33 @@
 				</ul>
 				</div>
 			</nav>
-		<div class="col-10">
-		<h2 class='text-white'>Pedidos</h2>#{pedidoBean.paginacao}
-				<h:dataTable var="ped" value="#{pedidoBean.todosPedidos()}" class="table table-bordered table-striped table-hover" first="#{pedidoBean.paginacao}" rows="5">
+		<div class="col-9 ml-3">
+		<h2 class='text-white'>Pedidos</h2>
+				<h:form styleClass="mb-3">
+					#{pedidoBean.paginacao} - #{pedidoBean.paginacao + pedidoBean.pagina_index} 
+					<h:selectOneMenu  value = "#{pedidoBean.pagina_index}" class="ml-3" onchange="trocaIndex()"> 
+					   <f:selectItem itemValue = "#{pedidoBean.pagina_index}" itemLabel = " #{pedidoBean.pagina_index}" />
+					   <f:selectItem itemValue = "5" itemLabel = " 5" /> 
+					   <f:selectItem itemValue = "10" itemLabel = "10" />
+					   <f:selectItem itemValue = "15" itemLabel = "15" />
+					</h:selectOneMenu >
+					<h:commandButton value="Confirmar" class="btn btn-info ml-3 d-none"  id="botaoIndex"/>  
+				</h:form>
+				<h:dataTable var="ped" value="#{pedidoBean.todosPedidos()}" class="table table-bordered table-striped table-hover" first="#{pedidoBean.paginacao}" rows="#{pedidoBean.pagina_index}">
 					<h:column>
 						<f:facet name="header">Código</f:facet>
-						<a class="decoration-none font-weight-bold text-blue" href="#{request.contextPath}/admin/pedido/edit-form.xhtml?id=#{ped.id}">#{ped.uuid}</a>       
+						<a class="decoration-none font-weight-bold text-blue align-middle" href="#{request.contextPath}/admin/pedido/edit-form.xhtml?id=#{ped.id}">#{ped.uuid}</a>       
 					</h:column>
 					
 					<h:column>
 						<f:facet name="header">Total</f:facet>
 						#{ped.total}
 					</h:column>
-					<h:column>
+					<h:column >
 						<f:facet name="header">Nome do Produto</f:facet>
+						
 						<ui:repeat value="#{ped.itens.toArray()}" var="itens">
-							#{itens.carta.nome} - 
+							#{itens.carta.nome} -
 						</ui:repeat>
 					</h:column>
 					<h:column styleClass="w-min">
@@ -101,14 +112,14 @@
 						<ui:repeat value="#{ped.itens.toArray()}" var="itens">
 							<img src="#{request.contextPath}/file/#{itens.carta.imagemPath}"
 							width="30%" height="30%" alt="#{itens.carta.nome}" />
-							Quantidade: #{itens.quantidade}
+							Quantidade: #{itens.quantidade}<p></p>
 						</ui:repeat>
 					</h:column>
 					<h:column>
 						<f:facet name="header">Status </f:facet>
 						#{pedidoBean.status(ped)}
 						<h:link outcome="aceitaTroca?id=#{ped.id}" rendered="#{pedidoBean.troca}">#{ped.statusPedido}</h:link>
-						<h:outputLabel value="#{ped.statusPedido}" rendered="#{!pedidoBean.troca}"/> 
+						<h:outputLabel value="#{ped.statusPedido}" styleClass="align-middle" rendered="#{!pedidoBean.troca}"/> 
 					</h:column>
 					
 				</h:dataTable>
@@ -125,4 +136,11 @@
 </body>
 
 <script src="#{request.contextPath}/assets/js/bootstrap.min.js"></script>
+<script>
+function trocaIndex(){
+	document.getElementById("j_idt2:botaoIndex").click();
+	
+}
+</script>
+
 </html>

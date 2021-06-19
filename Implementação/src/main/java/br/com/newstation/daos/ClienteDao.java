@@ -7,6 +7,7 @@ import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import br.com.newstation.dominio.Carta;
 import br.com.newstation.dominio.Cliente;
 import br.com.newstation.dominio.EntidadeDominio;
 import br.com.newstation.dominio.Resultado;
@@ -179,5 +180,18 @@ public class ClienteDao extends AbstractDao {
 		manager.close();
 		factory.close();
 		return lista;
+	}
+	public List<Cliente> filtro(String busca) {
+		abrirConexao();
+		try {
+			manager.getTransaction().begin();
+			List<Cliente> clientes = manager.createQuery("select c from Cliente c  where c.nome LIKE '%" + busca
+					+ "%' and c.ativo = 1 ", Cliente.class).getResultList();
+			manager.getTransaction().commit();
+			fechaConexao();
+			return clientes;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 }
