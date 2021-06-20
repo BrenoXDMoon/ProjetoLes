@@ -3,20 +3,20 @@ package br.com.newstation.fachada;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.newstation.daos.EnderecoDao;
+import br.com.newstation.daos.EstoqueDao;
 import br.com.newstation.dominio.EntidadeDominio;
 import br.com.newstation.dominio.Resultado;
 import br.com.newstation.strategies.IStrategy;
 import br.com.newstation.strategies.ValidacaoEntidadeNula;
 
-public class FachadaEndereco  implements IFachada {
+public class FachadaEstoque implements IFachada {
 
-	private EnderecoDao dao = new EnderecoDao();
+	private EstoqueDao dao = new EstoqueDao();
 	private StringBuilder sb = new StringBuilder();
 
 	@Override
 	public Resultado salvar(EntidadeDominio ent) {
-		System.out.println("Entrou na fachada Endereco salvar");
+		System.out.println("Entrou na fachada Estoque salvar");
 
 		Resultado resultado = new Resultado();
 
@@ -36,9 +36,14 @@ public class FachadaEndereco  implements IFachada {
 
 	@Override
 	public Resultado editar(EntidadeDominio ent) {
-		System.out.println("Entrou na fachada Endereco editar");
+		System.out.println("Entrou na fachada Estoque editar");
 		Resultado resultado = new Resultado();
 
+		List<IStrategy> regras = new ArrayList<IStrategy>();
+		regras.add(new ValidacaoEntidadeNula());
+
+		executarRegras(ent, regras);
+		
 		if (sb.length() == 0) {
 			resultado = dao.editar(ent);
 		} else {
@@ -50,18 +55,17 @@ public class FachadaEndereco  implements IFachada {
 
 	@Override
 	public Resultado excluir(EntidadeDominio ent) {
-		System.out.println("Entrou na fachada Endereco excluir");	
+		System.out.println("Entrou na fachada Estoque excluir");	
 		Resultado resultado = new Resultado();
 		resultado = dao.excluir(ent);
 		return resultado;
 	}
 
 	@Override
+	@Deprecated
 	public Resultado listar(EntidadeDominio ent) {
-		System.out.println("Entrou na fachada Endereco Listar");	
-		Resultado resultado = new Resultado();
-		resultado = dao.listar(ent);
-		return resultado;
+		// TODO Auto-generated method stub
+				return null;
 	}
 
 	private void executarRegras(EntidadeDominio entidade, List<IStrategy> rnsEntidade) {

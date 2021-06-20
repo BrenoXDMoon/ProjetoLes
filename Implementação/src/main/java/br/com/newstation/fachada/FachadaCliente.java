@@ -34,13 +34,11 @@ public class FachadaCliente implements IFachada {
 		executarRegras(ent, regras);
 		
 		if (sb.length() == 0) {
-			dao.salvar(ent);
-			resultado.add(ent);
+			resultado = dao.salvar(ent);
 		} else {
-			resultado.add(ent);
 			resultado.setMensagem((sb.toString()));
 		}
-		resultado = dao.salvar(ent);
+		
 		
 		return resultado;
 	}
@@ -48,7 +46,7 @@ public class FachadaCliente implements IFachada {
 	@Override
 	public Resultado editar(EntidadeDominio ent) {
 		
-		System.out.println("Entrou na fachada cliente salvar");	
+		System.out.println("Entrou na fachada cliente editar");	
 		Resultado resultado = new Resultado();
 		dao = new ClienteDao();
 		
@@ -58,10 +56,8 @@ public class FachadaCliente implements IFachada {
 		executarRegras(ent, regras);
 		
 		if (sb.length() == 0) {
-			dao.salvar(ent);
-			resultado.add(ent);
+			resultado = dao.editar(ent);
 		} else {
-			resultado.add(ent);
 			resultado.setMensagem((sb.toString()));
 		}
 		
@@ -70,7 +66,7 @@ public class FachadaCliente implements IFachada {
 
 	@Override
 	public Resultado excluir(EntidadeDominio ent) {
-		System.out.println("Entrou na fachada cliente salvar");	
+		System.out.println("Entrou na fachada cliente excluir");	
 		Resultado resultado = new Resultado();
 		dao = new ClienteDao();
 		
@@ -91,7 +87,7 @@ public class FachadaCliente implements IFachada {
 
 	@Override
 	public Resultado listar(EntidadeDominio ent) {
-		System.out.println("Entrou na fachada cliente salvar");	
+		System.out.println("Entrou na fachada cliente Listar");	
 		Resultado resultado = new Resultado();
 		dao = new ClienteDao();
 		

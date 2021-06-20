@@ -27,10 +27,10 @@ public class CartaEditarBean {
 	private Estoque estoque = new Estoque();
 	private Integer id;
 	private Part imagemCarta;
+	EditarCommand cmd = new EditarCommand();
 
 	@Transactional
 	public String salvar() throws ParseException {
-		EditarCommand cmd = new EditarCommand();
 		carta.setEstoque(daoE.update(estoque));
 		
 		if (imagemCarta != null) {
@@ -50,7 +50,7 @@ public class CartaEditarBean {
 	public void ativaCarta(Integer id) {
 		Carta cardRef = dao.buscarPorId(id);
 		cardRef.setAtivo(true);
-		dao.editar(cardRef);
+		cmd.executar(cardRef);
 	}
 
 	public void carregaDetalhe() {

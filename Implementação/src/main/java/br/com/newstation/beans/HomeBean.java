@@ -6,6 +6,7 @@ import java.util.List;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 
+import br.com.newstation.command.ListarCommand;
 import br.com.newstation.daos.CartaDao;
 import br.com.newstation.dominio.Carta;
 import br.com.newstation.dominio.EntidadeDominio;
@@ -22,10 +23,12 @@ public class HomeBean {
 
 	private List<Carta> cartas = new ArrayList<>();
 
+	ListarCommand cmd = new ListarCommand();
+	
 	public List<Carta> getCartas() {
-		if (busca.equals(""))
-			this.cartas = converteLista(dao.listar(new EntidadeDominio()));
 		
+		if (busca.equals(""))
+			this.cartas = converteLista(cmd.executar(new Carta()));
 		return cartas;
 	}
 

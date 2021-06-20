@@ -50,7 +50,6 @@ public class CartaDao extends AbstractDao {
 
 		manager.getTransaction().begin();
 
-		System.out.println("valor estoque pre merge "+carta.getEstoque().getQuantidade());
 		manager.merge(carta);
 
 		manager.getTransaction().commit();

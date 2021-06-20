@@ -27,7 +27,7 @@ public class DocumentoDao extends AbstractDao{
 		
 		try {
 			manager.getTransaction().begin();
-			manager.persist(doc );
+			manager.persist(doc);
 			manager.merge(cliAux.getCliente());
 			
 			manager.flush();

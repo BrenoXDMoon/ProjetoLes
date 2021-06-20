@@ -116,9 +116,10 @@
 						<h:outputLabel value="#{pedidoBean.ped.cliente.nome}" />
 					</div>
 					<div class="form-group">
-					<h:outputLabel value="Endereï¿½o do Cliente:" class="d-block bolder"/>
-						<h:outputLabel value="#{pedidoBean.ped.endereco.cidade.estado.estado}
-						 #{pedidoBean.ped.endereco.cidade.cidade}
+					<h:outputLabel value="Endereço do Cliente:" class="d-block bolder"/>
+					<h:outputLabel value="Estado - Cidade - Rua:" class="d-block bolder"/>
+						<h:outputLabel value="#{pedidoBean.ped.endereco.cidade.estado.estado}-
+						 #{pedidoBean.ped.endereco.cidade.cidade}-
 						 #{pedidoBean.ped.endereco.logradouro} 
 						 " /> 
 					</div>

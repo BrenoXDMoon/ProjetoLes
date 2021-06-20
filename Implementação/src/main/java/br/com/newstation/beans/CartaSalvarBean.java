@@ -39,13 +39,15 @@ public class CartaSalvarBean {
 	private Integer id;
 	private BigDecimal valorCusto;
 	private String fornecedor;
+	SalvarCommand cmd = new SalvarCommand();
 	
 
 	private List<Carta> cartas = new ArrayList<>();
 
 	@Transactional
 	public String salvar() throws ParseException {
-		daoE.salvar(estoque);
+		cmd.executar(estoque);
+//		daoE.salvar(estoque);
 		carta.setAtivo(true);
 		carta.setEstoque(estoque);
 		
@@ -61,7 +63,7 @@ public class CartaSalvarBean {
 		FileSaver fileSaver = new FileSaver();
 		carta.setImagemPath(fileSaver.write(imagemCarta, "cartas"));
 
-		SalvarCommand cmd = new SalvarCommand();
+		
 		Resultado resultado = cmd.executar(carta);
 		this.carta = (Carta) resultado.getEntidade();
 		

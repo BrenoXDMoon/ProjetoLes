@@ -107,18 +107,22 @@ public class CupomDao extends AbstractDao {
 
 		abrirConexao();
 
+		manager.getTransaction().begin();
 		List<Cupom> cupom = manager.createQuery(jpql, Cupom.class).getResultList();
+		manager.getTransaction().commit();
 
 		fechaConexao();
 		return cupom;
 	}
 
 	public List<Cupom> listarCuponsTroca() {
+		String jpql = "select C from Cupom C where C.tipoCupom = 'Troca' and C.ativo = 1";
+
 		abrirConexao();
 
-		String jpql = "select C from Cupom C where C.tipoCupom = 'Troca' and C.ativo = 1";
+		manager.getTransaction().begin();
 		List<Cupom> cupom = manager.createQuery(jpql, Cupom.class).getResultList();
-
+		manager.getTransaction().commit();
 		fechaConexao();
 		return cupom;
 	}
