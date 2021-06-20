@@ -45,7 +45,7 @@ public class LoginBean {
 
 	@Inject
 	PedidoDao pDao;
-	
+
 	@Transactional
 	public String login() {
 
@@ -74,7 +74,6 @@ public class LoginBean {
 
 	}
 
-	
 	public String logout() {
 
 		this.cliente = new Cliente();
@@ -108,10 +107,10 @@ public class LoginBean {
 			cliente.setId(getId());
 			cliente = dao.visualizar(cliente);
 			cliente.getCartoes().add(card);
-			
+
 			cliAux.setCliente(cliente);
 			cliAux.setCard(card);
-			
+
 			SalvarCommand cmd = new SalvarCommand();
 			cmd.executar(cliAux);
 
@@ -135,7 +134,7 @@ public class LoginBean {
 			cliente.getCartoes().add(card);
 			cliAux.setCliente(cliente);
 			cliAux.setCard(card);
-			
+
 			SalvarCommand cmd = new SalvarCommand();
 			cmd.executar(cliAux);
 
@@ -169,7 +168,7 @@ public class LoginBean {
 	@Transactional
 	public String salvarDocumento() {
 		ValidaCPF valcpf = new ValidaCPF();
- 
+
 		try {
 
 			ClienteDocumento cliAux = new ClienteDocumento();
@@ -205,9 +204,9 @@ public class LoginBean {
 
 	@Transactional
 	public String editarDocumento() {
-		
+
 		EditarCommand cmd = new EditarCommand();
-		
+
 		try {
 			cmd.executar(doc);
 
@@ -248,7 +247,7 @@ public class LoginBean {
 
 		SalvarCommand cmd = new SalvarCommand();
 		ClienteEndereco cliAux = new ClienteEndereco();
-		
+
 		try {
 
 			cliente.setId(getId());
@@ -294,9 +293,9 @@ public class LoginBean {
 	public String editarEndereco() {
 
 		EditarCommand cmd = new EditarCommand();
-		
+
 		try {
-			
+
 			cmd.executar(endereco);
 			return "/cliente/perfil?faces-redirect=true";
 
@@ -321,7 +320,7 @@ public class LoginBean {
 				break;
 			}
 		}
-		
+
 		cliAux.setCliente(cliente);
 		cliAux.setCard(card);
 		cmd.executar(cliAux);
@@ -342,12 +341,12 @@ public class LoginBean {
 			}
 
 		}
-		
+
 		ExcluirCommand cmd = new ExcluirCommand();
 		ClienteDocumento cliAux = new ClienteDocumento();
 		cliAux.setCliente(cliente);
 		cliAux.setDoc(doc);
-		
+
 		cmd.executar(cliAux);
 
 		return "/cliente/perfil?faces-redirect=true";
@@ -359,7 +358,7 @@ public class LoginBean {
 
 		ExcluirCommand cmd = new ExcluirCommand();
 		ClienteEndereco cliAux = new ClienteEndereco();
-		
+
 		cliente.setId(getId());
 		cliente = dao.visualizar(cliente);
 
@@ -379,7 +378,6 @@ public class LoginBean {
 	}
 
 	public void carregar() {
-
 
 		cliente.setId(getId());
 

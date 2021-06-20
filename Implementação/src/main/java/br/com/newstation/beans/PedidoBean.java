@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.inject.Model;
+import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
@@ -13,7 +14,6 @@ import br.com.newstation.command.EditarCommand;
 import br.com.newstation.command.ListarCommand;
 import br.com.newstation.daos.CartaPedidoDao;
 import br.com.newstation.daos.CupomDao;
-import br.com.newstation.daos.EnderecoDao;
 import br.com.newstation.daos.EstoqueDao;
 import br.com.newstation.daos.PedidoDao;
 import br.com.newstation.dominio.Carta;
@@ -49,22 +49,29 @@ public class PedidoBean {
 
 	private static List<CartaPedido> carped = new ArrayList<CartaPedido>();
 
-	private int pagina = 0;
+	private static int totalLinhas = 0;
 
+	private static int linhasNaTabela = 5;
+
+	private static int totalPedidos = 0;
+	
 	LoginBean lb = new LoginBean();
 
 	public int getPaginacao() {
-		if (pagina < 0)
-			pagina = 0;
-		return pagina;
+		return totalLinhas;
 	}
 
 	public void paginacaoAvanca() {
-		pagina += 5;
+		System.out.println(totalPedidos);
+		if (totalLinhas + linhasNaTabela > totalPedidos)
+			totalLinhas = totalPedidos;
+		totalLinhas += linhasNaTabela;
 	}
 
 	public void paginacaoRetorna() {
-		pagina = pagina - 5;
+		if (totalLinhas - linhasNaTabela < 0)
+			totalLinhas = 0;
+		totalLinhas = totalLinhas - linhasNaTabela;
 	}
 
 	public void carpedido() {
@@ -73,6 +80,7 @@ public class PedidoBean {
 
 	@Transactional
 	public List<Pedido> pedidos(int cli_id) {
+		totalPedidos = pDao.listarByCliente(cli_id).size();
 		return pDao.listarByCliente(cli_id);
 	}
 
@@ -107,6 +115,7 @@ public class PedidoBean {
 			Pedido ped = (Pedido) e;
 			lista.add(ped);
 		}
+		totalPedidos = lista.size();
 		return lista;
 	}
 
@@ -237,4 +246,14 @@ public class PedidoBean {
 	public boolean isTroca() {
 		return troca;
 	}
+
+	public int getLinhasNaTabela() {
+		return linhasNaTabela;
+	}
+
+	public void setLinhasNaTabela(int linhasNaTabela) {
+		this.linhasNaTabela = linhasNaTabela;
+	}
+
+	
 }

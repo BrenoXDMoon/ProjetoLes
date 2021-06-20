@@ -78,7 +78,20 @@
 				</ul>
 				</div>
 			</nav>
-		<div class="col-10">
+			
+		<div class="col-9">
+		<div class="col-7">
+			<h:form>
+	        	<h5>Filtros</h5>
+        		<div class="row">
+	        		<div class="col-10">
+		        		<h:outputLabel for="busca" value="Buscar por nome"/><br/>
+			        	<h:inputText value="#{clienteListarBean.busca}"  id="busca" placeholder="Busca" class="form-control"/>
+	        		</div>
+        		</div>
+        		<h:commandButton class="btn btn-primary my-2" action="#{clienteListarBean.filtraClientes}" value="Pesquisar"/> 
+        	</h:form>
+        	</div>
 			<h1 class="title mb-5">Lista de Clientes</h1>
 			<h:dataTable var="cli" value="#{clienteListarBean.clientes}"
 				class="table table-bordered table-striped table-hover">

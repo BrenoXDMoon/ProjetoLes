@@ -12,7 +12,9 @@ public class GraficoItem {
 	private Map<String, List<Integer>> label = new HashMap<String, List<Integer>>();
 	private Map<String, List<Integer>> data = new HashMap<String, List<Integer>>();
 	private Map<Map<String, Set<String>>, Map<String, List<Integer>>> cartas = new HashMap<Map<String, Set<String>>, Map<String, List<Integer>>>();
-
+	private int limitador = 0;
+	
+	
 	public Set<String> getDatas() {
 		return datas;
 	}
@@ -48,6 +50,14 @@ public class GraficoItem {
 	public void setCartas(Map<String, Set<String>> map_label, Map<String, List<Integer>> map_data) {
 		this.cartas.put(map_label, map_data);
 		
+	}
+
+	public int getLimitador() {
+		return limitador;
+	}
+
+	public void setLimitador(int limitador) {
+		this.limitador = limitador;
 	}
 
 	

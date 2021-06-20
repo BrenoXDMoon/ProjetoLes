@@ -16,12 +16,6 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 
-import org.primefaces.model.chart.Axis;
-import org.primefaces.model.chart.AxisType;
-import org.primefaces.model.chart.CategoryAxis;
-import org.primefaces.model.chart.LineChartModel;
-import org.primefaces.model.chart.LineChartSeries;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -34,7 +28,6 @@ public class grafico implements Serializable {
 	private PedidoDao dao;
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 	private static final long serialVersionUID = 1L;
-	private LineChartModel areaModel;
 	private static String min = null;
 	private static String max = null;
 	private static String filtro = "cartas";
@@ -43,6 +36,7 @@ public class grafico implements Serializable {
 	private Map<String, List<Integer>> label = new HashMap<String, List<Integer>>();
 	private List<Integer> data = new ArrayList<Integer>();
 	GraficoItem gi = new GraficoItem();
+	private int limitador;
 
 	@PostConstruct
 	public void init() {
@@ -97,6 +91,7 @@ public class grafico implements Serializable {
 //			System.out.println(label.get(s).size());
 			gi.setLabel(label);
 		gi.setDatas(datas);
+		gi.setLimitador(limitador);
 
 	}
 
@@ -167,6 +162,7 @@ public class grafico implements Serializable {
 //			System.out.println(s + " " + label.get(s).size());
 			gi.setLabel(label);
 		gi.setDatas(datas);
+		gi.setLimitador(limitador);
 		if (max == "31/12/2100")
 			max = "";
 		if (min == "31/12/1980")
@@ -210,6 +206,14 @@ public class grafico implements Serializable {
 
 	public void setFiltro(String filtro) {
 		grafico.filtro = filtro;
+	}
+
+	public int getLimitador() {
+		return limitador;
+	}
+
+	public void setLimitador(int limitador) {
+		this.limitador = limitador;
 	}
 
 }
