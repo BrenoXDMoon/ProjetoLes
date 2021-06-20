@@ -25,6 +25,5 @@ function calculaValorOutroCartao() {
 		alert("O valor inválido");
 	}
 
-
 	return total
 }

@@ -88,13 +88,12 @@ public class CheckoutBean {
 		pedido.setCliente(dao.visualizar(cli));
 
 		if (validaDesconto.processar(cupom) == null) {
-			if (validapagamento.total(cupons, total, cDao.buscarById(cupom.getId())))
+			if (validapagamento.total(cupons, total, cupom))
 				return "/checkout/checkout?faces-redirect=true";
 			pedido.setCupomDesconto(cDao.buscarById(cupom.getId()));
 
 		} else {
-//			cupom = null;
-			pedido.setCupomDesconto(cDao.buscarById(8));
+			cupom = null;
 		}
 
 		if (!cupons.isEmpty()) {
@@ -154,13 +153,13 @@ public class CheckoutBean {
 		pedido.setDataAtualizacao(cale);
 		pedido.setCliente(dao.visualizar(cli));
 
-		System.out.println("cupom esta nulo? "+ cupom == null);
 		if (validaDesconto.processar(cupom) == null) {
-			pedido.setCupomDesconto(cDao.buscarById(8));
-		} else {
-			if (validapagamento.total(cupons, total, cDao.buscarById(cupom.getId())))
+			if (validapagamento.total(cupons, total, cupom))
 				return "/checkout/checkout?faces-redirect=true";
 			pedido.setCupomDesconto(cDao.buscarById(cupom.getId()));
+
+		} else {
+			cupom = null;
 		}
 
 		if (!cupons.isEmpty()) {

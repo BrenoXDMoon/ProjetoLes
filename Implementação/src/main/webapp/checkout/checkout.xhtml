@@ -92,7 +92,7 @@
 						
 					<div class="col-6">
 						<h4 class=" mb-4">Endereço</h4>
-						<h:selectOneMenu value="#{checkoutBean.end}" class="form-select" converter="EndConverter"  id="endereco" required="true">
+						<h:selectOneMenu value="#{checkoutBean.end}" class="form-select" converter="EndConverter"  id="endereco" required="true" onchange="semCupom()">
 							<f:selectItem itemLabel="Selecione um endereço" value="#{null}"/>
 							<f:selectItems value="#{loginBean.enderecos}" var="end" itemLabel="#{end.logradouro}" itemValue="#{end}"/>
 						</h:selectOneMenu>
@@ -120,7 +120,7 @@
 						<div class="col-4 text-left">
 							<p>Cupom de Desconto disponíveis</p>
 							<h:inputText value="#{checkoutBean.somaCupom}" id="somaCupom" styleClass="d-none"/>
-							<h:selectOneRadio value="#{checkoutBean.cupom}" styleClass="radio" id="cupomDesconto" converter="CupomConverter" onchange="somaCupom()">
+							<h:selectOneRadio value="#{checkoutBean.cupom}" styleClass="radio" id="cupomDesconto" converter="CupomConverter" onchange="somaCupom()" required="true">
 								<f:selectItems value="#{cupomListarBean.cuponsDesconto}" var="cupom" itemLabel="#{cupom.show()}" itemValue="#{cupom}" />
 							</h:selectOneRadio>
 						</div>
@@ -132,7 +132,7 @@
 						</div>
 					</div>
 					<h:messages style = "color:red;margin:8px;" /> 
-					<h:commandButton class="btn btn-success" action="#{checkoutBean.salvar(loginBean.id, (carrinho.frete + carrinho.total), carrinho)}" value="Finalizar"/>
+					<h:commandButton class="btn btn-success" action="#{checkoutBean.salvar(loginBean.id, (carrinho.frete + carrinho.total), carrinho)}" value="Finalizar" onclick="semCupom()"/>
 				</div>
 			</div>
 		</div>
