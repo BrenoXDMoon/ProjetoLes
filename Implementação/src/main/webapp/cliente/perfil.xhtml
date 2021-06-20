@@ -151,7 +151,8 @@
 				
 				<h2 class='text-white'>Pedidos</h2>
 				<h:form styleClass="mb-3">
-					#{pedidoBean.paginacao + 1} - #{pedidoBean.paginacao + pedidoBean.linhasNaTabela} 
+					#{pedidoBea.setMaxPedido()}
+					#{pedidoBean.paginacao + 1} - #{pedidoBean.paginacao + pedidoBean.linhasNaTabela}  - #{pedidoBean.totalPedidos}
 					<h:selectOneMenu  value = "#{pedidoBean.linhasNaTabela}" class="ml-3" onchange="trocaIndex()"> 
 					   <f:selectItem itemValue = "#{pedidoBean.linhasNaTabela}" itemLabel = " #{pedidoBean.linhasNaTabela}" />
 					   <f:selectItem itemValue = "5" itemLabel = " 5" /> 
@@ -162,8 +163,8 @@
 				</h:form>
 				<div class="float-left mb-3">
 					<h:form>
-						<h:commandButton value="Voltar" action="#{pedidoBean.paginacaoRetorna}" class="btn btn-info"/>
-						<h:commandButton value="Avançar" action="#{pedidoBean.paginacaoAvanca}" class="btn btn-info ml-4"/>            	
+						<h:commandButton value="Voltar" action="#{pedidoBean.paginacaoRetorna}" class="btn btn-info" rendered="#{pedidoBean.isZero()}"/>
+						<h:commandButton value="Avançar" action="#{pedidoBean.paginacaoAvanca}" class="btn btn-info ml-4" rendered="#{pedidoBean.isMaximo()}"/>            	
 					</h:form>
 				</div>
 				<h:dataTable var="ped" value="#{pedidoBean.pedidos(loginBean.id)}" class="table table-bordered table-striped table-hover" first="#{pedidoBean.paginacao}" rows="#{pedidoBean.linhasNaTabela}"> 

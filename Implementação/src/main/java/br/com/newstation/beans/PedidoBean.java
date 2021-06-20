@@ -54,17 +54,40 @@ public class PedidoBean {
 	private static int linhasNaTabela = 5;
 
 	private static int totalPedidos = 0;
-	
+
 	LoginBean lb = new LoginBean();
 
+	
+	public void paginacaoAdmin() {
+
+		totalPedidos = todosPedidos().size();
+	}
+	
 	public int getPaginacao() {
 		return totalLinhas;
 	}
 
+	public boolean isZero() {
+		if (totalLinhas != 0)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isMaximo() {
+		if (totalLinhas + linhasNaTabela <= getTotalPedidos())
+			return true;
+		else
+			return false;
+	}
+
+	public void setMaxPedido(int cli_id) {
+		totalPedidos = pDao.listarByCliente(cli_id).size();
+	}
 	public void paginacaoAvanca() {
-		System.out.println(totalPedidos);
-		if (totalLinhas + linhasNaTabela > totalPedidos)
-			totalLinhas = totalPedidos;
+		System.out.println(getTotalPedidos());
+		if (totalLinhas + linhasNaTabela > getTotalPedidos())
+			totalLinhas = getTotalPedidos();
 		totalLinhas += linhasNaTabela;
 	}
 
@@ -80,7 +103,7 @@ public class PedidoBean {
 
 	@Transactional
 	public List<Pedido> pedidos(int cli_id) {
-		totalPedidos = pDao.listarByCliente(cli_id).size();
+		
 		return pDao.listarByCliente(cli_id);
 	}
 
@@ -115,7 +138,6 @@ public class PedidoBean {
 			Pedido ped = (Pedido) e;
 			lista.add(ped);
 		}
-		totalPedidos = lista.size();
 		return lista;
 	}
 
@@ -255,5 +277,12 @@ public class PedidoBean {
 		this.linhasNaTabela = linhasNaTabela;
 	}
 
-	
+	public int getTotalPedidos() {
+		return totalPedidos;
+	}
+
+	public void setTotalPedidos(int totalPedidos) {
+		PedidoBean.totalPedidos = totalPedidos;
+	}
+
 }
