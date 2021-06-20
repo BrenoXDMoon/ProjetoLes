@@ -81,16 +81,17 @@
 		<div class="col-9 ml-3">
 		<h2 class='text-white'>Pedidos</h2>
 				<h:form styleClass="mb-3">
-					#{pedidoBean.paginacao} - #{pedidoBean.paginacao + pedidoBean.pagina_index} 
-					<h:selectOneMenu  value = "#{pedidoBean.pagina_index}" class="ml-3" onchange="trocaIndex()"> 
-					   <f:selectItem itemValue = "#{pedidoBean.pagina_index}" itemLabel = " #{pedidoBean.pagina_index}" />
+					#{pedidoBean.paginacaoAdmin()}
+					#{pedidoBean.paginacao + 1} - #{pedidoBean.paginacao + pedidoBean.linhasNaTabela}  - #{pedidoBean.totalPedidos}
+					<h:selectOneMenu  value = "#{pedidoBean.linhasNaTabela}" class="ml-3" onchange="trocaIndex()"> 
+					   <f:selectItem itemValue = "#{pedidoBean.linhasNaTabela}" itemLabel = " #{pedidoBean.linhasNaTabela}" />
 					   <f:selectItem itemValue = "5" itemLabel = " 5" /> 
 					   <f:selectItem itemValue = "10" itemLabel = "10" />
 					   <f:selectItem itemValue = "15" itemLabel = "15" />
 					</h:selectOneMenu >
 					<h:commandButton value="Confirmar" class="btn btn-info ml-3 d-none"  id="botaoIndex"/>  
 				</h:form>
-				<h:dataTable var="ped" value="#{pedidoBean.todosPedidos()}" class="table table-bordered table-striped table-hover" first="#{pedidoBean.paginacao}" rows="#{pedidoBean.pagina_index}">
+				<h:dataTable var="ped" value="#{pedidoBean.todosPedidos()}" class="table table-bordered table-striped table-hover" first="#{pedidoBean.paginacao}" rows="#{pedidoBean.linhasNaTabela}">
 					<h:column>
 						<f:facet name="header">Código</f:facet>
 						<a class="decoration-none font-weight-bold text-blue align-middle" href="#{request.contextPath}/admin/pedido/edit-form.xhtml?id=#{ped.id}">#{ped.uuid}</a>       
@@ -124,9 +125,9 @@
 					
 				</h:dataTable>
 				<h:form>
-					<h:commandButton value="Voltar" action="#{pedidoBean.paginacaoRetorna}" class="btn btn-info"/>
-					<h:commandButton value="Avançar" action="#{pedidoBean.paginacaoAvanca}" class="btn btn-info ml-4"/>            	
-				</h:form>
+						<h:commandButton value="Voltar" action="#{pedidoBean.paginacaoRetorna}" class="btn btn-info" rendered="#{pedidoBean.isZero()}"/>
+						<h:commandButton value="Avançar" action="#{pedidoBean.paginacaoAvanca}" class="btn btn-info ml-4" rendered="#{pedidoBean.isMaximo()}"/>            	
+					</h:form>
 				
 		</div>
 	</div>
