@@ -25,7 +25,7 @@
 	<f:viewAction action="#{loginBean.carregar()}" />
 </f:metadata>
 
-<body class="text-white bg-dark">
+<body class="text-white bg-dark" onload="pag()">
 	<header class="site-header  py-1">
 		<nav class="container d-flex flex-column flex-md-row justify-content-between mt-2">
 			 <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
@@ -150,24 +150,13 @@
 				
 				
 				<h2 class='text-white'>Pedidos</h2>
-				<h:form styleClass="mb-3">
-					#{pedidoBea.setMaxPedido()}
-					#{pedidoBean.paginacao + 1} - #{pedidoBean.paginacao + pedidoBean.linhasNaTabela}  - #{pedidoBean.totalPedidos}
-					<h:selectOneMenu  value = "#{pedidoBean.linhasNaTabela}" class="ml-3" onchange="trocaIndex()"> 
-					   <f:selectItem itemValue = "#{pedidoBean.linhasNaTabela}" itemLabel = " #{pedidoBean.linhasNaTabela}" />
-					   <f:selectItem itemValue = "5" itemLabel = " 5" /> 
-					   <f:selectItem itemValue = "10" itemLabel = "10" />
-					   <f:selectItem itemValue = "15" itemLabel = "15" />
-					</h:selectOneMenu >
-					<h:commandButton value="Confirmar" class="btn btn-info ml-3 d-none"  id="botaoIndex"/>  
-				</h:form>
+					#{pedidoBean.setMaxPedido(loginBean.id)}
+					<p class="d-none" id="totalPedido">#{pedidoBean.totalPedidos}</p>
 				<div class="float-left mb-3">
-					<h:form>
-						<h:commandButton value="Voltar" action="#{pedidoBean.paginacaoRetorna}" class="btn btn-info" rendered="#{pedidoBean.isZero()}"/>
-						<h:commandButton value="Avançar" action="#{pedidoBean.paginacaoAvanca}" class="btn btn-info ml-4" rendered="#{pedidoBean.isMaximo()}"/>            	
-					</h:form>
+					<input type="button" value="Voltar"  class="btn btn-info" onclick="volta()"/>
+					<input type="button" value="Avançar" class="btn btn-info ml-4" onclick="avanca()"/>
 				</div>
-				<h:dataTable var="ped" value="#{pedidoBean.pedidos(loginBean.id)}" class="table table-bordered table-striped table-hover" first="#{pedidoBean.paginacao}" rows="#{pedidoBean.linhasNaTabela}"> 
+				<h:dataTable var="ped" value="#{pedidoBean.pedidos(loginBean.id)}" class="table table-bordered table-striped table-hover" id="pedidoCliente"> 
 					<h:column>
 						<f:facet name="header">codigo</f:facet>
 						<a class="decoration-none font-weight-bold text-blue" href="#{request.contextPath}/cliente/pedido/detalhe-pedido.xhtml?id=#{ped.id}">#{ped.uuid}</a>
@@ -206,7 +195,46 @@
 <script>
 function trocaIndex(){
 	document.getElementById("j_idt66:botaoIndex").click();
+}
+
+var max_item = Number(5);
+var min_item = Number(1);
+let totalPedido = Number(document.getElementById("totalPedido").innerHTML);
+
+function avanca(){
+	max_item += 5;
+	min_item += 5;
+	pag();
+}
+
+function volta(){
+	max_item -= 5;
+	min_item -= 5;
+	pag();
+}
+
+/*<![CDATA[*/
+function pag(){
+	tabela = document.getElementById("pedidoCliente").getElementsByTagName("TR");
+	if(max_item < 5 && min_item < 1){
+		max_item = Number(5);
+		min_item = Number(1);
+	}
+	
+	if(max_item > totalPedido){
+		max_item = Number(totalPedido);
+		min_item = Number(totalPedido)-5;
+	}
+	
+	for (var i = 0; i < tabela.length; i++){
+		  if(i < min_item || i > max_item){
+			  document.getElementById("pedidoCliente").getElementsByTagName("TR")[i].style.display = "none";
+		  }else{
+			  document.getElementById("pedidoCliente").getElementsByTagName("TR")[i].style.display = "";
+		  }
+		}
 	
 }
+/*]]>*/
 </script>
 </html>
