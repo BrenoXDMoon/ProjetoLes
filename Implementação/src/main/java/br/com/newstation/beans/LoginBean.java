@@ -39,12 +39,20 @@ public class LoginBean {
 	private static Endereco endereco = new Endereco();
 	private static Documento doc = new Documento();
 	private static CartaoCredito card = new CartaoCredito();
+	boolean checkout = false;
 
 	@Inject
 	ClienteDao dao;
 
 	@Inject
 	PedidoDao pDao;
+
+	public void loginCheckout() {
+
+		checkout = true;
+		login();
+
+	}
 
 	@Transactional
 	public String login() {
@@ -59,6 +67,10 @@ public class LoginBean {
 			setStatusSessao(true);
 
 			System.out.println("sessao: " + statusSessao);
+
+			if (checkout) {
+				return "/checkout/checkout?faces-redirect=true";
+			}
 
 			if (cliente.getTipoCliente().equals(TIPO_CLIENTE.Admin)) {
 

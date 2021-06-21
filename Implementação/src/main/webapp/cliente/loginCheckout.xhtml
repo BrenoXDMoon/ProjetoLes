@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="../assets/css/style.css" rel="stylesheet" />
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+	crossorigin="anonymous" />
+
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+	crossorigin="anonymous" />
+<script src="https://kit.fontawesome.com/021265da4a.js" crossorigin="anonymous"></script>
+<link href="../assets/css/custom.css" rel="stylesheet" />
+    <link href="#{request.contextPath}/assets/css/style.css" rel="stylesheet"/>
+<title>Login</title>
+</head>
+
+<body class="">
+	<header class="site-header py-1 header">
+        <nav class="container d-flex flex-column flex-md-row justify-content-between mt-2">
+			<a class="d-none d-md-inline-block f-22" href="#{request.contextPath}/index.xhtml">NewStation</a>
+            <a class="py-2 d-none d-md-inline-block btn btn-acesso" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
+            <a class="py-2 d-none d-md-inline-block btn btn-acesso" href="#{request.contextPath}/cliente/form.xhtml">Cadastre-se</a>
+            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/carrinho.xhtml" >
+            	<i class="fas fa-shopping-cart mt-auto site-header" style="font-size:30px;"></i>
+            </a>
+		</nav>
+    </header>
+	<section class="container mt-5">
+	<div class="row justify-content-center ">
+		<div class="col-4">
+			<h:form>
+				<label>Login:</label>
+				<h:inputText value="#{loginBean.cliente.email}" id="email" />
+				<br /> <br /> <label>Senha:</label>
+				<h:inputText value="#{loginBean.cliente.senha.senha}" id="senha" />
+				<br /> <br />
+				<h:commandButton action="#{loginBean.loginCheckout}" value="login"
+					class="btn btn-pesquisa" />
+			</h:form>
+		</div>
+		<div class="text-center" style="margin-left: -14%;">
+			<a href="form.xhtml">Não é cadastrado ?</a>
+		</div>
+	</div>
+	</section>
+</body>
+</html>

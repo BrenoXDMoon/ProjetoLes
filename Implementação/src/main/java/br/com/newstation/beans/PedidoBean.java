@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.inject.Model;
-import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
@@ -49,52 +48,26 @@ public class PedidoBean {
 
 	private static List<CartaPedido> carped = new ArrayList<CartaPedido>();
 
-	private static int totalLinhas = 0;
-
-	private static int linhasNaTabela = 5;
-
 	private static int totalPedidos = 0;
+
+	private String busca = "";
 
 	LoginBean lb = new LoginBean();
 
-	
 	public void paginacaoAdmin() {
 
 		totalPedidos = todosPedidos().size();
 	}
-	
-	public int getPaginacao() {
-		return totalLinhas;
-	}
 
-	public boolean isZero() {
-		if (totalLinhas != 0)
-			return true;
-		else
-			return false;
-	}
+	public List<Pedido> filtraPedido() {
+		List<Pedido> pedidos = new ArrayList<Pedido>();
+		pedidos = pDao.filtro(getBusca());
 
-	public boolean isMaximo() {
-		if (totalLinhas + linhasNaTabela <= getTotalPedidos())
-			return true;
-		else
-			return false;
+		return pedidos;
 	}
 
 	public void setMaxPedido(int cli_id) {
 		totalPedidos = pDao.listarByCliente(cli_id).size();
-	}
-	public void paginacaoAvanca() {
-		System.out.println(getTotalPedidos());
-		if (totalLinhas + linhasNaTabela > getTotalPedidos())
-			totalLinhas = getTotalPedidos();
-		totalLinhas += linhasNaTabela;
-	}
-
-	public void paginacaoRetorna() {
-		if (totalLinhas - linhasNaTabela < 0)
-			totalLinhas = 0;
-		totalLinhas = totalLinhas - linhasNaTabela;
 	}
 
 	public void carpedido() {
@@ -103,7 +76,7 @@ public class PedidoBean {
 
 	@Transactional
 	public List<Pedido> pedidos(int cli_id) {
-		
+
 		return pDao.listarByCliente(cli_id);
 	}
 
@@ -130,13 +103,16 @@ public class PedidoBean {
 
 	@Transactional
 	public List<Pedido> todosPedidos() {
-
 		List<Pedido> lista = new ArrayList<Pedido>();
-		ListarCommand cmd = new ListarCommand();
+		if (getBusca().equals("")) {
+			ListarCommand cmd = new ListarCommand();
 
-		for (EntidadeDominio e : cmd.executar(new Pedido()).getEntidades()) {
-			Pedido ped = (Pedido) e;
-			lista.add(ped);
+			for (EntidadeDominio e : cmd.executar(new Pedido()).getEntidades()) {
+				Pedido ped = (Pedido) e;
+				lista.add(ped);
+			}
+		} else {
+			return pDao.filtro(getBusca());
 		}
 		return lista;
 	}
@@ -185,8 +161,7 @@ public class PedidoBean {
 	@Transactional
 	public void devolveEstoque(Carta carta, int quantidade) {
 		carta.getEstoque().setQuantidade(carta.getEstoque().getQuantidade() + quantidade);
-//		System.out.println("CARTAOZAO ESOSQUESKE: "+ "nome"+carta.getNome()+" qtde: "+carta.getEstoque().getQuantidade());
-		daoE.editar(carta.getEstoque());
+			daoE.editar(carta.getEstoque());
 	}
 
 	@Transactional
@@ -269,20 +244,20 @@ public class PedidoBean {
 		return troca;
 	}
 
-	public int getLinhasNaTabela() {
-		return linhasNaTabela;
-	}
-
-	public void setLinhasNaTabela(int linhasNaTabela) {
-		this.linhasNaTabela = linhasNaTabela;
-	}
-
 	public int getTotalPedidos() {
 		return totalPedidos;
 	}
 
 	public void setTotalPedidos(int totalPedidos) {
 		PedidoBean.totalPedidos = totalPedidos;
+	}
+
+	public String getBusca() {
+		return busca;
+	}
+
+	public void setBusca(String busca) {
+		this.busca = busca;
 	}
 
 }

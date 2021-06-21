@@ -8,6 +8,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Min;
 
@@ -18,6 +19,7 @@ public class Carta extends EntidadeDominio {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
+	
 	private String descricao;
 
 	@Enumerated(EnumType.STRING)

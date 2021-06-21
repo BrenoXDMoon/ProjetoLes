@@ -74,7 +74,7 @@
 					</div>
 					<div class="form-group">
 						<h:outputLabel value="Descrição da Carta" />
-						<h:inputText value='#{cartaSalvarBean.carta.descricao}'
+						<h:inputTextarea value='#{cartaSalvarBean.carta.descricao}'
 							required="true" id="descricao" styleClass="form-control" />
 						<h:message for='descricao' />
 					</div>
@@ -105,7 +105,9 @@
 					<div class="form-group">
 						<h:outputLabel value="Quantidade" />
 						<h:inputText value="#{cartaSalvarBean.estoque.quantidade}"
-							id="quantidade" styleClass="form-control"  />
+							id="quantidade" styleClass="form-control" validatorMessage="Tem que ter no mínimo uma carta">
+							<f:validateLongRange minimum = "1"/>
+							</h:inputText>
 						<h:message for="quantidade" />
 					</div>
 					<div class="form-group">

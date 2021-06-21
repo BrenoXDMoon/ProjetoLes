@@ -25,11 +25,11 @@ public class ValidaEstoque implements IStrategy {
 
 		for (CarrinhoItem item : itens) {
 			if (item.getQuantidadeAnterior() < item.getQuantidade()) {
-				System.out.println(item.getQuantidade());
+				System.out.println("Retira: "+ item.getQuantidade());
 				dropEstoque(item.getCarta(), item.getQuantidade());
 
 			} else if ((item.getQuantidadeAnterior() > item.getQuantidade())) {
-				System.out.println(item.getQuantidadeAnterior());
+				System.out.println("Devolve:" + item.getQuantidadeAnterior());
 				devolveEstoque(item.getCarta(), item.getQuantidadeAnterior());
 
 			}
@@ -47,9 +47,11 @@ public class ValidaEstoque implements IStrategy {
 
 	@Transactional
 	public void devolveEstoque(Carta carta, int quantidade) {
-		carta.getEstoque().setQuantidade(carta.getEstoque().getQuantidade() + quantidade);
-		EditarCommand cmd = new EditarCommand();
-		cmd.executar(carta.getEstoque());
+		if(quantidade > 1) {
+			carta.getEstoque().setQuantidade(carta.getEstoque().getQuantidade() + quantidade);
+			EditarCommand cmd = new EditarCommand();
+			cmd.executar(carta.getEstoque());
+		}
 //		daoE.update(carta.getEstoque());
 	}
 
