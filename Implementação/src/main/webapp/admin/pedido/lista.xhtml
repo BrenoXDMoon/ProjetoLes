@@ -66,7 +66,7 @@
 			</nav>
 		</div>
 		<div class="col-8">
-			<h2 class='text-white'>Pedidos</h2>
+			<h2>Pedidos</h2>
 				<p class="d-none" id="totalPedido">#{pedidoBean.totalPedidos}</p>
 				
 				<h:dataTable var="ped" value="#{pedidoBean.todosPedidos()}" class="table table-bordered table-striped table-hover" >
@@ -80,18 +80,10 @@
 						#{ped.total}
 					</h:column>
 					<h:column >
-						<f:facet name="header">Nome do Produto</f:facet>
+						<f:facet name="header">Nome dos Produtos</f:facet>
 						
 						<ui:repeat value="#{ped.itens.toArray()}" var="itens">
 							#{itens.carta.nome} -
-						</ui:repeat>
-					</h:column>
-					<h:column styleClass="w-min">
-						<f:facet name="header">Imagem</f:facet>
-						<ui:repeat value="#{ped.itens.toArray()}" var="itens">
-							<img src="#{request.contextPath}/file/#{itens.carta.imagemPath}"
-							width="30%" height="30%" alt="#{itens.carta.nome}" />
-							Quantidade: #{itens.quantidade}<p></p>
 						</ui:repeat>
 					</h:column>
 					<h:column>
