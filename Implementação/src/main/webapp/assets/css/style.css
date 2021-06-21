@@ -1,6 +1,31 @@
+body{background-color: floralwhite;	
+}
+
+.header{
+	background-color: black;
+	border-bottom: 2px solid orange;
+}
+
+.btn-pesquisa{
+	background-color: orange;
+	color: black;
+	font-weight: bold;
+	border: 3px solid;
+	border-radius: 26px;
+}
+
+.f-22{
+	font-size: 22px;
+}
+
+.btn-acesso{
+	border-radius: 26px;
+	padding: 1rem;
+}
+
 .btn-comprar{
     background: #fba71b;
-    color: #fff;
+    color: black;
     border-radius: 4px;
     font-weight: bold;
 }
@@ -50,12 +75,19 @@ a{
 }
 
 
+.calendario{
+	position: absolute;
+	bottom: 14%;
+	right: 15%;
+	color:#0069d9 !important
+}
+
 table tr td{
     text-align: center;
 }
 
 .site-header a{
-    color: #1e7e34 !important
+     color: #0069d9 !important
 }
 
 .w-30{

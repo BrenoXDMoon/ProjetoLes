@@ -13,14 +13,15 @@
 		rel="stylesheet" />
 	<link href="#{request.contextPath}/assets/css/bootstrap.min.css"
 		rel="stylesheet" />
+		<script src="https://kit.fontawesome.com/021265da4a.js" crossorigin="anonymous"></script>
 	<title>Admin</title>
 </h:head>
 
 <body>
-	<header class="site-header bg-dark py-1"> <nav
-		class="container d-flex flex-column flex-md-row justify-content-between">
-	<a class="py-2 d-none d-md-inline-block"
-		href="#{request.contextPath}/index.xhtml">NewStation</a> </nav> </header>
+	 <header class="site-header py-1 header">
+        <nav class="container d-flex flex-column flex-md-row justify-content-between my-2">
+			<a class="d-none d-md-inline-block f-22" href="#{request.contextPath}/index.xhtml">NewStation</a> </nav> 
+	</header>
 	<section class="container-fluid mt-3">
 		<div class="row justify-content-center">
 			<div class="col-2 border-rounded">
@@ -61,23 +62,25 @@
 					</div>
 				</nav>
 			</div>
-			<div class="col-9 pl-0">
-				<h2 class="header my-5">Painel Administrativo</h2>
+			<div class="col-9 pl-0 mb-3">
+				<h2 class="my-5">Painel Administrativo</h2>
 				<h:form enctype="multipart/form-data" class="mb-3">
 					<div class="row">
 						<div class="col-6">
 							<div class="row">
 								<div class="col-3">
 									<h:outputLabel value="Primeira data" />
+									<i class="fas fa-calendar-alt calendario" style="font-size:20px;"></i>
 									<h:inputText value='#{grafico.min}' id="min" styleClass="form-control" />
 								</div>
 								<div class="col-3">
 									<h:outputLabel value="Segunda data" />
+									<i class="fas fa-calendar-alt calendario" style="font-size:20px;"></i>
 									<h:inputText value='#{grafico.max}' id="max" styleClass="form-control" />
 								</div>
 								<div class="col-3">
 									<div class="mt-3">
-										<h:selectOneMenu value="#{grafico.filtro}" class="form-select">
+										<h:selectOneMenu value="#{grafico.filtro}" class="form-select position-absolute bt-0">
 											<f:selectItem itemValue="cartas" itemLabel="Carta" />
 											<f:selectItem itemValue="raridade" itemLabel="Raridade" />
 										</h:selectOneMenu>
@@ -90,7 +93,7 @@
 									</div>
 								</div>
 								<div class="col-3">
-									<h:commandButton value='Filtrar' action='#{grafico.setData}' styleClass="btn btn-primary my-3" />
+									<h:commandButton value='Filtrar' action='#{grafico.setData}' styleClass="btn btn-pesquisa position-absolute bt-0" />
 								</div>
 							</div>
 						</div>
