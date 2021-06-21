@@ -1,8 +1,3 @@
-body{
-    background-color: rgb(39, 48, 51);
-    color: whitesmoke;
-}
-
 .btn-comprar{
     background: #fba71b;
     color: #fff;
@@ -55,12 +50,8 @@ a{
 }
 
 
-table  tr td{
+table tr td{
     text-align: center;
-}
-table tr{
-    color: white
-    ;
 }
 
 .site-header a{

@@ -1,72 +1,108 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-     xmlns:h="http://java.sun.com/jsf/html"
-     xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-    xmlns:p="http://primefaces.org/ui">
-	<h:head>
-	    <meta charset="UTF-8"/>
-	    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	    <link href="#{request.contextPath}/assets/css/style.css" rel="stylesheet"/>
-	    <link href="#{request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet"/>
-	    <title>Admin</title>
-	</h:head>
-	
-	<body class="bg-dark text-white">
-	    <header class="site-header  py-1">
-	        <nav class="container d-flex flex-column flex-md-row justify-content-between">
-	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
-	        </nav>
-	    </header>
-	    <section class="container mt-5">
-	        <div class="row">
-	            <div class="col-10">
-	                <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/admin/cartas/lista.xhtml"><button class="btn btn-info">Lista de Cartas</button></a>
-	                <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/admin/pedido/lista.xhtml"><button class="btn btn-info">Lista de Pedidos</button></a>
-	                <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/admin/cliente/lista.xhtml"><button class="btn btn-info">Lista de Clientes</button></a>
-	                <div class="col-3">
-	                
-          	    <h:form enctype="multipart/form-data">
-          	    <div class="col-8 pl-0">
-          	    
-			  		<h:outputLabel value="Primeira data" />
-						<h:inputText value='#{grafico.min}'
-						id="min" styleClass="form-control" />
-					<h:outputLabel value="Segunda data" />
-						<h:inputText value='#{grafico.max}'
-						id="max" styleClass="form-control" />
-				</div>
-				<div class="mt-3">
-					<h:selectOneMenu value="#{grafico.filtro}" class="form-select"> 
-						<f:selectItem itemValue = "cartas" itemLabel = "Carta" /> 
-           				<f:selectItem itemValue = "raridade" itemLabel = "Raridade" /> 
-					</h:selectOneMenu>
-					<h:selectOneMenu  value = "#{grafico.limitador}" class="ml-3" rendered="false"> 
-						   <f:selectItem itemValue = "0" itemLabel = "Todos" /> 
-						   <f:selectItem itemValue = "5" itemLabel = "5" /> 
-						   <f:selectItem itemValue = "10" itemLabel = "10" />
-						</h:selectOneMenu >
-					</div>
-					<h:commandButton value='Filtrar'
-						action='#{grafico.setData}'
-						styleClass="btn btn-primary my-3" /> 
-				</h:form>
-				</div>
-					<div>
-						<canvas id="myChart" style = "width:500px height:500px"></canvas>
-					</div>
-					
-	            </div>
-	            
-	        </div>
-	      
-		
-	    </section>
-	   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link href="#{request.contextPath}/assets/css/style.css"
+		rel="stylesheet" />
+	<link href="#{request.contextPath}/assets/css/bootstrap.min.css"
+		rel="stylesheet" />
+	<title>Admin</title>
+</h:head>
 
-	    <script>
+<body>
+	<header class="site-header bg-dark py-1"> <nav
+		class="container d-flex flex-column flex-md-row justify-content-between">
+	<a class="py-2 d-none d-md-inline-block"
+		href="#{request.contextPath}/index.xhtml">NewStation</a> </nav> </header>
+	<section class="container-fluid mt-3">
+		<div class="row justify-content-center">
+			<div class="col-2 border-rounded">
+				<nav id="sidebarMenu" class="col-2 d-md-block sidebar collapse">
+					<div class="position-sticky pt-3">
+						<ul class="nav flex-column">
+							<li class="nav-item">
+								<a class="nav-link active" aria-current="page" href="#{request.contextPath}/admin/admin.xhtml">
+									<span class="font-weight-bold" >Dashboard</span>
+								</a>
+							</li>
+							<span class="font-weight-bold border-bottom">Pedidos</span>
+							<li class="nav-item mb-5">
+								<a class="py-2 d-none d-md-inline-block ml-3" href="#{request.contextPath}/admin/pedido/lista.xhtml">Lista de Pedidos</a>
+							</li>
+							<span class="font-weight-bold border-bottom">Cartas</span>
+							<li class="nav-item">
+								<a class="nav-link" href="#{request.contextPath}/admin/cartas/lista.xhtml">Lista de Cartas</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#{request.contextPath}/admin/cartas/form.xhtml"> Cadastro de Cartas </a>
+							</li>
+							<spam class="font-weight-bold border-bottom">Cliente</spam>
+							<li class="nav-item">
+								<a class="nav-link" href="#{request.contextPath}/admin/cliente/lista.xhtml"> Lista de Clientes </a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#{request.contextPath}/cliente/form.xhtml"> Cadastro de Clientes </a>
+							</li>
+							<spam class="font-weight-bold border-bottom">Cupons</spam>
+							<li class="nav-item">
+								<a class="nav-link" href="#{request.contextPath}/admin/cupom/lista.xhtml"> Lista de Cupons </a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#{request.contextPath}/admin/cupom/form.xhtml"> Cadastro de Cupons </a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+			<div class="col-9 pl-0">
+				<h2 class="header my-5">Painel Administrativo</h2>
+				<h:form enctype="multipart/form-data" class="mb-3">
+					<div class="row">
+						<div class="col-6">
+							<div class="row">
+								<div class="col-3">
+									<h:outputLabel value="Primeira data" />
+									<h:inputText value='#{grafico.min}' id="min" styleClass="form-control" />
+								</div>
+								<div class="col-3">
+									<h:outputLabel value="Segunda data" />
+									<h:inputText value='#{grafico.max}' id="max" styleClass="form-control" />
+								</div>
+								<div class="col-3">
+									<div class="mt-3">
+										<h:selectOneMenu value="#{grafico.filtro}" class="form-select">
+											<f:selectItem itemValue="cartas" itemLabel="Carta" />
+											<f:selectItem itemValue="raridade" itemLabel="Raridade" />
+										</h:selectOneMenu>
+										<h:selectOneMenu value="#{grafico.limitador}" class="ml-3"
+											rendered="false">
+											<f:selectItem itemValue="0" itemLabel="Todos" />
+											<f:selectItem itemValue="5" itemLabel="5" />
+											<f:selectItem itemValue="10" itemLabel="10" />
+										</h:selectOneMenu>
+									</div>
+								</div>
+								<div class="col-3">
+									<h:commandButton value='Filtrar' action='#{grafico.setData}' styleClass="btn btn-primary my-3" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</h:form>
+				<canvas id="myChart" style="width:500px height:500px"></canvas>
+			</div>
+		</div>
+	</section>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+	<script>
 		const c = #{grafico.json};
 		var lista = [];
 	    const teste = {
@@ -115,5 +151,5 @@
     		    config
     		  );
 		</script>
-	</body>
+</body>
 </html>

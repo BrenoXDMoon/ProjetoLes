@@ -19,17 +19,56 @@
 	<f:viewAction action="#{cupomEditarBean.carregaDetalhe()}" />
 </f:metadata>
 
-<h:body styleClass="bg-dark text-white">
+<h:body styleClass="">
 	<header class="site-header  py-1">
         <nav class="container d-flex flex-column flex-md-row justify-content-between">
             <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
             <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/admin/admin.xhtml">Admin</a>
         </nav>
     </header>
-	<div class="container">
-		<div class="row">
-			<div class="col-10">
-				<h2>Cadastro de Cupom</h2>
+	<div class="container-fluid">
+		<div class="row justify-content-center">
+			<div class="col-2 border-rounded">
+				<nav id="sidebarMenu" class="col-2 d-md-block sidebar collapse">
+					<div class="position-sticky pt-3">
+						<ul class="nav flex-column">
+							<li class="nav-item">
+								<a class="nav-link active" aria-current="page" href="#{request.contextPath}/admin/admin.xhtml">
+									<span class="font-weight-bold" >Dashboard</span>
+								</a>
+							</li>
+							<span class="font-weight-bold border-bottom">Pedidos</span>
+							<li class="nav-item mb-5">
+								<a class="py-2 d-none d-md-inline-block ml-3" href="#{request.contextPath}/admin/pedido/lista.xhtml">Lista de Pedidos</a>
+							</li>
+							<span class="font-weight-bold border-bottom">Cartas</span>
+							<li class="nav-item">
+								<a class="nav-link" href="#{request.contextPath}/admin/cartas/lista.xhtml">Lista de Cartas</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#{request.contextPath}/admin/cartas/form.xhtml"> Cadastro de Cartas </a>
+							</li>
+							<spam class="font-weight-bold border-bottom">Cliente</spam>
+							<li class="nav-item">
+								<a class="nav-link" href="#{request.contextPath}/admin/cliente/lista.xhtml"> Lista de Clientes </a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#{request.contextPath}/cliente/form.xhtml"> Cadastro de Clientes </a>
+							</li>
+							<spam class="font-weight-bold border-bottom">Cupons</spam>
+							<li class="nav-item">
+								<a class="nav-link" href="#{request.contextPath}/admin/cupom/lista.xhtml"> Lista de Cupons </a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#{request.contextPath}/admin/cupom/form.xhtml"> Cadastro de Cupons </a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+			
+			<div class="col-8">
+				<h2 class="my-5">Cadastro de Cupom</h2>
 				<h:form enctype="multipart/form-data">
 				
 					<div class="form-group">

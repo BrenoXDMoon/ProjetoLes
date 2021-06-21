@@ -18,70 +18,99 @@
 
 
 
-<body class="bg-dark text-white">
+<body class="">
 	<header class="site-header  py-1">
 		<nav
 			class="container d-flex flex-column flex-md-row justify-content-between">
 			<a class="py-2 d-none d-md-inline-block"
-				href="#{request.contextPath}/index.xhtml">NewStation</a> <a
-				class="py-2 d-none d-md-inline-block"
-				href="#{request.contextPath}/cliente/login.xhtml">Login</a> <a
-				class="py-2 d-none d-md-inline-block"
-				href="#{request.contextPath}/carrinho.xhtml">Carrinho</a>
+				href="#{request.contextPath}/index.xhtml">NewStation</a>
+				<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
+				<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/carrinho.xhtml">Carrinho</a>
 		</nav>
 	</header>
-	<section class="container perfil mt-5">
+	<section class="container-fluid perfil mt-5">
 		<h:form enctype="multipart/form-data">
-			<h4 class="py-4">Dados de Cliente</h4>
-			<div class="border">
-				<div class="row justify-content-center">
-					<div class="col-10">
-						<div class="form-group">
-							<h:outputLabel value="Nome Completo" />
-							<h:inputText value="#{clienteEditarBean.cliente.nome}"
-								required="true" id="nomeCompleto" styleClass="form-control" />
-							<h:message for='nomeCompleto' />
+			<div class="row justify-content-center">
+				<div class="col-2 border-rounded">
+					<nav id="sidebarMenu" class="col-2 d-md-block sidebar collapse">
+						<div class="position-sticky pt-3">
+							<ul class="nav flex-column">
+								<li class="nav-item">
+									<a class="nav-link active" aria-current="page" href="#{request.contextPath}/admin/admin.xhtml">
+										<span class="font-weight-bold" >Dashboard</span>
+									</a>
+								</li>
+								<span class="font-weight-bold border-bottom">Pedidos</span>
+								<li class="nav-item mb-5">
+									<a class="py-2 d-none d-md-inline-block ml-3" href="#{request.contextPath}/admin/pedido/lista.xhtml">Lista de Pedidos</a>
+								</li>
+								<span class="font-weight-bold border-bottom">Cartas</span>
+								<li class="nav-item">
+									<a class="nav-link" href="#{request.contextPath}/admin/cartas/lista.xhtml">Lista de Cartas</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#{request.contextPath}/admin/cartas/form.xhtml"> Cadastro de Cartas </a>
+								</li>
+								<spam class="font-weight-bold border-bottom">Cliente</spam>
+								<li class="nav-item">
+									<a class="nav-link" href="#{request.contextPath}/admin/cliente/lista.xhtml"> Lista de Clientes </a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#{request.contextPath}/cliente/form.xhtml"> Cadastro de Clientes </a>
+								</li>
+								<spam class="font-weight-bold border-bottom">Cupons</spam>
+								<li class="nav-item">
+									<a class="nav-link" href="#{request.contextPath}/admin/cupom/lista.xhtml"> Lista de Cupons </a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#{request.contextPath}/admin/cupom/form.xhtml"> Cadastro de Cupons </a>
+								</li>
+							</ul>
 						</div>
-
-						<div class="form-group">
-							<h:outputLabel value="Data de Nascimento" />
-							<h:inputText value="#{clienteEditarBean.cliente.dataNascimento.time}"
-								id="dataNascimento" styleClass="form-control">
-								<f:convertDateTime pattern="dd/MM/yyyy" />
-							</h:inputText>
-							<h:message for="dataNascimento" />
-						</div>
-
-						<div class="form-group">
-							<h:outputLabel value="E-mail" />
-							<h:inputText value="#{clienteEditarBean.cliente.email}" id="email"
-								styleClass="form-control" />
-							<h:message for="email" />
-						</div>
-
-						<div class="form-group">
-							<h:outputLabel value="Senha" />
-							<h:inputText value="#{clienteEditarBean.senha.senha}" id="senha"
-								styleClass="form-control" />
-							<h:outputLabel value="A senha tem que ter 8 caracteres e Possuir numeros" rendered="#{clienteEditarBean.senhaErro}"/>  
-						</div>
-						
-						<h:outputLabel value="Tipo do Cliente" />
-								<h:selectOneMenu value="#{clienteEditarBean.cliente.tipoCliente}" class="form-select">
-		                        	<f:selectItems value="#{clienteEditarBean.tipoCliente}" var="tipo" itemLabel="#{tipo}" itemValue="#{tipo}"/>
-		                        </h:selectOneMenu>
-								
-							<h:message for="tipoCliente" />
+					</nav>
+				</div>
+				<div class="col-8">
+					<h3 class="my-4">Dados de Cliente</h3>
+					<div class="form-group">
+						<h:outputLabel value="Nome Completo" />
+						<h:inputText value="#{clienteEditarBean.cliente.nome}"
+							required="true" id="nomeCompleto" styleClass="form-control" />
+						<h:message for='nomeCompleto' />
 					</div>
+					<div class="form-group">
+						<h:outputLabel value="Data de Nascimento" />
+						<h:inputText value="#{clienteEditarBean.cliente.dataNascimento.time}"
+							id="dataNascimento" styleClass="form-control">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:inputText>
+						<h:message for="dataNascimento" />
+					</div>
+
+					<div class="form-group">
+						<h:outputLabel value="E-mail" />
+						<h:inputText value="#{clienteEditarBean.cliente.email}" id="email"
+							styleClass="form-control" />
+						<h:message for="email" />
+					</div>
+
+					<div class="form-group">
+						<h:outputLabel value="Senha" />
+						<h:inputText value="#{clienteEditarBean.senha.senha}" id="senha"
+							styleClass="form-control" />
+						<h:outputLabel value="A senha tem que ter 8 caracteres e Possuir numeros" rendered="#{clienteEditarBean.senhaErro}"/>  
+					</div>
+					
+					<h:outputLabel value="Tipo do Cliente" />
+						<h:selectOneMenu value="#{clienteEditarBean.cliente.tipoCliente}" class="form-select">
+                       		<f:selectItems value="#{clienteEditarBean.tipoCliente}" var="tipo" itemLabel="#{tipo}" itemValue="#{tipo}"/>
+                   		</h:selectOneMenu>
+							
+					<h:message for="tipoCliente" />
+					<h:commandButton value='Atualizar' action='#{clienteEditarBean.editar}' styleClass="btn btn-primary my-3 d-block" />
 				</div>
 			</div>
-			<h:commandButton value='Atualizar' action='#{clienteEditarBean.editar}'
-						styleClass="btn btn-primary my-3" />
 		</h:form>
-		
 	</section>
-
-
 </body>
 
 </html>
