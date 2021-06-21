@@ -17,6 +17,7 @@
 	rel="stylesheet" />
 <link href="#{request.contextPath}/assets/css/bootstrap.min.css"
 	rel="stylesheet" />
+	<script src="https://kit.fontawesome.com/021265da4a.js" crossorigin="anonymous"></script>
 <title>Perfil</title>
 </head>
 
@@ -25,13 +26,13 @@
 	<f:viewAction action="#{loginBean.carregar()}" />
 </f:metadata>
 
-<body class="text-white bg-dark" onload="pag()">
-	<header class="site-header  py-1">
-		<nav class="container d-flex flex-column flex-md-row justify-content-between mt-2">
-			 <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
+<body class="" onload="pag()">
+	<header class="site-header py-1 header">
+        <nav class="container d-flex flex-column flex-md-row justify-content-between mt-2">
+			<a class="d-none d-md-inline-block f-22" href="#{request.contextPath}/index.xhtml">NewStation</a>
             <c:if test="#{!loginBean.statusSessao}">
-	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
-	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/addCliente.xhtml">Cadastre-se</a>
+	            <a class="py-2 d-none d-md-inline-block btn btn-acesso" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
+	            <a class="py-2 d-none d-md-inline-block btn btn-acesso" href="#{request.contextPath}/cliente/form.xhtml">Cadastre-se</a>
             </c:if>
             
             <c:if test="#{loginBean.statusSessao}">
@@ -40,10 +41,11 @@
 	            	<h:commandButton value="Logout" action="#{loginBean.logout}" class="btn btn-danger"/>            	
             	</h:form>
             </c:if>
-            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/carrinho.xhtml">Carrinho</a>
+            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/carrinho.xhtml" >
+            	<i class="fas fa-shopping-cart mt-auto site-header" style="font-size:30px;"></i>
+            </a>
 		</nav>
-		
-	</header>
+    </header>
 
 	<section class="container perfil mt-5">
 		<div class="row">

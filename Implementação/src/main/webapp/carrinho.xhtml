@@ -17,17 +17,18 @@
 		rel="stylesheet" />
 	<link href="#{request.contextPath}/assets/css/custom.css"
 		rel="stylesheet" />
+		 <script src="https://kit.fontawesome.com/021265da4a.js" crossorigin="anonymous"></script>
 	<title>Carrinho</title>
 </head>
 
 
-<body class="bg-dark text-white">
-	<header class="site-header  py-1">
+<body class="">
+	 <header class="site-header py-1 header">
         <nav class="container d-flex flex-column flex-md-row justify-content-between mt-2">
-			 <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
+			<a class="d-none d-md-inline-block f-22" href="#{request.contextPath}/index.xhtml">NewStation</a>
             <c:if test="#{!loginBean.statusSessao}">
-	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
-	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/addCliente.xhtml">Cadastre-se</a>
+	            <a class="py-2 d-none d-md-inline-block btn btn-acesso" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
+	            <a class="py-2 d-none d-md-inline-block btn btn-acesso" href="#{request.contextPath}/cliente/form.xhtml">Cadastre-se</a>
             </c:if>
             
             <c:if test="#{loginBean.statusSessao}">
@@ -36,11 +37,13 @@
 	            	<h:commandButton value="Logout" action="#{loginBean.logout}" class="btn btn-danger"/>            	
             	</h:form>
             </c:if>
-            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/carrinho.xhtml">Carrinho</a>
+            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/carrinho.xhtml" >
+            	<i class="fas fa-shopping-cart mt-auto site-header" style="font-size:30px;"></i>
+            </a>
 		</nav>
     </header>
     
-	<section class="infoSection container">
+	<section class="infoSection container mt-2">
 	<h2 class="infoSection-titulo">Seu carrinho</h2>
 
 	<h:form >
@@ -76,10 +79,8 @@
 	        	</h:column>
 	        	
 	        	<h:column class="formularioDoCarrinho-item"><a
-							jsf:action="#{carrinhoBean.remover(item)}"> <img
-								class="formularioDoCarrinho-item-remover-imagem"
-								src="#{request.contextPath}/resources/imagens/trash.png" alt="X"
-								title="Remover" />
+							jsf:action="#{carrinhoBean.remover(item)}"> 
+							<i class="fas fa-times-circle"></i>
 						</a>
 				</h:column>
 				</h:dataTable>
@@ -98,13 +99,14 @@
 					<td	class="formularioDoCarrinho-rodape-item formularioDoCarrinho-finalizar"
 						colspan="3">
 
-						<button class="formularioDoCarrinho-finalizar-botao btn btn-success" type="submit" jsf:action="#{carrinhoBean.redirCheckout(carrinho.itens, loginBean.statusSessao)}">
+						<button class="formularioDoCarrinho-finalizar-botao btn btn-pesquisa" type="submit" jsf:action="#{carrinhoBean.redirCheckout(carrinho.itens, loginBean.statusSessao)}">
 							Finalizar compra
 						</button>
 					</td>
-					<h:commandButton value="Atualizar" action="#{carrinhoBean.carrinhoCheck(carrinho.itens)}" class="btn btn-primary" />
+					<h:commandButton value="Atualizar" action="#{carrinhoBean.carrinhoCheck(carrinho.itens)}" class="btn btn-pesquisa" />
+					&nbsp;&nbsp;&nbsp;&nbsp;
 					<h:outputLabel value="Total"/>
-					<td class="formularioDoCarrinho-rodape-item btn btn-">R$#{carrinho.getTotal()}</td>
+					<td class="formularioDoCarrinho-rodape-item btn ">R$#{carrinho.getTotal()}</td>
 				</tr>
 				
 				

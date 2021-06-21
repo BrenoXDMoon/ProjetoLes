@@ -21,6 +21,7 @@
 	rel="stylesheet" />
 <link href="#{request.contextPath}/assets/css/custom.css"
 	rel="stylesheet" />
+	    <script src="https://kit.fontawesome.com/021265da4a.js" crossorigin="anonymous"></script>
 <title>Detalhe da Carta</title>
 </head>
 
@@ -33,13 +34,13 @@
 <title>#{cartaDetalheBean.carta.nome}</title>
 
 </head>
-<body class="bg-dark text-white">
-	<header>
-		<nav class="container d-flex flex-column flex-md-row justify-content-between mt-2">
-			 <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
+<body class="">
+	<header class="site-header py-1 header">
+        <nav class="container d-flex flex-column flex-md-row justify-content-between mt-2">
+			 <a class="d-none d-md-inline-block f-22" href="#{request.contextPath}/index.xhtml">NewStation</a>
             <c:if test="#{!loginBean.statusSessao}">
-	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
-	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/addCliente.xhtml">Cadastre-se</a>
+	            <a class="py-2 d-none d-md-inline-block btn btn-acesso" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
+	            <a class="py-2 d-none d-md-inline-block btn btn-acesso" href="#{request.contextPath}/cliente/form.xhtml">Cadastre-se</a>
             </c:if>
             
             <c:if test="#{loginBean.statusSessao}">
@@ -48,53 +49,48 @@
 	            	<h:commandButton value="Logout" action="#{loginBean.logout}" class="btn btn-danger"/>            	
             	</h:form>
             </c:if>
-            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/carrinho.xhtml">Carrinho</a>
+            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/carrinho.xhtml" >
+            	<i class="fas fa-shopping-cart mt-auto site-header" style="font-size:30px;"></i>
+            </a>
 		</nav>
-	</header>
-
+    </header>
 
 	<section class="mt-5">
-	<div class="container">
-		<div class="row">
-			<div class='col-6 '>
-				<h:outputLabel  value="Nome:"/><br/>
-				<p class="f-16">#{cartaDetalheBean.carta.nome}</p>
-				
-				<h:outputLabel  value="Raridade - Pacote:"/><br/>
-				<p class="f-16">#{cartaDetalheBean.carta.raridade} -
-					#{cartaDetalheBean.carta.descricao}</p>
-
-				<h:outputLabel  value="Preço:"/><br/>
-				<p class="f-16">R$ #{cartaDetalheBean.carta.preco}</p>
-				
-				<a href="#{request.contextPath}/index.xhtml" class="btn position-absolute bt-0" style="background-color: cornsilk;">Retornar</a>
-			</div>
-		
-			<div class='col-6'>
-				<img class="w-50"
-					src="#{request.contextPath}/file/#{cartaDetalheBean.carta.imagemPath}"
-					alt="#{cartaDetalheBean.carta.nome}"
-					title="#{cartaDetalheBean.carta.nome}" />
-				
+		<div class="container">
+			<div class="row">
+			<div class='col-5'>
+					<img class="w-50"
+						src="#{request.contextPath}/file/#{cartaDetalheBean.carta.imagemPath}"
+						alt="#{cartaDetalheBean.carta.nome}"
+						title="#{cartaDetalheBean.carta.nome}" />
 					
-					<form method="post" class="adicionarAoCarrinho" jsf:id="formComprar">
-							<button class="d-block mt-3 ml-17 btn-comprar btn" 
+						<form method="post" class="adicionarAoCarrinho" jsf:id="formComprar">
+							<button class="d-block mt-3 btn-comprar btn" 
 								jsf:action="#{carrinhoBean.add(cartaDetalheBean.id)}"
 								type="submit" >
 								Adicionar ao Carrinho
-						
 							</button>
-					</form>
+						</form>
+				</div>
+				<div class='col-3 px-0 mr-3'>
+					<h4>Detalhe da Carta</h4>
+					<span class="font-weight-bold ">Nome:</span>&nbsp;&nbsp;&nbsp;&nbsp;
+					<span class="f-16"> #{cartaDetalheBean.carta.nome}</span>
+					<br></br>
+					<span class="font-weight-bold ">Preço:</span>&nbsp;&nbsp;&nbsp;&nbsp;
+					<span class="f-16"> R$ #{cartaDetalheBean.carta.preco}</span>
+					<br></br>
+					<span class="font-weight-bold ">Raridade:</span>&nbsp;&nbsp;&nbsp;&nbsp;
+					<span class="f-16"> #{cartaDetalheBean.carta.raridade}</span>
+					
+					<a href="#{request.contextPath}/index.xhtml" class="btn position-absolute bt-0 btn-comprar d-block" >Retornar</a>
+				</div>
+				<div class="col-3 ">
+				<h4>Descrição</h4>
+	 					#{cartaDetalheBean.carta.descricao}
+				</div>
 			</div>
-				
-		
 		</div>
-
-	</div>
-
-
 	</section>
-
-
 </body>
 </html>

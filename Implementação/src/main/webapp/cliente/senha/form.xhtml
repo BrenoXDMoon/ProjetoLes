@@ -22,14 +22,14 @@
 	<f:viewAction action="#{clienteEditarBean.carregaDetalhe()}" />
 </f:metadata>
 
-<body class="bg-dark text-white p-5">
+<body class="p-5">
 
-<header>
-	<nav class="container d-flex flex-column flex-md-row justify-content-between mt-2">
-		 <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
-          <c:if test="#{!loginBean.statusSessao}">
-	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
-	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/addCliente.xhtml">Cadastre-se</a>
+    <header class="site-header py-1 header">
+        <nav class="container d-flex flex-column flex-md-row justify-content-between mt-2">
+			<a class="d-none d-md-inline-block f-22" href="#{request.contextPath}/index.xhtml">NewStation</a>
+            <c:if test="#{!loginBean.statusSessao}">
+	            <a class="py-2 d-none d-md-inline-block btn btn-acesso" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
+	            <a class="py-2 d-none d-md-inline-block btn btn-acesso" href="#{request.contextPath}/cliente/form.xhtml">Cadastre-se</a>
             </c:if>
             
             <c:if test="#{loginBean.statusSessao}">
@@ -38,9 +38,11 @@
 	            	<h:commandButton value="Logout" action="#{loginBean.logout}" class="btn btn-danger"/>            	
             	</h:form>
             </c:if>
-           <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/carrinho.xhtml">Carrinho</a>
-	</nav>
-</header>
+            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/carrinho.xhtml" >
+            	<i class="fas fa-shopping-cart mt-auto site-header" style="font-size:30px;"></i>
+            </a>
+		</nav>
+    </header>
 
 	<div class="container perfil mt-5">
 		<h:form enctype="multipart/form-data">

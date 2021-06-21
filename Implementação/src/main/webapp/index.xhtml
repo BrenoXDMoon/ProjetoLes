@@ -12,16 +12,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="#{request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="#{request.contextPath}/assets/css/style.css" rel="stylesheet"/>
+    <link href="#{request.contextPath}/assets/css/fontawasome.min.css" rel="stylesheet"/>
+    <script src="https://kit.fontawesome.com/021265da4a.js" crossorigin="anonymous"></script>
     <title>Index</title>
 </head> 
 
-<body class="bg-dark text-white">
-    <header class="site-header  py-1">
+<body class="">
+    <header class="site-header py-1 header">
         <nav class="container d-flex flex-column flex-md-row justify-content-between mt-2">
-			 <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
+			<a class="d-none d-md-inline-block f-22" href="#{request.contextPath}/index.xhtml">NewStation</a>
             <c:if test="#{!loginBean.statusSessao}">
-	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
-	            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/cliente/form.xhtml">Cadastre-se</a>
+	            <a class="py-2 d-none d-md-inline-block btn btn-acesso" href="#{request.contextPath}/cliente/login.xhtml">Login</a>
+	            <a class="py-2 d-none d-md-inline-block btn btn-acesso" href="#{request.contextPath}/cliente/form.xhtml">Cadastre-se</a>
             </c:if>
             
             <c:if test="#{loginBean.statusSessao}">
@@ -30,7 +32,9 @@
 	            	<h:commandButton value="Logout" action="#{loginBean.logout}" class="btn btn-danger"/>            	
             	</h:form>
             </c:if>
-            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/carrinho.xhtml">Carrinho</a>
+            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/carrinho.xhtml" >
+            	<i class="fas fa-shopping-cart mt-auto site-header" style="font-size:30px;"></i>
+            </a>
 		</nav>
     </header>
     <section class="container index mt-5">
@@ -38,17 +42,17 @@
         <div class='col-8 mb-4'>
         	<h:form>
 	        	<div class="row justify-contente-center">
-		        	<div class="col-2 p-0 text-center mt-2" >
-		        	</div>
 		        	<div class="col-12 px-0 mb-3 troca-nome">
-		        	<h5>Filtros</h5>
-		        		<div class="row">
+	        		<div class="row">
 			        		<div class="col-6">
 				        		<h:outputLabel for="busca" value="Buscar por nome"/><br/>
 					        	<h:inputText value="#{homeBean.busca}"  id="busca" placeholder="Busca" class="form-control"/>
 			        		</div>
+			        		<div class='col-6 mt-auto'>
+			        			<h:commandButton class="btn btn-primary mt-3 btn-pesquisa" action="#{homeBean.filtraCartas}" value="Pesquisar"/> 
+			        		</div>
 		        		</div>
-		        		<h:commandButton class="btn btn-primary mt-3" action="#{homeBean.filtraCartas}" value="Pesquisar"/> 
+		        		
 		        	</div>
 	        	</div>
         	</h:form>
@@ -64,12 +68,14 @@
 									width="40%"/>
 								</a>
 							<br/>
-							<span>Nome</span>
+							<div>
+							<span>Nome:</span>
 							<p>#{carta.nome}</p>
-							<span>Preço</span>
-							<p>#{carta.preco}</p>
+							<span>Preço:</span>
+							<p>R$ #{carta.preco}</p>
 							<span>Raridade</span>
 							<p>#{carta.raridade}</p>
+							</div>
 			            </div>
 			        </ui:repeat>
 	        	</div>
@@ -78,5 +84,7 @@
         </div>
     </section>
     <script type="" src="assets/js/troca-busca.js" />
+	
+
 </body>
 </html>

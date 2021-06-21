@@ -14,20 +14,21 @@
 	rel="stylesheet" />
 <link href="#{request.contextPath}/assets/css/style.css"
 	rel="stylesheet" />
+	   <script src="https://kit.fontawesome.com/021265da4a.js" crossorigin="anonymous"></script>
 <title>Listar Carta</title>
 </head>
-<h:body styleClass="bg-dark text-white overflow-hidden">
+<h:body styleClass=" overflow-hidden">
 	
-	 <header class="site-header py-1">
-        <nav class="container d-flex flex-column flex-md-row justify-content-between">
-            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
-            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/admin/admin.xhtml">Admin</a>
-        </nav>
+	 <header class="site-header py-1 header">
+        <nav class="container d-flex flex-column flex-md-row justify-content-between mt-2">
+			<a class="d-none d-md-inline-block f-22" href="#{request.contextPath}/index.xhtml">NewStation</a>
+			<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/admin.xhtml">Admin</a>
+		</nav>
     </header>
     
     <div class="container-fluid">
 		<div class="row">
-			<nav id="sidebarMenu" class="col-md-2 col-lg-2 d-md-block bg-dark sidebar collapse">
+			<nav id="sidebarMenu" class="col-md-2 col-lg-2 d-md-block sidebar collapse">
 				<div class="position-sticky pt-3">
 					<ul class="nav flex-column">
 						<li class="nav-item">
@@ -81,7 +82,7 @@
 			<div class="col-9">
 				<h2>Lista de Cartas</h2>
 			
-				<h:button styleClass="my-3 btn btn-primary" value="Cadastrar Cartas" outcome="form" />
+				<h:button styleClass="my-3 btn btn-pesquisa" value="Cadastrar Cartas" outcome="form" />
 	
 				<h:dataTable var="carta" value="#{adminListaCartaBean.cartasAdmin}"
 					class="table table-bordered table-striped">
