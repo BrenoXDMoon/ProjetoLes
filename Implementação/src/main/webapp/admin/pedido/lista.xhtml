@@ -18,7 +18,7 @@
 
 
 
-<body class="bg-dark text-white overflow-hidden">
+<body class="bg-dark text-white overflow-hidden" onload="pag()">
 	<header class="site-header py-1"> 
 		<nav class="container d-flex flex-column flex-md-row justify-content-between">
 			<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
@@ -78,23 +78,13 @@
 				</ul>
 				</div>
 			</nav>
-		<div class="col-10">
-		<h2 class='text-white'>Pedidos</h2>#{pedidoBean.paginacao}
-				<h:dataTable var="ped" value="#{pedidoBean.todosPedidos()}" class="table table-bordered table-striped table-hover" first="#{pedidoBean.paginacao}">
-				<h:form styleClass="mb-3">
-					#{pedidoBean.paginacaoAdmin()}
-					#{pedidoBean.paginacao + 1} - #{pedidoBean.paginacao + pedidoBean.linhasNaTabela}  - #{pedidoBean.totalPedidos}
-					<h:selectOneMenu  value = "#{pedidoBean.linhasNaTabela}" class="ml-3" onchange="trocaIndex()"> 
-					   <f:selectItem itemValue = "#{pedidoBean.linhasNaTabela}" itemLabel = " #{pedidoBean.linhasNaTabela}" />
-					   <f:selectItem itemValue = "5" itemLabel = " 5" /> 
-					   <f:selectItem itemValue = "10" itemLabel = "10" />
-					   <f:selectItem itemValue = "15" itemLabel = "15" />
-					</h:selectOneMenu >
-					<h:commandButton value="Confirmar" class="btn btn-info ml-3 d-none"  id="botaoIndex"/>  
-				</h:form>
-				<h:dataTable var="ped" value="#{pedidoBean.todosPedidos()}" class="table table-bordered table-striped table-hover" first="#{pedidoBean.paginacao}" rows="#{pedidoBean.linhasNaTabela}">
+		<div class="col-9">
+		<h2 class='text-white'>Pedidos</h2>
+				<p class="d-none" id="totalPedido">#{pedidoBean.totalPedidos}</p>
+				
+				<h:dataTable var="ped" value="#{pedidoBean.todosPedidos()}" class="table table-bordered table-striped table-hover" >
 					<h:column>
-						<f:facet name="header">Cï¿½digo</f:facet>
+						<f:facet name="header">Código</f:facet>
 						<a class="decoration-none font-weight-bold text-blue align-middle" href="#{request.contextPath}/admin/pedido/edit-form.xhtml?id=#{ped.id}">#{ped.uuid}</a>       
 					</h:column>
 					
@@ -125,10 +115,9 @@
 					</h:column>
 					
 				</h:dataTable>
-				<h:form>
-					<h:commandButton value="Voltar" action="#{pedidoBean.paginacaoRetorna}" class="btn btn-info" rendered="#{pedidoBean.isZero()}"/>
-					<h:commandButton value="Avanï¿½ar" action="#{pedidoBean.paginacaoAvanca}" class="btn btn-info ml-4" rendered="#{pedidoBean.isMaximo()}"/>            	
-				</h:form>
+				<input type="button" value="Voltar"  class="btn btn-info" onclick="volta()"/>
+				<input type="button" value="Avançar" class="btn btn-info ml-4" onclick="avanca()"/>
+				
 				
 		</div>
 	</div>
@@ -143,6 +132,43 @@ function trocaIndex(){
 	document.getElementById("j_idt2:botaoIndex").click();
 	
 }
+var max_item = Number(5);
+var min_item = Number(1);
+let totalPedido = Number(document.getElementById("totalPedido").innerHTML);
+
+function avanca(){
+	max_item += 5;
+	min_item += 5;
+	pag();
+}
+
+function volta(){
+	max_item -= 5;
+	min_item -= 5;
+	pag();
+}
+
+/*<![CDATA[*/
+function pag(){
+	if(max_item < 5 && min_item < 1){
+		max_item = Number(5);
+		min_item = Number(1);
+	}
+	
+	if(max_item > totalPedido){
+		max_item = Number(totalPedido);
+		min_item = Number(totalPedido)-5;
+	}
+	
+	for (var i = 0; i < document.getElementsByTagName("tr").length;i++){
+		  if(i < min_item || i > max_item){
+		    document.getElementsByTagName("TR")[i].style.display = "none";
+		  }else{
+			  document.getElementsByTagName("TR")[i].style.display = "";
+		  }
+		}
+}
+/*]]>*/
 </script>
 
 </html>
