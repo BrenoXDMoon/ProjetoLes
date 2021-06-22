@@ -6,29 +6,25 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 <head>
-<meta charset="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link href="#{request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet" />
-<link href="#{request.contextPath}/assets/css/style.css" rel="stylesheet" />
-<script src="https://kit.fontawesome.com/021265da4a.js" crossorigin="anonymous"></script>
-<title>Lista Pedidos</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link href="#{request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="#{request.contextPath}/assets/css/style.css" rel="stylesheet" />
+	<script src="https://kit.fontawesome.com/021265da4a.js" crossorigin="anonymous"></script>
+	<title>Lista Pedidos</title>
 </head>
-
-
-
-
-<body class="overflow-hidden" onload="pag()">
+<body class="overflow-hidden">
 	<header class="site-header py-1 header">
         <nav class="container d-flex flex-column flex-md-row justify-content-between mt-2">
-			<a class="my-2 f-22 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
+			<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
 			<a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/admin.xhtml">Admin</a>
 		</nav> 
 	</header>
 	<section class="container-fluid mt-5">
 		<div class="row">
 		<div class="col-2 border-rounded">
-			<nav id="sidebarMenu" class="col-7 d-md-block sidebar collapse">
+			<nav id="sidebarMenu" class="col-2 d-md-block sidebar collapse">
 				<div class="position-sticky pt-3">
 					<ul class="nav flex-column">
 						<li class="nav-item">
@@ -37,7 +33,7 @@
 							</a>
 						</li>
 						<span class="font-weight-bold border-bottom">Pedidos</span>
-						<li class="nav-item">
+						<li class="nav-item mb-5">
 							<a class="py-2 d-none d-md-inline-block ml-3" href="#{request.contextPath}/admin/pedido/lista.xhtml">Lista de Pedidos</a>
 						</li>
 						<span class="font-weight-bold border-bottom">Cartas</span>
@@ -65,6 +61,7 @@
 				</div>
 			</nav>
 		</div>
+
 		<div class="col-8 mb-3">
 			<h2 class=''>Pedidos</h2>
 				<h:form>
@@ -76,7 +73,7 @@
 		        		<div class="col-3">
 		        			<h:selectOneMenu value="#{pedidoBean.filtro}" class="form-select position-absolute bt-0">
 								<f:selectItem itemValue="statusPedido" itemLabel="Status" />
-								<f:selectItem itemValue="uuid" itemLabel="Código" />
+								<f:selectItem itemValue="uuid" itemLabel="Cï¿½digo" />
 							</h:selectOneMenu>
 		        		</div>
 		        		<div class='col-6 mt-auto'>
@@ -89,7 +86,7 @@
 				
 				<h:dataTable var="ped" value="#{pedidoBean.todosPedidos()}" class="table table-bordered table-striped table-hover" >
 					<h:column>
-						<f:facet name="header">Código</f:facet>
+						<f:facet name="header">Cï¿½digo</f:facet>
 						<a class="decoration-none font-weight-bold text-blue align-middle" href="#{request.contextPath}/admin/pedido/edit-form.xhtml?id=#{ped.id}">#{ped.uuid}</a>       
 					</h:column>
 					
@@ -98,7 +95,7 @@
 						#{ped.total}
 					</h:column>
 					<h:column >
-						<f:facet name="header">Nome do Produto</f:facet>
+						<f:facet name="header">Nome dos Produtos</f:facet>
 						
 						<ui:repeat value="#{ped.itens.toArray()}" var="itens">
 							#{itens.carta.nome} -
@@ -112,6 +109,7 @@
 <!-- 							Quantidade: #{itens.quantidade}<p></p> -->
 <!-- 						</ui:repeat> -->
 <!-- 					</h:column> -->
+
 					<h:column>
 						<f:facet name="header">Status </f:facet>
 						#{pedidoBean.status(ped)}
@@ -120,8 +118,8 @@
 					</h:column>
 					
 				</h:dataTable>
-				<input type="button" value="Voltar"  class="btn btn-info" onclick="volta()" id="btnVolta"/>
-				<input type="button" value="Avançar" class="btn btn-info ml-4" onclick="avanca()" id="btnAvanca"/>
+				<input type="button" value="Voltar"  class="btn btn-info" onclick="volta()"/>
+				<input type="button" value="Avanï¿½ar" class="btn btn-info ml-4" onclick="avanca()"/>
 				
 				
 		</div>
@@ -133,29 +131,16 @@
 
 <script src="#{request.contextPath}/assets/js/bootstrap.min.js"></script>
 <script>
-
-
+function trocaIndex(){
+	document.getElementById("j_idt2:botaoIndex").click();
+	
+}
 var max_item = Number(5);
-var min_item = Number(0);
+var min_item = Number(1);
 let totalPedido = Number(document.getElementById("totalPedido").innerHTML);
-let totalPaginas = Math.round(totalPedido/5);
-var countPagina = 1;
 
-console.log("sol")
-
-
-document.onkeydown = function (e) {
-    switch (e.key) {
-        case 'ArrowLeft':
-        	volta();
-            break;
-        case 'ArrowRight':
-        	avanca();
-    }
-};
-
-/*<![CDATA[*/
 function avanca(){
+
 	if(totalPedido % 5 != 0){
 		if(countPagina <= totalPaginas){
 			max_item += 5;
@@ -172,27 +157,32 @@ function avanca(){
 			pag();
 		}
 	}
+
 }
 
 function volta(){
-	if(countPagina > 1){
-		max_item -= 5;
-		min_item -= 5;
-		countPagina -= 1;
-		pag();
-	}
+	max_item -= 5;
+	min_item -= 5;
+	pag();
 }
 
-
+/*<![CDATA[*/
 function pag(){
-	tabela = document.getElementsByTagName("tbody")[0].children
-
-	for (var i = 0; i <= tabela.length;i++){
-		 console.log("i: " + i >= min_item && i < max_item)
-		  if(i >= min_item && i < max_item){
-			  tabela[i].style.display = "";
+	if(max_item < 5 && min_item < 1){
+		max_item = Number(5);
+		min_item = Number(1);
+	}
+	
+	if(max_item > totalPedido){
+		max_item = Number(totalPedido);
+		min_item = Number(totalPedido)-5;
+	}
+	
+	for (var i = 0; i < document.getElementsByTagName("tr").length;i++){
+		  if(i < min_item || i > max_item){
+		    document.getElementsByTagName("TR")[i].style.display = "none";
 		  }else{
-			  tabela[i].style.display = "none";
+			  document.getElementsByTagName("TR")[i].style.display = "";
 		  }
 		}
 }

@@ -88,7 +88,6 @@ public class PedidoBean {
 		for (CartaPedido c : carped) {
 			if (c.getQuantidade() == null) {
 				c.setQuantidade(0);
-
 			}
 		}
 		ped.setStatusPedido(STATUS_PEDIDO.Em_Troca);
