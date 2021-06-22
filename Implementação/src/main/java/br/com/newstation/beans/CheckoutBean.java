@@ -87,6 +87,10 @@ public class CheckoutBean {
 		pedido.setDataAtualizacao(cale);
 		pedido.setCliente(dao.visualizar(cli));
 
+		if(end == null) {
+			return "/checkout/checkout?faces-redirect=true";
+		}
+		
 		if(validaDesconto.processar(cupom) == "") {
 			cupom = null;
 			pedido.setCupomDesconto(cupom);
