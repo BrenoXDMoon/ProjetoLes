@@ -70,17 +70,18 @@
 				<h:form>
 	        		<div class="row mb-3">
 		        		<div class="col-3">
-			        		<h:outputLabel for="busca" value="Filtra por Status"/><br/>
+			        		<h:outputLabel for="busca" value="Insira o valor de filtro"/><br/>
 				        	<h:inputText value="#{pedidoBean.busca}"  id="busca" placeholder="Busca" class="form-control"/>
 		        		</div>
 		        		<div class="col-3">
+		        			<h:outputLabel for="busca" value="Tipo de filtro"/><br/>
 		        			<h:selectOneMenu value="#{pedidoBean.filtro}" class="form-select position-absolute bt-0">
 								<f:selectItem itemValue="statusPedido" itemLabel="Status" />
 								<f:selectItem itemValue="uuid" itemLabel="Código" />
 							</h:selectOneMenu>
 		        		</div>
 		        		<div class='col-6 mt-auto'>
-		        			<h:commandButton class="btn btn-primary mt-3 btn-pesquisa" action="#{pedidoBean.todosPedidos()}" value="Pesquisar"/> 
+		        			<h:commandButton class="btn btn-primary mt-3 btn-pesquisa" action="#{pedidoBean.todosPedidos()}" value="Pesquisar"/>
 		        		</div>
 		        		</div>
         		</h:form>
