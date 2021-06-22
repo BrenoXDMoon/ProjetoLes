@@ -208,7 +208,7 @@ var countPagina = 1;
 
 /*<![CDATA[*/
 function avanca(){
-	if(totalPedido % 5 == 1){
+	if(totalPedido % 5 != 0){
 		if(countPagina <= totalPaginas){
 			max_item += 5;
 			min_item += 5;
