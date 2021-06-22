@@ -52,6 +52,8 @@ public class PedidoBean {
 	private static int totalPedidos = 0;
 
 	private String busca = "";
+	
+	private static String filtro = "statusPedido";
 
 	EditarCommand cmdEditar = new EditarCommand();
 	
@@ -65,7 +67,7 @@ public class PedidoBean {
 
 	public List<Pedido> filtraPedido() {
 		List<Pedido> pedidos = new ArrayList<Pedido>();
-		pedidos = pDao.filtro(getBusca());
+		pedidos = pDao.filtro(getBusca(),filtro);
 		return pedidos;
 	}
 
@@ -113,7 +115,7 @@ public class PedidoBean {
 				lista.add(ped);
 			}
 		} else {
-			return pDao.filtro(getBusca());
+			return pDao.filtro(getBusca(),filtro);
 		}
 		return lista;
 	}
@@ -258,6 +260,14 @@ public class PedidoBean {
 
 	public void setBusca(String busca) {
 		this.busca = busca;
+	}
+
+	public String getFiltro() {
+		return filtro;
+	}
+
+	public void setFiltro(String filtro) {
+		this.filtro = filtro;
 	}
 
 }

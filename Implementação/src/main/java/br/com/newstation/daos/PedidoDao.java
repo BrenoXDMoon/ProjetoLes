@@ -132,10 +132,10 @@ public class PedidoDao extends AbstractDao{
 	}
 	
 	
-	public List<Pedido> filtro(String busca) {
+	public List<Pedido> filtro(String busca,String filtro) {
 		abrirConexao();
 		try {
-			List<Pedido> pedidos = manager.createQuery("select c from Pedido c where c.statusPedido LIKE '%" + busca
+			List<Pedido> pedidos = manager.createQuery("select c from Pedido c where c."+filtro+"  LIKE '%" + busca
 					+ "%' ", Pedido.class).getResultList();
 			fechaConexao();
 			return pedidos;

@@ -69,9 +69,15 @@
 			<h2 class=''>Pedidos</h2>
 				<h:form>
 	        		<div class="row mb-3">
-		        		<div class="col-6">
+		        		<div class="col-3">
 			        		<h:outputLabel for="busca" value="Filtra por Status"/><br/>
 				        	<h:inputText value="#{pedidoBean.busca}"  id="busca" placeholder="Busca" class="form-control"/>
+		        		</div>
+		        		<div class="col-3">
+		        			<h:selectOneMenu value="#{pedidoBean.filtro}" class="form-select position-absolute bt-0">
+								<f:selectItem itemValue="statusPedido" itemLabel="Status" />
+								<f:selectItem itemValue="uuid" itemLabel="Código" />
+							</h:selectOneMenu>
 		        		</div>
 		        		<div class='col-6 mt-auto'>
 		        			<h:commandButton class="btn btn-primary mt-3 btn-pesquisa" action="#{pedidoBean.todosPedidos()}" value="Pesquisar"/> 
@@ -98,14 +104,14 @@
 							#{itens.carta.nome} -
 						</ui:repeat>
 					</h:column>
-					<h:column styleClass="w-min">
-						<f:facet name="header">Imagem</f:facet>
-						<ui:repeat value="#{ped.itens.toArray()}" var="itens">
-							<img src="#{request.contextPath}/file/#{itens.carta.imagemPath}"
-							width="30%" height="30%" alt="#{itens.carta.nome}" />
-							Quantidade: #{itens.quantidade}<p></p>
-						</ui:repeat>
-					</h:column>
+<!-- 					<h:column styleClass="w-min"> -->
+<!-- 						<f:facet name="header">Imagem</f:facet> -->
+<!-- 						<ui:repeat value="#{ped.itens.toArray()}" var="itens"> -->
+<!-- 							<img src="#{request.contextPath}/file/#{itens.carta.imagemPath}" -->
+<!-- 							width="30%" height="30%" alt="#{itens.carta.nome}" /> -->
+<!-- 							Quantidade: #{itens.quantidade}<p></p> -->
+<!-- 						</ui:repeat> -->
+<!-- 					</h:column> -->
 					<h:column>
 						<f:facet name="header">Status </f:facet>
 						#{pedidoBean.status(ped)}
@@ -150,7 +156,7 @@ document.onkeydown = function (e) {
 
 /*<![CDATA[*/
 function avanca(){
-	if(totalPedido % 5 == 1){
+	if(totalPedido % 5 != 0){
 		if(countPagina <= totalPaginas){
 			max_item += 5;
 			min_item += 5;
