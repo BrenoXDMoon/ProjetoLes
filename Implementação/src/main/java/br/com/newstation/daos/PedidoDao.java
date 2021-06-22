@@ -20,13 +20,21 @@ public class PedidoDao extends AbstractDao{
 		abrirConexao();
 		Resultado resultado = new Resultado();
 		Pedido ped = (Pedido) ent;
+	try {
 		manager.getTransaction().begin();
 		manager.merge(ped.getCliente());
 		manager.persist(ped);
 		manager.flush();
 		manager.getTransaction().commit();
 		
+	}catch(NullPointerException e) {
+		
+		System.out.println("- ERRO AO SALVAR!!!");
+		resultado.setMensagem("- ERRO AO SALVAR!!!");
+		
+	}finally {
 		fechaConexao();
+	}
 		return resultado;
 	}
 

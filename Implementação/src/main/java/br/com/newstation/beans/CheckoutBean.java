@@ -127,7 +127,12 @@ public class CheckoutBean {
 
 		pedido.setStatusPedido(STATUS_PEDIDO.Pendente);
 
-		cmd.executar(pedido);
+		try {
+			cmd.executar(pedido);
+		}
+		catch (Exception e) {
+			return "/checkout/checkout?faces-redirect=true";
+		}
 //		pDao.salvar(pedido);
 		carrinho.resete();
 

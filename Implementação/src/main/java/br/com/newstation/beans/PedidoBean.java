@@ -11,6 +11,7 @@ import javax.transaction.Transactional;
 
 import br.com.newstation.command.EditarCommand;
 import br.com.newstation.command.ListarCommand;
+import br.com.newstation.command.SalvarCommand;
 import br.com.newstation.daos.CartaPedidoDao;
 import br.com.newstation.daos.CupomDao;
 import br.com.newstation.daos.EstoqueDao;
@@ -52,17 +53,19 @@ public class PedidoBean {
 
 	private String busca = "";
 
+	EditarCommand cmdEditar = new EditarCommand();
+	
+	SalvarCommand cmdSalvar = new SalvarCommand();
+	
 	LoginBean lb = new LoginBean();
 
 	public void paginacaoAdmin() {
-
 		totalPedidos = todosPedidos().size();
 	}
 
 	public List<Pedido> filtraPedido() {
 		List<Pedido> pedidos = new ArrayList<Pedido>();
 		pedidos = pDao.filtro(getBusca());
-
 		return pedidos;
 	}
 
@@ -76,7 +79,6 @@ public class PedidoBean {
 
 	@Transactional
 	public List<Pedido> pedidos(int cli_id) {
-
 		return pDao.listarByCliente(cli_id);
 	}
 
@@ -88,8 +90,8 @@ public class PedidoBean {
 			}
 		}
 		ped.setStatusPedido(STATUS_PEDIDO.Em_Troca);
-		EditarCommand cmd = new EditarCommand();
-		cmd.executar(ped);
+		
+		cmdEditar.executar(ped);
 
 		return "/cliente/perfil?faces-redirect=trueid=" + lb.getId();
 	}
@@ -106,7 +108,6 @@ public class PedidoBean {
 		List<Pedido> lista = new ArrayList<Pedido>();
 		if (getBusca().equals("")) {
 			ListarCommand cmd = new ListarCommand();
-
 			for (EntidadeDominio e : cmd.executar(new Pedido()).getEntidades()) {
 				Pedido ped = (Pedido) e;
 				lista.add(ped);
@@ -142,7 +143,7 @@ public class PedidoBean {
 				if (crp.getCarta().getId() == cartaEstoque.getCarta().getId()) {
 
 					crp.setQuantidade(Math.abs(crp.getQuantidade() - cartaEstoque.getQuantidade()));
-					cpedDao.editar(crp);
+					cmdEditar.executar(crp);
 				}
 
 				devolveEstoque(crp.getCarta(), crp.getQuantidade());
@@ -150,11 +151,10 @@ public class PedidoBean {
 
 		}
 		ped.setStatusPedido(STATUS_PEDIDO.Trocado);
-		EditarCommand cmd = new EditarCommand();
-		cmd.executar(ped);
+		cmdEditar.executar(ped);
 
 		BigDecimal valorCupom = new BigDecimal(totalTrocados).setScale(2, RoundingMode.DOWN);
-		cDao.salvar(GeraCupomTroca.gerarCupom(valorCupom, ped.getCliente()));
+		cmdSalvar.executar(GeraCupomTroca.gerarCupom(valorCupom, ped.getCliente()));
 		return "/admin/pedido/lista?faces-redirect=true";
 	}
 

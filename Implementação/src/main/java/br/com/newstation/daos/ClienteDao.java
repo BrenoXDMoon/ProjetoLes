@@ -29,7 +29,7 @@ public class ClienteDao extends AbstractDao {
 		Cliente cliente = (Cliente) ent;
 		System.out.println(cliente.getNome());
 		
-//		try {
+		try {
 			manager.getTransaction().begin();
 			manager.persist(cliente);
 			manager.persist(cliente.getEnderecos().toArray()[0]);
@@ -41,14 +41,14 @@ public class ClienteDao extends AbstractDao {
 			
 			resultado.setEntidade(cliente);
 			
-//		}catch(NullPointerException e) {
-//			
-//			System.out.println("- ERRO AO SALVAR!!!");
-//			resultado.setMensagem("- ERRO AO SALVAR!!!");
-//			
-//		}finally {
+		}catch(NullPointerException e) {
+			
+			System.out.println("- ERRO AO SALVAR!!!");
+			resultado.setMensagem("- ERRO AO SALVAR!!!");
+			
+		}finally {
 			fechaConexao();
-//		}
+		}
 
 		return resultado;
 	}
