@@ -15,11 +15,11 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link href="#{request.contextPath}/assets/css/bootstrap.min.css"
-	rel="stylesheet" />
-<link href="#{request.contextPath}/assets/css/style.css"
-	rel="stylesheet" />
 <link href="#{request.contextPath}/assets/css/custom.css"
+	rel="stylesheet" />
+	<link href="#{request.contextPath}/assets/css/bootstrap.min.css"
+	rel="stylesheet" />
+	<link href="#{request.contextPath}/assets/css/style.css"
 	rel="stylesheet" />
 	<script src="https://kit.fontawesome.com/021265da4a.js" crossorigin="anonymous"></script>
 <title>Detalhe da Carta</title>
@@ -34,7 +34,7 @@
 <title>#{cartaDetalheBean.carta.nome}</title>
 
 </head>
-<body class="bg-dark text-white">
+<body class="">
 	    <header class="site-header py-1 header">
         <nav class="container d-flex flex-column flex-md-row justify-content-between mt-2">
 			<a class="d-none d-md-inline-block f-22" href="#{request.contextPath}/index.xhtml">NewStation</a>
@@ -59,26 +59,26 @@
 	<section class="container perfil mt-5">
 		<div class="row">
 			<div class="col-10">
-				<h2 class='text-white mb-5'>Detalhe do Pedidos</h2>
+				<h2 class=' mb-5'>Detalhe do Pedidos</h2>
 				<h:form enctype="multipart/form-data">
 					<div class="form-group">
-						<h6>ID de Pedido:</h6>
+						<h6 class="f-18 font-weight-bold">ID de Pedido:</h6>
 						<h:outputLabel value="#{pedidoBean.ped.uuid}"/>
 					</div>
 					<div class="form-group">
-						<h6>Logradouro de Entrega:</h6>
+						<h6 class="f-18 font-weight-bold">Logradouro de Entrega:</h6>
 						<h:outputLabel value="#{pedidoBean.ped.endereco.logradouro}"/>
 					</div>
 					<div class="form-group">
-						<h6>Total do Pedido:</h6>
+						<h6 class="f-18 font-weight-bold">Total do Pedido:</h6>
 						<h:outputLabel value="R$#{pedidoBean.ped.total}"/>
 					</div>
 					<div class="form-group">
-						<h6>Status do Pedido:</h6>
+						<h6 class="f-18 font-weight-bold">Status do Pedido:</h6>
 						<h:outputLabel value="#{pedidoBean.ped.statusPedido}" /><br/>
 					</div>
 					<div class="form-group">
-						<h6>Data do Pedido:</h6>
+						<h6 class="f-18 font-weight-bold">Data do Pedido:</h6>
 						<h:outputLabel value="#{pedidoBean.ped.dataAtualizacao}" /><br/>
 					</div>
 					<div>

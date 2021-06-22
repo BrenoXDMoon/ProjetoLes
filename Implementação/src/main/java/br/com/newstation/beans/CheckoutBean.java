@@ -87,13 +87,13 @@ public class CheckoutBean {
 		pedido.setDataAtualizacao(cale);
 		pedido.setCliente(dao.visualizar(cli));
 
-		if(validaDesconto.processar(cupom).equals("")) {
-			if (validapagamento.total(cupons, total, cupom))
+		if(validaDesconto.processar(cupom) == "") {
+			cupom = null;
+			pedido.setCupomDesconto(cupom);
+		} else {
+			if (validapagamento.total(cupons, total, cDao.buscarById(cupom.getId())))
 				return "/checkout/checkout?faces-redirect=true";
 			pedido.setCupomDesconto(cDao.buscarById(cupom.getId()));
-
-		} else {
-			cupom = null;
 		}
 
 		if (!cupons.isEmpty()) {
@@ -153,7 +153,7 @@ public class CheckoutBean {
 		pedido.setDataAtualizacao(cale);
 		pedido.setCliente(dao.visualizar(cli));
 		
-		if(validaDesconto.processar(cupom).equals("")) {
+		if(validaDesconto.processar(cupom) == "") {
 			cupom = null;
 			pedido.setCupomDesconto(cupom);
 		} else {

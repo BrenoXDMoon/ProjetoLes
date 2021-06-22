@@ -57,7 +57,7 @@ public class LoginBean {
 	@Transactional
 	public String login() {
 
-//		try {
+		try {
 			cliente = dao.login(cliente);
 			System.out.println(cliente.getNome());
 
@@ -69,7 +69,6 @@ public class LoginBean {
 			System.out.println("sessao: " + statusSessao);
 
 			if (checkout) {
-				System.out.println("xekout: "+ checkout);
 				return "/checkout/checkout?faces-redirect=true";
 			}
 
@@ -81,9 +80,9 @@ public class LoginBean {
 				return "/cliente/perfil?faces-redirect=true";
 			}
 
-//		} catch (Exception e) {
-//			return "/cliente/login?faces-redirect=true";
-//		}
+		} catch (Exception e) {
+			return "/cliente/login?faces-redirect=true";
+		}
 
 	}
 

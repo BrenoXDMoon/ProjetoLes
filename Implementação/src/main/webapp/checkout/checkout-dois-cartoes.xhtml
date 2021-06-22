@@ -10,11 +10,12 @@
 	<meta charset="UTF-8"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<link href="#{request.contextPath}/assets/css/style.css"
-		rel="stylesheet" />
+
 	<link href="#{request.contextPath}/assets/css/bootstrap.min.css"
 		rel="stylesheet" />
 	<link href="#{request.contextPath}/assets/css/custom.css"
+		rel="stylesheet" />
+		<link href="#{request.contextPath}/assets/css/style.css"
 		rel="stylesheet" />
 		<script src="https://kit.fontawesome.com/021265da4a.js" crossorigin="anonymous"></script>
 	<title>Checkout</title>
@@ -127,20 +128,19 @@
 						<div class="col-4 text-left">
 							<p class="font-weight-bold">Cupom de Desconto disponíveis</p>
 							<h:inputText value="#{checkoutBean.somaCupom}" id="somaCupom" styleClass="d-none"/>
-							<h:selectOneRadio value="#{checkoutBean.cupom}" styleClass="radio" id="cupomDesconto" converter="CupomConverter" onchange="somaCupom()" 
-							>
+							<h:selectOneRadio value="#{checkoutBean.cupom}" styleClass="radio" id="cupomDesconto" converter="CupomConverter" onchange="somaCupom()">
 								<f:selectItems value="#{cupomListarBean.cuponsDesconto}" var="cupom" itemLabel="#{cupom.show()}" itemValue="#{cupom}" />
 							</h:selectOneRadio>
 						</div>
 						<div class="col-4 text-left">
 							<p class="font-weight-bold">Cupom de Troca disponíveis</p>
 							<h:selectManyCheckbox value="#{checkoutBean.cupons}" id="cupomTroca" converter="CupomConverter" onchange="somaCupom()">
-								<f:selectItems value="#{cupomListarBean.cuponsTroca}" styleClass="form-check-input" var="cupom" itemLabel="#{cupom.show()}" itemValue="#{cupom}" itemDescription="#{cupom.preco}" />
+								<f:selectItems value="#{cupomListarBean.cupomByCliente}" styleClass="form-check-input" var="cupom" itemLabel="#{cupom.show()}" itemValue="#{cupom}" itemDescription="#{cupom.preco}" />
 							</h:selectManyCheckbox>
 						</div>
 					</div>
 					<h:messages style = "color:red;margin:8px;" /> 
-					<h:commandButton class="btn btn-success" action="#{checkoutBean.salvarDoisCartoes(loginBean.id, carrinho.total, carrinho)}" value="Finalizar"/>
+					<h:commandButton class="btn btn-success" action="#{checkoutBean.salvarDoisCartoes(loginBean.id, carrinho.total, carrinho)}" value="Finalizar" onmouseover="doisCartoesSelcionados()"/>
 				</div>
 			</div>
 		</div>
