@@ -1,6 +1,7 @@
 package br.com.newstation.dominio;
 
 public enum STATUS_PEDIDO {
+
 	
 	Pendente,
 	Aceito,
@@ -12,4 +13,5 @@ public enum STATUS_PEDIDO {
 	Troca_negada,
 	Em_Troca,
 	Trocado,
+	
 }
