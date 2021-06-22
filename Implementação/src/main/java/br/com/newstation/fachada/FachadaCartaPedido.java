@@ -10,7 +10,7 @@ public class FachadaCartaPedido implements IFachada {
 
 	@Override
 	public Resultado salvar(EntidadeDominio ent) {
-		System.out.println("Entrou na fachada Endereco salvar");
+		System.out.println("Entrou na fachada Carta Pedido salvar");
 
 		Resultado resultado = new Resultado();
 
@@ -25,7 +25,7 @@ public class FachadaCartaPedido implements IFachada {
 
 	@Override
 	public Resultado editar(EntidadeDominio ent) {
-		System.out.println("Entrou na fachada Endereco editar");
+		System.out.println("Entrou na fachada Carta Pedido editar");
 		Resultado resultado = new Resultado();
 
 		if (sb.length() == 0) {

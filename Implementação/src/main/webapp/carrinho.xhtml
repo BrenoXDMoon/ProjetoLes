@@ -11,11 +11,11 @@
 
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link href="#{request.contextPath}/assets/css/style.css"
-		rel="stylesheet" />
-	<link href="#{request.contextPath}/assets/css/bootstrap.min.css"
-		rel="stylesheet" />
 	<link href="#{request.contextPath}/assets/css/custom.css"
+		rel="stylesheet" />
+			<link href="#{request.contextPath}/assets/css/bootstrap.min.css"
+		rel="stylesheet" />
+			<link href="#{request.contextPath}/assets/css/style.css"
 		rel="stylesheet" />
 		 <script src="https://kit.fontawesome.com/021265da4a.js" crossorigin="anonymous"></script>
 	<title>Carrinho</title>
@@ -88,9 +88,10 @@
 		<div class="row justify-content-end">
 			<div class="col-4 text-right">
 				<span class="d-block pb-3 mr-5">Frete</span>
-				<h:selectOneRadio value = "#{carrinho.frete}" class="radio float-right pl-3" required="true"> 
+				<h:selectOneRadio value = "#{carrinho.frete}" class="radio float-right pl-3" required="true" requiredMessage="Campo Obrigatório"> 
 				   <f:selectItem itemValue = "5.00" itemLabel = " Correios - R$ 5.00" /> 
 				   <f:selectItem itemValue = "10.00" itemLabel = " Pac - R$ 10.00" />
+				   <h:message for=""/>
 				</h:selectOneRadio>    
 			</div>
 		</div>

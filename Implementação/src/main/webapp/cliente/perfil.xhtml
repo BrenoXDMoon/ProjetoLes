@@ -13,9 +13,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<link href="#{request.contextPath}/assets/css/style.css"
-	rel="stylesheet" />
+
 <link href="#{request.contextPath}/assets/css/bootstrap.min.css"
+	rel="stylesheet" />
+	<link href="#{request.contextPath}/assets/css/style.css"
 	rel="stylesheet" />
 	<script src="https://kit.fontawesome.com/021265da4a.js" crossorigin="anonymous"></script>
 <title>Perfil</title>
@@ -200,41 +201,52 @@ function trocaIndex(){
 }
 
 var max_item = Number(5);
-var min_item = Number(1);
+var min_item = Number(0);
 let totalPedido = Number(document.getElementById("totalPedido").innerHTML);
+let totalPaginas = Math.round(totalPedido/5);
+var countPagina = 1;
 
+/*<![CDATA[*/
 function avanca(){
-	max_item += 5;
-	min_item += 5;
-	pag();
+	if(totalPedido % 5 == 1){
+		if(countPagina <= totalPaginas){
+			max_item += 5;
+			min_item += 5;
+			countPagina += 1;
+			pag();
+		}
+	}
+	else{
+		if(countPagina < totalPaginas){
+			max_item += 5;
+			min_item += 5;
+			countPagina += 1;
+			pag();
+		}
+	}
 }
 
 function volta(){
-	max_item -= 5;
-	min_item -= 5;
-	pag();
+	if(countPagina > 1){
+		max_item -= 5;
+		min_item -= 5;
+		countPagina -= 1;
+		pag();
+	}
 }
 
-/*<![CDATA[*/
 function pag(){
-	tabela = document.getElementById("pedidoCliente").getElementsByTagName("TR");
-	if(max_item < 5 && min_item < 1){
-		max_item = Number(5);
-		min_item = Number(1);
-	}
+	tabela = document.getElementById("pedidoCliente").getElementsByTagName("tbody")[0].children;
 	
-	if(max_item > totalPedido){
-		max_item = Number(totalPedido);
-		min_item = Number(totalPedido)-5;
-	}
-	
-	for (var i = 0; i < tabela.length; i++){
-		  if(i < min_item || i > max_item){
-			  document.getElementById("pedidoCliente").getElementsByTagName("TR")[i].style.display = "none";
+	for (var i = 0; i <= tabela.length;i++){
+		 console.log("i: " + i >= min_item && i < max_item)
+		  if(i >= min_item && i < max_item){
+			  tabela[i].style.display = "";
 		  }else{
-			  document.getElementById("pedidoCliente").getElementsByTagName("TR")[i].style.display = "";
+			  tabela[i].style.display = "none";
 		  }
 		}
+	
 	
 }
 /*]]>*/

@@ -40,7 +40,7 @@ public class CarrinhoBean {
 	@Transactional
 	public String redirCheckout(List<CarrinhoItem> itens, boolean logado) {
 		if (logado == false) {
-			return "/cliente/login?faces-redirect=true";
+			return "/cliente/loginCheckout?faces-redirect=true";
 		}
 
 		validaestoque.validaEstoque(itens);

@@ -47,7 +47,10 @@ public class CartaDao extends AbstractDao {
 
 		Resultado resultado = new Resultado();
 		Carta carta = (Carta) ent;
-
+		if(carta.getEstoque().getQuantidade() == 0) {
+			carta.setAtivo(false);
+		}
+		
 		manager.getTransaction().begin();
 
 		manager.merge(carta);

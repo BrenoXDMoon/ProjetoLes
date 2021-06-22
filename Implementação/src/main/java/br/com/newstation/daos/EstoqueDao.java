@@ -30,14 +30,14 @@ public class EstoqueDao extends AbstractDao {
 		Estoque estoque = (Estoque) ent;
 		System.out.println("estoque qtde" + estoque.getQuantidade());
 		abrirConexao();
-		try {
+//		try {
 			manager.getTransaction().begin();
 			manager.merge(estoque);
 			manager.flush();
 			manager.getTransaction().commit();
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
 		fechaConexao();
 		return resultado;
 	}

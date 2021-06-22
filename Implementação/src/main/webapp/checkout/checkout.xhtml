@@ -10,13 +10,13 @@
 	<meta charset="UTF-8"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<link href="#{request.contextPath}/assets/css/style.css"
-		rel="stylesheet" />
 	<link href="#{request.contextPath}/assets/css/bootstrap.min.css"
 		rel="stylesheet" />
 	<link href="#{request.contextPath}/assets/css/custom.css"
 		rel="stylesheet" />
-		<script src="https://kit.fontawesome.com/021265da4a.js" crossorigin="anonymous"></script>
+	<link href="#{request.contextPath}/assets/css/style.css"
+		rel="stylesheet" />
+	<script src="https://kit.fontawesome.com/021265da4a.js" crossorigin="anonymous"></script>
 	<title>Checkout</title>
 </head>
 
@@ -61,11 +61,11 @@
 											width="40%"/>
 								</div>
 								<div class="col-4">
-									<p>Quantidade</p>
+									<p class="f-18">Quantidade</p>
 									<p>#{itens.quantidadeAnterior}</p>
 								</div>
 								<div class="col-4">
-									<p>Valor</p>
+									<p class="f-18">Valor</p>
 									<p>R$#{itens.carta.preco}</p>
 								</div>
 							</div>
@@ -73,9 +73,9 @@
 						</div>
 					</div>
 			
-				<div class="row justify-content-center dados mt-5 ml-13">
+				<div class="row justify-content-center dados mt-5 ml-13 linha-topo">
 					<div class="col-6">
-						<h4 class="mb-3">Cartão</h4>
+						<h4 class="mb-3 font-weight-bold">Cartão</h4>
 						
 						<div id="opcaoCartao">
 							<span id="botaoCartao" class="btn btn-primary mt-3">Usar 1 Cartão</span>
@@ -94,8 +94,8 @@
 					</div>
 						
 					<div class="col-6">
-						<h4 class=" mb-4">Endereço</h4>
-						<h:selectOneMenu value="#{checkoutBean.end}" class="form-select" converter="EndConverter"  id="endereco" required="true">
+						<h4 class=" mb-4 font-weight-bold">Endereço</h4>
+						<h:selectOneMenu value="#{checkoutBean.end}" class="form-select" converter="EndConverter"  id="endereco" required="true" requiredMessage="Selecione um Endereço">
 							<f:selectItem itemLabel="Selecione um endereço" value="#{null}"/>
 							<f:selectItems value="#{loginBean.enderecos}" var="end" itemLabel="#{end.logradouro}" itemValue="#{end}"/>
 						</h:selectOneMenu>
@@ -103,37 +103,36 @@
 						<h:link value = "Cadastrar Novo Endereço" outcome = "form-end" styleClass="btn btn-danger mt-3"/> 
 					</div>
 				</div>
-					<div class="row justify-content-center my-5 ml-13">
-						<div class="col-12 text-start">
-							<h4 class="mb-3">Total</h4>
-							<div class="row justify-content-start">
-								<div class="col-3">
-									<span>Frete</span>
-									<p>R$ #{carrinho.frete}</p>
-								</div>
-								<div class="col-3">
-									<span>Total</span>
-									<p>R$ <span id="totalFrete">#{carrinho.frete + carrinho.total}</span></p>
-								</div>
+				<div class="row justify-content-center my-5 ml-13 linha-topo">
+					<div class="col-12 text-start">
+						<h4 class="mb-3 font-weight-bold">Total</h4>
+						<div class="row justify-content-start">
+							<div class="col-3">
+								<span>Frete</span>
+								<p>R$ #{carrinho.frete}</p>
+							</div>
+							<div class="col-3">
+								<span>Total</span>
+								<p>R$ <span id="totalFrete">#{carrinho.frete + carrinho.total}</span></p>
 							</div>
 						</div>
 					</div>
-			
-					<div class="row justify-content-left ml-13">
-						<div class="col-4 text-left">
-							<p>Cupom de Desconto disponíveis</p>
-							<h:inputText value="#{checkoutBean.somaCupom}" id="somaCupom" styleClass="d-none"/>
-							<h:selectOneRadio value="#{checkoutBean.cupom}" styleClass="radio" id="cupomDesconto" converter="CupomConverter" onchange="somaCupom()">
-								<f:selectItems value="#{cupomListarBean.cuponsDesconto}" var="cupom" itemLabel="#{cupom.show()}" itemValue="#{cupom}" />
-							</h:selectOneRadio>
-						</div>
-						<div class="col-4 text-left">
-							<p>Cupom de Troca disponíveis</p>
-							<h:selectManyCheckbox value="#{checkoutBean.cupons}" id="cupomTroca" converter="CupomConverter" onchange="somaCupom()">
-								<f:selectItems value="#{cupomListarBean.cupomByCliente}" styleClass="form-check-input" var="cupom" itemLabel="#{cupom.show()}" itemValue="#{cupom}" />
-							</h:selectManyCheckbox>
-						</div>
+				</div>
+				<div class="row justify-content-left ml-13 linha-topo">
+					<div class="col-4 text-left">
+						<p class="font-weight-bold">Cupom de Desconto disponíveis</p>
+						<h:inputText value="#{checkoutBean.somaCupom}" id="somaCupom" styleClass="d-none"/>
+						<h:selectOneRadio value="#{checkoutBean.cupom}" styleClass="radio" id="cupomDesconto" converter="CupomConverter" onchange="somaCupom()">
+							<f:selectItems value="#{cupomListarBean.cuponsDesconto}" var="cupom" itemLabel="#{cupom.show()}" itemValue="#{cupom}" />
+						</h:selectOneRadio>
 					</div>
+					<div class="col-4 text-left">
+						<p class="font-weight-bold">Cupom de Troca disponíveis</p>
+						<h:selectManyCheckbox value="#{checkoutBean.cupons}" id="cupomTroca" converter="CupomConverter" onchange="somaCupom()">
+							<f:selectItems value="#{cupomListarBean.cupomByCliente}" styleClass="form-check-input" var="cupom" itemLabel="#{cupom.show()}" itemValue="#{cupom}" />
+						</h:selectManyCheckbox>
+					</div>
+				</div>
 					<h:messages style = "color:red;margin:8px;" /> 
 					<h:commandButton class="btn btn-success" action="#{checkoutBean.salvar(loginBean.id, (carrinho.frete + carrinho.total), carrinho)}" value="Finalizar"/>
 				</div>

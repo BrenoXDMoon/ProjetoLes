@@ -15,8 +15,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="#{request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="#{request.contextPath}/assets/css/style.css" rel="stylesheet"/>
     <link href="#{request.contextPath}/assets/css/custom.css" rel="stylesheet"/>
+    <link href="#{request.contextPath}/assets/css/style.css" rel="stylesheet"/>
     <script src="https://kit.fontawesome.com/021265da4a.js" crossorigin="anonymous"></script>
     <title>Alterar Carta</title>
 </head> 
@@ -24,11 +24,11 @@
 <h:body styleClass="">
 	 <header class="site-header py-1 header">
         <nav class="container d-flex flex-column flex-md-row justify-content-between">
-            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
+            <a class="my-2 d-none d-md-inline-block f-22" href="#{request.contextPath}/index.xhtml">NewStation</a>
             <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/admin/cartas/lista.xhtml">Listar</a>
         </nav>
     </header>
-	<div class="container-fluid">
+	<div class="container-fluid mt-3">
 		<div class="row">
 			<div class="col-2 border-rounded">
 				<nav id="sidebarMenu" class="col-2 d-md-block sidebar collapse">
@@ -81,7 +81,7 @@
 					</div>
 					<div class="form-group">
 						<h:outputLabel value="Descrição da Carta" />
-						<h:inputText value='#{cartaEditarBean.carta.descricao}'
+						<h:inputTextarea value='#{cartaEditarBean.carta.descricao}'
 							required="true" id="descricao" styleClass="form-control" />
 
 						<h:message for='descricao' />
@@ -123,7 +123,10 @@
 
 						<h:outputLabel value="Quantidade" />
 						<h:inputText value='#{cartaEditarBean.estoque.quantidade}'
-							id="quantidade" styleClass="form-control" />
+							id="quantidade" styleClass="form-control" validatorMessage="Tem que ter no mínimo uma carta">
+							<f:validateLongRange minimum = "1"/>
+
+							</h:inputText>
 
 						<h:message for="quantidade" />
 					</div>

@@ -6,6 +6,7 @@ import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import br.com.newstation.dominio.Carta;
 import br.com.newstation.dominio.CartaoPedido;
 import br.com.newstation.dominio.EntidadeDominio;
 import br.com.newstation.dominio.Pedido;
@@ -19,14 +20,21 @@ public class PedidoDao extends AbstractDao{
 		abrirConexao();
 		Resultado resultado = new Resultado();
 		Pedido ped = (Pedido) ent;
-		System.out.println("Cupom Desconto: " + ped.getCupomDesconto().getId());
+	try {
 		manager.getTransaction().begin();
 		manager.merge(ped.getCliente());
 		manager.persist(ped);
 		manager.flush();
 		manager.getTransaction().commit();
 		
+	}catch(NullPointerException e) {
+		
+		System.out.println("- ERRO AO SALVAR!!!");
+		resultado.setMensagem("- ERRO AO SALVAR!!!");
+		
+	}finally {
 		fechaConexao();
+	}
 		return resultado;
 	}
 
@@ -121,5 +129,18 @@ public class PedidoDao extends AbstractDao{
 		
 		fechaConexao();
 		return lista ;
+	}
+	
+	
+	public List<Pedido> filtro(String busca) {
+		abrirConexao();
+		try {
+			List<Pedido> pedidos = manager.createQuery("select c from Pedido c where c.statusPedido LIKE '%" + busca
+					+ "%' ", Pedido.class).getResultList();
+			fechaConexao();
+			return pedidos;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 }

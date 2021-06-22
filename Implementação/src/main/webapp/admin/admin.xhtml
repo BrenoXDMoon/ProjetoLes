@@ -9,11 +9,11 @@
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link href="#{request.contextPath}/assets/css/style.css"
-		rel="stylesheet" />
 	<link href="#{request.contextPath}/assets/css/bootstrap.min.css"
 		rel="stylesheet" />
-		<script src="https://kit.fontawesome.com/021265da4a.js" crossorigin="anonymous"></script>
+	<link href="#{request.contextPath}/assets/css/style.css"
+		rel="stylesheet" />
+	<script src="https://kit.fontawesome.com/021265da4a.js" crossorigin="anonymous"></script>
 	<title>Admin</title>
 </h:head>
 
@@ -25,7 +25,7 @@
 	<section class="container-fluid mt-3">
 		<div class="row justify-content-center">
 			<div class="col-2 border-rounded">
-				<nav id="sidebarMenu" class="col-2 d-md-block sidebar collapse">
+				<nav id="sidebarMenu" class="col-7 d-md-block sidebar collapse">
 					<div class="position-sticky pt-3">
 						<ul class="nav flex-column">
 							<li class="nav-item">
@@ -34,7 +34,7 @@
 								</a>
 							</li>
 							<span class="font-weight-bold border-bottom">Pedidos</span>
-							<li class="nav-item mb-5">
+							<li class="nav-item">
 								<a class="py-2 d-none d-md-inline-block ml-3" href="#{request.contextPath}/admin/pedido/lista.xhtml">Lista de Pedidos</a>
 							</li>
 							<span class="font-weight-bold border-bottom">Cartas</span>
@@ -62,8 +62,8 @@
 					</div>
 				</nav>
 			</div>
-			<div class="col-9 pl-0 mb-3">
-				<h2 class="my-5">Painel Administrativo</h2>
+			<div class="col-8 pl-0 mb-3">
+				<h2 class="my-3">Painel Administrativo</h2>
 				<h:form enctype="multipart/form-data" class="mb-3">
 					<div class="row">
 						<div class="col-6">

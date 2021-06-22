@@ -89,7 +89,7 @@ public class Cupom extends EntidadeDominio{
 	}
 
 	public String show() {
-		return " Valor: " + getPreco().toString();
+		return getCodigo() + " Valor: " + getPreco().toString();
 	}
 
 	@Override

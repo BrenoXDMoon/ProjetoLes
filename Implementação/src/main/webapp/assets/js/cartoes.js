@@ -27,13 +27,18 @@ function doisCartoes() {
 	}
 }
 
-function teste(){
-	var total = document.getElementById("totalFrete").innerHTML;
-	var cartao_1 = document.getElementById("j_idt8:valorCartaoUm").value;
-	var cartao_2 = document.getElementById("j_idt8:valorCartaoDois").value;
-	
-	if(total - (cartao_1 + cartao_2) < 10)
-		console.log("dru");
+function doisCartoesSelcionados(){
+	var cartao = document.getElementById("j_idt8:cartao").getElementsByTagName("input");
+	var min = 2;
+	var soma =0;
+	for (var i = 0; i < cartao.length; i++) {
+		if(cartao[i].checked){
+			soma += 1;
+		}
+	}
+	if(soma != min){
+		alert("Selecione 2 cartões de crédito");
+	}
 }
 
 function somaCupom() {

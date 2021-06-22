@@ -10,8 +10,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="#{request.contextPath}/assets/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="#{request.contextPath}/assets/css/style.css" rel="stylesheet"/>
     <link href="#{request.contextPath}/assets/css/custom.css" rel="stylesheet"/>
+    <link href="#{request.contextPath}/assets/css/style.css" rel="stylesheet"/>
     <script src="https://kit.fontawesome.com/021265da4a.js" crossorigin="anonymous"></script>
     <title>Cadastra Carta</title>
 </head>
@@ -19,7 +19,7 @@
 <h:body styleClass="">
 	<header class="site-header py-1 header">
         <nav class="container d-flex flex-column flex-md-row justify-content-between">
-            <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/index.xhtml">NewStation</a>
+            <a class="my-2 d-none d-md-inline-block f-22" href="#{request.contextPath}/index.xhtml">NewStation</a>
             <a class="py-2 d-none d-md-inline-block" href="#{request.contextPath}/admin/cartas/lista.xhtml">Listar</a>
         </nav>
     </header>
@@ -63,7 +63,7 @@
 					</div>
 				</nav>
 			</div>
-			<div class="col-8">
+			<div class="col-8 mt-3">
 				<h2>Cadastro de Cartas</h2>
 				<h:form enctype="multipart/form-data">
 					<div class="form-group">
@@ -74,7 +74,7 @@
 					</div>
 					<div class="form-group">
 						<h:outputLabel value="Descrição da Carta" />
-						<h:inputText value='#{cartaSalvarBean.carta.descricao}'
+						<h:inputTextarea value='#{cartaSalvarBean.carta.descricao}'
 							required="true" id="descricao" styleClass="form-control" />
 						<h:message for='descricao' />
 					</div>
@@ -105,7 +105,9 @@
 					<div class="form-group">
 						<h:outputLabel value="Quantidade" />
 						<h:inputText value="#{cartaSalvarBean.estoque.quantidade}"
-							id="quantidade" styleClass="form-control"  />
+							id="quantidade" styleClass="form-control" validatorMessage="Tem que ter no mínimo uma carta">
+							<f:validateLongRange minimum = "1"/>
+							</h:inputText>
 						<h:message for="quantidade" />
 					</div>
 					<div class="form-group">

@@ -19,9 +19,14 @@ public class EndConverter implements Converter {
 
 		Endereco end = new Endereco();
 
-		end.setId(Integer.valueOf(endereco));
+		try {
+		
+			end.setId(Integer.valueOf(endereco));
 
-		return end;
+			return end;
+		}catch (Exception e) {
+			return null;
+		}
 	}
 
 	@Override

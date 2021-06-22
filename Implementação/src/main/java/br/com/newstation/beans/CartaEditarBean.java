@@ -40,7 +40,7 @@ public class CartaEditarBean {
 
 		carta.setAtivo(true);
 		
-		System.out.println(carta.getEstoque());
+		System.out.println("Carta estoque "+carta.getEstoque());
 
 		cmd.executar(carta);
 
