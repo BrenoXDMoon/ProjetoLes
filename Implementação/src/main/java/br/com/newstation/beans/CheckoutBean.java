@@ -70,11 +70,10 @@ public class CheckoutBean {
 	ValidaCupomDescontoPedido validaDesconto = new ValidaCupomDescontoPedido();
 	SalvarCommand cmd = new SalvarCommand();
 	ExcluirCommand cmdE = new ExcluirCommand();
-	
+
 	@Transactional
 	public String salvar(Integer id, BigDecimal total, Carrinho carrinho) {
 
-		
 		Cliente cli = new Cliente();
 		Calendar cale = Calendar.getInstance();
 		Set<CartaoPedido> cardPed = new HashSet<CartaoPedido>();
@@ -87,11 +86,11 @@ public class CheckoutBean {
 		pedido.setDataAtualizacao(cale);
 		pedido.setCliente(dao.visualizar(cli));
 
-		if(end == null) {
+		if (end == null) {
 			return "/checkout/checkout?faces-redirect=true";
 		}
-		
-		if(validaDesconto.processar(cupom) == "") {
+
+		if (validaDesconto.processar(cupom) == "") {
 			cupom = null;
 			pedido.setCupomDesconto(cupom);
 		} else {
@@ -133,8 +132,7 @@ public class CheckoutBean {
 
 		try {
 			cmd.executar(pedido);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			return "/checkout/checkout?faces-redirect=true";
 		}
 //		pDao.salvar(pedido);
@@ -162,12 +160,20 @@ public class CheckoutBean {
 		pedido.setDataAtualizacao(cale);
 		pedido.setCliente(dao.visualizar(cli));
 		
-		if(validaDesconto.processar(cupom) == "") {
+		if (end == null) {
+			return "/checkout/checkout-dois-cartoes?faces-redirect=true";
+		}
+		
+		if (cartoes.size() < 2) {
+			return "/checkout/checkout-dois-cartoes?faces-redirect=true";
+		}
+
+		if (validaDesconto.processar(cupom) == "") {
 			cupom = null;
 			pedido.setCupomDesconto(cupom);
 		} else {
 			if (validapagamento.total(cupons, total, cDao.buscarById(cupom.getId())))
-				return "/checkout/checkout?faces-redirect=true";
+				return "/checkout/checkout-dois-cartoes?faces-redirect=true";
 			pedido.setCupomDesconto(cDao.buscarById(cupom.getId()));
 		}
 
@@ -180,6 +186,8 @@ public class CheckoutBean {
 		pedido.setEndereco(eDao.busca(end.getId()));
 
 		Set<CartaoPedido> cardPed = new HashSet<CartaoPedido>();
+
+		
 
 		int a = 0;
 		for (CartaoCredito c : cartoes) {
