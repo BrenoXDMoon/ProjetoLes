@@ -28,8 +28,6 @@ public class PedidoDao extends AbstractDao{
 		manager.getTransaction().commit();
 		
 	}catch(NullPointerException e) {
-		
-		System.out.println("- ERRO AO SALVAR!!!");
 		resultado.setMensagem("- ERRO AO SALVAR!!!");
 		
 	}finally {
